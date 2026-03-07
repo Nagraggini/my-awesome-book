@@ -146,6 +146,12 @@ Model – View – Controller
 
 A Controller réteg fogadja a HTTP kéréseket.
 
+### HTTP módszerek:
+- `GET`: Adatok lekérése
+- `POST`: Új adat létrehozása
+- `PUT`: Adat frissítése
+- `DELETE`: Adat törlése
+
 Például:
 
 GET /users
