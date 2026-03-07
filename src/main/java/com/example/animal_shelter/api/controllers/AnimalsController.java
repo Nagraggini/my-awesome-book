@@ -1,4 +1,4 @@
-package com.example.animal_shelter.controllers;
+package com.example.animal_shelter.api.controllers;
 
 //ArrayList-hez:
 import java.util.List;
@@ -7,19 +7,19 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.example.animal_shelter.models.Animal;
-import com.example.animal_shelter.models.AnimalRepository;
+import com.example.animal_shelter.api.models.Animal;
+import com.example.animal_shelter.api.models.AnimalRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 
 // Ez a kontroller figyeli a szervert, és lehetővé teszi, hogy információkat kapjunk a felhasználókról.
-@Controller
+@RestController
 public class AnimalsController {
 
     // syso helyett:

@@ -1,4 +1,4 @@
-package com.example.animal_shelter.models;
+package com.example.animal_shelter.api.models;
 
 public final class Cat extends Animal {
 
