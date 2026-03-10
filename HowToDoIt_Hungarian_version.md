@@ -818,3 +818,16 @@ http://localhost:8080/animals/add
 Api:
 http://localhost:8080/api/animals
 http://localhost:8080/api/animals/11
+
+# Online fejlesztéshez
+
+[Github codenamespace](https://github.dev/)
+
+Terminálban:
+sdk install java 17.0.10-ms
+mvn spring-boot:run 
+
+export DB_URL='jdbc:postgresql://dpg-d69k87buibrs739i5fu0-a.frankfurt-postgres.render.com:5432/database_olpd'
+export DB_USER='database_olpd_user'
+export DB_PASS='sekoojWQ5YUGrgC3080avcnkVvgY4LSQ'
+mvn spring-boot:run
