@@ -15,8 +15,6 @@ public class BlogApplication {
 	}
 	// ! Új branchbe csináld a dolgokat aztán teszt után jöhet a merge.
 
-
-
 	// ! TODO: Tailwind rendes import állása (npm init -y stb tailwind.config.js stb)
 
 }
