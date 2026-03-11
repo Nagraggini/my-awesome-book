@@ -15,11 +15,11 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17.0.1-jdk-slim
 WORKDIR /app
 
-# Ez átmásolja a fentebb létrehozott JAR fájlt a build stage-ből a run stage-be (/app/animal_shelter.jar).
-COPY --from=build /app/target/*.jar animal_shelter.jar
+# Ez átmásolja a fentebb létrehozott JAR fájlt a build stage-ből a run stage-be (/app/blog.jar).
+COPY --from=build /app/target/*.jar blog.jar
 
 # A Spring Boot alkalmazás a 8080-as porton fut.
 EXPOSE 8080 
 
 # Alkalmazás futtatása. ENTRYPOINT: a konténer indításakor a JAR futtatása.
-ENTRYPOINT ["java","-jar","animal_shelter.jar"]
+ENTRYPOINT ["java","-jar","blog.jar"]

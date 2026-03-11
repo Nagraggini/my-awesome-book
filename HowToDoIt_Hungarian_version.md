@@ -1,6 +1,6 @@
 # Kezdőknek
 
-[Saját webfejlesztői alapismeretekről szóló blogom](https://nagraggini.github.io/Web-practising-and-fun/Web_Development/Practising/1-HTML%20Practising/2-Blog.html)
+[Saját webfejlesztői alapismeretekről szóló blogom]()
 
 # Spring Boot
 
@@ -65,12 +65,12 @@ Ez az egész Dockerfile arra kell, hogy:
 
 ## Dockerfile tartalma
 
-```
+```bash
 # Build stage: a projekt lefordítása és JAR csomagolása Maven segítségével.
 # Java verzió a pom.xml-ben van beállítva (Java 17).
 
-# A from sor létrehoz egy ideiglenes konténert.
-FROM maven:3.8.5-openjdk-17 AS build
+# A from sor létrehoz egy ideiglenes konténert. 
+FROM maven:3.8.5-openjdk-17 AS build 
 # Fordításra szolgál.
 WORKDIR /app
 COPY . .
@@ -83,16 +83,15 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17.0.1-jdk-slim
 WORKDIR /app
 
-# Ez átmásolja a fentebb létrehozott JAR fájlt a build stage-ből a run stage-be (/app/animal_shelter.jar).
-COPY --from=build /app/target/*.jar animal_shelter.jar
+# Ez átmásolja a fentebb létrehozott JAR fájlt a build stage-ből a run stage-be (/app/blog.jar).
+COPY --from=build /app/target/*.jar blog.jar
 
 # A Spring Boot alkalmazás a 8080-as porton fut.
-EXPOSE 8080
+EXPOSE 8080 
 
 # Alkalmazás futtatása. ENTRYPOINT: a konténer indításakor a JAR futtatása.
-ENTRYPOINT ["java","-jar","animal_shelter.jar"]
-
-# Projekt feltöltése githubra és render.com-ra
+ENTRYPOINT ["java","-jar","blog.jar"]
+```
 
 https://github.com/-ra regisztrálj be.
 
@@ -115,7 +114,7 @@ Ha valamit elrontottál is kijavítod, utána a render.com-on -> Manual Deploy -
 
 # Projekt futtatása
 
-Ha elindítod a java fájlt (AnimalShelterApplication.java), akkor a böngészőbe írd be ezt: http://localhost:8080/actuator
+Ha elindítod a java fájlt (BlogApplication.java), akkor a böngészőbe írd be ezt: http://localhost:8080/actuator
 
 A dependenciák közt fel vettek az actuatort, ezzel le tudod csekkolni magad.
 Az actuator információt ad az alkalmazás állapotáról és működéséről.
@@ -132,67 +131,6 @@ http://localhost:8080/index.html
 
 showAll.html fájlt ide hozd létre: animal_shelter/src/main/resources/templates/animals
 http://localhost:8080/animals/view
-
-# BL Business Logic - Java logika
-
-Egy régebbi konzolos java projekt fájljait másold be is:
-GitHub/animal_shelter/src/main/java/com/example/animal_shelter/models
-
-A Spring Boot architektúra alapja, hogy a MVC mintát használja:
-
-Model – View – Controller
-
-## Controllers mappa
-
-A Controller réteg fogadja a HTTP kéréseket.
-
-### HTTP módszerek:
-
-- `GET`: Adatok lekérése
-- `POST`: Új adat létrehozása
-- `PUT`: Adat frissítése
-- `DELETE`: Adat törlése
-
-Például:
-
-GET /users
-POST /addUser
-
-A controller:
-
-- Fogadja a requestet.
-- Meghívja a service-t / repository-t.
-- Visszaad egy view-t, jelen esetben ez lesz, majd /animals/view. [View (Thymeleaf) = megjelenítés]
-
-## Models mappa
-
-A Model egy Java osztály, ami:
-
-- Az adatbázis egy tábláját reprezentálja.
-- Az osztály példányai egy-egy rekordnak felelnek meg.
-- JPA segítségével automatikusan össze van kötve az adatbázissal.
-
-osztály = tábla
-objektum = sor
-mező = oszlop
-
-Az annotáció (@) jelzi a Spring/JPA számára, hogy ez egy adatbázis entitás.
-
-```bash
-@Entity
-@Table(name = "animals") //Megmondja, hogy melyik adatbázis táblához tartozik.
-public class Animal {
-
-  // Ezek az elsődleges kulcs létrehozásához kellenek. Az animals adattáblában van
-	// egy uid oszlopunk.
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // Lefogja generálni az értékét.
-	private int uid;
-
-//Utána jönnek a konstruktorok, getterek/setterek és metódusok.
-
-}
-```
 
 # Tailwind stílus használata
 
