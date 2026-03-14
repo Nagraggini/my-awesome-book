@@ -1764,6 +1764,14 @@ Ez a Map **mindig rendezve van**.
 
 **Egy fontos megjegyzés:** Mivel a `TreeMap` folyamatosan rendezi magát minden beszúrásnál, ez a leginkább erőforrás-igényes a három közül.
 
+## Mit használj a vizsgán?
+
+Beolvasás: Mindig olvass be egy ArrayList-be (ez az alap).            
+    
+Keresés/Szűrés/Statisztika: Használd a listát és a Stream API-t.            
+
+Egyedi kulcsos keresés: Csak akkor készíts HashMap-et, ha a feladat kifejezetten kéri, hogy egy azonosító alapján keress ki valamit villámgyorsan.            
+    
 # Java Stream API Gyorssegéd
 
 ```bash
