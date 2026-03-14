@@ -1795,3 +1795,21 @@ long db = lista.stream()
                .filter(x -> x.getHelyszin().equals("Madrid"))
                .count();
 ```
+
+### 2. Kiíratás
+
+_Írd ki a 100 pont feletti hazai meccseket!_
+
+```java
+lista.stream().filter(x -> x.getHazaiPont() > 100).forEach(System.out::println);
+```
+
+### 3. Gyűjtés
+
+_Add vissza a városok neveit ABC sorrendben, ismétlődés nélkül!_
+
+```java
+List<String> varosok = lista.stream().map(AbcKosarlabdaLiga::getHelyszin).distinct().sorted().toList();
+```
+
+
