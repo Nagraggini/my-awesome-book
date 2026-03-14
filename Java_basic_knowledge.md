@@ -1072,21 +1072,21 @@ Ez a kód jól illusztrálja a polimorfizmust:
 
     public static void main(String[] args) {
 
-                  //ArrayList létrehozása az ősosztály típusával.
-                  //Animal az ősosztály, a Cat pedig egy leszármazott.
-                  //Tárol objektumokat, nem primitíveket.
-                  ArrayList<Animal> cats = new ArrayList<>();
+                    //ArrayList létrehozása az ősosztály típusával.
+                    //Animal az ősosztály, a Cat pedig egy leszármazott.
+                    //Tárol objektumokat, nem primitíveket.
+                    ArrayList<Animal> cats = new ArrayList<>();
 
-                  //Ez lehetséges, mert minden Cat egy Animal, az öröklés miatt.
-                  Cat sziamiau = new Cat("Sziamiau");
-                  cats.add(sziamiau);
+                    //Ez lehetséges, mert minden Cat egy Animal, az öröklés miatt.
+                    Cat sziamiau = new Cat("Sziamiau");
+                    cats.add(sziamiau);
 
-                  if (!cats.isEmpty()) { //Ha nem üres.
-                      //cats.get(0) → visszaad egy Animal referenciát, ami valójában Cat típusú objektumra mutat.
-                      System.out.println("Neve: " + cats.get(0).getName());
-                  } else {
-                      System.out.println("Üres az ArrayList.");
-                  }
+                    if (!cats.isEmpty()) { //Ha nem üres.
+                        //cats.get(0) → visszaad egy Animal referenciát, ami valójában Cat típusú objektumra mutat.
+                        System.out.println("Neve: " + cats.get(0).getName());
+                    } else {
+                        System.out.println("Üres az ArrayList.");
+                    }
 
     }
 
@@ -1722,12 +1722,14 @@ Render.com-on Dockerrel kell deployolnod, mert Render nem tud közvetlenül WAR 
 
 ## Főbb különbségek összefoglalva
 
+```bash
 | Tulajdonság         | HashMap                             | LinkedHashMap                                  | TreeMap                                               |
 | ------------------- | ----------------------------------- | ---------------------------------------------- | ----------------------------------------------------- |
 | **Sorrend**         | Nincs garantált sorrend.            | A hozzáadás sorrendjét követi.                 | Természetes sorrend (pl. ABC) vagy egyedi Comparator. |
 | **Belső felépítés** | Hash tábla (Hashtable).             | Hash tábla + Duplán láncolt lista.             | Piros-fekete fa (Red-Black Tree).                     |
 | **Gyorsaság**       | A leggyorsabb (O(1)).               | Kicsit lassabb a lista miatt, de gyors (O(1)). | Lassabb (O(log n)).                                   |
 | **Null kulcs**      | Egy darab `null` kulcs megengedett. | Egy darab `null` kulcs megengedett.            | **Nem enged meg** `null` kulcsot (hibát dob).         |
+```
 
 ---
 
@@ -1761,3 +1763,35 @@ Ez a Map **mindig rendezve van**.
 > - **TreeMap:** Ha azt akarod, hogy a Map-ed mindig ABC vagy számszerinti sorrendben legyen.
 
 **Egy fontos megjegyzés:** Mivel a `TreeMap` folyamatosan rendezi magát minden beszúrásnál, ez a leginkább erőforrás-igényes a három közül.
+
+# Java Stream API Gyorssegéd
+
+```bash
+| Szint         | Művelet                  | Leírás |
+| :---          | :---                     | :---   |
+| **1. FORRÁS** | `.stream()`              | Elindítja a folyamatot. (**KÖTELEZŐ**) |
+| **2. KÖZTES** | `.filter(x -> ...)`      | Szűrés (csak az marad, ami TRUE). |
+| (Bármennyi    | `.map(x -> x.get...)`    | Átalakítás (pl. objektumból csak egy String). |
+| lehet)        | `.sorted()`              | Sorba rendezés. |
+|               | `.distinct()`            | Ismétlődések törlése. |
+|               | `.limit(n)`              | Csak az első *n* darab elemet hagyja meg. |
+| **3. LEZÁRÓ** | `.count()`               | Megszámolja az elemeket. (Eredmény: `long`) |
+| (Csak EGY     | `.forEach(x -> ...)`     | Művelet minden elemen (pl. kiírás). (Eredmény: `void`) |
+| lehet a végén!) | `.toList()`             | Új listába gyűjt. (Eredmény: `List<T>`) |
+|               | `.anyMatch(x -> ...)`    | Van-e legalább egy ilyen? (Eredmény: `boolean`) |
+|               | `.findFirst()`           | Visszaadja a legelsőt. (Eredmény: `Optional<T>`) |
+```
+
+---
+
+## Példák a használatra
+
+### 1. Megszámolás
+
+_Hány meccs volt Madridban?_
+
+```java
+long db = lista.stream()
+               .filter(x -> x.getHelyszin().equals("Madrid"))
+               .count();
+```
