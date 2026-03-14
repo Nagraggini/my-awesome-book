@@ -10,6 +10,7 @@ https://okt.inf.szte.hu/prog1/gyakorlat/eloadas/Java/objectsAndClasses/
 https://data-flair.training/blogs/stacks-and-queues-in-c/  
 https://itszotar.hu/jvm-java-virtualis-gep-mi-a-mukodese-es-mi-a-szerepe-a-java-kod-futtatasaban/  
 https://www.youtube.com/watch?v=8qMi3e_fzKc&list=PL92V_WHHt2CnXaUIA9T2ww7peDK4lqmZj&index=23
+https://www.youtube.com/watch?v=2StXP1XaU04
 
 [Pályakezdő fullstack tutorial csomag](https://www.skillversum.com/note/view/c256d513dd9e6f970aa3daa5ded7496b38d01e78)
 
@@ -580,27 +581,27 @@ Az első parancsnak kell lennie. A super mindig arra utal akitől öröklök.
         }
     }
 
-## OOP alapelve 
+## OOP alapelve
 
 Íme az OOP (Objektumorientált Programozás) négy alappillére, mindegyikhez egy rövid magyarázattal és egy-egy gyakorlati példával, hogy könnyen megjegyezhető legyen:
 
 1. Encapsulation (Egységbezárás)
-Lényege: Az adatok (mezők) és az rajtuk végzett műveletek (metódusok) egy egységbe (osztályba) zárása, miközben az adatokhoz való közvetlen hozzáférést korlátozzuk (pl. private módosítóval).
+   Lényege: Az adatok (mezők) és az rajtuk végzett műveletek (metódusok) egy egységbe (osztályba) zárása, miközben az adatokhoz való közvetlen hozzáférést korlátozzuk (pl. private módosítóval).
 
 Példa: Egy Bankszamla osztályban az egyenleg változó privát, így nem írható át kívülről tetszőlegesen, csak a befizet() vagy kivesz() metódusokon keresztül, amik ellenőrizni tudják a művelet érvényességét.
 
 2. Inheritance (Öröklődés)
-Lényege: Lehetővé teszi, hogy egy osztály (gyerekosztály) átvegye egy másik osztály (szülőosztály) tulajdonságait és viselkedését, így elkerülhető a kódismétlés.
+   Lényege: Lehetővé teszi, hogy egy osztály (gyerekosztály) átvegye egy másik osztály (szülőosztály) tulajdonságait és viselkedését, így elkerülhető a kódismétlés.
 
 Példa: Van egy általános Jarmu szülőosztályod (aminek van sebesseg mezője), és ebből származtatod az Auto és Motor osztályokat, amik automatikusan megkapják a sebesség kezelését, de hozzáadhatnak saját extrákat.
 
 3. Polymorphism (Többalakúság)
-Lényege: Egyazon metódushívás különböző módon viselkedhet attól függően, hogy milyen típusú objektumra hívjuk meg (gyakran interfészeken vagy felüldefiniáláson keresztül).
+   Lényege: Egyazon metódushívás különböző módon viselkedhet attól függően, hogy milyen típusú objektumra hívjuk meg (gyakran interfészeken vagy felüldefiniáláson keresztül).
 
 Példa: Van egy Allat osztályod hangotAd() metódussal. Ha a Kutya objektumra hívod meg, azt írja ki, hogy "Vau", ha a Macska objektumra, akkor azt, hogy "Miau" – a hívó kódnak viszont nem kell tudnia, pontosan milyen állattal dolgozik.
 
 4. Abstraction (Absztrakció)
-Lényege: A lényeges jellemzők kiemelése és a belső megvalósítás részleteinek elrejtése; csak azt mutatjuk meg a külvilágnak, "mit" csinál az objektum, nem azt, hogy "hogyan".
+   Lényege: A lényeges jellemzők kiemelése és a belső megvalósítás részleteinek elrejtése; csak azt mutatjuk meg a külvilágnak, "mit" csinál az objektum, nem azt, hogy "hogyan".
 
 Példa: Egy Kavefozo gombját megnyomod (interfész), és megkapod a kávét. Nem kell tudnod, pontosan hány bár nyomáson vagy milyen hőmérsékleten dolgozik belül a gép.
 
@@ -610,7 +611,6 @@ Ez a két eszköz segíti az absztrakciót, de más a céljuk:
 Interface: Egy "szerződés". Csak azt mondja meg, hogy egy osztálynak mire kell képesnek lennie (pl. Minden ami ehető, rendelkezzen egy egyel() metódussal). Egy osztály több interfészt is megvalósíthat.
 
 Abstract Class: Egy "félkész sablon". Tartalmazhat közös kódot (megvalósított metódusokat) és absztrakt metódusokat is. Akkor használjuk, ha az osztályok között szoros "egyfajta" (is-a) kapcsolat van (pl. minden Kutya egy Allat).
-
 
 # Ismétlés és könnyű állásinterjús kérdések
 
@@ -1104,21 +1104,21 @@ Ez a kód jól illusztrálja a polimorfizmust:
 
     public static void main(String[] args) {
 
-                    //ArrayList létrehozása az ősosztály típusával.
-                    //Animal az ősosztály, a Cat pedig egy leszármazott.
-                    //Tárol objektumokat, nem primitíveket.
-                    ArrayList<Animal> cats = new ArrayList<>();
+                                //ArrayList létrehozása az ősosztály típusával.
+                                //Animal az ősosztály, a Cat pedig egy leszármazott.
+                                //Tárol objektumokat, nem primitíveket.
+                                ArrayList<Animal> cats = new ArrayList<>();
 
-                    //Ez lehetséges, mert minden Cat egy Animal, az öröklés miatt.
-                    Cat sziamiau = new Cat("Sziamiau");
-                    cats.add(sziamiau);
+                                //Ez lehetséges, mert minden Cat egy Animal, az öröklés miatt.
+                                Cat sziamiau = new Cat("Sziamiau");
+                                cats.add(sziamiau);
 
-                    if (!cats.isEmpty()) { //Ha nem üres.
-                        //cats.get(0) → visszaad egy Animal referenciát, ami valójában Cat típusú objektumra mutat.
-                        System.out.println("Neve: " + cats.get(0).getName());
-                    } else {
-                        System.out.println("Üres az ArrayList.");
-                    }
+                                if (!cats.isEmpty()) { //Ha nem üres.
+                                    //cats.get(0) → visszaad egy Animal referenciát, ami valójában Cat típusú objektumra mutat.
+                                    System.out.println("Neve: " + cats.get(0).getName());
+                                } else {
+                                    System.out.println("Üres az ArrayList.");
+                                }
 
     }
 
@@ -1476,7 +1476,7 @@ Első példa:
         System.out.println("Kivétel: " + e); //Kiíratjuk a hibaüzenetet.
     }
 
-Második példa:
+Második példa try-with-resources-os:
 
     public static void main(String[] args) {
         File file = new File("C://file.txt");
@@ -1798,12 +1798,12 @@ Ez a Map **mindig rendezve van**.
 
 ## Mit használj a vizsgán?
 
-Beolvasás: Mindig olvass be egy ArrayList-be (ez az alap).            
-    
-Keresés/Szűrés/Statisztika: Használd a listát és a Stream API-t.            
+Beolvasás: Mindig olvass be egy ArrayList-be (ez az alap).
 
-Egyedi kulcsos keresés: Csak akkor készíts HashMap-et, ha a feladat kifejezetten kéri, hogy egy azonosító alapján keress ki valamit villámgyorsan.            
-    
+Keresés/Szűrés/Statisztika: Használd a listát és a Stream API-t.
+
+Egyedi kulcsos keresés: Csak akkor készíts HashMap-et, ha a feladat kifejezetten kéri, hogy egy azonosító alapján keress ki valamit villámgyorsan.
+
 # Java Stream API Gyorssegéd
 
 ```bash
@@ -1852,67 +1852,75 @@ _Add vissza a városok neveit ABC sorrendben, ismétlődés nélkül!_
 List<String> varosok = lista.stream().map(AbcKosarlabdaLiga::getHelyszin).distinct().sorted().toList();
 ```
 
-### Magyarázó példa
+# Java Példák és Magyarázatok
+
+## 1. Fájlbeolvasás
 
 ```
- public void FajlBeolvasas(String fajlneve) {
+public void fajlBeolvasas(String fajlneve) {
 
-                // Van amikor ez a jó: StandardCharsets.UTF_8
-                // Van amikor ez a jó:Charset.forName("windows-1250")
+    // Van amikor ez a jó: StandardCharsets.UTF_8
+    // Van amikor ez a jó: Charset.forName("windows-1250")
 
-                Path path = Path.of(fajlneve);
+    Path path = Path.of(fajlneve);
 
-                // Ellenőrzés és beolvasás egyben
-                if (!Files.exists(path)) {
-                        System.out.println("Nem létezik a fájl!");
-                        System.out.println("Itt keresem: " + System.getProperty("user.dir"));
-                        return; // Ha nincs fájl, ne is menjünk tovább a try-ra
-                }
+    // Ellenőrzés és beolvasás egyben
+    if (!Files.exists(path)) {
+        System.out.println("Nem létezik a fájl!");
+        System.out.println("Itt keresem: " + System.getProperty("user.dir"));
+        return; // Ha nincs fájl, ne is menjünk tovább
+    }
 
-                ArrayList<Operatorok2> lista = new ArrayList<>();
+    ArrayList<Operatorok2> lista = new ArrayList<>();
 
-                try {
-                        List<String> sorok = Files.readAllLines(path, StandardCharsets.UTF_8);
+    try {
+        List<String> sorok = Files.readAllLines(path, StandardCharsets.UTF_8);
 
-                        // Itt mehetünk 0-túl, mert nincs oszlopnév.
-                        for (int i = 0; i < sorok.size(); i++) {
-                                String[] t = sorok.get(i).split(" ");
-
-                                lista.add(new Operatorok2(Integer.parseInt(t[0]), t[1], Integer.parseInt(t[2])));
-                        }
-                } catch (IOException ex) {
-                        System.getLogger(Operatorok2.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                }
+        for (String sor : sorok) {
+            String[] t = sor.split(" ");
+            lista.add(new Operatorok2(Integer.parseInt(t[0]), t[1], Integer.parseInt(t[2])));
         }
+    } catch (IOException ex) {
+        System.getLogger(Operatorok2.class.getName())
+              .log(System.Logger.Level.ERROR, (String) null, ex);
+    }
+}
+```
 
-        public void FajlKiiras() {
-                // 1️⃣ Lista létrehozása
-                ArrayList<Operatorok2> lista = new ArrayList<>();
+## 2. Fájlkiírás
 
-                // 2️⃣ Példa adatok hozzáadása
-                lista.add(new Operatorok2(10, "+", 5));
-                lista.add(new Operatorok2(20, "-", 3));
-                lista.add(new Operatorok2(4, "*", 6));
+```
+public void fajlKiiras() {
+    // 1️⃣ Lista létrehozása
+    ArrayList<Operatorok2> lista = new ArrayList<>();
 
-                try {
+    // 2️⃣ Példa adatok hozzáadása
+    lista.add(new Operatorok2(10, "+", 5));
+    lista.add(new Operatorok2(20, "-", 3));
+    lista.add(new Operatorok2(4, "*", 6));
 
-                        // 3️⃣ Lista kiírása fájlba Stream segítségével
-                        Files.write(Path.of("eredmeny.txt"), // fájl neve
-                                        lista.stream() // listából stream
-                                                        .map(o -> o.toString())
-                                                        // objektum -> String
-                                                        .toList(), // Stream -> List<String>
-                                        StandardCharsets.UTF_8 // karakterkódolás
-                        );
+    try {
+        // 3️⃣ Lista kiírása fájlba Stream segítségével
+        Files.write(
+            Path.of("eredmeny.txt"),
+            lista.stream()
+                 .map(Object::toString)
+                 .toList(),
+            StandardCharsets.UTF_8
+        );
 
-                        System.out.println("Fájl kiírva: eredmeny.txt");
+        System.out.println("Fájl kiírva: eredmeny.txt");
 
-                } catch (IOException e) {
-                        System.out.println("Hiba történt a fájl írásakor.");
-                }
-        }
+    } catch (IOException e) {
+        System.out.println("Hiba történt a fájl írásakor.");
+    }
+}
+```
 
-        public void StreamFunkciok() {
+## 3. Stream műveletek
+
+```
+public void StreamFunkciok() {
                 // Példa lista létrehozása
                 List<Integer> szamok = Arrays.asList(5, 10, 15, 20, 25, 10, 5);
 
@@ -2000,8 +2008,12 @@ List<String> varosok = lista.stream().map(AbcKosarlabdaLiga::getHelyszin).distin
                                 .map(x -> x * 2).forEach(x -> {
                                 }); // csak demonstráció, nincs kimenet
         }
+```
 
-        public void HashMap() {
+## 4. HashMap példák
+
+```
+public void HashMapPelda() {
 
                 // 1️⃣ HashMap létrehozása
                 Map<String, Integer> gyumolcsok = new HashMap<>(); // kulcs-érték párokat tároló adatszerkezet (kulcs:
@@ -2066,8 +2078,12 @@ List<String> varosok = lista.stream().map(AbcKosarlabdaLiga::getHelyszin).distin
                 gyumolcsok.clear(); // az összes elem törlése
                 System.out.println("HashMap ürítés után: " + gyumolcsok);
         }
+```
 
-        public void Osszefoglalo() {
+## 5. Összefoglaló adatszerkezetek és alapok
+
+```
+   public void Osszefoglalo() {
 
                 List<Integer> lista = Arrays.asList(1, 2, 2, 3); // duplikáció lehet
                 Set<Integer> halmaz = new HashSet<>(lista); // duplikáció eltűnik
@@ -2142,14 +2158,146 @@ List<String> varosok = lista.stream().map(AbcKosarlabdaLiga::getHelyszin).distin
                  * OOP alapok: Encapsulation * Inheritance * Polymorphism * Abstraction
                  */
         }
-
-        public void ArrayListFunkciok() {
-                ArrayList<Operatorok2> lista = new ArrayList<>();
-
-                // ^ Kiíratás. forEach+lambda
-                lista.forEach(l -> System.out.println(l.getBal() + " " + l.getOperator() + " " + l.getJobb()));
-        }
-
-        // TODO: printf leírás is kéne
 ```
 
+## 6. ArrayList kiíratás
+
+```
+public void arrayListFunkciok() {
+    ArrayList<Operatorok2> lista = new ArrayList<>();
+
+     // ^ Kiíratás. forEach+lambda
+    lista.forEach(l -> System.out.println(l.getBal() + " " + l.getOperator() + " " + l.getJobb()));
+}
+```
+
+// TODO: printf leírás is kéne
+
+Megjegyzés:
+
+Mindig használj .collect(...) vagy .forEach(...) a Stream végén, különben nem történik semmi.
+
+ArrayList → gyors indexelés, LinkedList → gyors beszúrás, HashSet → egyedi elemek, HashMap → kulcs→érték.
+
+OOP alapok: Encapsulation, Inheritance, Polymorphism, Abstraction
+
+# Stream API extra
+
+```
+        record Car(String type, String make, String model, Integer engineCapacity) { }
+
+
+        public static void main(String[] args) {
+                List<Car> cars = List.of(new Car("sedan", "BMW", "530", 1998),
+                                new Car("sedan", "Audi", "A5", 1998),
+                                new Car("sedan", "Mercedes", "E-Class", 2500),
+                                new Car("hatchback", "Skoda", "Octavia", 1600),
+                                new Car("hatchback", "Toyota", "TypeR", 1450));
+
+                // A .toList() visszalakítjuk listává az adatfolyamot.
+                List<Car> sedanCars = cars.stream().filter(x -> x.type.equals("sedan")).toList();
+
+                // Csinálunk egy listát, amiben csak a kocsik make attribútuma szerepel.
+                // map: Egy az egyhez (1:1) transzformáció. Minden autóból egy márkát (String)
+                // csinál.
+                List<String> carMakeList = cars.stream().map(car -> car.make).toList();
+
+                // Csinálunk egy listát, amiben csak a kocsik make és model attribútumai
+                // szerepelnek.
+                /*
+                 * flatMap: Egy a többhöz (1:N) transzformáció. Itt minden autóból egy Streamet
+                 * csinálsz (ami a márkát és a modellt tartalmazza), majd a flatMap ezeket a kis
+                 * streameket "kilapítja" egyetlen nagy listává.
+                 */
+                List<String> carMakeModelList = cars.stream().flatMap(car -> Stream.of(car.make, car.model)).toList();
+
+                Stream<Integer> szamokStream = Stream.of(10, 11, 12, 13, 14);
+
+                /*
+                 * Ilyenkor a Java még nem csinál semmit. Nem szűri le a számokat, és nem írja
+                 * ki a konzolra a szöveget. Csak "feljegyzi" magának, hogy:
+                 * "Majd ha valaki kéri az eredményt, ezeket a számokat így kell szűrnöm."
+                 */
+                Stream<Integer> szurtSzamokStream = szamokStream.filter(i -> {
+                        System.out.println("Vizsgálom a számot: " + i); // Ez megmutatja a "lustaságot".
+                        return i % 2 == 0;
+                });
+                /*
+                 * A Stream API olyan, mint egy gyári futószalag. A filter és a map a gépek a
+                 * szalagon, de a szalag csak akkor indul el, ha a végén valaki megnyomja a
+                 * gombot (ez a terminális művelet, pl. a count vagy a toList).
+                 */
+
+                /*
+                 * A terminális (záró) művelet (count). A tényleges munka csak itt kezdődik.
+                 */
+                System.out.println("Ennyi páros szám van:" + szurtSzamokStream.count());
+
+                // ^ Gyűjtők (Collectors), a csoportosítás és a párhuzamos végrehajtás.
+
+                // 😊 1. Partitioning
+                /*
+                 * A partitioningBy egy speciális gyűjtő, ami egy feltétel alapján pontosan két
+                 * részre osztja a listát: azokra, amikre igaz a feltétel, és azokra, amikre
+                 * nem.
+                 */
+
+                // Map<Boolean, List<Car>>: A kulcs mindig Boolean (true/false)
+                Map<Boolean, List<Car>> autokSzetvalasztasa = cars.stream().collect(
+                                Collectors.partitioningBy(car -> car.type.equals("sedan"))
+
+                );
+
+                // true kulcs alatt lesznek a sedanok, false alatt minden más
+                System.out.println("Sedanok (true): " + autokSzetvalasztasa.get(true) + "/n");
+                System.out.println("Nem sedanok (false): " + autokSzetvalasztasa.get(false));
+
+                // 😊 2. GroupingBy (Csoportosítás)
+
+                /*
+                 * Amikor nem csak két kategóriánk van, a groupingBy segítségével bármilyen
+                 * tulajdonság (pl. gyártó vagy típus) alapján csoportosíthatunk.
+                 */
+
+                // Csoportosítás: Típus szerint (Map<String, List<Car>>)
+                Map<String, List<Car>> tipusSzerint = cars.stream()
+                                .collect(Collectors.groupingBy(Car::type));
+
+                // 😊 3. Összetett csoportosítás (Multi-level Map)
+                /*
+                 * A videó végén egy komplexebb példa van, ahol nem csak listába gyűjtjük az
+                 * autókat, hanem egy Map-et teszünk egy Map-be. Itt azt nézzük meg, hogy
+                 * típuson belül melyik modellnek mekkora a motorja.
+                 */
+
+                // Map<Típus, Map<Modell, Hengerűrtartalom>>
+                Map<String, Map<String, Integer>> csoportositottAutok = cars.stream()
+                                .collect(Collectors.groupingBy(
+                                                Car::type, // Elsődleges kulcs: típus (pl. sedan)
+                                                Collectors.toMap(
+                                                                Car::model, // Belső Map kulcsa: modell
+                                                                Car::engineCapacity // Belső Map értéke: motor mérete
+                                                )));
+
+                // 😊 4. Párhuzamos Streamek (Parallel Streams)
+
+                /*
+                 * Alapértelmezetten a stream egyetlen szálon (Sequential) fut.
+                 *
+                 * parallelStream(): A Java felosztja a feladatot több processzorszálra
+                 * (úgynevezett ForkJoinPool-t használ).
+                 *
+                 * Mikor használd? Csak nagyon nagy adatmennyiségnél, mert a szálak kezelése
+                 * plusz erőforrásba kerül.
+                 *
+                 * Váltás: Menet közben is válthatsz .parallel() és .sequential() hívásokkal a
+                 * láncon belül.
+                 */
+
+                // 😊 5. Párhuzamosítás
+                // A parallelStream() több szálon futtatja a műveleteket
+                cars.parallelStream().forEach(car -> {
+                        System.out.println(
+                                        "Szál: " + Thread.currentThread().getName() + " dolgozik ezen: " + car.model());
+                });
+```
