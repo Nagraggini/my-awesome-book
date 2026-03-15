@@ -1005,6 +1005,225 @@ A primitívek speciálisak, az objektumok nem, azok minding ugyanúgy működnek
     //A Character örököl az Object osztálytól, de itt nem az Object toString() metódusa hívódik meg.
     //Hanem a Character.toString(char) statikus metódus.
 
+# Java dátum és idő kezelés (java.time)
+
+A Java 8 óta a dátum és idő kezelésére a java.time API csomagot használjuk.
+Ez leváltotta a régi Date és Calendar osztályokat.
+
+Előnyei:        
+- immutable (nem módosítható objektumok)        
+- biztonságosabb        
+- könnyebb használni        
+- jobban olvasható      
+
+Legfontosabb osztályok
+
+```java
+| Osztály           | Mire használjuk |
+| ----------------- | --------------- |
+| LocalDate         | csak dátum      |
+| LocalTime         | csak idő        |
+| LocalDateTime     | dátum + idő     |
+| Period            | dátum különbség |
+| Duration          | idő különbség   |
+| DateTimeFormatter | formázás        |
+```
+**LocalDate (dátum kezelés)**
+
+A LocalDate év, hónap és nap tárolására szolgál.
+
+**Aktuális dátum**
+
+```java
+LocalDate today = LocalDate.now();
+System.out.println(today);
+```
+
+példa kimenet
+
+2026-03-15
+
+**Dátum létrehozása**
+
+```java
+LocalDate date = LocalDate.of(2024, 5, 10);
+System.out.println(date);
+```
+
+kimenet
+
+2024-05-10
+
+*Év, hónap, nap lekérése*
+
+```java
+LocalDate date = LocalDate.now();
+
+
+int ev = date.getYear();
+int honap = date.getMonthValue();
+int nap = date.getDayOfMonth();
+```
+
+**Dátum módosítása**
+
+A LocalDate immutable, ezért minden művelet új objektumot ad vissza.
+
+*Év módosítása*
+```java
+LocalDate ujDatum = date.withYear(2030);
+```
+
+*Nap hozzáadása*
+```java
+LocalDate ujDatum = date.plusDays(10);
+```
+
+*Nap kivonása
+```java
+LocalDate ujDatum = date.minusDays(5);
+```
+
+*Év hozzáadása*
+```java
+LocalDate ujDatum = date.plusYears(2);
+```
+
+*Dátum összehasonlítása*
+```java
+LocalDate d1 = LocalDate.of(2024, 5, 1);
+LocalDate d2 = LocalDate.of(2025, 5, 1);
+
+d1.isBefore(d2);
+d1.isAfter(d2);
+d1.isEqual(d2);
+```
+
+**Két dátum különbsége**
+
+A Period osztály segítségével számolhatjuk ki.
+
+```java
+LocalDate szuletes = LocalDate.of(2000, 3, 10);
+LocalDate today = LocalDate.now();
+
+Period kulonbseg = Period.between(szuletes, today);
+
+System.out.println(kulonbseg.getYears());
+```
+
+Ez kiszámolja az életkort években.
+
+```java
+LocalTime (csak idő)
+LocalTime time = LocalTime.now();
+
+System.out.println(time);
+```
+
+példa
+
+18:45:21.123
+
+**LocalDateTime (dátum + idő)**
+
+```java
+LocalDateTime now = LocalDateTime.now();
+
+System.out.println(now);
+```
+
+példa
+
+2026-03-15T18:45:21
+
+**Dátum formázása**
+
+A DateTimeFormatter segítségével.
+
+```java
+LocalDate today = LocalDate.now();
+
+DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("yyyy.MM.dd");
+
+System.out.println(today.format(formatter));
+```
+
+kimenet
+
+2026.03.15
+
+**Gyakori formátumok**
+
+```java
+| Formátum | Jelentés  |
+| -------- | --------- |
+| `yyyy`   | év        |
+| `MM`     | hónap     |
+| `dd`     | nap       |
+| `HH`     | óra       |
+| `mm`     | perc      |
+| `ss`     | másodperc |
+```
+
+**Példa dátum + idő formázás**
+
+```java
+LocalDateTime now = LocalDateTime.now();
+
+DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
+
+System.out.println(now.format(formatter));
+```
+
+példa kimenet
+
+2026.03.15 18:45
+
+**String → dátum**
+
+```java
+String datum = "2024-05-10";
+
+LocalDate date = LocalDate.parse(datum);
+Dátum → String
+LocalDate date = LocalDate.now();
+
+String text = date.toString();
+```
+
+**Tipikus Java feladatok**
+
+Java vizsgákon gyakran kérik:
+- aktuális dátum lekérése
+- életkor számítása
+- dátum összehasonlítása
+- dátum formázása
+- dátumhoz nap / év hozzáadása
+
+## Rövid cheat sheet
+
+```java
+LocalDate.now();
+LocalDate.of(2024,5,10)
+
+date.getYear()
+date.getMonthValue()
+date.getDayOfMonth()
+
+date.plusDays(5)
+date.plusYears(1)
+
+date.isBefore(d2)
+date.isAfter(d2)
+
+LocalDate.parse("2024-05-10")
+
+date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))
+```
+
 # Wrapper (burkoló) osztályok
 
 Java-ban a wrapper (burkoló) osztályok a primitív adattípusok objektum megfelelői.
@@ -1166,15 +1385,6 @@ Mi történik?
 
 A Garbage Collector (GC) egy automatikus memória-kezelő mechanizmus, ami a Heap-en lévő, már nem használt objektumokat felszabadítja. Figyeli, hogy mely objektumokra már nincs hivatkozás (pl. minden változó, ami mutat rá, megszűnt). Eltávolítja ezeket a memória felszabadításához. Nem garantált azonnali felszabadítás.
 
-# Speciális adattípusok
-
-```java
-LocalDate datum = LocalDate.of(2004,11,21);
-LocalDate datum2 = LocalDate.of(2005,11,21);
-
-boolean egyenloe=datum.isEqual(datum2);
-```
-
 # Környezet változók és a manuális fordítás
 
 Új JDK letöltése [innen](https://jdk.java.net/25/?utm_source).
@@ -1225,6 +1435,7 @@ Futtasd:
 
 # Véletlen mondat generátor készítés
 
+```java
     public class SentenceGenerator {
 
         public static void main(String[] args) {
@@ -1259,6 +1470,7 @@ Futtasd:
 
         }
     }
+```
 
 # Tömb vs. ArrayList
 
@@ -1317,6 +1529,7 @@ A tömb tud tárolni primitíveket.
 Az ArrayList dinamikusan tudja változtatni a méretét és, csak objektumokat lehet bele rakni.
 Fontos, hogy be kell importálni felül.
 
+```java
     import java.util.ArrayList;
 
     ArrayList<String> list = new ArrayList<>();
@@ -1327,6 +1540,7 @@ Fontos, hogy be kell importálni felül.
         list.remove(0);
         System.out.println("0. elem: " + list.get(0));
         list.size(); //output: 1
+```
 
 Nem tud tárolni primitíveket, csak wrapper osztályokat.
 
@@ -1344,6 +1558,7 @@ de ehhez egymásba ágyazott listákat kell használni.
 
 # Az ArrayListek és a szülők kapcsolata
 
+```java
     public static void main(String[] args) {
 
         //Nem primitíveket, hanem objektumokat tárol.
@@ -1366,6 +1581,7 @@ de ehhez egymásba ágyazott listákat kell használni.
         }
 
     }
+```
 
 ## ArrayList használata az örökléssel
 
@@ -1375,6 +1591,7 @@ Ez a kód jól illusztrálja a polimorfizmust:
 - A konkrét objektum lehet leszármazott (Cat).
 - A Cat osztály metódusai nem lesznek elérhetőek.
 
+```java
     public static void main(String[] args) {
 
                                   //ArrayList létrehozása az ősosztály típusával.
@@ -1394,11 +1611,13 @@ Ez a kód jól illusztrálja a polimorfizmust:
                                   }
 
     }
+```
 
 ## Osztály kasztolása
 
 Cat osztályban:
 
+```java
 public void purr() {
 System.out.println("Dorombolok.");
 }
@@ -1422,9 +1641,11 @@ System.out.println("Dorombolok.");
         //Most már elérhető a Cat osztály saját metódusa (purr()), mert a referenciát Cat típusúvá alakítottuk.
         cat.purr(); //Dorombolok.
     }
+```
 
 ## Object ősosztály használata
 
+```java
     public static void main(String[] args) {
         ArrayList<Object> cats = new ArrayList<>();
         Cat sziamiau = new Cat("Sziamiau");
@@ -1433,9 +1654,11 @@ System.out.println("Dorombolok.");
         Cat cat = (Cat) cats.get(0);
         cat.purr(); //Dorombolok.
     }
+```
 
 ## Hibás kód és futásidőben kivételt fog dobni
 
+```java
     public static void main(String[] args) {
         ArrayList<Object> cats = new ArrayList<>();
         Dog morzsa = new Dog();
@@ -1450,9 +1673,11 @@ System.out.println("Dorombolok.");
 
         cat2.purr();
     }
+```
 
 # Mit hagyott ránk az Object?
 
+```java
     public static void main(String[] args) {
         ArrayList<Cat> cats = new ArrayList<>();
         Cat sziamiau = new Cat("Sziamiau");
@@ -1470,17 +1695,21 @@ System.out.println("Dorombolok.");
 
         System.out.println(sziamiau.getClass()); // output: class firstproject.Cat
     }
+```
 
 ## instanceof
 
+```java
     //Akkor fut le, ha az első elem példánya a Cat osztálnak.
         if (cats.get(1) instanceof Cat) {
             Cat cat = (Cat) cats.get(1);
             cat.purr();
         }
+```
 
 ## toString()
 
+```java
     public static void main(String[] args) {
         ArrayList<Animal> cats = new ArrayList<>();
         Cat sziamiau = new Cat("Sziamiau");
@@ -1493,18 +1722,23 @@ System.out.println("Dorombolok.");
         System.out.println(a); // output: 2
         System.out.println(sziamiau.toString()); // output: firstproject.Cat@279f2327
     }
+```
 
 A fenti példa módosítása:
 A Cat osztályban:
 
+```java
     @Override
     public String toString() {
         return "Macska vagyok, a nevem: " + this.getName();
     }
+```
 
 A Mainben:
 
+```java
     System.out.println(sziamiau.toString()); // output: Macska vagyok, a nevem: Sziamiau
+```
 
 # Immutable, Final és Static
 
@@ -1518,6 +1752,7 @@ Mi a különbség a lenti két inicializáció között?
 
 Röviden: memóriahasználatban, objektumok számában és referencia-azonosságban különböznek.
 
+```java
     String a = "Hello!"; // String Poolban lévő String objektumra mutat.
     /*
     ✔️ Mit történik itt?
@@ -1539,9 +1774,11 @@ Röviden: memóriahasználatban, objektumok számában és referencia-azonosság
     */
 
     System.out.println(a == c); //== referenciát hasonlít; output: false
+```
 
 ### Mikre figyelj egy immutable class létrehozásakor!
 
+```java
 //Final kulcszó legyen ott az osztály deklarálásakor.
 public final class Dog extends Animal {
 
@@ -1558,6 +1795,7 @@ public final class Dog extends Animal {
             this.size = size;
         }
     }
+```
 
 ## final
 
@@ -1565,6 +1803,7 @@ Ez egy immutable class. =Megváltoztathatatlan.
 final: A Dog osztály nem terjeszthető ki. Nem lehet a kutyának alfaja.
 A metódusait nem lehet felülírni, mert final az osztály.
 
+```java
     public final class Dog extends Animal {
 
         //A final változó értékét nem lehet megváltoztatni.
@@ -1585,13 +1824,17 @@ A metódusait nem lehet felülírni, mert final az osztály.
             System.out.println(size);
         }
     }
+```
 
 Main-ben:
+
+```java
 Dog dog1 = new Dog();
 dog1.getSize(); // output: 0
 
         Dog dog2 = new Dog(5);
         dog2.getSize(); // output: 5
+```
 
 Ha kiterjeszthető lenne a Dog osztály, nem lenne final és írunk bele egy final metódust, akkor azt nem lehetne felülírni.
 
@@ -1605,15 +1848,20 @@ pl.: Math.random();
 
 Másik példa:
 A Dog osztályos belül van:
+
+```java
 public static void bark() {
 System.out.println("Bark");
 }
+```
 
 Main-ben:
 
+```java
     public static void main(String[] args) {
         Dog.bark(); // Nem kellett példányosítani az osztályt, mert a metódus statikus.
     }
+```
 
 ### static osztály
 
@@ -1625,6 +1873,7 @@ A statikus változó: az osztályhoz tartozik minden példány közösen haszná
 
 Main-ben:
 
+```java
 public static void main(String[] args) {
 Cat cat1 = new Cat();
 Cat cat2 = new Cat();
@@ -1633,9 +1882,11 @@ Cat cat2 = new Cat();
         //Ezért statikus változót mindig az osztály nevével érünk el.
         System.out.println(Cat.objectCount); //output: 2
     }
+```
 
 Cat osztály:
 
+```java
     public class Cat extends Animal {
 
         //Ezzel megtudjuk számolni, hogy hány objektum készült el.
@@ -1649,6 +1900,7 @@ Cat osztály:
 
         }
     }
+```
 
 # Diagramok és Kapcsolatok
 
@@ -2151,18 +2403,19 @@ public void fajlBeolvasas(String fajlneve) {
 
     // Ellenőrzés és beolvasás egyben
     if (!Files.exists(path)) {
-        System.out.println("Nem létezik a fájl!");
-        System.out.println("Itt keresem: " + System.getProperty("user.dir"));
-        return; // Ha nincs fájl, ne is menjünk tovább
+        System.out.println("Nem létezik a fájl!\n Itt keresem: " + System.getProperty("user.dir"));
+        return; // Ha nincs fájl, ne is menjünk tovább.
     }
 
     ArrayList<Operatorok2> lista = new ArrayList<>();
 
-    try {
+    try { // Vs code-ban: Katt a Standard-ra, majd sárga körte ikon -> Surround statemnt with try-catch.
         List<String> sorok = Files.readAllLines(path, StandardCharsets.UTF_8);
 
-        for (String sor : sorok) {
-            String[] t = sor.split(" ");
+        //Van, amikor 1-től kell menni az oszlopnevek miatt.
+        for (int i = 0; i < sorok.size(); i++) {
+            String[] t = sorok.get(i).split(" ");
+
             lista.add(new Operatorok2(Integer.parseInt(t[0]), t[1], Integer.parseInt(t[2])));
         }
     } catch (IOException ex) {
@@ -2456,8 +2709,6 @@ public void arrayListFunkciok() {
 }
 ```
 
-// TODO: printf leírás is kéne
-
 Megjegyzés:
 
 Mindig használj .collect(...) vagy .forEach(...) a Stream végén, különben nem történik semmi.
@@ -2465,6 +2716,133 @@ Mindig használj .collect(...) vagy .forEach(...) a Stream végén, különben n
 ArrayList → gyors indexelés, LinkedList → gyors beszúrás, HashSet → egyedi elemek, HashMap → kulcs→érték.
 
 OOP alapok: Encapsulation, Inheritance, Polymorphism, Abstraction
+
+# Printf
+
+## Mi az a printf?
+
+A printf egy formázott kiírást végző metódus Java-ban.
+
+Segítségével pontosan megadhatjuk:
+
+hány tizedesjegy jelenjen meg
+milyen széles legyen a kiírás
+jobbra vagy balra igazítás
+több változó egy sorban
+
+A neve: print formatted
+
+Alap szintaxis
+System.out.printf("formázó szöveg", változók);
+
+Példa
+String nev = "Anna";
+int kor = 25;
+
+System.out.printf("A nevem %s és %d éves vagyok.", nev, kor);
+
+Kimenet:
+
+A nevem Anna és 25 éves vagyok.
+
+## Formázó jelek (%)
+
+A % jel mutatja, hogy ide változó kerül.
+
+```
+| Formázó | Jelentés          | Típus          |
+| ------- | ----------------- | -------------- |
+| `%s`    | szöveg            | String         |
+| `%d`    | egész szám        | int            |
+| `%f`    | lebegőpontos szám | float / double |
+| `%c`    | karakter          | char           |
+| `%b`    | logikai érték     | boolean        |
+| `%n`    | új sor            |                |
+```
+
+## Lebegőpontos szám (%f)
+
+double pi = 3.14159;
+
+System.out.printf("Pi értéke: %f", pi);
+
+Kimenet:
+
+Pi értéke: 3.141590
+
+Alapértelmezésben 6 tizedesjegy jelenik meg.
+
+## Tizedesjegyek megadása
+
+%.2f
+
+jelentése:
+
+2 tizedesjegy
+Példa
+double ar = 123.45678;
+
+System.out.printf("Ár: %.2f", ar);
+
+Kimenet:
+
+Ár: 123.46
+
+(Java kerekít.)
+
+Szélesség megadása
+%10.2f
+
+jelentése:
+
+10 karakter széles mező
+2 tizedes
+Példa
+double ar = 123.4;
+
+System.out.printf("|%10.2f|", ar);
+
+Kimenet:
+
+|    123.40|
+Balra igazítás
+%-10.2f
+
+A - jelenti a balra igazítást.
+
+Példa
+double ar = 123.4;
+
+System.out.printf("|%-10.2f|", ar);
+
+Kimenet:
+
+|123.40    |
+Több változó kiírása
+String nev = "Béla";
+int kor = 30;
+double magassag = 182.5;
+
+System.out.printf("%s %d éves és %.1f cm magas", nev, kor, magassag);
+
+Kimenet:
+
+Béla 30 éves és 182.5 cm magas
+
+## Táblázatos kiírás
+
+A printf nagyon jó oszlopok rendezésére.
+
+System.out.printf("%-10s %5s %10s%n", "Név", "Kor", "Fizetés");         
+System.out.printf("%-10s %5d %10.2f%n", "Anna", 25, 1500.5);            
+System.out.printf("%-10s %5d %10.2f%n", "Béla", 30, 2100.75);               
+
+Kimenet:
+```
+Név          Kor    Fizetés
+Anna          25     1500.50
+Béla          30     2100.75
+```
 
 # Stream API extra
 
@@ -2621,6 +2999,45 @@ public class ApikGrouping {
 
 }
 
+```
+
+# Menü rendszer
+
+```java
+// 5. feladat.
+    public static void menu() {
+
+        System.out.print("5. feladat: \n");
+
+        // try-with-resource
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8))) {
+
+            String bekertSor;
+
+            LocalDate hatarido1 = LocalDate.of(1989, 12, 31);
+            LocalDate hatarido2 = LocalDate.of(2000, 01, 01);
+
+            while (true) {
+                System.out.print("Kérek egy 1990 és 1999 közötti évszámot!:");
+
+                bekertSor = br.readLine();
+
+                int ev = Integer.parseInt(bekertSor);
+
+                if (ev >= 1990 && ev <= 1999) {
+
+                    //System.out.print("Ügyes vagy!");
+                    break; // Kilépünk a ciklusból.
+                } else {
+                    System.out.print("Hibás adat!");
+                }
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
 ```
 
 TODO: 
