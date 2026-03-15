@@ -16,25 +16,146 @@ A dokumentum bemutatja:
 
 A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java alapjairól, amely segíti a tanulást és a gyors ismétlést.
 
-## Tartalom
+# Tartalomjegyzék
 
-- Java alapok
-- Adattípusok
-- Objektumorientált programozás
-- Öröklés és interfészek
-- Kollekciók (ArrayList)
-- Memóriakezelés (Stack, Heap)
-- Kivételek kezelése
-- Immutable és static kulcsszavak
+[Programozás Java nyelven](#programozás-java-nyelven)
+- [Programozás Java nyelven](#programozás-java-nyelven)
+- [Tartalomjegyzék](#tartalomjegyzék)
+- [Források](#források)
+- [Általános infók](#általános-infók)
+  - [Fordítási folyamat](#fordítási-folyamat)
+- [Fejlesztői környezet](#fejlesztői-környezet)
+  - [Visual Studio Code](#visual-studio-code)
+  - [Eclipse](#eclipse)
+    - [Eclipse további beállítás:](#eclipse-további-beállítás)
+  - [Java technológiai áttekintés és működés](#java-technológiai-áttekintés-és-működés)
+  - [Netbeans](#netbeans)
+  - [IntelliJ IDEA](#intellij-idea)
+- [Adattípusok](#adattípusok)
+  - [Primitív adattípusok](#primitív-adattípusok)
+  - [Összetett adattípusok (referencia típusok)](#összetett-adattípusok-referencia-típusok)
+  - [Pontosan hogyan tárolódnak a változók a memóriában](#pontosan-hogyan-tárolódnak-a-változók-a-memóriában)
+- [Objektum orientált programozás (OOP)](#objektum-orientált-programozás-oop)
+  - [Metódusok](#metódusok)
+  - [NetBeans](#netbeans-1)
+  - [VS Code](#vs-code)
+  - [This](#this)
+  - [Példák](#példák)
+    - [Első és második példa:](#első-és-második-példa)
+  - [Háromoperandusú Operátor](#háromoperandusú-operátor)
+  - [Javadoc](#javadoc)
+  - [Logika](#logika)
+  - [Polimorfizmus (Többalakúság)](#polimorfizmus-többalakúság)
+  - [Öröklés és Override](#öröklés-és-override)
+  - [Interfész](#interfész)
+  - [Konstruktor](#konstruktor)
+    - [Első módszer a név megváltoztatására:](#első-módszer-a-név-megváltoztatására)
+    - [Második módszer a név megváltoztatására:](#második-módszer-a-név-megváltoztatására)
+    - [Harmadik módszer a név megváltoztatására:](#harmadik-módszer-a-név-megváltoztatására)
+    - [Negyedik módszer a név megváltoztatására:](#negyedik-módszer-a-név-megváltoztatására)
+    - [Overloading (túlterhelés)](#overloading-túlterhelés)
+  - [Super](#super)
+  - [OOP alapelve](#oop-alapelve)
+- [Ismétlés és könnyű állásinterjús kérdések](#ismétlés-és-könnyű-állásinterjús-kérdések)
+  - [Konkatenáció](#konkatenáció)
+    - [Becsapós kérdés](#becsapós-kérdés)
+    - [2. Becsapós kérdés](#2-becsapós-kérdés)
+  - [Sortörések](#sortörések)
+  - [Lefut-e?](#lefut-e)
+  - [Explicit cast (szűkítés)](#explicit-cast-szűkítés)
+  - [Overflow (Túlcsordulás)](#overflow-túlcsordulás)
+  - [Típuskonverzió szabály](#típuskonverzió-szabály)
+    - [double → int szűkítő (narrowing) konverzió](#double--int-szűkítő-narrowing-konverzió)
+  - [Változónevek szabályai](#változónevek-szabályai)
+- [Kasztolás](#kasztolás)
+    - [Helyes megoldások char → String konvertálásra](#helyes-megoldások-char--string-konvertálásra)
+- [Wrapper (burkoló) osztályok](#wrapper-burkoló-osztályok)
+    - [Fordítási hiba ≠ futási hiba](#fordítási-hiba--futási-hiba)
+- [Stack, Heap és Garbage Collector](#stack-heap-és-garbage-collector)
+  - [Stack](#stack)
+  - [Heap](#heap)
+  - [Garbage Collector (Szemétgyűjtő)](#garbage-collector-szemétgyűjtő)
+- [Környezet változók és a manuális fordítás](#környezet-változók-és-a-manuális-fordítás)
+- [Véletlen mondat generátor készítés](#véletlen-mondat-generátor-készítés)
+- [Tömb vs. ArrayList](#tömb-vs-arraylist)
+  - [Tömb (Array)](#tömb-array)
+    - [Tömb értékadása](#tömb-értékadása)
+      - [Deklarálás + értékadás egy sorban](#deklarálás--értékadás-egy-sorban)
+      - [Deklarálás külön, értékadás később](#deklarálás-külön-értékadás-később)
+      - [Méret megadása, majd elemenkénti értékadás](#méret-megadása-majd-elemenkénti-értékadás)
+      - [Tömb újraértékadása (felülírás)](#tömb-újraértékadása-felülírás)
+      - [Értékadás ciklussal](#értékadás-ciklussal)
+  - [ArrayList](#arraylist)
+- [Az ArrayListek és a szülők kapcsolata](#az-arraylistek-és-a-szülők-kapcsolata)
+  - [ArrayList használata az örökléssel](#arraylist-használata-az-örökléssel)
+  - [Osztály kasztolása](#osztály-kasztolása)
+  - [Object ősosztály használata](#object-ősosztály-használata)
+  - [Hibás kód és futásidőben kivételt fog dobni](#hibás-kód-és-futásidőben-kivételt-fog-dobni)
+- [Mit hagyott ránk az Object?](#mit-hagyott-ránk-az-object)
+  - [instanceof](#instanceof)
+  - [toString()](#tostring)
+- [Immutable, Final és Static](#immutable-final-és-static)
+  - [Immutable](#immutable)
+    - [Mikre figyelj egy immutable class létrehozásakor!](#mikre-figyelj-egy-immutable-class-létrehozásakor)
+  - [final](#final)
+- [static](#static)
+  - [static metódus](#static-metódus)
+    - [static osztály](#static-osztály)
+    - [static változó](#static-változó)
+- [Diagramok és Kapcsolatok](#diagramok-és-kapcsolatok)
+  - [Diagramok](#diagramok)
+    - [„Is-a” kapcsolat (öröklés – inheritance)](#is-a-kapcsolat-öröklés--inheritance)
+    - [Has-a” kapcsolat (összetétel / tartalmazás)](#has-a-kapcsolat-összetétel--tartalmazás)
+- [Kivételek kezelése - Try Catch Finally](#kivételek-kezelése---try-catch-finally)
+  - [Throwable (Előfordulható hibák/Elkapható problémák)](#throwable-előfordulható-hibákelkapható-problémák)
+    - [Error (Hiba)](#error-hiba)
+    - [Exception (Kivétel)](#exception-kivétel)
+      - [Exception-n belül: Checked Exceptions (ellenőrzött kivételek)](#exception-n-belül-checked-exceptions-ellenőrzött-kivételek)
+      - [Exception-n belül: Unchecked Exceptions (ellenőrzés nélküli kivételek)](#exception-n-belül-unchecked-exceptions-ellenőrzés-nélküli-kivételek)
+  - [Példák](#példák-1)
+    - [Checked Exceptions](#checked-exceptions)
+    - [Unchecked Exceptions](#unchecked-exceptions)
+    - [Eldobjuk a hibát](#eldobjuk-a-hibát)
+- [Inner és Anonim Class](#inner-és-anonim-class)
+- [Adatbekérés a felhasználótól](#adatbekérés-a-felhasználótól)
+- [Példák](#példák-2)
+  - [Elágazások](#elágazások)
+  - [For ciklus és tömbök, valamint kasztolás](#for-ciklus-és-tömbök-valamint-kasztolás)
+  - [Switch-case](#switch-case)
+    - [Másik megoldás (Java 14+ switch expression és do-while)](#másik-megoldás-java-14-switch-expression-és-do-while)
+  - [Do-while és if elágazás](#do-while-és-if-elágazás)
+- [Java Dinamikus weboldal létrehozása](#java-dinamikus-weboldal-létrehozása)
+- [Gyakorlás gyakorlás gyakorlás](#gyakorlás-gyakorlás-gyakorlás)
+- [Map](#map)
+  - [Főbb különbségek összefoglalva](#főbb-különbségek-összefoglalva)
+  - [1. HashMap](#1-hashmap)
+  - [2. LinkedHashMap](#2-linkedhashmap)
+  - [3. TreeMap](#3-treemap)
+    - [Melyiket válaszd?](#melyiket-válaszd)
+  - [Mit használj a vizsgán?](#mit-használj-a-vizsgán)
+- [Java Stream API Gyorssegéd](#java-stream-api-gyorssegéd)
+  - [Példák a használatra](#példák-a-használatra)
+    - [1. Megszámolás](#1-megszámolás)
+    - [2. Kiíratás](#2-kiíratás)
+    - [3. Gyűjtés](#3-gyűjtés)
+- [Java Példák és Magyarázatok](#java-példák-és-magyarázatok)
+  - [1. Fájlbeolvasás](#1-fájlbeolvasás)
+  - [2. Fájlkiírás](#2-fájlkiírás)
+  - [3. Stream műveletek](#3-stream-műveletek)
+  - [4. HashMap példák](#4-hashmap-példák)
+  - [5. Összefoglaló adatszerkezetek és alapok](#5-összefoglaló-adatszerkezetek-és-alapok)
+  - [6. ArrayList kiíratás](#6-arraylist-kiíratás)
+- [Stream API extra](#stream-api-extra)
 
 # Források
 
-https://sanfranciscoboljottem.com  
-https://okt.inf.szte.hu/prog1/gyakorlat/eloadas/Java/objectsAndClasses/  
-https://data-flair.training/blogs/stacks-and-queues-in-c/  
-https://itszotar.hu/jvm-java-virtualis-gep-mi-a-mukodese-es-mi-a-szerepe-a-java-kod-futtatasaban/  
-https://www.youtube.com/watch?v=8qMi3e_fzKc&list=PL92V_WHHt2CnXaUIA9T2ww7peDK4lqmZj&index=23
-https://www.youtube.com/watch?v=2StXP1XaU04
+[Sanfranciscoboljottem tananyag](https://sanfranciscoboljottem.com)
+[SZTE - Programozás I. jegyzet](https://okt.inf.szte.hu/prog1/gyakorlat/eloadas/Java/objectsAndClasses/)  
+[Stacks and queues](https://data-flair.training/blogs/stacks-and-queues-in-c/)
+[IT Szótár](https://itszotar.hu/jvm-java-virtualis-gep-mi-a-mukodese-es-mi-a-szerepe-a-java-kod-futtatasaban/)
+[Java Programozás Kezdőknek - SkillVersum](https://www.youtube.com/playlist?list=PL92V_WHHt2CnXaUIA9T2ww7peDK4lqmZj)
+[Java Streams API Explained (with examples)](https://www.youtube.com/watch?v=2StXP1XaU04)
+[Java programozási nyelv](https://richardkorom.hu/java/backend/bevezetes/)
 
 [Pályakezdő fullstack tutorial csomag](https://www.skillversum.com/note/view/c256d513dd9e6f970aa3daa5ded7496b38d01e78)
 
@@ -104,7 +225,9 @@ Hasznos kiegészítők [itt](https://blog-sqj1.onrender.com/#vscode_extension_li
 
 ## Eclipse
 
-[Innen](https://www.eclipse.org/downloads/packages/release/2024-06/r]) töltsd le a csomagolt változatot (zip fájl). Ezt: Eclipse IDE for Enterprise Java and Web Developers [link](https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2024-06/R/eclipse-jee-2024-06-R-win32-x86_64.zip)
+[Innen](https://www.eclipse.org/downloads/packages/release/2024-06/r]) töltsd le a csomagolt változatot (zip fájl). 
+
+Ezt: Eclipse IDE for Enterprise Java and Web Developers [link](https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2024-06/R/eclipse-jee-2024-06-R-win32-x86_64.zip)
 
 A letöltött zip fájlt kicsomagoljuk, máris indítható az IDE.  
 Első indításkor meg kell adni egy mappát (Workspace), ahová a projektek kerülnek. Munkaterületeket váltogathatunk: File/Switch workspace
@@ -276,7 +399,7 @@ Sok függvény megvan hozzájuk írva. pl.: .Length()
 
 ## Pontosan hogyan tárolódnak a változók a memóriában
 
-(Decimal to Binary Converter)[https://www.binaryhexconverter.com/decimal-to-binary-converter]
+[Decimal to Binary Converter](https://www.binaryhexconverter.com/decimal-to-binary-converter)
 
 2 decimális = 10 bináris
 
@@ -286,7 +409,7 @@ Ha a byte előjeles (signed), akkor a tartománya –128…+127.
 
 A lentiképen látszik, hogy a felső fekete hátterű értékeket kell megszorozni az alattuk lévőkkel.
 
-![alt text](Assets/Binary_Converter.png)
+![alt text](assets/Binary_Converter.png)
 
 # Objektum orientált programozás (OOP)
 
@@ -964,7 +1087,7 @@ FIFO – First In, First Out „Aki először jött, először megy.”
 LIFO – First In, Last Out „Aki először jött, utoljára megy.”  
 Mint a nyomtatópapíroknál, ha eggyesével rakod be a papírokat a tárolóba. Íhy működik a verem, vagyis stack.
 
-![alt text](/Assets/Stacks_and_Queues.png)
+![alt text](/assets/Stacks_and_Queues.png)
 
 Példa:
 
@@ -999,7 +1122,7 @@ A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz
 Maga az Objektum a Heapben tárolódik, a stack-ban, csak hivatkozunk rá.  
 Minden, ami benne van egy osztályban az az objektum része, vagyis a Heap-ben tárolódik, az osztályváltozók (int, String) is.
 
-![alt text](Assets/Stack_and_Heap.png)
+![alt text](assets/Stack_and_Heap.png)
 
 Példa:
 
@@ -1028,7 +1151,7 @@ A Garbage Collector (GC) egy automatikus memória-kezelő mechanizmus, ami a Hea
 
 # Környezet változók és a manuális fordítás
 
-Új JDK letöltése: https://jdk.java.net/25/?utm_source
+Új JDK letöltése [innen](https://jdk.java.net/25/?utm_source).
 
 Win + S → "environment variables" → Edit the system environment variables.  
 Itt láthatók a környezeti változók, amiket a géped használ.  
@@ -1518,7 +1641,7 @@ Mindenhonnan elérhető (bármely package-ből, bármely osztályból).
 **Default / package-private:**  
  Ha nincs kiírva. Csak az adott package-en belül elérhető, még subclass esetén sem. NEM protected.
 
-![alt text](Assets/class_types.png)
+![alt text](assets/class_types.png)
 
 ## Diagramok
 
@@ -1836,7 +1959,7 @@ A switch nem feltételeket, hanem konkrét értékeket vizsgál; tartományok el
 
 # Java Dinamikus weboldal létrehozása
 
-[Első projekt létrehozásához](https://www.youtube.com/watch?v=RAJI9GfPs2g)
+Első projekt létrehozásához [itt](https://www.youtube.com/watch?v=RAJI9GfPs2g) találod azt, ami alapján csináltam.
 
 Eclipse IDE for Enterprise Java and Web Developers
 Ha, csak Java Developer van az, se gond, akkor be kell állítani ezt:
@@ -1854,8 +1977,7 @@ Tallózd be a servlet-api.jar-t → OK
 
 Most már a import javax.servlet.\*; működni fog
 
-Tomcat szerver:
-[Tomcat Server](https://tomcat.apache.org/download-10.cgi)
+Tomcat szervert [innen](https://tomcat.apache.org/download-10.cgi) tudod letölteni.
 Binary -> Core verzió
 
 Ha hiányzik a .class fájl a build mappából, akkor Eclipse -> Project → Clean
@@ -1871,6 +1993,8 @@ Render.com-on Dockerrel kell deployolnod, mert Render nem tud közvetlenül WAR 
 # Gyakorlás gyakorlás gyakorlás
 
 [Gyakorló feladatok / Programozás részen](https://infojegyzet.hu/vizsgafeladatok/)
+
+Az én megoldásaimat [itt](https://github.com/Nagraggini/start-projects/tree/main/java-console-exams/src) találod.
 
 [Interaktív tesztek a programozáshoz](https://infojegyzet.hu/vizsgafeladatok/szoftverfejleszto-interaktiv/teszt/?tesztkod=K31G-MZYR)
 
@@ -1980,7 +2104,7 @@ List<String> varosok = lista.stream().map(AbcKosarlabdaLiga::getHelyszin).distin
 
 ## 1. Fájlbeolvasás
 
-```
+```java
 public void fajlBeolvasas(String fajlneve) {
 
     // Van amikor ez a jó: StandardCharsets.UTF_8
@@ -2013,7 +2137,7 @@ public void fajlBeolvasas(String fajlneve) {
 
 ## 2. Fájlkiírás
 
-```
+```java
 public void fajlKiiras() {
     // 1️⃣ Lista létrehozása
     ArrayList<Operatorok2> lista = new ArrayList<>();
@@ -2043,7 +2167,7 @@ public void fajlKiiras() {
 
 ## 3. Stream műveletek
 
-```
+```java
 public void StreamFunkciok() {
                 // Példa lista létrehozása
                 List<Integer> szamok = Arrays.asList(5, 10, 15, 20, 25, 10, 5);
@@ -2136,7 +2260,7 @@ public void StreamFunkciok() {
 
 ## 4. HashMap példák
 
-```
+```java
 public void HashMapPelda() {
 
                 // 1️⃣ HashMap létrehozása
@@ -2206,7 +2330,7 @@ public void HashMapPelda() {
 
 ## 5. Összefoglaló adatszerkezetek és alapok
 
-```
+```java
    public void Osszefoglalo() {
 
                 List<Integer> lista = Arrays.asList(1, 2, 2, 3); // duplikáció lehet
@@ -2286,7 +2410,7 @@ public void HashMapPelda() {
 
 ## 6. ArrayList kiíratás
 
-```
+```java
 public void arrayListFunkciok() {
     ArrayList<Operatorok2> lista = new ArrayList<>();
 
@@ -2307,7 +2431,7 @@ OOP alapok: Encapsulation, Inheritance, Polymorphism, Abstraction
 
 # Stream API extra
 
-```
+```java
         record Car(String type, String make, String model, Integer engineCapacity) { }
 
 
