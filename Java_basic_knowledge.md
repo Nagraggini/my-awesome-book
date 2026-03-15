@@ -1,12 +1,13 @@
 # Programozás Java nyelven
 
-1. Nézz meg egy gyorstalpaló tananyagot.                
-2. Készíts el 3 darab irányított (guided) projektet.                    
-3. Készíts egy saját projektet minden segítség nélkül.                
+1. Nézz meg egy gyorstalpaló tananyagot.
+2. Készíts el 3 darab irányított (guided) projektet.
+3. Készíts egy saját projektet minden segítség nélkül.
 
 Ez a jegyzet a Java programozási nyelv legfontosabb alapfogalmait foglalja össze tanulási célból.
 
 A dokumentum bemutatja:
+
 - a Java működésének alapjait (JVM, fordítási folyamat),
 - az alapvető adattípusokat,
 - az objektumorientált programozás (OOP) fő elveit,
@@ -25,7 +26,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 - Memóriakezelés (Stack, Heap)
 - Kivételek kezelése
 - Immutable és static kulcsszavak
- 
+
 # Források
 
 https://sanfranciscoboljottem.com  
@@ -52,10 +53,10 @@ Spring Boot Ismeretek II.
 
 📌 Klasszikus full-stack webalkalmazás felépítés.
 
-React ↔ Spring (REST, JSON),                
+React ↔ Spring (REST, JSON),
 
-Frontend: React (JavaScript)                
-Backend: Spring Boot (Java)                
+Frontend: React (JavaScript)  
+Backend: Spring Boot (Java)
 
 # Általános infók
 
@@ -93,43 +94,45 @@ A JVM szerepe messze túlmutat a puszta kódfuttatáson. Felelős a programok é
 
 ## Visual Studio Code
 
-[Innen](https://code.visualstudio.com/) tudod letölteni.
+Egy népszerű, ingyenes kódszerkesztő, amelyhez rengeteg bővítmény érhető el.
+
+Részletes magyarázót a telepítéshez [itt](https://blog-sqj1.onrender.com/#vscode_install) találsz.
+
+Hasznos kiegészítők [itt](https://blog-sqj1.onrender.com/#vscode_extension_list)
+
+[Hotkeys](https://blog-sqj1.onrender.com/#hotkeys_for_vscode)
 
 ## Eclipse
 
 [Innen](https://www.eclipse.org/downloads/packages/release/2024-06/r]) töltsd le a csomagolt változatot (zip fájl). Ezt: Eclipse IDE for Enterprise Java and Web Developers [link](https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2024-06/R/eclipse-jee-2024-06-R-win32-x86_64.zip)
 
-A letöltött zip fájlt kicsomagoljuk, máris indítható az IDE.                
+A letöltött zip fájlt kicsomagoljuk, máris indítható az IDE.  
 Első indításkor meg kell adni egy mappát (Workspace), ahová a projektek kerülnek. Munkaterületeket váltogathatunk: File/Switch workspace
 
 Eclipse egyik furcasága, hogy alapból nem tudunk nyitó kapcsos zárójelet írni (Alt+b), csak akkor, ha kikapcsoljuk a gyorsbillentyű hozzárendelést:
 Window/Preferences/General/Keys (vagy keresőben:”bind”)
-Szűrjünk „alt+b”-re és mindkét bejegyzésnél „unbind command”
-Apply
+Szűrjünk „alt+b”-re és mindkét bejegyzésnél „Unbind command”
+Apply and close
 
 ### Eclipse további beállítás:
 
 Window/Preferences/General/Editors/Text Editors:
 pipáljuk be a Show Line numbers opciót
 
-
-
-
-
-
-New Project -> Java Project -> 
-Configure JRE-s:
-
+New Project -> Java Project ->
+Configure JRE-s: "Use default JRE 'jdk-25.0.1' and workspace compiler preferences"
+Vedd ki a pipát -> "Create module-info.java file"
 
 Bal szélén a projekten jobb klikk package.
 
 Billentyű parancsok:
-Ha elfelejtjük a main-t, akkor Main + ctrl+space 
+Ha elfelejtjük a main-t, akkor Main + ctrl+space
 ctrl+7 kommentjel
 kitesz/visszavesz ctrl+shift+o: Importok fixálása, valamint a nem használtakat törli.
 ctrl+shift+f Formázás
 syso + ctrl +space Egyes verziókban: sout 2x ctrl +space
 F11 Futtatás
+
 Eclipse beállítása:
 TODO komment kikapcsolása Eclipse-ben
 
@@ -142,17 +145,16 @@ A jobb oldalon keresd meg:
 
 Code → Method body
 
-
 Jelöld ki → Edit
 
 Töröld ki ezt a sort:
 
 // TODO Auto-generated method stub
 
-
 OK → Apply and Close
 
-Java technológiai áttekintés és működés
+## Java technológiai áttekintés és működés
+
 Platformok:
 Java SE Standard Edition: általános célú platform.
 Java EE - Enterprise Edition: elosztott, hibatűrő rendszerek fejlesztéséhez.
@@ -171,8 +173,8 @@ JVM – Java Virtual Machine: virtuális gép
 Munkafolyamat forráskódtól futtatásig:
 .java → javac .class JVM → platformfüggetlen futtatás
 
-
 ## Netbeans
+
 netbeans+java-t töltsd le. -> Java EE változat kell. Tomcat-t rakd fel, a glasfish-t ne.
 
 Java SE (Standard Edition): asztali alkalmazásokat lehet benne készíteni.
@@ -380,12 +382,12 @@ public static void main(String[] args) {
     // String fuggveny() { return null; } = van visszatérési értéke.
     // A zárójelben a paraméterek (argumentumok) vannak.
     public static String censor(String text, String toChange, String newWord) {
-    
+
         if (text.contains(toChange)) {
         }
-    
+
         text = text.replaceAll(toChange, newWord); // (keresett szó, új szó)
-    
+
         return text;
     }
 
@@ -1226,21 +1228,21 @@ Ez a kód jól illusztrálja a polimorfizmust:
 
     public static void main(String[] args) {
 
-                                //ArrayList létrehozása az ősosztály típusával.
-                                //Animal az ősosztály, a Cat pedig egy leszármazott.
-                                //Tárol objektumokat, nem primitíveket.
-                                ArrayList<Animal> cats = new ArrayList<>();
+                                  //ArrayList létrehozása az ősosztály típusával.
+                                  //Animal az ősosztály, a Cat pedig egy leszármazott.
+                                  //Tárol objektumokat, nem primitíveket.
+                                  ArrayList<Animal> cats = new ArrayList<>();
 
-                                //Ez lehetséges, mert minden Cat egy Animal, az öröklés miatt.
-                                Cat sziamiau = new Cat("Sziamiau");
-                                cats.add(sziamiau);
+                                  //Ez lehetséges, mert minden Cat egy Animal, az öröklés miatt.
+                                  Cat sziamiau = new Cat("Sziamiau");
+                                  cats.add(sziamiau);
 
-                                if (!cats.isEmpty()) { //Ha nem üres.
-                                    //cats.get(0) → visszaad egy Animal referenciát, ami valójában Cat típusú objektumra mutat.
-                                    System.out.println("Neve: " + cats.get(0).getName());
-                                } else {
-                                    System.out.println("Üres az ArrayList.");
-                                }
+                                  if (!cats.isEmpty()) { //Ha nem üres.
+                                      //cats.get(0) → visszaad egy Animal referenciát, ami valójában Cat típusú objektumra mutat.
+                                      System.out.println("Neve: " + cats.get(0).getName());
+                                  } else {
+                                      System.out.println("Üres az ArrayList.");
+                                  }
 
     }
 
