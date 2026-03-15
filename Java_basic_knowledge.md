@@ -3043,3 +3043,14 @@ public class ApikGrouping {
 TODO: 
 
 Az ennél is bonyolultabb részt [itt](https://github.com/Nagraggini/start-projects/blob/main/java-console-exams/src/kosar2004Gyakorlas/KosarligaGyakorlas.java) találod példákkal illusztrálva.
+
+TODO:
+
+adatok = Arrays.stream(Resource.balkezesek.split(System.lineSeparator()))
+
+        .skip(1)
+
+        .map(Baseball::new)
+
+        .toList();
+
