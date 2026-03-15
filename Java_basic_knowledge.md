@@ -28,7 +28,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [Visual Studio Code](#visual-studio-code)
   - [Eclipse](#eclipse)
     - [Eclipse további beállítás:](#eclipse-további-beállítás)
-  - [Java technológiai áttekintés és működés](#java-technológiai-áttekintés-és-működés)
+    - [Java technológiai áttekintés és működés](#java-technológiai-áttekintés-és-működés)
   - [Netbeans](#netbeans)
   - [IntelliJ IDEA](#intellij-idea)
 - [Adattípusok](#adattípusok)
@@ -75,6 +75,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [Stack](#stack)
   - [Heap](#heap)
   - [Garbage Collector (Szemétgyűjtő)](#garbage-collector-szemétgyűjtő)
+- [Speciális adattípusok](#speciális-adattípusok)
 - [Környezet változók és a manuális fordítás](#környezet-változók-és-a-manuális-fordítás)
 - [Véletlen mondat generátor készítés](#véletlen-mondat-generátor-készítés)
 - [Tömb vs. ArrayList](#tömb-vs-arraylist)
@@ -133,7 +134,8 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [3. TreeMap](#3-treemap)
     - [Melyiket válaszd?](#melyiket-válaszd)
   - [Mit használj a vizsgán?](#mit-használj-a-vizsgán)
-- [Java Stream API Gyorssegéd](#java-stream-api-gyorssegéd)
+- [Java Stream API](#java-stream-api)
+  - [Java Stream API Gyorssegéd](#java-stream-api-gyorssegéd)
   - [Példák a használatra](#példák-a-használatra)
     - [1. Megszámolás](#1-megszámolás)
     - [2. Kiíratás](#2-kiíratás)
@@ -146,6 +148,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [5. Összefoglaló adatszerkezetek és alapok](#5-összefoglaló-adatszerkezetek-és-alapok)
   - [6. ArrayList kiíratás](#6-arraylist-kiíratás)
 - [Stream API extra](#stream-api-extra)
+- [Stream API \[collect(groupingBy)+entrySet+filter\]](#stream-api-collectgroupingbyentrysetfilter)
 
 # Források
 
@@ -276,7 +279,7 @@ Töröld ki ezt a sort:
 
 OK → Apply and Close
 
-## Java technológiai áttekintés és működés
+### Java technológiai áttekintés és működés
 
 Platformok:
 Java SE Standard Edition: általános célú platform.
@@ -477,6 +480,7 @@ Ez az általad említett „titkos paraméter”.
 
 ### Első és második példa:
 
+```java
 package firstproject;
 
 //Az osztálynevet mindig nagy betűvel kezd.
@@ -515,9 +519,11 @@ public static void main(String[] args) {
     }
 
 }
+```
 
 ---
 
+```java
 package firstproject;
 
 //Sablon. Blueprint.
@@ -551,11 +557,12 @@ public class Human {
     }
 
 }
-
+```
 ---
 
 ## Háromoperandusú Operátor
 
+```java
 //Új sablont hozok létre, példányosítom.
 Human first = new Human();
 first.setName("Gy");
@@ -573,6 +580,7 @@ first.setAge(20);
             System.out.println(first.getName()); //Lehívjuk a konstruktoral.
         }
          */
+```
 
 ## Javadoc
 
@@ -585,18 +593,21 @@ return this.name; //this = Ez az osztály változó, amit fent privátként dekl
 
 ## Logika
 
+```java
         Human valami = new Human();
         String thing = "Alma";
         String thing2 = new String("Alma");
         System.out.println(thing + "\n" + thing2);
         System.out.println(thing.charAt(0)); //Az első karaktert adja vissza.
         thing.length(); //mérete, output: 4
+```
 
 ## Polimorfizmus (Többalakúság)
 
 A megírt kód újrafelhasználása, pl.: ha már létre van hozva az állat osztály, akkor azt lehet többször is használni.
 Mindegyik osztály ősosztálya az Object.
 
+```java
 package firstproject;
 
 //Öröklés. Így tudod használni az Animal osztály getter és setterjét.
@@ -608,9 +619,11 @@ public class Cat extends Animal {
     }
 
 }
+```
 
 Másik osztály-ban:
 
+```java
     public static void main(String[] args) {
         Cat macska = new Cat();
         Cat macska2 = new Cat();
@@ -620,17 +633,20 @@ Másik osztály-ban:
         macska.meow();
 
     }
+```
 
 ## Öröklés és Override
 
 Annotáció (annotation) egy metaadat, amivel osztályokat, metódusokat, változókat stb. jelölünk meg, és amit a fordító vagy futásidőben a program fel tud dolgozni.
 
+```java
     @Override //Felülírás.
     public void makeSound() {
         System.out.println("MEOW!");
     }
 
 }
+```
 
 Elérési módosítók:  
 4 féle láthatóság van, amiből 3-hoz kapcsolódik kulcsszó (private, protected, public), az utolsó pedig az alapértelmezett eset, amire szokás package private-ként hivatkozni.
@@ -653,15 +669,19 @@ Ezt nem lehet csinálni:
 
 Minden interface alapból public abstract, ezért ez a kettő ugyanazt jelenti:
 
+```java
     interface Pet {
         void play();
     }
+```
 
 és
 
+```java
     interface Pet {
         public abstract void play();
     }
+```
 
 ---
 
@@ -690,20 +710,17 @@ Fontos infó, hogy bármennyi infészt lehet implementálni, nincs megkötés mi
         }
 
         @Override
-        public void cuddle() {
-            // TODO Auto-generated method stub
+        public void cuddle() {          
 
         }
 
         @Override
-        public void layDown() {
-            // TODO Auto-generated method stub
+        public void layDown() {     
 
         }
 
         @Override
-        public void sit() {
-            // TODO Auto-generated method stub
+        public void sit() {        
 
         }
     }
@@ -1148,6 +1165,15 @@ Mi történik?
 ## Garbage Collector (Szemétgyűjtő)
 
 A Garbage Collector (GC) egy automatikus memória-kezelő mechanizmus, ami a Heap-en lévő, már nem használt objektumokat felszabadítja. Figyeli, hogy mely objektumokra már nincs hivatkozás (pl. minden változó, ami mutat rá, megszűnt). Eltávolítja ezeket a memória felszabadításához. Nem garantált azonnali felszabadítás.
+
+# Speciális adattípusok
+
+```java
+LocalDate datum = LocalDate.of(2004,11,21);
+LocalDate datum2 = LocalDate.of(2005,11,21);
+
+boolean egyenloe=datum.isEqual(datum2);
+```
 
 # Környezet változók és a manuális fordítás
 
@@ -1793,8 +1819,7 @@ Példa:
         public static void main(String[] args) {
             try {
                 test();
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
+            } catch (FileNotFoundException e) {                
                 e.printStackTrace();
             }
         }
@@ -2052,22 +2077,34 @@ Keresés/Szűrés/Statisztika: Használd a listát és a Stream API-t.
 
 Egyedi kulcsos keresés: Csak akkor készíts HashMap-et, ha a feladat kifejezetten kéri, hogy egy azonosító alapján keress ki valamit villámgyorsan.
 
-# Java Stream API Gyorssegéd
+# Java Stream API
+
+A Java Stream API működése sok szempontból hasonlít egy SQL lekérdezés logikájára.
+
+SQL-ben:
+FROM → WHERE → SELECT
+
+Stream esetén:
+forrás → köztes műveletek → terminális művelet
+
+A különbség, hogy Stream esetén a műveleteket egymás után láncoljuk, és a feldolgozás csak a terminális művelet meghívásakor indul el.
+
+## Java Stream API Gyorssegéd
 
 ```bash
-| Szint         | Művelet                  | Leírás |
-| :---          | :---                     | :---   |
-| **1. FORRÁS** | `.stream()`              | Elindítja a folyamatot. (**KÖTELEZŐ**) |
-| **2. KÖZTES** | `.filter(x -> ...)`      | Szűrés (csak az marad, ami TRUE). |
-| (Bármennyi    | `.map(x -> x.get...)`    | Átalakítás (pl. objektumból csak egy String). |
-| lehet)        | `.sorted()`              | Sorba rendezés. |
-|               | `.distinct()`            | Ismétlődések törlése. |
-|               | `.limit(n)`              | Csak az első *n* darab elemet hagyja meg. |
-| **3. LEZÁRÓ** | `.count()`               | Megszámolja az elemeket. (Eredmény: `long`) |
-| (Csak EGY     | `.forEach(x -> ...)`     | Művelet minden elemen (pl. kiírás). (Eredmény: `void`) |
-| lehet a végén!) | `.toList()`             | Új listába gyűjt. (Eredmény: `List<T>`) |
-|               | `.anyMatch(x -> ...)`    | Van-e legalább egy ilyen? (Eredmény: `boolean`) |
-|               | `.findFirst()`           | Visszaadja a legelsőt. (Eredmény: `Optional<T>`) |
+| Szint           | Művelet                  | Leírás                                                  |
+| :---            | :---                     | :---                                                    |
+| **1. FORRÁS**   | `.stream()`              | Elindítja a folyamatot. (**KÖTELEZŐ**)                  |
+| **2. KÖZTES**   | `.filter(x -> ...)`      | Szűrés (csak az marad, ami TRUE).                       |
+| (Bármennyi      | `.map(x -> x.get...)`    | Átalakítás (pl. objektumból csak egy String).           |
+| lehet)          | `.sorted()`              | Sorba rendezés.                                         |
+|                 | `.distinct()`            | Ismétlődések törlése.                                   |
+|                 | `.limit(n)`              | Csak az első *n* darab elemet hagyja meg.               |
+| **3. LEZÁRÓ**   | `.count()`               | Megszámolja az elemeket. (Eredmény: `long`)             |
+| (Csak EGY       | `.forEach(x -> ...)`     | Művelet minden elemen (pl. kiírás). (Eredmény: `void`)  |
+| lehet a végén!) | `.toList()`              | Új listába gyűjt. (Eredmény: `List<T>`)                 |
+|                 | `.anyMatch(x -> ...)`    | Van-e legalább egy ilyen? (Eredmény: `boolean`)         |
+|                 | `.findFirst()`           | Visszaadja a legelsőt. (Eredmény: `Optional<T>`)        |
 ```
 
 ---
@@ -2549,3 +2586,43 @@ OOP alapok: Encapsulation, Inheritance, Polymorphism, Abstraction
                                         "Szál: " + Thread.currentThread().getName() + " dolgozik ezen: " + car.model());
                 });
 ```
+
+# Stream API [collect(groupingBy)+entrySet+filter]
+
+```java
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ApikGrouping {
+
+    record Felhasznalo(String nev) {
+    }
+
+    public static void main(String[] args) {
+        List<Felhasznalo> lista = Arrays.asList(
+                new Felhasznalo("Andrea"), new Felhasznalo("Béla"),
+                new Felhasznalo("Andrea"), new Felhasznalo("Andrea"),
+                new Felhasznalo("Andrea"), new Felhasznalo("Béla"));
+
+        System.out.println("Szűrt eredmények:");
+
+        lista.stream()
+                // 1. Csoportosítás és számlálás (létrejön egy Map a háttérben)
+                .collect(Collectors.groupingBy(Felhasznalo::nev, Collectors.counting()))
+                // 2. Belépünk a Map bejegyzéseibe
+                .entrySet().stream()
+                // 3. Szűrés: csak a 3-nál nagyobb előfordulások
+                .filter(entry -> entry.getValue() > 3)
+                // 4. Azonnali kiíratás tárolás nélkül
+                .forEach(e -> System.out.println(e.getKey() + " " + e.getValue() + "-szor szerepel a listában"));
+
+    }
+
+}
+
+```
+
+TODO: 
+
+Az ennél is bonyolultabb részt [itt](https://github.com/Nagraggini/start-projects/blob/main/java-console-exams/src/kosar2004Gyakorlas/KosarligaGyakorlas.java) találod példákkal illusztrálva.
