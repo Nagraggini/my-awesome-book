@@ -26,70 +26,192 @@
         >
             <h1 class="text-3xl font-bold text-white">Saját blogom</h1>
         </header>
-<div class="flex flex-col md:flex-row max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row max-w-7xl mx-auto">
+            <!-- MOBIL NAV -->
+            <details class="md:hidden border-b border-slate-700 p-4">
+                <summary class="cursor-pointer text-purple-400 font-semibold">
+                    Kategóriák
+                </summary>
 
-  <!-- MOBIL NAV -->
-  <details class="md:hidden border-b border-slate-700 p-4">
-    <summary class="cursor-pointer text-purple-400 font-semibold">
-      Kategóriák
-    </summary>
+                <nav class="mt-3">
+                    <ul class="space-y-1 text-sm">
+                        <li>
+                            <a class="block hover:text-purple-400" href="#azure"
+                                >Azure</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="block hover:text-purple-400"
+                                href="#useful_links"
+                                >Hasznos linkek</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="block hover:text-purple-400"
+                                href="#vscode_install"
+                                >VS Code telepítési</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="block hover:text-purple-400"
+                                href="#hotkeys_for_vscode"
+                                >Hotkeys VS Code</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="block hover:text-purple-400"
+                                href="#vscode_extension_list"
+                                >VS Code kiegészítők</a
+                            >
+                        </li>
+                        <li>
+                            <a class="block hover:text-purple-400" href="#html"
+                                >HTML</a
+                            >
+                        </li>
+                        <li>
+                            <a class="block hover:text-purple-400" href="#emmet"
+                                >Emmet</a
+                            >
+                        </li>
+                        <li>
+                            <a class="block hover:text-purple-400" href="#css"
+                                >CSS</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="block hover:text-purple-400"
+                                href="#tailwind"
+                                >Tailwind</a
+                            >
+                        </li>
+                        <li>
+                            <a class="block hover:text-purple-400" href="#js"
+                                >JavaScript</a
+                            >
+                        </li>
+                        <li>
+                            <a class="block hover:text-purple-400" href="#java"
+                                >Java</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="block hover:text-purple-400"
+                                href="#springboot"
+                                >Spring Boot</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="block hover:text-purple-400"
+                                href="#references"
+                                >Források</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </details>
 
-    <nav class="mt-3">
-      <ul class="space-y-1 text-sm">
-        <li><a class="block hover:text-purple-400" href="#azure">Azure</a></li>
-        <li><a class="block hover:text-purple-400" href="#useful_links">Hasznos linkek</a></li>        
-        <li><a class="block hover:text-purple-400" href="#vscode_install">VS Code telepítési</a></li>       
-        <li><a class="block hover:text-purple-400" href="#hotkeys_for_vscode">Hotkeys VS Code</a></li>
-        <li><a class="block hover:text-purple-400" href="#vscode_extension_list">VS Code kiegészítők</a></li>
-        <li><a class="block hover:text-purple-400" href="#html">HTML</a></li>
-        <li><a class="block hover:text-purple-400" href="#emmet">Emmet</a></li>
-        <li><a class="block hover:text-purple-400" href="#css">CSS</a></li>
-        <li><a class="block hover:text-purple-400" href="#tailwind">Tailwind</a></li>
-        <li><a class="block hover:text-purple-400" href="#js">JavaScript</a></li>
-        <li><a class="block hover:text-purple-400" href="#java">Java</a></li>
-        <li><a class="block hover:text-purple-400" href="#springboot">Spring Boot</a></li>
-      </ul>
-    </nav>
-  </details>
+            <!-- DESKTOP ASIDE -->
+            <aside
+                class="hidden md:block w-64 p-6 border-r border-slate-700 sticky top-0 h-screen"
+            >
+                <h3 class="text-xl font-semibold mb-4 text-purple-400">
+                    Kategóriák
+                </h3>
 
-  <!-- DESKTOP ASIDE -->
-  <aside class="hidden md:block w-64 p-6 border-r border-slate-700 sticky top-0 h-screen">
-    <h3 class="text-xl font-semibold mb-4 text-purple-400">
-      Kategóriák
-    </h3>
-
-    <nav>
-      <ul class="space-y-2 text-m">
-        <li><a class="hover:text-purple-400" href="#azure">Azure</a></li>
-        <li><a class="hover:text-purple-400" href="#useful_links">Hasznos linkek</a></li>
-        <li><a class="hover:text-purple-400" href="#hotkeys_for_vscode">Hotkeys VS Code</a></li>
-        <li><a class="hover:text-purple-400" href="#vscode_extension_list">VS Code kiegészítők</a></li>
-        <li><a class="hover:text-purple-400" href="#html">HTML</a></li>
-        <li><a class="hover:text-purple-400" href="#emmet">Emmet</a></li>
-        <li><a class="hover:text-purple-400" href="#css">CSS</a></li>
-        <li><a class="hover:text-purple-400" href="#tailwind">Tailwind</a></li>
-        <li><a class="hover:text-purple-400" href="#js">JavaScript</a></li>
-        <li><a class="hover:text-purple-400" href="#java">Java</a></li>
-      </ul>
-    </nav>
-  </aside>
+                <nav>
+                    <ul class="space-y-2 text-m">
+                        <li>
+                            <a class="hover:text-purple-400" href="#azure"
+                                >Azure</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="hover:text-purple-400"
+                                href="#useful_links"
+                                >Hasznos linkek</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="hover:text-purple-400"
+                                href="#hotkeys_for_vscode"
+                                >Hotkeys VS Code</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="hover:text-purple-400"
+                                href="#vscode_extension_list"
+                                >VS Code kiegészítők</a
+                            >
+                        </li>
+                        <li>
+                            <a class="hover:text-purple-400" href="#html"
+                                >HTML</a
+                            >
+                        </li>
+                        <li>
+                            <a class="hover:text-purple-400" href="#emmet"
+                                >Emmet</a
+                            >
+                        </li>
+                        <li>
+                            <a class="hover:text-purple-400" href="#css">CSS</a>
+                        </li>
+                        <li>
+                            <a class="hover:text-purple-400" href="#tailwind"
+                                >Tailwind</a
+                            >
+                        </li>
+                        <li>
+                            <a class="hover:text-purple-400" href="#js"
+                                >JavaScript</a
+                            >
+                        </li>
+                        <li>
+                            <a class="hover:text-purple-400" href="#java"
+                                >Java</a
+                            >
+                        </li>
+                        <li>
+                            <a class="hover:text-purple-400" href="#springboot"
+                                >Spring Boot</a
+                            >
+                        </li>
+                        <li>
+                            <a class="hover:text-purple-400" href="#references"
+                                >Források</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
 
             <main id="main_container" class="flex-1 p-6 md:p-10">
-                <section class="space-y-10">
+                <section class="space-y-6 my-10">
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
-                        <h2
-                            class="text-2xl font-bold text-white"
-                            class="text-2xl font-bold text-white"
-                        >
+                        <h2 class="text-2xl font-bold text-white" id="azure">
                             Azure
                         </h2>
-                       <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Azure 1. fejezet
                         </h3>
                         <small class="text-gray-400"
                             >A DevOps alapjai és változatai</small
                         >
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A szoftverfejlesztési folyamatok és a kiadási
                             követelmények időről időre változhatnak annak
                             érdekében, hogy a vállalatok továbbra is értéket
@@ -113,11 +235,14 @@
                     </article>
 
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
-                       <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Azure 2. fejezet
                         </h3>
                         <small class="text-gray-400">Szoftverfejlesztés</small>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A szoftverfejlesztési iparág hosszú éveken keresztül
                             a vízesés modellt követte, majd fokozatosan áttért
                             az agilis modell alkalmazására. Az agilis
@@ -157,11 +282,14 @@
                     </article>
 
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
-                    <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Azure 3. fejezet
                         </h3>
                         <small class="text-gray-400">DevOps</small>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A DevOps napjaink egyik legfelkapottabb témája az IT
                             világában, ugyanakkor számos különböző értelmezése
                             és változata létezik. Ha tíz ember elkezdene
@@ -171,7 +299,7 @@
                     </article>
                 </section>
 
-                <section class="space-y-10">
+                <section class="space-y-6 my-10">
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
                         <h2
                             class="text-2xl font-bold text-white"
@@ -181,10 +309,11 @@
                         </h2>
 
                         <ul class="list-none p-0 m-0 text-sm">
-                            <li  >
+                            <li>
                                 <a
                                     href="https://www.youtube.com/playlist?list=PLyriihBWoulwgaKMNF6M20iD0c6iDtu0S"
-                              class="underline text-white-700 hover:text-blue-600">
+                                    class="underline text-white-700 hover:text-blue-600"
+                                >
                                     Programozási alapismeretek
                                     (Sanfranciscoboljottem) (videó)</a
                                 >
@@ -193,16 +322,23 @@
                             <li>
                                 <a
                                     href="https://www.youtube.com/playlist?list=PLlJeO89e07g6HaiIEw7pYll4DQCFb6SFJ"
-                                    class="underline text-white-700 hover:text-blue-600">Webfejlesztés | Alapok (videó)</a
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Webfejlesztés | Alapok (videó)</a
                                 >
                             </li>
                             <li>
-                                <a href="https://www.w3schools.com/"
-                                    class="underline text-white-700 hover:text-blue-600">W3Schools</a
+                                <a
+                                    href="https://www.w3schools.com/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >W3Schools</a
                                 >
                             </li>
                             <li>
-                                <a href="https://www.codedex.io//" class="underline text-white-700 hover:text-blue-600">Codedex</a>
+                                <a
+                                    href="https://www.codedex.io//"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Codedex</a
+                                >
                             </li>
                             <li>
                                 <a
@@ -214,7 +350,8 @@
                             <li>
                                 <a
                                     href="https://www.youtube.com/playlist?list=PL6VA7Z5zO0dq-6NWrHzIy7dqLfeZhhhOz"
-                                class="underline text-white-700 hover:text-blue-600">
+                                    class="underline text-white-700 hover:text-blue-600"
+                                >
                                     JavaScript az alapoktól kurzus (videó)</a
                                 >
                             </li>
@@ -222,7 +359,8 @@
                             <li>
                                 <a
                                     href="https://www.youtube.com/watch?v=-atblwgc63E&list=PL0vfts4VzfNg__PkSVKhrYvdc35kHybBy"
-                                  class="underline text-white-700 hover:text-blue-600"  >Developer Productivity (videó)</a
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Developer Productivity (videó)</a
                                 >
                             </li>
 
@@ -235,23 +373,32 @@
                             </li>
 
                             <li>
-                                <a href="https://devchallenge.hu/hu/tests-list"
-                                    class="underline text-white-700 hover:text-blue-600">Kvíz</a
+                                <a
+                                    href="https://devchallenge.hu/hu/tests-list"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Kvíz</a
                                 >
                             </li>
 
                             <li>
-                                <a href="https://www.freecodecamp.org/"
-                                   class="underline text-white-700 hover:text-blue-600" >FreeCodeCamp (webdev-hez)</a
+                                <a
+                                    href="https://www.freecodecamp.org/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >FreeCodeCamp (webdev-hez)</a
                                 >
                             </li>
-                            <a href="https://checkio.org/"
-                                class="underline text-white-700 hover:text-blue-600">Practise Python and Typescript</a
-                            >
+                            <li>
+                                <a
+                                    href="https://checkio.org/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Practise Python and Typescript</a
+                                >
+                            </li>
                             <li>
                                 <a
                                     href="https://pythontutor.com/java.html#mode=edit"
-                                    class="underline text-white-700 hover:text-blue-600">Rövid kódot lehet vizualizálni.</a
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Rövid kódot lehet vizualizálni.</a
                                 >
                             </li>
                             <li>
@@ -261,16 +408,20 @@
                             </li>
 
                             <li>
-                                <a href="https://www.classcentral.com/"
-                                    class="underline text-white-700 hover:text-blue-600">Class Central (Ez egy gyűjtő oldal, ahol a
+                                <a
+                                    href="https://www.classcentral.com/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Class Central (Ez egy gyűjtő oldal, ahol a
                                     sok kurzus közt tudsz válogatni, van igyenes
                                     és fizetős is.)</a
                                 >
                             </li>
 
                             <li>
-                                <a href="https://www.geeksforgeeks.org/"
-                                    class="underline text-white-700 hover:text-blue-600">Geeks for geeks</a
+                                <a
+                                    href="https://www.geeksforgeeks.org/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Geeks for geeks</a
                                 >
                             </li>
                             <li>
@@ -281,18 +432,24 @@
                             <li>
                                 <a
                                     href="https://www.theodinproject.com/lessons/foundations-elements-and-tags"
-                                  class="underline text-white-700 hover:text-blue-600"  >The Odin Project</a
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >The Odin Project</a
                                 >
                             </li>
 
                             <li>
                                 <a
                                     href="https://www.codewars.com/kata/search/javascript?q=&r%5B%5D=-8&beta=false&order_by=sort_date%20desc"
-                                  class="underline text-white-700 hover:text-blue-600"  >Codewars</a
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Codewars</a
                                 >
                             </li>
                             <li>
-                                <a href="https://coddy.tech/" class="underline text-white-700 hover:text-blue-600">Coddy.tech</a>
+                                <a
+                                    href="https://coddy.tech/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Coddy.tech</a
+                                >
                             </li>
                             <li>
                                 <a href="https://www.codestepbystep.com/"
@@ -301,34 +458,50 @@
                             </li>
                         </ul>
 
-                      <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Python és még sok máshoz
                         </h3>
                         <ul class="list-none p-0 m-0 text-sm">
                             <li>
                                 <a
                                     href="https://realpython.com/html-css-python/"
-                                   class="underline text-white-700 hover:text-blue-600" >Real Python (HTML-CSS-Python)
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Real Python (HTML-CSS-Python)
                                 </a>
                             </li>
                             <li>
                                 <a
                                     href="https://www.codingame.com/ide/puzzle/onboarding"
-                                   class="underline text-white-700 hover:text-blue-600" >Codin Game</a
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Codin Game</a
                                 >
                             </li>
 
                             <li>
-                                <a href="https://www.streamlit.io/"
-                                  class="underline text-white-700 hover:text-blue-600"  >Streamlit</a
+                                <a
+                                    href="https://www.streamlit.io/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Streamlit</a
                                 >
                             </li>
                         </ul>
 
-                       <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            CSS Források
+                        </h3>
                         <ul class="list-none p-0 m-0 text-sm">
                             <li>
-                                <a href="https://cssbattle.dev/" class="underline text-white-700 hover:text-blue-600">CSS Battle</a>
+                                <a
+                                    href="https://cssbattle.dev/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >CSS Battle</a
+                                >
                             </li>
 
                             <li>
@@ -336,25 +509,46 @@
                             </li>
                         </ul>
 
-                     <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Projekt vezetéshez
                         </h3>
                         <ul class="list-none p-0 m-0 text-sm">
-                            <li><a href="https://www.github.com" class="underline text-white-700 hover:text-blue-600">GitHub</a></li>
+                            <li>
+                                <a
+                                    href="https://www.github.com"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >GitHub</a
+                                >
+                            </li>
                             <li>
                                 <a
                                     href="https://www.atlassian.com/software/jira"
                                     >Jira</a
                                 >
                             </li>
-                            <li><a href="https://gitlab.com/" class="underline text-white-700 hover:text-blue-600">Gitlab</a></li>
+                            <li>
+                                <a
+                                    href="https://gitlab.com/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Gitlab</a
+                                >
+                            </li>
                         </ul>
-                       <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Teszteléshez</h3>
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Teszteléshez
+                        </h3>
                         <ul class="list-none p-0 m-0 text-sm">
                             <li>
                                 <a
                                     href="https://www.youtube.com/watch?v=XKFWANvLoGo&list=PLimzEeSv6f4XDEg0glRcKVvLNUgZdjbQa&index=2"
-                                    class="underline text-white-700 hover:text-blue-600">Tesztelés alapjai</a
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    >Tesztelés alapjai</a
                                 >
                             </li>
                         </ul>
@@ -362,7 +556,7 @@
                     </article>
                 </section>
 
-             <section class="space-y-10">
+                <section class="space-y-6 my-10">
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
                         <h2
                             class="text-2xl font-bold text-white"
@@ -370,18 +564,22 @@
                         >
                             Visual Studio Code
                         </h2>
-                        <p class="mt-4 leading-relaxed text-gray-300">
-                            Egy népszerű, ingyenes kódszerkesztő, amelyhez rengeteg bővítmény érhető el.
-                  </p>
-                       
-                     <a href="https://code.visualstudio.com/">Innen</a> tudod letölteni.
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Miután letöltötted, telepítetted és megnyitottad. File -> New Text File ezután katt a “select a language”-re és válaszd ki ami kell épp.
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Egy népszerű, ingyenes kódszerkesztő, amelyhez
+                            rengeteg bővítmény érhető el.
                         </p>
 
+                        <a href="https://code.visualstudio.com/">Innen</a> tudod
+                        letölteni.
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Miután letöltötted, telepítetted és megnyitottad.
+                            File -> New Text File ezután katt a “select a
+                            language”-re és válaszd ki ami kell épp.
+                        </p>
+                    </article>
                 </section>
 
-                <section class="space-y-10">
+                <section class="space-y-6 my-10">
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
                         <h2
                             class="text-2xl font-bold text-white"
@@ -389,30 +587,32 @@
                         >
                             Hotkeys
                         </h2>
-                        <p class="mt-4 leading-relaxed text-gray-300">A kódodat az alt+shift+F-el tudod automatikusan formázni.</p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            A kódodat az alt+shift+F-el tudod automatikusan
+                            formázni.
+                        </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             HTML: html:5
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             JS: clg
                         </p>
 
-                      
-                          <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             File -> Auto save-t pipáld be.
                         </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Bal alul Settings->Settings->Text Editor ->
                             Formatting->Foomat On Save-t pipáld be.
                         </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             View -> Word Wrap (Alt+Z =Sor tördelés)
                         </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Hely foglaló szöveg: lorem50 tab
                         </p>
 
@@ -426,23 +626,23 @@
                         ><br />
                         <br />
                         <b> Prettier beállítása: </b><br />
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             ⚙️ Alapértelmezett formázónak állítás Nyomd meg:
                             Ctrl+Shift+P Írd be: Format Document With...
                             Válaszd: Configure Default Formatter Állítsd:
                             esbenp.prettier-vscode
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             💾 Format on Save bekapcsolása Menj: File →
                             Preferences → Settings Keresőbe írd: format on save
                             Pipáld be: Editor: Format On Save
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Settings->Extensions->Prettier-> Tab Width:4
                         </p>
                     </article>
                 </section>
-                <section class="space-y-10">
+                <section class="space-y-6 my-10">
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
                         <h2
                             class="text-2xl font-bold text-white"
@@ -450,7 +650,7 @@
                         >
                             VS Code kiegészítők listája
                         </h2>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A felkiálltójellel ellátottak a legfontosabbak.
                         </p>
                         <ol>
@@ -565,7 +765,7 @@
                             </li>
                             <li>Restore Terminals</li>
                         </ol>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Csak dizájn, kinézet:
                         </p>
                         <ol>
@@ -580,7 +780,7 @@
                             <li>One Monokai Theme</li>
                         </ol>
                         <br />
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Java programozáshoz
                         </p>
                         <ol>
@@ -597,13 +797,13 @@
                         </ol>
                     </article>
                 </section>
-                <section class="space-y-10">
+                <section class="space-y-6 my-10">
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
                         <h2 class="text-2xl font-bold text-white" id="html">
                             HTML
                         </h2>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A HTML (HyperText Markup Language) a weboldalak
                             alapját adó leíró nyelv. Minden, amit egy weboldalon
                             látsz – címek, bekezdések, képek, listák,
@@ -614,7 +814,7 @@
                             épül fel a dokumentum.
                         </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A HTML tagek mindig valamilyen funkciót jelölnek:
                             van, amelyik címsort hoz létre, van, amelyik egy
                             szöveg bekezdést, listát vagy akár űrlapot. A tagek
@@ -623,16 +823,19 @@
                             dokumentum felépítése.
                         </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Az alábbiakban áttekintjük a leggyakrabban használt
                             HTML elemeket, amelyek az alapját képezik minden
                             modern weboldalnak.
                         </p>
 
-                      <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Címsorok (Headings)
                         </h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A HTML 6 különböző szintű címsort használ:
                         </p>
                         <ul class="list-none p-0 m-0 text-sm">
@@ -647,24 +850,34 @@
                             </li>
                         </ul>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A címsorok hierarchiát adnak a dokumentumnak, és
                             segítenek a keresőmotoroknak is a tartalom
                             értelmezésében.
                         </p>
 
-                     <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Bekezdés</h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Bekezdés
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A <code>&lt;p&gt;</code> tag hozza létre a
                             bekezdéseket. A böngésző automatikusan ad körülötte
                             egy kis térközt, így tagoltabbá és olvashatóbbá
                             válik a szöveg.
                         </p>
-                        <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Listák</h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Listák
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             <b>A HTML kétféle listát használ:</b>
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Rendezetlen lista (unordered list)
                         </p>
                         <ul>
@@ -673,7 +886,7 @@
                             </li>
                             <li>&lt;li&gt; – listaelem</li>
                         </ul>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Rendezett lista (ordered list)
                         </p>
                         <ul>
@@ -681,8 +894,13 @@
                             <li>&lt;li&gt; – listaelem</li>
                         </ul>
 
-                        <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Táblázatok</h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Táblázatok
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A táblázatok több részből állnak:
                         </p>
                         <ul>
@@ -705,16 +923,26 @@
                             <li><code>&lt;td&gt;</code> – normál adatcella</li>
                         </ul>
 
-                        <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Div</h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Div
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A <code>&lt;div&gt;</code> egy általános blokk
                             szintű konténer, amelynek önmagában nincs
                             szemantikai jelentése. Főként a szerkezet
                             kialakítására és CSS alapú stílusozásra használjuk.
                         </p>
 
-                        <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Űrlapok (Forms)</h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Űrlapok (Forms)
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Az űrlapokat felhasználói adatok bekérésére
                             használjuk:
                         </p>
@@ -726,7 +954,7 @@
                             </li>
                         </ul>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             <b>Gyakori mezők:</b>
                         </p>
                         <ul>
@@ -745,35 +973,43 @@
                             </li>
                         </ul>
 
-                        <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Gomb</h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Gomb
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A <code>&lt;button&gt;</code> tag egy kattintható
                             gombot hoz létre. Lehet benne szöveg, ikon, vagy
                             akár más HTML elem is.
                         </p>
-<h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Vízszintes vonal
                         </h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A <code>&lt;hr&gt;</code> egy egyszerű vízszintes
                             elválasztó vonal. Nincs záró tagje.
                         </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A label a for attribútumon keresztül kapcsolódik az
                             input elemhez – pontosan az id alapján.
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Ezekért hasznos:
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Ha a felhasználó a "Text" feliratra kattint, ugyanaz
                             történik, mintha a rádiógombot pipálná ki — mert
                             össze vannak kapcsolva. Kisebb, mobilos vagy
                             formában lévő elemek használhatóbbak ettől.
                         </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Kipróbálható ezeken a funkció:
                         </p>
 
@@ -781,7 +1017,10 @@
                         <label for="r1">Text</label>
 
                         <input type="text" id="number" value="6" size="2" />
-<h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Kvízben előforduló speciális tagek
                         </h3>
                         <ul>
@@ -801,8 +1040,13 @@
                             </li>
                         </ul>
 
-                        <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Kép</h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Kép
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A képek megjelenítéséhez a következő taget
                             használjuk:
                         </p>
@@ -817,14 +1061,22 @@
                             </li>
                         </ul>
 
-                        <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Link</h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Link
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A linkekhez az
                             <code>&lt;a href="URL"&gt;</code> taget használjuk.
                             A <b>href</b> tartalmazza a cél URL-t.
                         </p>
 
-                       <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Szövegformázó tagek
                         </h3>
                         <ul>
@@ -836,7 +1088,10 @@
                                 szolgál
                             </li>
                         </ul>
-                        <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Szerkezeti címkék
                         </h3>
                         <ul>
@@ -863,7 +1118,10 @@
                                 cikk)
                             </li>
                         </ul>
-                 <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Kérdések és helyes válaszok
                         </h3>
                         <ol>
@@ -872,7 +1130,9 @@
                                     >Melyik tag tartalmazza az &lt;area&gt;
                                     taget?</strong
                                 >
-                                <p class="mt-4 leading-relaxed text-gray-300">
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
                                     A helyes válasz:
                                     <code>&lt;map&gt;</code> tag.
                                 </p>
@@ -883,7 +1143,9 @@
                                     >Melyik tag tartalmazhatja a &lt;source&gt;
                                     taget?</strong
                                 >
-                                <p class="mt-4 leading-relaxed text-gray-300">
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
                                     A helyes válasz:
                                     <code>&lt;video&gt;</code> és
                                     <code>&lt;audio&gt;</code> tagek.
@@ -895,7 +1157,9 @@
                                     >Kell-e záró tag a &lt;hr&gt;
                                     elemnek?</strong
                                 >
-                                <p class="mt-4 leading-relaxed text-gray-300">
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
                                     A <code>&lt;hr&gt;</code> tagnek nem kell
                                     záró tag.
                                 </p>
@@ -906,7 +1170,9 @@
                                     >Mikor jelenik meg a &lt;noscript&gt;
                                     tartalma?</strong
                                 >
-                                <p class="mt-4 leading-relaxed text-gray-300">
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
                                     A <code>&lt;noscript&gt;</code> akkor
                                     jelenít meg tartalmat, ha a JavaScript ki
                                     van kapcsolva vagy a böngésző nem támogatja.
@@ -918,13 +1184,17 @@
                                     Mit kell figyelembe venni, ha értéket
                                     akarunk elküldeni az adatbázisba?
                                 </strong>
-                                <p class="mt-4 leading-relaxed text-gray-300">
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
                                     Figyelni kell az input mező
                                     <code>value</code> attribútumára, a
                                     <code>name</code> attribútumra, valamint a
                                     submit gombra.
                                 </p>
-                                <p class="mt-4 leading-relaxed text-gray-300">
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
                                     A <code>&lt;label&gt;</code> nem küld
                                     adatot, csak feliratként szolgál.
                                 </p>
@@ -933,14 +1203,19 @@
                     </article>
                 </section>
 
-                <section class="space-y-10">
+                <section class="space-y-6 my-10">
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
                         <h2 class="text-2xl font-bold text-white" id="emmet">
                             Emmet Cheat Sheet (HTML + CSS gyorsbillentyűk)
                         </h2>
 
-                        <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Alap dokumentum</h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Alap dokumentum
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             <strong>!</strong> vagy <strong>html:5</strong> →
                             teljes HTML5 sablon:
                         </p>
@@ -1065,7 +1340,10 @@
                             </li>
                         </ul>
 
-                  <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Szekciók
                         </h3>
                         <ul>
@@ -1122,13 +1400,16 @@
                             <li><code>script:src</code> → JS importáláshoz.</li>
                         </ul>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Az Emmet egy kódbővítő eszköz, amellyel rövid
                             parancsokból automatikusan teljes HTML vagy CSS
                             kódot tudsz generálni.
                         </p>
 
-                       <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             HTML Emmet parancsok
                         </h3>
                         <ul>
@@ -1153,10 +1434,13 @@
                             </li>
                         </ul>
 
-                       <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Item numbering: $
                         </h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Példa számozott listaelemre:
                         </p>
                         <pre>
@@ -1171,10 +1455,13 @@ ul>li.item$*5
 </pre
                         >
 
-                  <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Multiplication: *
                         </h3>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Példa ismétlésre:
                         </p>
                         <pre>
@@ -1189,7 +1476,10 @@ ul>li*5
 </pre
                         >
 
-                       <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             Speciális Emmet elemek
                         </h3>
                         <ul>
@@ -1214,7 +1504,10 @@ ul>li*5
                             </li>
                         </ul>
 
-                   <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
                             CSS Emmet parancsok
                         </h3>
                         <ul>
@@ -1234,7 +1527,7 @@ ul>li*5
                             </li>
                         </ul>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Forrás: Emmet hivatalos dokumentáció –
                             <a
                                 href="https://docs.emmet.io/cheat-sheet/"
@@ -1245,13 +1538,13 @@ ul>li*5
                     </article>
                 </section>
 
-                <section class="space-y-10">
+                <section class="space-y-6 my-10">
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
                         <h2 class="text-2xl font-bold text-white" id="css">
                             CSS
                         </h2>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             CSS szelektorok:
                         </p>
                         <ul>
@@ -1266,7 +1559,7 @@ ul>li*5
                             </li>
                         </ul>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             CSS tulajdonságok:
                         </p>
                         <ul>
@@ -1276,41 +1569,41 @@ ul>li*5
                             <li>font-weight: betűvastagság</li>
                         </ul>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A
                             <b style="color: greenyellow">position: fixed;</b>
                             rögzíti az elemet a viewporthoz.
                         </p>
                     </article>
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             CSS (Cascading Style Sheets) – Lépcsőzetes
                             stíluslapok
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A CSS egy stílusleíró nyelv, amely HTML, XML vagy
                             SVG alapú dokumentumok megjelenését (pl. színek,
                             betűtípusok, elrendezés, margók stb.) határozza meg.
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A „lépcsőzetes” elnevezés arra utal, hogy a stílusok
                             öröklődnek és felülírhatók: ha több stílus
                             vonatkozik egy elemre, a böngésző bizonyos szabályok
                             szerint dönti el, melyik érvényesüljön.
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A CSS önmagában nem programozási nyelv, tehát
                             logikát (pl. változókat, függvényeket, feltételeket)
                             közvetlenül nem tartalmaz.
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Alapvetően, így néz ki:
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             selector { deklaráció; -> tulajdonság neve:
                             tulajdonság értéke; }
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Viszont léteznek kiterjesztései, mint például:
                         </p>
 
@@ -1319,7 +1612,7 @@ ul>li*5
                             <li>Less</li>
                         </ul>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Ezek lehetővé teszik, hogy változókat, ciklusokat,
                             függvényeket használjunk, és logikusabban,
                             modulárisan építsük fel a stílusokat. A böngésző
@@ -1333,16 +1626,16 @@ ul>li*5
                             class="wide-img"
                         />
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Flex elrendezés:
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Flexbox egy dimenzióban működik: sorban vagy
                             oszlopban. A float régi technika, eredetileg szöveg
                             körbefolyatása miatt találták ki.
                         </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Flex paraméterek:
                         </p>
                         <ul>
@@ -1357,19 +1650,19 @@ ul>li*5
                             <li>basis = 70% → alapértelmezett szélesség 70%</li>
                         </ul>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Float elrendezés:
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Ha float-tal két dobozt egymás mellé akarsz tenni,
                             gyakran kell clearfix trükk, külön üres &lt;div&gt;
                             vagy ::after pseudo-element a „töréshez”.
                         </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Grid elrendezés:
                         </p>
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Ha komplexebb layoutot akarsz, pl.: több sor és több
                             oszlop, vagy mobilon a main és aside egymás alá
                             kerül, a Grid sokkal rugalmasabb. A reszponzív
@@ -1378,7 +1671,7 @@ ul>li*5
                     </article>
 
                     <article class="bg-slate-800 p-6 rounded-lg shadow">
-                        <p class="mt-4 leading-relaxed text-gray-300">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             HTML szemantikus formázó (inline) tagek
                         </p>
                         <table border="1" cellpadding="8">
@@ -1479,7 +1772,7 @@ ul>li*5
                         </table>
                     </article>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">
+                    <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                         <a
                             href="https://www.w3schools.com/cssref/css_selectors.php"
                             >CSS Selectors (W3 School)</a
@@ -1707,145 +2000,184 @@ ul>li*5
                 </section>
 
                 <section class="mt-12">
-                    <h2 class="text-2xl font-bold text-white" id="tailwind">
-                        Tailwind
-                    </h2>
+                    <article class="bg-slate-800 p-6 rounded-lg shadow">
+                        <h2 class="text-2xl font-bold text-white" id="tailwind">
+                            Tailwind
+                        </h2>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        A head részre ezt másold be:
-                    </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            A head részre ezt másold be:
+                        </p>
 
-                    <pre><code>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</code></pre>
+                        <pre><code>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</code></pre>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Tailwind background snippet gyűjtemény:
-                    </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Tailwind background snippet gyűjtemény:
+                        </p>
 
-                    <a
-                        href="https://tailkits.com/components/tailwind-background-snippets/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        https://tailkits.com/components/tailwind-background-snippets/
-                    </a>
+                        <a
+                            href="https://tailkits.com/components/tailwind-background-snippets/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="underline text-white-700 hover:text-blue-600"
+                        >
+                            https://tailkits.com/components/tailwind-background-snippets/
+                        </a>
+                    </article>
                 </section>
 
-                <section class="space-y-10">
-                    <h2 class="text-2xl font-bold text-white" id="js">
-                        JavaScript
-                    </h2>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Objektum orientált, prototípus alapú szkript nyelv.
-                        Leginkább a weboldalak kliens oldali logikájára
-                        használják. Weboldal kliensen futó programja.
-                    </p>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Magas szintű programozási nyelv. Nem kell foglalkozni a
-                        memória felszabadítással.
-                    </p>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Interpretált nyelv, vagyis nem kell fordító, mint a
-                        javanál, hanem a kód alapból a böngészőben fut.
-                        Hátránya, hogy hozzáférhető a kód idegenek számára is.
-                        Valamint a programozási hibák csak futási időben
-                        derülnek ki.
-                    </p>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Multi-paradigma, vagyis többféleképpen is megírhatod a
-                        programodat, pl.: objektum orientált módon.
-                    </p>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Régebben LiveScript volt a neve. Mocha → LiveScript →
-                        JavaScript (1995)
-                    </p>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        <b>ECMAScript = a nyelvi szabvány</b>; a JavaScript
-                        ennek a szabványnak egy implementációja.
-                    </p>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        A &lt;/body&gt; elé kell beírni a
-                        <code>script</code> taget, mert a böngésző fentről
-                        lefelé tölti be az oldalt.
-                    </p>
+                <section class="space-y-6 my-10">
+                    <article class="bg-slate-800 p-6 rounded-lg shadow">
+                        <h2 class="text-2xl font-bold text-white" id="js">
+                            JavaScript
+                        </h2>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Objektum orientált, prototípus alapú szkript nyelv.
+                            Leginkább a weboldalak kliens oldali logikájára
+                            használják. Weboldal kliensen futó programja.
+                        </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Magas szintű programozási nyelv. Nem kell
+                            foglalkozni a memória felszabadítással.
+                        </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            <b>Interpretált vagy fordított?</b>
+                        </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Bár a JavaScriptet hagyományosan interpretált
+                            nyelvnek nevezzük (mert nem kell manuálisan
+                            fordítani, mint a Javát a javac paranccsal), a
+                            modern böngészők (mint a Chrome V8 motorja) a
+                            háttérben már JIT (Just-In-Time) kompilálást
+                            használnak. Ez azt jelenti, hogy a böngésző futtatás
+                            közben elemzi és fordítja gépi kódra a JavaScriptet
+                            a maximális sebesség érdekében. Fejlesztőként ebből
+                            annyit érzékelsz, hogy a kód azonnal fut, amint
+                            elmented és frissíted a böngészőt.
+                        </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Multi-paradigma, vagyis többféleképpen is megírhatod
+                            a programodat, pl.: objektum orientált módon.
+                        </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Régebben LiveScript volt a neve. Mocha → LiveScript
+                            → JavaScript (1995)
+                        </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            <b>ECMAScript = a nyelvi szabvány</b>; a JavaScript
+                            ennek a szabványnak egy implementációja.
+                        </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            A &lt;/body&gt; elé kell beírni a
+                            <code>script</code> taget, mert a böngésző fentről
+                            lefelé tölti be az oldalt.
+                        </p>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        A JavaScript a weboldalak működéséért felelős
-                        programozási nyelv. Segítségével dinamikus elemeket
-                        hozhatunk létre, adatokat dolgozhatunk fel, eseményeket
-                        kezelhetünk (kattintás, billentyűlenyomás), vagy akár
-                        teljes alkalmazásokat építhetünk.
-                    </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            A JavaScript a weboldalak működéséért felelős
+                            programozási nyelv. Segítségével dinamikus elemeket
+                            hozhatunk létre, adatokat dolgozhatunk fel,
+                            eseményeket kezelhetünk (kattintás,
+                            billentyűlenyomás), vagy akár teljes alkalmazásokat
+                            építhetünk.
+                        </p>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Míg a HTML a szerkezetet, a CSS a kinézetet adja, addig
-                        a JavaScript teszi interaktívvá a weboldalt. A böngésző
-                        minden JS sort sorban végrehajt.
-                    </p>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Míg a HTML a szerkezetet, a CSS a kinézetet adja,
+                            addig a JavaScript teszi interaktívvá a weboldalt. A
+                            böngésző minden JS sort sorban végrehajt.
+                        </p>
 
-                    <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Alap utasítások</h3>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Egyszerű kiíratások, hibák, figyelmeztetések
-                        megjelenítése:
-                    </p>
-                    <ul>
-                        <li><code>alert('Hello!')</code> – felugró ablak</li>
-                        <li>
-                            <code>console.log()</code> – üzenet az ellenőrző
-                            konzolba
-                        </li>
-                        <li><code>console.error()</code> – hibaüzenet</li>
-                        <li><code>console.warn()</code> – figyelmeztetés</li>
-                    </ul>
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Alap utasítások
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Egyszerű kiíratások, hibák, figyelmeztetések
+                            megjelenítése:
+                        </p>
+                        <ul>
+                            <li>
+                                <code>alert('Hello!')</code> – felugró ablak
+                            </li>
+                            <li>
+                                <code>console.log()</code> – üzenet az ellenőrző
+                                konzolba
+                            </li>
+                            <li><code>console.error()</code> – hibaüzenet</li>
+                            <li>
+                                <code>console.warn()</code> – figyelmeztetés
+                            </li>
+                        </ul>
 
-                    <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Változók</h3>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        A változókban adatokat tárolunk. JavaScriptben a
-                        leggyakoribb típusok:
-                    </p>
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Változók
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            A változókban adatokat tárolunk. JavaScriptben a
+                            leggyakoribb típusok:
+                        </p>
 
-                    <ul>
-                        <li>
-                            <code>let</code> – módosítható változó, csak a
-                            blokkon belül él (ajánlott)
-                        </li>
-                        <li>
-                            <code>const</code> – állandó, értéke nem módosítható
-                        </li>
-                        <li>
-                            <code>var</code> – régi változótípus, kerülendő
-                            (újradeklarálható, problémás)
-                        </li>
-                    </ul>
+                        <ul>
+                            <li>
+                                <code>let</code> – módosítható változó, csak a
+                                blokkon belül él (ajánlott)
+                            </li>
+                            <li>
+                                <code>const</code> – állandó, értéke nem
+                                módosítható
+                            </li>
+                            <li>
+                                <code>var</code> – régi változótípus, kerülendő
+                                (újradeklarálható, problémás)
+                            </li>
+                        </ul>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">Példa:</p>
-                    <pre><code>let kor = 20;
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Példa:
+                        </p>
+                        <pre><code>let kor = 20;
 kor = 21; // módosítható
 
 const szam = 10;
 // szam = 11;  // hiba: a const nem módosítható</code></pre>
 
-                    <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Adattípusok</h3>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Két nagy csoportjuk van: primitív típusok és objektum
-                        típusok.
-                    </p>
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Adattípusok
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Két nagy csoportjuk van: primitív típusok és
+                            objektum típusok.
+                        </p>
 
-                    <h4>Primitívek</h4>
-                    <ul>
-                        <li><code>String</code> – szöveg</li>
-                        <li>
-                            <code>Number</code> – szám (egész és tizedes is)
-                        </li>
-                        <li><code>Boolean</code> – igaz vagy hamis</li>
-                        <li><code>null</code> – szándékosan „nincs érték”</li>
-                        <li>
-                            <code>undefined</code> – létrehozott változó, de
-                            nincs értéke
-                        </li>
-                    </ul>
+                        <h4>Primitívek</h4>
+                        <ul>
+                            <li><code>String</code> – szöveg</li>
+                            <li>
+                                <code>Number</code> – szám (egész és tizedes is)
+                            </li>
+                            <li><code>Boolean</code> – igaz vagy hamis</li>
+                            <li>
+                                <code>null</code> – szándékosan „nincs érték”
+                            </li>
+                            <li>
+                                <code>undefined</code> – létrehozott változó, de
+                                nincs értéke
+                            </li>
+                        </ul>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">Példa:</p>
-                    <pre><code>const nev = "Zsolt";
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Példa:
+                        </p>
+                        <pre><code>const nev = "Zsolt";
 const kor = 21;
 const suly = 80.5;
 const felnott = true;
@@ -1853,90 +2185,116 @@ const felnott = true;
 const x = null; 
 const y = undefined;</code></pre>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        A <code>null</code> és az <code>undefined</code> gyakran
-                        keveredik, de fontos a különbség:
-                    </p>
-                    <ul>
-                        <li>
-                            <b>null</b> – Te állítod be, hogy „nincs érték”.
-                        </li>
-                        <li>
-                            <b>undefined</b> – A böngésző adja, ha nem kap
-                            értéket a változó.
-                        </li>
-                    </ul>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            A <code>null</code> és az
+                            <code>undefined</code> gyakran keveredik, de fontos
+                            a különbség:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>null</b> – Te állítod be, hogy „nincs érték”.
+                            </li>
+                            <li>
+                                <b>undefined</b> – A böngésző adja, ha nem kap
+                                értéket a változó.
+                            </li>
+                        </ul>
 
-                    <h4>Objektumok</h4>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        A JavaScript objektumok sok adatot tartalmazhatnak egy
-                        helyen.
-                    </p>
+                        <h4>Objektumok</h4>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            A JavaScript objektumok sok adatot tartalmazhatnak
+                            egy helyen.
+                        </p>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Példa dátum objektumra:
-                    </p>
-                    <pre><code>const date = new Date();          // mai dátum
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Példa dátum objektumra:
+                        </p>
+                        <pre><code>const date = new Date();          // mai dátum
 const date2 = new Date("2025-11-24");</code></pre>
 
-                   <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">String műveletek</h3>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        A szövegekkel gyakran végzünk műveleteket:
-                    </p>
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            String műveletek
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            A szövegekkel gyakran végzünk műveleteket:
+                        </p>
 
-                    <ul>
-                        <li><code>text.length</code> – megadja a hosszát</li>
-                        <li>
-                            <code>text.toLowerCase()</code> – kisbetűssé
-                            alakítja
-                        </li>
-                        <li>
-                            <code>text.substring(1,5)</code> – részlet kivágása
-                        </li>
-                        <li><code>text.split()</code> – darabolás</li>
-                    </ul>
+                        <ul>
+                            <li>
+                                <code>text.length</code> – megadja a hosszát
+                            </li>
+                            <li>
+                                <code>text.toLowerCase()</code> – kisbetűssé
+                                alakítja
+                            </li>
+                            <li>
+                                <code>text.substring(1,5)</code> – részlet
+                                kivágása
+                            </li>
+                            <li><code>text.split()</code> – darabolás</li>
+                        </ul>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Példa modern string írásra (interpoláció):
-                    </p>
-                    <pre><code>const szoveg = "Hello világ";
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Példa modern string írásra (interpoláció):
+                        </p>
+                        <pre><code>const szoveg = "Hello világ";
 console.log(`${szoveg}!`);</code></pre>
 
-                 <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400"></h3>Dátumok kezelése</h3>
-                    <ul>
-                        <li><code>getDate()</code> – nap lekérése</li>
-                        <li><code>getDay()</code> – hét napja (0–6)</li>
-                        <li><code>getMonth()</code> – hónap (0–11)</li>
-                        <li><code>setHours()</code> – óra beállítása</li>
-                        <li><code>setFullYear()</code> – év beállítása</li>
-                        <li>
-                            <code>toISOString()</code> – ISO formátumú dátum
-                        </li>
-                    </ul>
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Dátumok kezelése
+                        </h3>
+                        <ul>
+                            <li><code>getDate()</code> – nap lekérése</li>
+                            <li><code>getDay()</code> – hét napja (0–6)</li>
+                            <li><code>getMonth()</code> – hónap (0–11)</li>
+                            <li><code>setHours()</code> – óra beállítása</li>
+                            <li><code>setFullYear()</code> – év beállítása</li>
+                            <li>
+                                <code>toISOString()</code> – ISO formátumú dátum
+                            </li>
+                        </ul>
 
-                    <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400"></h3>Műveletek</h3>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        A JavaScript támogatja a matematikai műveleteket,
-                        például:
-                    </p>
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Műveletek
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            A JavaScript támogatja a matematikai műveleteket,
+                            például:
+                        </p>
 
-                    <ul>
-                        <li><code>+=</code> – növeli a változó értékét</li>
-                        <li><code>++</code> – egyesével növel</li>
-                    </ul>
+                        <ul>
+                            <li><code>+=</code> – növeli a változó értékét</li>
+                            <li><code>++</code> – egyesével növel</li>
+                        </ul>
 
-                    <pre><code>let szam = 10;
+                        <pre><code>let szam = 10;
         szam += 10;  // 20
         szam++;      // 21</code></pre>
 
-                   <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">Feltételek</h3>
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        Az <code>if</code> utasítással elágazásokat hozhatunk
-                        létre.
-                    </p>
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Feltételek
+                        </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Az <code>if</code> utasítással elágazásokat
+                            hozhatunk létre.
+                        </p>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">Példa:</p>
-                    <pre><code>const a = 14;
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Példa:
+                        </p>
+                        <pre><code>const a = 14;
         const b = 10;
 
         if (a <= b) {
@@ -1951,108 +2309,144 @@ console.log(`${szoveg}!`);</code></pre>
             console.log("Nem egyenlő");
         }</code></pre>
 
-                    <p class="mt-4 leading-relaxed text-gray-300">
-                        A <code>===</code> mindig ajánlott a
-                        <code>==</code> helyett, mert típust is ellenőriz.
-                    </p>
-                   <h3 id="navigation" class="text-xl font-semibold mb-4 text-purple-400">
-                        Kérdések és helyes válaszok
-                    </h3>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            A <code>===</code> mindig ajánlott a
+                            <code>==</code> helyett, mert típust is ellenőriz.
+                        </p>
+                        <h3
+                            id="navigation"
+                            class="text-xl font-semibold mb-4 text-purple-400"
+                        >
+                            Kérdések és helyes válaszok
+                        </h3>
 
-                    <ol>
-                        <li>
-                            <strong
-                                >Hogyan lehet egy szöveg hosszát
-                                lekérdezni?</strong
-                            >
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                <code>szoveg.length</code>
-                            </p>
-                        </li>
-                        <li>
-                            <strong>Melyik állítás igaz a JSON-re?</strong>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Nyelvfüggetlen.
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                JSON (JavaScript Object Notation)
-                                adatcsere-formátum, ami bármilyen nyelven
-                                használható (Java, Python, C#, stb.), nem csak
-                                JavaScript-ben.
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Nem kompatibilis 100%-ban XML-lel, mert az
-                                teljesen más szintaxis.
-                            </p>
-                        </li>
-                        <li>
-                            <strong>Mely állítások igazak a BOM-ra?</strong>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Hierarchikus elrendezésű, a tetején a
-                                <code>window</code> object helyezkedik el.
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Segítségével elérjük a böngésző tulajdonságait,
-                                beállításait (ablakméret, előzmények, URL-ek
-                                stb.).
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                A BOM (Browser Object Model) nem szabványos, de
-                                minden böngésző implementálja.
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Lehetővé teszi az ablak, előzmények, URL-ek,
-                                képernyőméret kezelését, a dokumentumon kívüli
-                                objektumokhoz fér hozzá.
-                            </p>
-                        </li>
-                        <li>
-                            <strong>Mi a kimenete?</strong>
-                            <pre>
+                        <ol>
+                            <li>
+                                <strong
+                                    >Hogyan lehet egy szöveg hosszát
+                                    lekérdezni?</strong
+                                >
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    <code>szoveg.length</code>
+                                </p>
+                            </li>
+                            <li>
+                                <strong>Melyik állítás igaz a JSON-re?</strong>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Nyelvfüggetlen.
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    JSON (JavaScript Object Notation)
+                                    adatcsere-formátum, ami bármilyen nyelven
+                                    használható (Java, Python, C#, stb.), nem
+                                    csak JavaScript-ben.
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Nem kompatibilis 100%-ban XML-lel, mert az
+                                    teljesen más szintaxis.
+                                </p>
+                            </li>
+                            <li>
+                                <strong>Mely állítások igazak a BOM-ra?</strong>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Hierarchikus elrendezésű, a tetején a
+                                    <code>window</code> object helyezkedik el.
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Segítségével elérjük a böngésző
+                                    tulajdonságait, beállításait (ablakméret,
+                                    előzmények, URL-ek stb.).
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    A BOM (Browser Object Model) nem szabványos,
+                                    de minden böngésző implementálja.
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Lehetővé teszi az ablak, előzmények, URL-ek,
+                                    képernyőméret kezelését, a dokumentumon
+                                    kívüli objektumokhoz fér hozzá.
+                                </p>
+                            </li>
+                            <li>
+                                <strong>Mi a kimenete?</strong>
+                                <pre>
         let keresztNev = "Elek";
         let csaladNev = null;
         let beceNev = null;
         console.log(keresztNev ?? csaladNev ?? beceNev ?? "Nem meghatározott");
             </pre
-                            >
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Megoldás: Elek
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Az ?? (nullish coalescing) a null vagy undefined
-                                ellenőrzi. keresztNev értéke "Elek", ami nem
-                                null vagy undefined, így az első érték kerül
-                                kiírásra.
-                            </p>
-                        </li>
-                        <li>
-                            <strong>Mi a kimenete?</strong>
-                            <pre>console.log(Math.ceil(4.4))</pre>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Megoldás: 5
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Mindig a következő egész számra kerekít felfelé.
-                            </p>
-                        </li>
-                        <li>
-                            <strong>Mely állítások igazak a JSON-re?</strong>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Nyelvfüggetlen.
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Adatok tárolására és az adatküldés
-                                leegyszerűsítésére használható.
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                A JSON formátum adatcsere-formátum,
-                                kliens-szerver kommunikációban is gyakran
-                                használják.
-                            </p>
-                        </li>
-                        <li>
-                            <strong>Mit ír ki?</strong>
-                            <pre>
+                                >
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Megoldás: Elek
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Az ?? (nullish coalescing) a null vagy
+                                    undefined ellenőrzi. keresztNev értéke
+                                    "Elek", ami nem null vagy undefined, így az
+                                    első érték kerül kiírásra.
+                                </p>
+                            </li>
+                            <li>
+                                <strong>Mi a kimenete?</strong>
+                                <pre>console.log(Math.ceil(4.4))</pre>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Megoldás: 5
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Mindig a következő egész számra kerekít
+                                    felfelé.
+                                </p>
+                            </li>
+                            <li>
+                                <strong
+                                    >Mely állítások igazak a JSON-re?</strong
+                                >
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Nyelvfüggetlen.
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Adatok tárolására és az adatküldés
+                                    leegyszerűsítésére használható.
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    A JSON formátum adatcsere-formátum,
+                                    kliens-szerver kommunikációban is gyakran
+                                    használják.
+                                </p>
+                            </li>
+                            <li>
+                                <strong>Mit ír ki?</strong>
+                                <pre>
                         let obj = {
                             for: 1,
                             let: 2,
@@ -2060,143 +2454,278 @@ console.log(`${szoveg}!`);</code></pre>
                         }
                         console.log(obj.let);
                        </pre
-                            >
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Megoldás: 2
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Objektumokban kulcsokat szabad szövegesen
-                                használni, így let itt egy érvényes property.
-                                obj.let pontosan a 2 értéket adja vissza.
-                            </p>
-                        </li>
-                        <li>
-                            <strong>Mi a kimenete?</strong>
-                            <pre>
+                                >
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Megoldás: 2
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Objektumokban kulcsokat szabad szövegesen
+                                    használni, így let itt egy érvényes
+                                    property. obj.let pontosan a 2 értéket adja
+                                    vissza.
+                                </p>
+                            </li>
+                            <li>
+                                <strong>Mi a kimenete?</strong>
+                                <pre>
                     let nameSymbol2 = Symbol("name");
                     console.log(Symbol.keyFor(nameSymbol2));
                       </pre
-                            >
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                undefined
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Symbol("name") egy lokális szimbólum, ami nem
-                                regisztrált globális szimbólumként.
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                A Symbol.keyFor() csak a globális szimbólumoknál
-                                ad vissza kulcsot.
-                            </p>
-                        </li>
-                        <li>
-                            <strong>Mi a kimenete?</strong>
-                            <pre>
+                                >
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    undefined
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Symbol("name") egy lokális szimbólum, ami
+                                    nem regisztrált globális szimbólumként.
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    A Symbol.keyFor() csak a globális
+                                    szimbólumoknál ad vissza kulcsot.
+                                </p>
+                            </li>
+                            <li>
+                                <strong>Mi a kimenete?</strong>
+                                <pre>
                     var foo = function teszt(){
                         console.log(foo==foo)
                     };
                     foo();
             </pre
-                            >
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                true
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                foo mindig önmagára mutat a függvény scope-on
-                                belül, így a foo == foo mindig true.
-                            </p>
-                        </li>
-                        <li>
-                            <strong>Mi a kimenete?</strong>
-                            <pre>console.log(undefined > 0);</pre>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                false
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                undefined nem szám, így összehasonlításkor
-                                NaN-ra konvertálódik → minden összehasonlítás
-                                false lesz.
-                            </p>
-                            <p class="mt-4 leading-relaxed text-gray-300">
-                                Nem dob hibát, egyszerűen false az eredmény.
-                            </p>
-                        </li>
-                    </ol>
+                                >
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    true
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    foo mindig önmagára mutat a függvény
+                                    scope-on belül, így a foo == foo mindig
+                                    true.
+                                </p>
+                            </li>
+                            <li>
+                                <strong>Mi a kimenete?</strong>
+                                <pre>console.log(undefined > 0);</pre>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    false
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    undefined nem szám, így összehasonlításkor
+                                    NaN-ra konvertálódik → minden
+                                    összehasonlítás false lesz.
+                                </p>
+                                <p
+                                    class="mt-4 mb-4 leading-relaxed text-gray-300"
+                                >
+                                    Nem dob hibát, egyszerűen false az eredmény.
+                                </p>
+                            </li>
+                        </ol>
 
-                    <a
-                        href="https://github.com/Nagraggini/blog/blob/main/Programing_basic_knowledge.md"
-                       class="underline text-white-700 hover:text-blue-600"  >A folytatást ide kattintva éred el.</a
-                    >
+                        <a
+                            href="https://github.com/Nagraggini/blog/blob/main/Programing_basic_knowledge.md"
+                            class="underline text-blue-400 hover:text-blue-600"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >A folytatást ide kattintva éred el.</a
+                        >
+                    </article>
                 </section>
 
-                 <section class="space-y-10">
-                    <h2 class="text-2xl font-bold text-white" id="java">
-                        Java
-                    </h2>
-                    <a
-                        href="https://github.com/Nagraggini/blog/blob/main/Java_basic_knowledge.md"
-                       class="underline text-white-700 hover:text-blue-600"  >Ide kattintva éred el a Java alapoktól haladó szintig szóló
-                        jegyzetemet.</a
-                    >
+                <section class="space-y-6 my-10">
+                    <article class="bg-slate-800 p-6 rounded-lg shadow">
+                        <h2
+                            class="text-2xl font-bold text-white mb-4"
+                            id="java"
+                        >
+                            Java
+                        </h2>
+
+                        <a
+                            href="https://github.com/Nagraggini/blog/blob/main/Java_basic_knowledge.md"
+                            class="underline text-blue-400 hover:text-blue-600"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Ide kattintva éred el a Java alapoktól haladó
+                            szintig szóló jegyzetemet.</a
+                        >
+                    </article>
                 </section>
-                
-            <section class="space-y-10">
-                
-            <h2 class="text-2xl font-bold text-white" id="springboot">
-                Spring Boot
-            </h2>
 
-            <p class="mt-4 leading-relaxed text-gray-300">
-                Ebben a projektben a Spring Boot alapjait mutatom be gyakorlati példákon keresztül.
-                A részletes magyarázatok és lépések a dokumentációkban találhatók.
-            </p>
+                <section class="space-y-6 my-10">
+                    <article class="bg-slate-800 p-6 rounded-lg shadow">
+                        <h2
+                            class="text-2xl font-bold text-white"
+                            id="springboot"
+                        >
+                            Spring Boot
+                        </h2>
 
-            <ul class="space-y-2 text-blue-400 underline">
-                <li>
-                    <a href="https://github.com/Nagraggini/springboot-for-beginners/blob/main/HowToDoIt_Hungarian_version.md">
-                        Spring Boot alapok dokumentáció
-                    </a>
-                </li>
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            Ezekben a projektekben a Spring Boot alapjait
+                            mutatom be gyakorlati példákon keresztül. A
+                            részletes magyarázatok és lépések a dokumentációkban
+                            találhatók, melyeket itt tekinthetsz meg:
+                        </p>
 
-                <li>
-                    <a href="https://github.com/Nagraggini/springboot-render/blob/main/HowToDoIt_Hungarian_version.md">
-                        Legegyszerűbb Spring Boot weboldal készítése
-                    </a>
-                </li>
+                        <ul class="space-y-2 text-blue-400 underline">
+                            <li>
+                                <a
+                                    href="https://github.com/Nagraggini/springboot-for-beginners/blob/main/HowToDoIt_Hungarian_version.md"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Spring Boot alapok
+                                </a>
+                            </li>
 
-                <li>
-                    <a href="https://github.com/Nagraggini/animal-shelter/blob/main/HowToDoIt_Hungarian_version.md">
-                        Animal Shelter projekt dokumentáció
-                    </a>
-                </li>
+                            <li>
+                                <a
+                                    href="https://github.com/Nagraggini/springboot-render/blob/main/HowToDoIt_Hungarian_version.md"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Legegyszerűbb Spring Boot weboldal készítése
+                                </a>
+                            </li>
 
-                <li>
-                    <a href="https://github.com/Nagraggini/student-registry-app/blob/main/HowToDoIt_Hungarian_version.md">
-                        Student Registry projekt dokumentáció
-                    </a>
-                </li>
-            </ul>
-        </section>
+                            <li>
+                                <a
+                                    href="https://github.com/Nagraggini/animal-shelter/blob/main/HowToDoIt_Hungarian_version.md"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Animal Shelter projekt dokumentáció
+                                </a>
+                            </li>
 
+                            <li>
+                                <a
+                                    href="https://github.com/Nagraggini/student-registry-app/blob/main/HowToDoIt_Hungarian_version.md"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Student Registry projekt dokumentáció
+                                </a>
+                            </li>
+                        </ul>
+                    </article>
+                </section>
+                <section class="space-y-6 my-10">
+                    <article class="bg-slate-800 p-6 rounded-lg shadow">
+                        <h2
+                            class="text-2xl mb-4 font-bold text-white"
+                            id="references"
+                        >
+                            Felhasznált források és ajánlott linkek
+                        </h2>
+                        <ul class="space-y-2 text-blue-400 underline">
+                            <li>
+                                <a
+                                    href="https://sanfranciscoboljottem.com"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    SanFranciscoboljöttem.com - Blog és kurzusok
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://okt.inf.szte.hu/prog1/gyakorlat/eloadas/Java/objectsAndClasses/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    SZTE - Java Objektumok és Osztályok
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.youtube.com/watch?v=8qMi3e_fzKc&list=PL92V_WHHt2CnXaUIA9T2ww7peDK4lqmZj"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    YouTube - Fullstack Tutorial sorozat
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.youtube.com/watch?v=8qMi3e_fzKc&list=PL92V_WHHt2CnXaUIA9T2ww7peDK4lqmZj"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    YouTube - Fullstack Tutorial sorozat
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://itszotar.hu/jvm-java-virtualis-gep-mi-a-mukodese-es-mi-a-szerepe-a-java-kod-futtatasaban/"
+                                    class="underline text-white-700 hover:text-blue-600"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    IT Szótár - Mi az a JVM?
+                                </a>
+                            </li>
+                        </ul>
+
+                        <p class="mt-8 text-sm text-gray-500 italic">
+                            A jegyzetek és magyarázatok a fenti források alapján
+                            készültek tanulási céllal.
+                        </p>
+                    </article>
+                </section>
             </main>
         </div>
-      
-        <footer class="site-footer" id="site-footer">
+
+        <footer class="text-center site-footer" id="site-footer">
             <div class="footer_class">
-                <p class="mt-4 leading-relaxed text-gray-300">
-                    &copy; <span id="year"></span> Nagraggini Blogja — Minden
-                    jog fenntartva.
+                <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                    &copy; <span id="year"></span> 2026 Nagraggini (Freud
+                    Andrea) — Minden jog fenntartva.
                 </p>
 
-                <p class="mt-4 leading-relaxed text-gray-300">
-                    <a href="https://github.com/Nagraggini/blog"  class="underline text-white-700 hover:text-blue-600">Forrás kód</a>
+                <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                    <a
+                        href="https://github.com/Nagraggini/blog"
+                        class="underline text-white-700 hover:text-blue-600"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Forrás kód</a
+                    >
                 </p>
 
-                <p class="mt-4 leading-relaxed text-gray-300">
-                    <a href="#navigation"  class="underline text-white-700 hover:text-blue-600">Oldal tetejére ugrás.</a>
+                <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                    <a
+                        href="#navigation"
+                        class="underline text-white-700 hover:text-blue-600"
+                        >Oldal tetejére ugrás.</a
+                    >
                 </p>
-
-                
             </div>
         </footer>
     </body>
