@@ -31,6 +31,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
     - [Java technológiai áttekintés és működés](#java-technológiai-áttekintés-és-működés)
   - [Netbeans](#netbeans)
   - [IntelliJ IDEA](#intellij-idea)
+- [Projekt importálása VS Code-ban](#projekt-importálása-vs-code-ban)
 - [Adattípusok](#adattípusok)
   - [Primitív adattípusok](#primitív-adattípusok)
   - [Összetett adattípusok (referencia típusok)](#összetett-adattípusok-referencia-típusok)
@@ -159,6 +160,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
     - [3. Gyűjtés](#3-gyűjtés)
   - [Collectors.partitioningBy és groupingBy, parallelStream példákkal](#collectorspartitioningby-és-groupingby-parallelstream-példákkal)
   - [collect(groupingBy)+entrySet+filter példákkal](#collectgroupingbyentrysetfilter-példákkal)
+  - [További példák magyarázatokkal](#további-példák-magyarázatokkal)
 - [Java Stream – Gyakori vizsgacsapdák](#java-stream--gyakori-vizsgacsapdák)
   - [1. A Stream csak a lezáró műveletnél fut le (lazy evaluation)](#1-a-stream-csak-a-lezáró-műveletnél-fut-le-lazy-evaluation)
   - [2. A stream csak egyszer használható](#2-a-stream-csak-egyszer-használható)
@@ -166,7 +168,6 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [4. `peek()` használata](#4-peek-használata)
 - [Rövid összefoglaló](#rövid-összefoglaló)
 - [Menü rendszer](#menü-rendszer)
-- [TODO:](#todo)
 
 # Források
 
@@ -391,7 +392,7 @@ Jelöld ki → Edit
 
 Töröld ki ezt a sort:
 
-// TODO Auto-generated method stub
+// TO DO Auto-generated method stub
 
 OK → Apply and Close
 
@@ -428,6 +429,24 @@ Java FX: Segít szép grafikus környezetet létrehozni. Java Swing (régebbi) �
 A netbeans telepítés végén a jobb alsó sarokban felajánl pár plugin-t, azokat telepítsd.
 
 ## IntelliJ IDEA
+
+# Projekt importálása VS Code-ban
+
+1. Futtatás ellenőrzése
+
+Nyomd meg az F5-öt a projekt futtatásához.
+Ha a projekt piros minden ellenére is a "Clean" után:
+- Ellenőrizd, hogy a bal oldali sávban a "Java Projects" fül alatt látszanak-e a forrásfájlok (src).
+- Ha nem látszanak, a VS Code nem projektként kezeli a mappát, csak sima fájlokként.
+
+2. JDK verzió problémák
+
+Ha a kód mindenhol piros, lehet, hogy a VS Code nem találja a telepített Java JDK-t.
+
+Megoldás:
+- Nyomd meg Ctrl + Shift + P.
+- Írd be: "Java: Configure Java Runtime".
+- Válaszd ki a megfelelő JDK-t.
 
 # Adattípusok
 
@@ -3402,6 +3421,9 @@ public class ApikGrouping {
 }
 
 ```
+## További példák magyarázatokkal
+
+Kattints [ide](https://github.com/Nagraggini/start-projects/tree/main/java-console/src).
 
 # Java Stream – Gyakori vizsgacsapdák
 
@@ -3576,17 +3598,4 @@ A `peek()`:
     }
 ```
 
-# TODO: 
-
-Az ennél is bonyolultabb részt [itt](https://github.com/Nagraggini/start-projects/blob/main/java-console-exams/src/kosar2004Gyakorlas/KosarligaGyakorlas.java) találod példákkal illusztrálva.
-
-TODO:
-
-adatok = Arrays.stream(Resource.balkezesek.split(System.lineSeparator()))
-
-        .skip(1)
-
-        .map(Baseball::new)
-
-        .toList();
 
