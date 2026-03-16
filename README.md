@@ -254,5 +254,3 @@ Terminálban:
 sdk install java 17.0.10-ms
 mvn spring-boot:run 
 
-// TODO: JavaScript, Java és SpringBoot link csatolása.
-// A fenti három md fájlt jelenítsd meg a springboot-ban és írd le ide hogyan csináltad.
