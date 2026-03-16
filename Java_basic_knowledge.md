@@ -23,7 +23,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 - [Tartalomjegyzék](#tartalomjegyzék)
 - [Források](#források)
 - [Általános infók](#általános-infók)
-  - [Fordítási folyamat](#fordítási-folyamat)
+  - [Java fordítási és futtatási folyamat](#java-fordítási-és-futtatási-folyamat)
 - [Fejlesztői környezet](#fejlesztői-környezet)
   - [Visual Studio Code](#visual-studio-code)
   - [Eclipse](#eclipse)
@@ -69,13 +69,15 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [Változónevek szabályai](#változónevek-szabályai)
 - [Kasztolás](#kasztolás)
     - [Helyes megoldások char → String konvertálásra](#helyes-megoldások-char--string-konvertálásra)
+- [Java dátum és idő kezelés (java.time)](#java-dátum-és-idő-kezelés-javatime)
+  - [Rövid cheat sheet](#rövid-cheat-sheet)
+- [Math()](#math)
 - [Wrapper (burkoló) osztályok](#wrapper-burkoló-osztályok)
     - [Fordítási hiba ≠ futási hiba](#fordítási-hiba--futási-hiba)
 - [Stack, Heap és Garbage Collector](#stack-heap-és-garbage-collector)
   - [Stack](#stack)
   - [Heap](#heap)
   - [Garbage Collector (Szemétgyűjtő)](#garbage-collector-szemétgyűjtő)
-- [Speciális adattípusok](#speciális-adattípusok)
 - [Környezet változók és a manuális fordítás](#környezet-változók-és-a-manuális-fordítás)
 - [Véletlen mondat generátor készítés](#véletlen-mondat-generátor-készítés)
 - [Tömb vs. ArrayList](#tömb-vs-arraylist)
@@ -134,12 +136,6 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [3. TreeMap](#3-treemap)
     - [Melyiket válaszd?](#melyiket-válaszd)
   - [Mit használj a vizsgán?](#mit-használj-a-vizsgán)
-- [Java Stream API](#java-stream-api)
-  - [Java Stream API Gyorssegéd](#java-stream-api-gyorssegéd)
-  - [Példák a használatra](#példák-a-használatra)
-    - [1. Megszámolás](#1-megszámolás)
-    - [2. Kiíratás](#2-kiíratás)
-    - [3. Gyűjtés](#3-gyűjtés)
 - [Java Példák és Magyarázatok](#java-példák-és-magyarázatok)
   - [1. Fájlbeolvasás](#1-fájlbeolvasás)
   - [2. Fájlkiírás](#2-fájlkiírás)
@@ -147,8 +143,30 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [4. HashMap példák](#4-hashmap-példák)
   - [5. Összefoglaló adatszerkezetek és alapok](#5-összefoglaló-adatszerkezetek-és-alapok)
   - [6. ArrayList kiíratás](#6-arraylist-kiíratás)
-- [Stream API extra](#stream-api-extra)
-- [Stream API \[collect(groupingBy)+entrySet+filter\]](#stream-api-collectgroupingbyentrysetfilter)
+- [Printf](#printf)
+  - [Mi az a printf?](#mi-az-a-printf)
+  - [Formázó jelek (%)](#formázó-jelek-)
+  - [Lebegőpontos szám (%f)](#lebegőpontos-szám-f)
+  - [Tizedesjegyek megadása](#tizedesjegyek-megadása)
+  - [Táblázatos kiírás](#táblázatos-kiírás)
+- [Java Stream API](#java-stream-api)
+  - [Java Stream API Gyorssegéd](#java-stream-api-gyorssegéd)
+    - [Rövidebb verzió](#rövidebb-verzió)
+    - [Haladó verzió](#haladó-verzió)
+  - [Példák a használatra](#példák-a-használatra)
+    - [1. Megszámolás](#1-megszámolás)
+    - [2. Kiíratás](#2-kiíratás)
+    - [3. Gyűjtés](#3-gyűjtés)
+  - [Collectors.partitioningBy és groupingBy, parallelStream példákkal](#collectorspartitioningby-és-groupingby-parallelstream-példákkal)
+  - [collect(groupingBy)+entrySet+filter példákkal](#collectgroupingbyentrysetfilter-példákkal)
+- [Java Stream – Gyakori vizsgacsapdák](#java-stream--gyakori-vizsgacsapdák)
+  - [1. A Stream csak a lezáró műveletnél fut le (lazy evaluation)](#1-a-stream-csak-a-lezáró-műveletnél-fut-le-lazy-evaluation)
+  - [2. A stream csak egyszer használható](#2-a-stream-csak-egyszer-használható)
+  - [3. A `forEach()` lezáró művelet](#3-a-foreach-lezáró-művelet)
+  - [4. `peek()` használata](#4-peek-használata)
+- [Rövid összefoglaló](#rövid-összefoglaló)
+- [Menü rendszer](#menü-rendszer)
+- [TODO:](#todo)
 
 # Források
 
@@ -175,6 +193,10 @@ Java szerver
 Spring Boot Ismeretek  
 Spring Boot Ismeretek II.
 
+[Java Cheat Sheet](https://github.com/luankevinferreira/java-dev-cheat-sheet/tree/main)
+[Java Streams and Collectors: A Practical Guide and Cheat Sheet with Real-World Examples](https://medium.com/@code.wizzard01/java-streams-and-collectors-a-practical-guide-and-cheat-sheet-with-real-world-examples-67dcf84156b5)
+
+
 📌 Klasszikus full-stack webalkalmazás felépítés.
 
 React ↔ Spring (REST, JSON),
@@ -196,23 +218,117 @@ A Sun Microsystem alkotta meg a javat. Később az Oracle vette meg a céget.
 A JVM miatt a Java programok sok különböző operációs rendszeren futtathatók.
 A JVM a Java bytecode-ot (.class fájlok) futtatja, amelyeket gyakran .jar fájlba csomagolnak. A windows/linux pedig futtatja a JVM-t.
 
-## Fordítási folyamat
+## Java fordítási és futtatási folyamat
 
-Java → javac → bytecode → JVM → machine code
+A Java egyik legfontosabb tulajdonsága a platformfüggetlenség. Ez azt jelenti, hogy egy programot egyszer kell megírni, és az különböző operációs rendszereken is futtatható.
 
-A javac fordító a Java forráskódot (.java) platformfüggetlen bytecode-ra (.class fájlok) alakítja, amit .jar fájlba csomagolnak.​
-Ezt követően a JVM tölti be és hajtja végre a bytecode-ot: kezdetben értelmezi, de gyakran használt részeket JIT kompilerrel optimalizált gépi kóddá fordít a jobb teljesítmény érdekében.​
-Ez biztosítja a "write once, run anywhere" elvet, mivel minden platformra külön JVM-et fejlesztenek.​
+Ez a tulajdonság a bytecode és a Java Virtual Machine (JVM) együttműködésének köszönhető.
 
-JAVAC: Java compiler, fordító.
+A fordítás és futtatás lépései
 
-JRE: Java Runtime Environment, könyvtárakat tartalmaz pl.: JVM.
+```
+Java forráskód (.java)
+        ↓
+javac fordító
+        ↓
+Bytecode (.class)
+        ↓
+Java Virtual Machine (JVM)
+        ↓
+Natív gépi kód (machine code)
+```
 
-JDK: Java Development Kit, tartalmazza a JRE-t.
+1. Forráskód
 
-Amikor egy Java fejlesztő megírja a forráskódot, azt először a Java fordító (javac) bájtóddá (bytecode) alakítja. Ez a bájtód egy architektúra-semleges, platformfüggetlen utasításkészlet, amelyet a JVM értelmez. Ez a folyamat a kulcsa a Java híres „write once, run anywhere” (írjuk meg egyszer, futtassuk bárhol) filozófiájának. A JVM lényegében egy virtuális CPU-ként működik, amely képes ezt a bájtódot natív gépi kóddá alakítani az adott hardver és operációs rendszer számára, anélkül, hogy a fejlesztőnek minden egyes platformra külön kellene fordítania az alkalmazást.
+A fejlesztő Java forráskódot ír (.java fájlok).
+Ez ember által olvasható programkód.
 
-A JVM szerepe messze túlmutat a puszta kódfuttatáson. Felelős a programok életciklusának kezeléséért, az osztályok betöltésétől kezdve a memóriaallokáción át a „szemétgyűjtésig” (Garbage Collection). Ez az automatikus memóriakezelés az egyik legfontosabb előnye, mivel jelentősen csökkenti a fejlesztők terheit, akiknek így nem kell kézzel foglalkozniuk a memória felszabadításával, ami gyakori forrása a hibáknak más programozási nyelvekben. A JVM tehát egy rétegként funkcionál a Java alkalmazás és az alatta lévő hardver/operációs rendszer között, elrejtve a platformspecifikus részleteket a fejlesztő elől.
+2. Fordítás (javac)
+
+A javac fordító lefordítja a Java forráskódot bytecode-ra.
+
+- bemenet: .java
+- kimenet: .class
+
+A bytecode egy platformfüggetlen utasításkészlet, amelyet nem közvetlenül a processzor hajt végre.
+
+3. Bytecode
+
+A bytecode egy köztes kód, amelyet a JVM képes értelmezni.
+A .class fájlokat gyakran .jar (Java Archive) fájlba csomagolják, ami több class fájlt és erőforrást tartalmazhat.
+
+4. Futás a JVM-ben
+
+A Java Virtual Machine (JVM) betölti és futtatja a bytecode-ot.
+
+A JVM működése:
+- betölti az osztályokat
+- ellenőrzi a bytecode biztonságát
+- végrehajtja a kódot
+
+A végrehajtás két módon történhet:
+- Interpreter – soronként értelmezi a bytecode-ot
+- JIT (Just-In-Time) compiler – a gyakran futó kódrészeket natív gépi kóddá fordítja a gyorsabb futás érdekében
+
+5. Natív gépi kód
+
+A JVM az adott operációs rendszerhez és processzorhoz igazodó machine code-ot hoz létre, amelyet a CPU közvetlenül végrehajthat.
+
+**Write Once, Run Anywhere**
+
+A Java híres elve:
+"Write once, run anywhere"
+
+Ez azt jelenti:
+- a programot egyszer kell lefordítani bytecode-ra
+- minden platformon csak a JVM-nek kell léteznie
+
+Például:
+- Windows → Windows JVM
+- Linux → Linux JVM
+- macOS → macOS JVM
+
+A bytecode mindenhol ugyanaz marad.
+
+**Java környezet komponensei**
+
+JDK – Java Development Kit
+
+A JDK a Java fejlesztéshez szükséges teljes eszközkészlet.
+
+Tartalmazza:
+- javac (fordító)
+- JRE
+- fejlesztői eszközök
+
+**JRE – Java Runtime Environment**
+
+A JRE a Java programok futtatásához szükséges környezet.
+
+Tartalmazza:
+- JVM
+- Java szabványos könyvtárak
+
+**JVM – Java Virtual Machine**
+
+A JVM egy virtuális futtatókörnyezet, amely:
+- betölti az osztályokat
+- végrehajtja a bytecode-ot
+- kezeli a memóriát
+- végzi a Garbage Collectiont
+
+**A JVM szerepe**
+
+A JVM nem csak a kód futtatásáért felelős.
+
+Feladatai például:
+- Class loading – osztályok betöltése
+- Bytecode verification – biztonsági ellenőrzés
+- Memory management – memória kezelése
+- Garbage Collection – automatikus memóriatisztítás
+- JIT fordítás – teljesítmény optimalizálása
+
+A JVM tehát egy absztrakciós réteg a Java alkalmazás és a hardver között, amely elrejti a platformfüggő részleteket a fejlesztő elől.
 
 # Fejlesztői környezet
 
@@ -1039,8 +1155,7 @@ LocalDate today = LocalDate.now();
 System.out.println(today);
 ```
 
-példa kimenet
-
+példa kimenet:
 2026-03-15
 
 **Dátum létrehozása**
@@ -1050,8 +1165,7 @@ LocalDate date = LocalDate.of(2024, 5, 10);
 System.out.println(date);
 ```
 
-kimenet
-
+kimenet:
 2024-05-10
 
 *Év, hónap, nap lekérése*
@@ -1121,8 +1235,7 @@ LocalTime time = LocalTime.now();
 System.out.println(time);
 ```
 
-példa
-
+példa:
 18:45:21.123
 
 **LocalDateTime (dátum + idő)**
@@ -1133,8 +1246,7 @@ LocalDateTime now = LocalDateTime.now();
 System.out.println(now);
 ```
 
-példa
-
+példa:
 2026-03-15T18:45:21
 
 **Dátum formázása**
@@ -1150,8 +1262,7 @@ DateTimeFormatter formatter =
 System.out.println(today.format(formatter));
 ```
 
-kimenet
-
+kimenet:
 2026.03.15
 
 **Gyakori formátumok**
@@ -1223,6 +1334,43 @@ LocalDate.parse("2024-05-10")
 
 date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))
 ```
+
+# Math()
+
+A Math osztály matematikai műveletek és konstansok elérését biztosítja:
+Használata  Math.<metódus() vagy konstans>;
+Függvények:
+
+abs(érték) // abszolút értékkel tér vissza
+min(érték1, érték2) //két szám közül a kisebbel tér vissza
+
+max(érték1, érték2)- két szám közül a nagyobbal tér vissza
+sqrt(érték)- a szám négyzetgyökével tér vissza
+pow(alap, kitevő)- az alap hatványkitevőre emelésével tér vissza
+round(érték)- a legközelebbi egész számra kerekít
+floor(érték) //Lefelé kerekítés, de nem levágás. p.l: -6.99 => -7 
+//Felfelé kerekítés. Math.floor(6.99) => 6 //Nem csak kerekítés.
+ceil(érték) // Felfelé kerekítés, mindig. 6.31 => 7 | -6.3 => -6
+
+Konstansok:
+Pi (3.141592653589793)
+E (2.718281828459045)
+
+Példák:
+
+ceil: Visszaadja a legkisebb egész számot (double formában), ami nem kisebb, mint az érték.
+Negatív számnál a felfelé kerekítés → az érték kevésbé negatív lesz.
+6.31 -> 7.0
+6.99 -> 7.0
+-6.3 -> -6.0
+-6.99 -> -6.0
+
+floor: Visszaadja a legnagyobb egész számot (double formában), ami nem nagyobb, mint az érték.
+Negatív számnál lefelé kerekít → az érték kisebb lesz.
+6.99 -> 6.0
+6.01 -> 6.0
+-6.01 -> -7.0
+-6.99 -> -7.0
 
 # Wrapper (burkoló) osztályok
 
@@ -2329,65 +2477,7 @@ Keresés/Szűrés/Statisztika: Használd a listát és a Stream API-t.
 
 Egyedi kulcsos keresés: Csak akkor készíts HashMap-et, ha a feladat kifejezetten kéri, hogy egy azonosító alapján keress ki valamit villámgyorsan.
 
-# Java Stream API
 
-A Java Stream API működése sok szempontból hasonlít egy SQL lekérdezés logikájára.
-
-SQL-ben:
-FROM → WHERE → SELECT
-
-Stream esetén:
-forrás → köztes műveletek → terminális művelet
-
-A különbség, hogy Stream esetén a műveleteket egymás után láncoljuk, és a feldolgozás csak a terminális művelet meghívásakor indul el.
-
-## Java Stream API Gyorssegéd
-
-```bash
-| Szint           | Művelet                  | Leírás                                                  |
-| :---            | :---                     | :---                                                    |
-| **1. FORRÁS**   | `.stream()`              | Elindítja a folyamatot. (**KÖTELEZŐ**)                  |
-| **2. KÖZTES**   | `.filter(x -> ...)`      | Szűrés (csak az marad, ami TRUE).                       |
-| (Bármennyi      | `.map(x -> x.get...)`    | Átalakítás (pl. objektumból csak egy String).           |
-| lehet)          | `.sorted()`              | Sorba rendezés.                                         |
-|                 | `.distinct()`            | Ismétlődések törlése.                                   |
-|                 | `.limit(n)`              | Csak az első *n* darab elemet hagyja meg.               |
-| **3. LEZÁRÓ**   | `.count()`               | Megszámolja az elemeket. (Eredmény: `long`)             |
-| (Csak EGY       | `.forEach(x -> ...)`     | Művelet minden elemen (pl. kiírás). (Eredmény: `void`)  |
-| lehet a végén!) | `.toList()`              | Új listába gyűjt. (Eredmény: `List<T>`)                 |
-|                 | `.anyMatch(x -> ...)`    | Van-e legalább egy ilyen? (Eredmény: `boolean`)         |
-|                 | `.findFirst()`           | Visszaadja a legelsőt. (Eredmény: `Optional<T>`)        |
-```
-
----
-
-## Példák a használatra
-
-### 1. Megszámolás
-
-_Hány meccs volt Madridban?_
-
-```java
-long db = lista.stream()
-               .filter(x -> x.getHelyszin().equals("Madrid"))
-               .count();
-```
-
-### 2. Kiíratás
-
-_Írd ki a 100 pont feletti hazai meccseket!_
-
-```java
-lista.stream().filter(x -> x.getHazaiPont() > 100).forEach(System.out::println);
-```
-
-### 3. Gyűjtés
-
-_Add vissza a városok neveit ABC sorrendben, ismétlődés nélkül!_
-
-```java
-List<String> varosok = lista.stream().map(AbcKosarlabdaLiga::getHelyszin).distinct().sorted().toList();
-```
 
 # Java Példák és Magyarázatok
 
@@ -2844,7 +2934,319 @@ Anna          25     1500.50
 Béla          30     2100.75
 ```
 
-# Stream API extra
+# Java Stream API
+
+A Java Stream API működése sok szempontból hasonlít egy SQL lekérdezés logikájára.
+
+SQL-ben:
+FROM → WHERE → SELECT
+
+Stream esetén:
+forrás → köztes műveletek → terminális művelet
+
+A különbség, hogy Stream esetén a műveleteket egymás után láncoljuk, és a feldolgozás csak a terminális művelet meghívásakor indul el.
+
+## Java Stream API Gyorssegéd
+
+### Rövidebb verzió
+
+```bash
+| Szint           | Művelet               | Leírás                                                 |
+| :-------------- | :-------------------- | :----------------------------------------------------- |
+| **1. FORRÁS**   | `.stream()`           | Elindítja a folyamatot. (**KÖTELEZŐ**)                 |
+| **2. KÖZTES**   | `.filter(x -> ...)`   | Szűrés (csak az marad, ami TRUE).                      |
+| (Bármennyi      | `.map(x -> x.get...)` | Átalakítás (pl. objektumból csak egy String).          |
+| lehet)          | `.sorted()`           | Sorba rendezés.                                        |
+|                 | `.distinct()`         | Ismétlődések törlése.                                  |
+|                 | `.limit(n)`           | Csak az első *n* darab elemet hagyja meg.              |
+| **3. LEZÁRÓ**   | `.count()`            | Megszámolja az elemeket. (Eredmény: `long`)            |
+| (Csak EGY       | `.forEach(x -> ...)`  | Művelet minden elemen (pl. kiírás). (Eredmény: `void`) |
+| lehet a végén!) | `.toList()`           | Új listába gyűjt. (Eredmény: `List<T>`)                |
+|                 | `.anyMatch(x -> ...)` | Van-e legalább egy ilyen? (Eredmény: `boolean`)        |
+|                 | `.findFirst()`        | Visszaadja a legelsőt. (Eredmény: `Optional<T>`)       |
+```
+
+---
+
+### Haladó verzió
+
+Java Stream API – Cheat Sheet 
+
+1. Stream létrehozása (Forrás)
+
+A Stream mindig valamilyen adatforrásból indul. Pontosan egyet használhatsz. Nincs felsorolva az összes fajta.
+
+```bash
+| Forrás                        | Példa                   | Leírás          |
+| ----------------------------- | ----------------------- | --------------- |
+| `collection.stream()`         | `list.stream()`         | Normál stream   |
+| `collection.parallelStream()` | `list.parallelStream()` | Több szálon fut |
+| `Arrays.stream()`             | `Arrays.stream(array)`  | Tömbből stream  |
+| `Stream.of()`                 | `Stream.of(1,2,3)`      | Manuális stream |
+| `Files.lines()`               | `Files.lines(path)`     | Fájl sorai      |
+| `BufferedReader.lines()`      | `br.lines()`            | Input stream    |
+```
+
+Példa:
+```java
+List<String> lista = List.of("A", "B", "C");
+
+lista.stream()
+     .forEach(System.out::println);
+```
+Még léteznek más fajta források is, melyekhez más köztes elemek tartoznak, a táblázatban nincsen felsorolva az összes.
+
+| Forrás                        | Példa                           | Leírás                 |
+| ----------------------------- | ------------------------------- | ---------------------- |
+| `IntStream.range()`           | `IntStream.range(1, 10)`        | Egész számokra stream  |
+| `IntStream.of()`              | `IntStream.of(1,2,3)`           | Manuális int stream    |
+| `IntStream.generate()`        | `IntStream.generate(() -> 5)`   | Végtelen int stream    |
+| `DoubleStream.of()`           | `DoubleStream.of(1.0,2.0,3.0)`  | Manuális double stream |
+| `LongStream.range()`          | `LongStream.range(1, 10)`       | Long típusú stream     |
+| `Arrays.asList()`             | `Arrays.asList(1,2,3).stream()` | Listából stream        |
+
+
+2. Köztes műveletek (Intermediate)
+
+Ezek nem hajtódnak végre azonnal, bármennyit használhatsz.
+Csak a lezáró műveletnél futnak le.
+
+```bash
+| Művelet              | Példa                                           | Leírás                    |
+| -------------------- | ----------------------------------------------- | ------------------------- |
+| `filter()`           | `.filter(x -> x > 10)`                          | Szűrés                    |
+| `map()`              | `.map(Person::getName)`                         | Átalakítás                |
+| `mapToInt()`         | `.mapToInt(String::length)`                     | Átalakítás (Elem → int)   |
+| `flatMap()`          | `.flatMap(List::stream)`                        | Stream-ek lapítása        |
+| `sorted()`           | `.sorted()`                                     | Rendezés                  |
+| `sorted(Comparator)` | `.sorted(Comparator.comparing(Person::getAge))` | Egyedi rendezés           |
+| `distinct()`         | `.distinct()`                                   | Duplikátumok eltávolítása |
+| `limit()`            | `.limit(5)`                                     | Első n elem               |
+| `skip()`             | `.skip(1)`                                      | Első n kihagyása          |
+| `peek()`             | `.peek(System.out::println)`                    | Debug                     |
+```
+
+3. Lezáró műveletek (Terminal)
+
+Ezek elindítják a stream futását. Pontosan egyet használhatsz.
+
+```bash
+| Művelet       | Eredmény      | Példa                           | Leírás                |
+| ------------- | ------------- | ------------------------------- | --------------------- |
+| `forEach()`   | `void`        | `.forEach(System.out::println)` | Művelet minden elemre |
+| `count()`     | `long`        | `.count()`                      | Elemek száma          |
+| `toList()`    | `List<T>`     | `.toList()`                     | Listába gyűjtés       |
+| `collect()`   | bármi         | `.collect(Collectors.toList())` | Gyűjtés egyéni módon  |
+| `findFirst()` | `Optional<T>` | `.findFirst()`                  | Első elem             |
+| `findAny()`   | `Optional<T>` | `.findAny()`                    | Tetszőleges elem      |
+| `anyMatch()`  | `boolean`     | `.anyMatch(x -> x > 10)`        | Legalább egy egyezik  |
+| `allMatch()`  | `boolean`     | `.allMatch(x -> x > 0)`         | Mind egyezik          |
+| `noneMatch()` | `boolean`     | `.noneMatch(x -> x < 0)`        | Egy sem egyezik       |
+| `min()`       | `Optional<T>` | `.min(Integer::compare)`        | Legkisebb             |
+| `max()`       | `Optional<T>` | `.max(Integer::compare)`        | Legnagyobb            |
+```
+
+4. Collectors (gyűjtés)
+
+A collect() segítségével összegyűjthetjük az adatokat.
+
+```java
+.collect(Collectors.xxx())
+```
+``` bash
+| Collector           | Eredmény | Leírás                                       |
+| ------------------- | -------- | -------------------------------------------- |
+| `toList()`          | List     | Elemeket List-be gyűjt                       |
+| `toSet()`           | Set      | Elemeket Set-be gyűjt                        |
+| `toMap()`           | Map      | Elemeket Map-be gyűjt (kulcs-érték párokkal) |
+| `joining()`         | String   | Elemek összefűzése Stringgé                  |
+| `summingInt()`      | int      | Int értékek összegzése                       |
+| `summingDouble()`   | double   | Double értékek összegzése                    |
+| `averagingInt()`    | double   | Int értékek átlagának kiszámítása            |
+| `averagingDouble()` | double   | Double értékek átlagának kiszámítása         |
+```
+
+```java
+List<String> nevek =
+        people.stream()
+              .map(Person::getName)
+              .toList();
+```
+
+5. groupingBy
+
+Csoportosítás Map-be.
+
+```java
+Map<String, List<Person>> eredmeny =
+        people.stream()
+              .collect(Collectors.groupingBy(Person::getCity));
+```
+Eredmény:
+Budapest -> [Person, Person]
+Debrecen -> [Person]
+
+6. partitioningBy
+
+Két csoportra bontás (true / false).
+
+```java
+Map<Boolean, List<Person>> eredmeny =
+        people.stream()
+              .collect(Collectors.partitioningBy(p -> p.getAge() >= 18));
+```
+Eredmény:
+true  -> felnőttek
+false -> gyerekek
+
+7. groupingBy + filter
+
+Tipikus vizsgafeladat.
+
+```java
+Map<String, List<Person>> eredmeny =
+        people.stream()
+              .collect(Collectors.groupingBy(Person::getCity))
+              .entrySet()
+              .stream()
+              .filter(e -> e.getValue().size() > 3)
+              .collect(Collectors.toMap(
+                      Map.Entry::getKey,
+                      Map.Entry::getValue
+              ));
+```
+8. groupingBy + counting
+
+```java
+Map<String, Long> stat =
+        people.stream()
+              .collect(Collectors.groupingBy(
+                      Person::getCity,
+                      Collectors.counting()
+              ));
+```
+9. groupingBy + mapping
+    
+```java
+Map<String, List<String>> stat =
+        people.stream()
+              .collect(Collectors.groupingBy(
+                      Person::getCity,
+                      Collectors.mapping(
+                              Person::getName,
+                              Collectors.toList()
+                      )
+              ));
+```
+10. Stream fájlból
+
+```java
+List<Baseball> adatok =
+        Arrays.stream(Resource.balkezesek.split(System.lineSeparator()))
+              .skip(1)
+              .map(Baseball::new)
+              .toList();
+```
+
+Mit csinál?
+String feldarabolása sorokra
+első sor kihagyása (header)
+objektum létrehozása
+lista készítése
+
+11. Optional használat
+
+Sok Stream művelet Optional-t ad vissza.
+
+```java
+Optional<Person> p =
+        people.stream()
+              .filter(x -> x.getAge() > 30)
+              .findFirst();
+```
+
+Biztonságos használat:
+```java
+p.ifPresent(System.out::println);
+```
+
+12. Parallel Stream
+
+Több CPU magon fut.
+```java
+list.parallelStream()
+    .filter(x -> x > 10)
+    .forEach(System.out::println);
+```
+⚠ Nem mindig gyorsabb.
+
+13. Tipikus stream pipeline
+
+```java
+adatok.stream()
+      .filter(x -> x.getAge() > 18)
+      .map(Person::getName)
+      .sorted()
+      .distinct()
+      .limit(10)
+      .forEach(System.out::println);
+```
+
+14. SQL vs Stream gondolkodás
+
+```bash
+| SQL      | Java Stream |
+| -------- | ----------- |
+| SELECT   | map         |
+| WHERE    | filter      |
+| GROUP BY | groupingBy  |
+| COUNT    | count       |
+| ORDER BY | sorted      |
+```
+
+15. Stream pipeline logika
+
+forrás
+  ↓
+köztes műveletek (0..n)
+  ↓
+lezáró művelet (1)
+
+Példa:
+
+List -> stream() -> filter -> map -> sorted -> toList()
+
+A stream csak a lezáró műveletnél hajtódik végre (lazy evaluation).
+
+## Példák a használatra
+
+### 1. Megszámolás
+
+_Hány meccs volt Madridban?_
+
+```java
+long db = lista.stream()
+               .filter(x -> x.getHelyszin().equals("Madrid"))
+               .count();
+```
+
+### 2. Kiíratás
+
+_Írd ki a 100 pont feletti hazai meccseket!_
+
+```java
+lista.stream().filter(x -> x.getHazaiPont() > 100).forEach(System.out::println);
+```
+
+### 3. Gyűjtés
+
+_Add vissza a városok neveit ABC sorrendben, ismétlődés nélkül!_
+
+```java
+List<String> varosok = lista.stream().map(AbcKosarlabdaLiga::getHelyszin).distinct().sorted().toList();
+```
+
+## Collectors.partitioningBy és groupingBy, parallelStream példákkal
 
 ```java
         record Car(String type, String make, String model, Integer engineCapacity) { }
@@ -2965,7 +3367,7 @@ Béla          30     2100.75
                 });
 ```
 
-# Stream API [collect(groupingBy)+entrySet+filter]
+## collect(groupingBy)+entrySet+filter példákkal
 
 ```java
 import java.util.Arrays;
@@ -3001,6 +3403,143 @@ public class ApikGrouping {
 
 ```
 
+# Java Stream – Gyakori vizsgacsapdák
+
+## 1. A Stream csak a lezáró műveletnél fut le (lazy evaluation)
+
+A köztes műveletek **nem hajtódnak végre azonnal**.
+
+**Példa**
+
+```java
+list.stream()
+    .filter(x -> {
+        System.out.println(x);
+        return x > 5;
+    });
+```
+
+❗ Ez a kód **nem ír ki semmit**.
+
+Miért?
+
+Mert **nincs lezáró művelet (terminal operation)**.
+
+---
+
+**Helyes változat**
+
+```java
+list.stream()
+    .filter(x -> {
+        System.out.println(x);
+        return x > 5;
+    })
+    .count();
+```
+
+Most már végrehajtódik a stream.
+
+---
+
+## 2. A stream csak egyszer használható
+
+Egy `Stream` **nem használható újra**.
+
+**Hibás kód**
+
+```java
+Stream<Integer> s = list.stream();
+
+s.filter(x -> x > 5).count();
+s.filter(x -> x < 5).count();
+```
+
+Ez futáskor kivételt dob:
+
+```text
+java.lang.IllegalStateException: stream has already been operated upon or closed
+```
+
+---
+
+**Helyes megoldás**
+
+Új streamet kell létrehozni:
+
+```java
+list.stream()
+    .filter(x -> x > 5)
+    .count();
+
+list.stream()
+    .filter(x -> x < 5)
+    .count();
+```
+
+---
+
+## 3. A `forEach()` lezáró művelet
+
+A `forEach()` **terminal operation**, ezért **nem lehet utána folytatni a streamet**.
+
+**Hibás pipeline**
+
+```java
+list.stream()
+    .filter(x -> x > 5)
+    .forEach(System.out::println)
+    .map(x -> x * 2);
+```
+
+Ez **fordítási hibát okoz**, mert a `forEach()` lezárja a streamet.
+
+---
+
+**Helyes pipeline**
+
+```java
+list.stream()
+    .filter(x -> x > 5)
+    .map(x -> x * 2)
+    .forEach(System.out::println);
+```
+
+---
+
+## 4. `peek()` használata
+
+A `peek()` **köztes művelet**, általában **debug célra használjuk**.
+
+**Példa**
+
+```java
+list.stream()
+    .filter(x -> x > 5)
+    .peek(System.out::println)
+    .map(x -> x * 2)
+    .toList();
+```
+
+A `peek()`:
+
+- köztes művelet
+- általában debugolásra használják
+- nem üzleti logikára
+
+---
+
+# Rövid összefoglaló
+
+``` bash
+| Szabály                    | Jelentés                              |
+| -------------------------- | ------------------------------------- |
+| Lazy execution             | A stream csak a lezáró műveletnél fut |
+| Stream egyszer használható | Új stream kell minden feldolgozáshoz  |
+| Terminal operation lezár   | Utána nem lehet új művelet            |
+| `peek()`                   | Debug célra használjuk                |
+```
+
 # Menü rendszer
 
 ```java
@@ -3032,15 +3571,12 @@ public class ApikGrouping {
                     System.out.print("Hibás adat!");
                 }
             }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        } catch (IOException e) { }
 
     }
 ```
 
-TODO: 
+# TODO: 
 
 Az ennél is bonyolultabb részt [itt](https://github.com/Nagraggini/start-projects/blob/main/java-console-exams/src/kosar2004Gyakorlas/KosarligaGyakorlas.java) találod példákkal illusztrálva.
 
