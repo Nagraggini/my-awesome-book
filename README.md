@@ -3,7 +3,7 @@ Hungarian version - Magyar verzió
 
 # Blog webalkalmazás
 
-[Látogasd meg az oldalam!](https://blog-sqj1.onrender.com/)
+[Látogasd meg az oldalam!](https://nagraggini-blog.onrender.com/)
 
 # Amit használtam:
 
@@ -20,7 +20,7 @@ Hungarian version - Magyar verzió
 
 # Kezdőknek
 
-[Saját webfejlesztői alapismeretekről szóló blogom](https://blog-sqj1.onrender.com/)
+[Saját webfejlesztői alapismeretekről szóló blogom](https://nagraggini-blog.onrender.com/)
 
 # Spring Boot
 

@@ -337,11 +337,11 @@ A JVM tehát egy absztrakciós réteg a Java alkalmazás és a hardver között,
 
 Egy népszerű, ingyenes kódszerkesztő, amelyhez rengeteg bővítmény érhető el.
 
-Részletes magyarázót a telepítéshez [itt](https://blog-sqj1.onrender.com/#vscode_install) találsz.
+Részletes magyarázót a telepítéshez [itt](https://nagraggini-blog.onrender.com/#vscode_install) találsz.
 
-Hasznos kiegészítők [itt](https://blog-sqj1.onrender.com/#vscode_extension_list)
+Hasznos kiegészítők [itt](https://nagraggini-blog.onrender.com/#vscode_extension_list)
 
-[Hotkeys](https://blog-sqj1.onrender.com/#hotkeys_for_vscode)
+[Hotkeys](https://nagraggini-blog.onrender.com/#hotkeys_for_vscode)
 
 ## Eclipse
 
