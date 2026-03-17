@@ -164,20 +164,20 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 - [Java Stream – Gyakori vizsgacsapdák](#java-stream--gyakori-vizsgacsapdák)
   - [1. A Stream csak a lezáró műveletnél fut le (lazy evaluation)](#1-a-stream-csak-a-lezáró-műveletnél-fut-le-lazy-evaluation)
   - [2. A stream csak egyszer használható](#2-a-stream-csak-egyszer-használható)
-  - [3. A `forEach()` lezáró művelet](#3-a-foreach-lezáró-művelet)
-  - [4. `peek()` használata](#4-peek-használata)
+  - [3. A forEach() lezáró művelet](#3-a-foreach-lezáró-művelet)
+  - [4. peek() használata](#4-peek-használata)
 - [Rövid összefoglaló](#rövid-összefoglaló)
 - [Menü rendszer](#menü-rendszer)
 
 # Források
 
-[Sanfranciscoboljottem tananyag](https://sanfranciscoboljottem.com)
-[SZTE - Programozás I. jegyzet](https://okt.inf.szte.hu/prog1/gyakorlat/eloadas/Java/objectsAndClasses/)  
-[Stacks and queues](https://data-flair.training/blogs/stacks-and-queues-in-c/)
-[IT Szótár](https://itszotar.hu/jvm-java-virtualis-gep-mi-a-mukodese-es-mi-a-szerepe-a-java-kod-futtatasaban/)
-[Java Programozás Kezdőknek - SkillVersum](https://www.youtube.com/playlist?list=PL92V_WHHt2CnXaUIA9T2ww7peDK4lqmZj)
-[Java Streams API Explained (with examples)](https://www.youtube.com/watch?v=2StXP1XaU04)
-[Java programozási nyelv](https://richardkorom.hu/java/backend/bevezetes/)
+[Sanfranciscoboljottem tananyag](https://sanfranciscoboljottem.com)                         
+[SZTE - Programozás I. jegyzet](https://okt.inf.szte.hu/prog1/gyakorlat/eloadas/Java/objectsAndClasses/)        
+[Stacks and queues](https://data-flair.training/blogs/stacks-and-queues-in-c/)          
+[IT Szótár](https://itszotar.hu/jvm-java-virtualis-gep-mi-a-mukodese-es-mi-a-szerepe-a-java-kod-futtatasaban/)  
+[Java Programozás Kezdőknek - SkillVersum](https://www.youtube.com/playlist?list=PL92V_WHHt2CnXaUIA9T2ww7peDK4lqmZj)                    
+[Java Streams API Explained (with examples)](https://www.youtube.com/watch?v=2StXP1XaU04)       
+[Java programozási nyelv](https://richardkorom.hu/java/backend/bevezetes/)          
 
 [Pályakezdő fullstack tutorial csomag](https://www.skillversum.com/note/view/c256d513dd9e6f970aa3daa5ded7496b38d01e78)
 
@@ -2440,6 +2440,8 @@ Render.com-on Dockerrel kell deployolnod, mert Render nem tud közvetlenül WAR 
 
 Az én megoldásaimat [itt](https://github.com/Nagraggini/start-projects/tree/main/java-console-exams/src) találod.
 
+További feladatokat [itt](https://www.oktatas.hu/kozneveles/erettsegi/feladatsorok) találsz.
+
 [Interaktív tesztek a programozáshoz](https://infojegyzet.hu/vizsgafeladatok/szoftverfejleszto-interaktiv/teszt/?tesztkod=K31G-MZYR)
 
 # Map
@@ -3423,7 +3425,7 @@ public class ApikGrouping {
 ```
 ## További példák magyarázatokkal
 
-Kattints [ide](https://github.com/Nagraggini/start-projects/tree/main/java-console/src).
+Kattints [ide](https://github.com/Nagraggini/start-projects/tree/main/java-console-intermediate).
 
 # Java Stream – Gyakori vizsgacsapdák
 
@@ -3501,7 +3503,7 @@ list.stream()
 
 ---
 
-## 3. A `forEach()` lezáró művelet
+## 3. A forEach() lezáró művelet
 
 A `forEach()` **terminal operation**, ezért **nem lehet utána folytatni a streamet**.
 
@@ -3529,7 +3531,7 @@ list.stream()
 
 ---
 
-## 4. `peek()` használata
+## 4. peek() használata
 
 A `peek()` **köztes művelet**, általában **debug célra használjuk**.
 
@@ -3598,4 +3600,6 @@ A `peek()`:
     }
 ```
 
+
+TODO Írj egy fejezetet a generikus meg a funkcionális programozásról.
 
