@@ -377,7 +377,7 @@ syso + ctrl +space Egyes verziókban: sout 2x ctrl +space
 F11 Futtatás
 
 Eclipse beállítása:
-TODO komment kikapcsolása Eclipse-ben
+TO DO komment kikapcsolása Eclipse-ben
 
 Window → Preferences
 
@@ -3052,19 +3052,26 @@ Csak a lezáró műveletnél futnak le.
 Ezek elindítják a stream futását. Pontosan egyet használhatsz.
 
 ```bash
-| Művelet       | Eredmény      | Példa                           | Leírás                |
-| ------------- | ------------- | ------------------------------- | --------------------- |
-| `forEach()`   | `void`        | `.forEach(System.out::println)` | Művelet minden elemre |
-| `count()`     | `long`        | `.count()`                      | Elemek száma          |
-| `toList()`    | `List<T>`     | `.toList()`                     | Listába gyűjtés       |
-| `collect()`   | bármi         | `.collect(Collectors.toList())` | Gyűjtés egyéni módon  |
-| `findFirst()` | `Optional<T>` | `.findFirst()`                  | Első elem             |
-| `findAny()`   | `Optional<T>` | `.findAny()`                    | Tetszőleges elem      |
-| `anyMatch()`  | `boolean`     | `.anyMatch(x -> x > 10)`        | Legalább egy egyezik  |
-| `allMatch()`  | `boolean`     | `.allMatch(x -> x > 0)`         | Mind egyezik          |
-| `noneMatch()` | `boolean`     | `.noneMatch(x -> x < 0)`        | Egy sem egyezik       |
-| `min()`       | `Optional<T>` | `.min(Integer::compare)`        | Legkisebb             |
-| `max()`       | `Optional<T>` | `.max(Integer::compare)`        | Legnagyobb            |
+| Művelet       | Eredmény      | Példa                           | Leírás                       |
+| ------------- | ------------- | ------------------------------- | ---------------------------  |
+| `forEach()`   | `void`        | `.forEach(System.out::println)` | Művelet minden elemre        |
+| `count()`     | `long`        | `.count()`                      | Elemek száma                 |
+| `sum()`       | `int/double`  | `.mapToInt(x->x).sum()`         | Csak numerikus streameknél   |
+| `average()`   | `Optional...` | `.mapToInt(x->x).average()`     | Átlag (numerikus streameknél)|
+| `toList()`    | `List<T>`     | `.toList()`                     | Listába gyűjtés              |
+| `collect()`   | bármi         | `.collect(Collectors.toList())` | Gyűjtés egyéni módon         |
+| `findFirst()` | `Optional<T>` | `.findFirst()`                  | Első elem                    |
+| `findAny()`   | `Optional<T>` | `.findAny()`                    | Tetszőleges elem             |
+| `anyMatch()`  | `boolean`     | `.anyMatch(x -> x > 10)`        | Legalább egy egyezik         |
+| `allMatch()`  | `boolean`     | `.allMatch(x -> x > 0)`         | Mind egyezik                 |
+| `noneMatch()` | `boolean`     | `.noneMatch(x -> x < 0)`        | Egy sem egyezik              |
+| `min()`       | `Optional<T>` | `.min(Integer::compare)`        | Legkisebb                    |
+| `max()`       | `Optional<T>` | `.max(Integer::compare)`        | Legnagyobb                   |
+```
+
+```java
+lista.stream().mapToInt(m -> m.getHazaiPont() + m.getIdegenPont())
+                .sum();
 ```
 
 4. Collectors (gyűjtés)
