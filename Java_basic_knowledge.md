@@ -154,6 +154,9 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [Java Stream API Gyorssegéd](#java-stream-api-gyorssegéd)
     - [Rövidebb verzió](#rövidebb-verzió)
     - [Haladó verzió](#haladó-verzió)
+  - [Stream pipeline (alap működés)](#stream-pipeline-alap-működés)
+  - [map vs filter](#map-vs-filter)
+  - [TOP 5 Stream művelet](#top-5-stream-művelet)
   - [Példák a használatra](#példák-a-használatra)
     - [1. Megszámolás](#1-megszámolás)
     - [2. Kiíratás](#2-kiíratás)
@@ -176,8 +179,9 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 [Stacks and queues](https://data-flair.training/blogs/stacks-and-queues-in-c/)          
 [IT Szótár](https://itszotar.hu/jvm-java-virtualis-gep-mi-a-mukodese-es-mi-a-szerepe-a-java-kod-futtatasaban/)  
 [Java Programozás Kezdőknek - SkillVersum](https://www.youtube.com/playlist?list=PL92V_WHHt2CnXaUIA9T2ww7peDK4lqmZj)                    
-[Java Streams API Explained (with examples)](https://www.youtube.com/watch?v=2StXP1XaU04)       
-[Java programozási nyelv](https://richardkorom.hu/java/backend/bevezetes/)          
+[Java Streams API Explained (with examples)](https://www.youtube.com/watch?v=2StXP1XaU04) 
+[Java Streams and Collectors](https://medium.com/@code.wizzard01/java-streams-and-collectors-a-practical-guide-and-cheat-sheet-with-real-world-examples-67dcf84156b5)    
+[Java programozási nyelv](https://richardkorom.hu/java/backend/bevezetes/)     
 
 [Pályakezdő fullstack tutorial csomag](https://www.skillversum.com/note/view/c256d513dd9e6f970aa3daa5ded7496b38d01e78)
 
@@ -2957,6 +2961,10 @@ Béla          30     2100.75
 
 # Java Stream API
 
+Java 8 (2014): Bevezette a Lambda kifejezéseket és a Stream API-t, ami lehetővé tette a funkcionális stílusú programozást a gyűjteményekkel.
+
+Előtte, Java 7-ben vagy korábban, csak a hagyományos for-each ciklusokkal és iteratorokkal lehetett iterálni.
+
 A Java Stream API működése sok szempontból hasonlít egy SQL lekérdezés logikájára.
 
 SQL-ben:
@@ -3049,29 +3057,52 @@ Csak a lezáró műveletnél futnak le.
 
 3. Lezáró műveletek (Terminal)
 
-Ezek elindítják a stream futását. Pontosan egyet használhatsz.
+Ezek a terminális (lezáró) műveletek indítják el a stream futását. Pontosan egyet használhatsz minden stream-en.
 
-```bash
-| Művelet       | Eredmény      | Példa                           | Leírás                       |
-| ------------- | ------------- | ------------------------------- | ---------------------------  |
-| `forEach()`   | `void`        | `.forEach(System.out::println)` | Művelet minden elemre        |
-| `count()`     | `long`        | `.count()`                      | Elemek száma                 |
-| `sum()`       | `int/double`  | `.mapToInt(x->x).sum()`         | Csak numerikus streameknél   |
-| `average()`   | `Optional...` | `.mapToInt(x->x).average()`     | Átlag (numerikus streameknél)|
-| `toList()`    | `List<T>`     | `.toList()`                     | Listába gyűjtés              |
-| `collect()`   | bármi         | `.collect(Collectors.toList())` | Gyűjtés egyéni módon         |
-| `findFirst()` | `Optional<T>` | `.findFirst()`                  | Első elem                    |
-| `findAny()`   | `Optional<T>` | `.findAny()`                    | Tetszőleges elem             |
-| `anyMatch()`  | `boolean`     | `.anyMatch(x -> x > 10)`        | Legalább egy egyezik         |
-| `allMatch()`  | `boolean`     | `.allMatch(x -> x > 0)`         | Mind egyezik                 |
-| `noneMatch()` | `boolean`     | `.noneMatch(x -> x < 0)`        | Egy sem egyezik              |
-| `min()`       | `Optional<T>` | `.min(Integer::compare)`        | Legkisebb                    |
-| `max()`       | `Optional<T>` | `.max(Integer::compare)`        | Legnagyobb                   |
-```
+| Művelet       | Visszatérési típus | Példa                           | Leírás                      | Kell `.orElse()`? |
+| ------------- | ------------------ | ------------------------------- | --------------------------- | ----------------- |
+| `forEach()`   | `void`             | `.forEach(System.out::println)` | Minden elemre végrehajtódik | ❌ Nem             |
+| `count()`     | `long`             | `.count()`                      | Elemek száma                | ❌ Nem             |
+| `sum()`       | `int/double`       | `.mapToInt(x -> x).sum()`       | Csak numerikus streameknél  | ❌ Nem             |
+| `average()`   | `OptionalDouble`   | `.mapToInt(x -> x).average()`   | Átlag numerikus streameknél | ✅ Igen            |
+| `toList()`    | `List<T>`          | `.toList()`                     | Listába gyűjtés             | ❌ Nem             |
+| `collect()`   | bármi              | `.collect(Collectors.toList())` | Gyűjtés egyéni módon        | ❌ Nem             |
+| `findFirst()` | `Optional<T>`      | `.findFirst()`                  | Első elem                   | ✅ Igen            |
+| `findAny()`   | `Optional<T>`      | `.findAny()`                    | Tetszőleges elem            | ✅ Igen            |
+| `anyMatch()`  | `boolean`          | `.anyMatch(x -> x > 10)`        | Legalább egy egyezik        | ❌ Nem             |
+| `allMatch()`  | `boolean`          | `.allMatch(x -> x > 0)`         | Mind egyezik                | ❌ Nem             |
+| `noneMatch()` | `boolean`          | `.noneMatch(x -> x < 0)`        | Egy sem egyezik             | ❌ Nem             |
+| `min()`       | `Optional<T>`      | `.min(Integer::compare)`        | Legkisebb                   | ✅ Igen            |
+| `max()`       | `Optional<T>`      | `.max(Integer::compare)`        | Legnagyobb                  | ✅ Igen            |
+
+**Megjegyzés:** Az Optional visszatérési értékeknél (`average()`, `findFirst()`, `findAny()`, `min()`, `max()`) érdemes `.orElse(defaultValue)`-t használni, hogy biztosan legyen egy konkrét érték, ne Optional-ként kapd az eredményt.
+
+Enélkül "OptionalDouble[81.77380952380952]" eredményt kapsz.
 
 ```java
 lista.stream().mapToInt(m -> m.getHazaiPont() + m.getIdegenPont())
                 .sum();
+```
+3. része Optional kezelés
+
+Ha egy terminális művelet `Optional`-t ad vissza (pl. `average()`, `min()`, `max()`, `findFirst()`, `findAny()`), akkor a következő metódusokkal dolgozhatunk:
+
+| Metódus                | Mit csinál?                                 | Mikor használjuk?                                        |
+| ---------------------- | ------------------------------------------- | -------------------------------------------------------- |
+| `.orElse(value)`       | Ha az Optional üres, ad egy default értéket | Ha stream lehet üres, de szeretnél **konkrét értéket**   |
+| `.orElseThrow()`       | Ha az Optional üres, kivételt dob           | Ha üres érték **hibás állapot**, és nem akarsz defaultot |
+| `.ifPresent(Consumer)` | Ha van érték, lefuttat egy műveletet        | Ha csak **mellékhatást** akarsz, de nem kell érték       |
+
+```java
+// orElse
+double avg = numbers.stream().mapToInt(i -> i).average().orElse(0);
+
+// orElseThrow
+int max = numbers.stream().max(Integer::compare).orElseThrow();
+
+// ifPresent
+numbers.stream().max(Integer::compare)
+       .ifPresent(n -> System.out.println("Max: " + n));
 ```
 
 4. Collectors (gyűjtés)
@@ -3082,17 +3113,28 @@ A collect() segítségével összegyűjthetjük az adatokat.
 .collect(Collectors.xxx())
 ```
 ``` bash
-| Collector           | Eredmény | Leírás                                       |
-| ------------------- | -------- | -------------------------------------------- |
-| `toList()`          | List     | Elemeket List-be gyűjt                       |
-| `toSet()`           | Set      | Elemeket Set-be gyűjt                        |
-| `toMap()`           | Map      | Elemeket Map-be gyűjt (kulcs-érték párokkal) |
-| `joining()`         | String   | Elemek összefűzése Stringgé                  |
-| `summingInt()`      | int      | Int értékek összegzése                       |
-| `summingDouble()`   | double   | Double értékek összegzése                    |
-| `averagingInt()`    | double   | Int értékek átlagának kiszámítása            |
-| `averagingDouble()` | double   | Double értékek átlagának kiszámítása         |
+| Collector              | Visszatérési típus    | Leírás                                       |
+| ---------------------- | --------------------- | -------------------------------------------- |
+| `toList()`             | List                  | Elemeket List-be gyűjt (sorrend megmarad)    |
+| `toSet()`              | Set                   | Elemeket Set-be gyűjt (duplikációk eltűnnek) |
+| `toMap()`              | Map                   | Kulcs-érték párokat hoz létre                |
+| `joining(", ")`        | String                | Elemek összefűzése Stringgé                  |
+| `summingInt()`         | int                   | Int értékek összegzése                       |
+| `summingDouble()`      | double                | Double értékek összegzése                    |
+| `averagingInt()`       | double                | Int értékek átlagának kiszámítása            |
+| `averagingDouble()`    | double                | Double értékek átlagának kiszámítása         |
+| `groupingBy(x -> x)`   | Map<K, List<V>>       | Csoportosítás kulcs alapján                  |
+| `partitioningBy(x ->)` | Map<Boolean, List<T>> | Két csoportra bont feltétel alapján          |
 ```
+
+1 soros “cheat sheet”
+```java
+list.stream().filter(...).map(...).collect(...)
+```
+
+![alt text](image.png)
+
+![alt text](image-1.png)
 
 ```java
 List<String> nevek =
@@ -3100,6 +3142,51 @@ List<String> nevek =
               .map(Person::getName)
               .toList();
 ```
+
+## Stream pipeline (alap működés)
+
+```java
+list.stream()
+    .filter(x -> x > 10)   // intermediate (szűrés)
+    .map(x -> x * 2)       // intermediate (átalakítás)
+    .sorted()              // intermediate (rendezés)
+    .collect(Collectors.toList()); // terminal (lezárás)
+```
+
+Magyarázat
+
+A Stream műveletek láncolhatók (pipeline)
+
+Kétféle művelet van:
+
+- Intermediate (köztes)
+
+új Stream-et ad vissza
+pl: filter, map, sorted
+
+- Terminal (lezáró)
+
+végrehajtja a műveletet
+pl: collect, forEach, count
+
+**Fontos**
+
+- A műveletek lazy módon futnak → csak a terminal műveletnél indul el!
+- A Stream egyszer használható.
+- Nem módosítja az eredeti kollekciót.
+  
+## map vs filter
+
+```java
+// filter → kevesebb elem
+list.stream()
+    .filter(x -> x > 10)
+
+// map → ugyanannyi elem, csak átalakítva
+list.stream()
+    .map(x -> x * 2)
+```
+
 
 5. groupingBy
 
@@ -3191,11 +3278,16 @@ Optional<Person> p =
         people.stream()
               .filter(x -> x.getAge() > 30)
               .findFirst();
-```
 
-Biztonságos használat:
-```java
+// Biztonságos használat:
 p.ifPresent(System.out::println);
+
+Optional<Integer> max =
+    list.stream()
+        .max(Integer::compareTo);
+
+max.orElse(0);
+max.ifPresent(System.out::println);
 ```
 
 12. Parallel Stream
@@ -3245,6 +3337,42 @@ Példa:
 List -> stream() -> filter -> map -> sorted -> toList()
 
 A stream csak a lezáró műveletnél hajtódik végre (lazy evaluation).
+
+## TOP 5 Stream művelet
+
+```java
+list.stream()
+    .filter(x -> x > 10)   // köztes (intermediate)
+    .map(x -> x * 2)       // köztes
+    .sorted()              // köztes
+    .collect(Collectors.toList()); // termináló
+```
+
+**Tipikus vizsgafeladat minták**
+
+1. Páros számok
+
+```java
+list.stream()
+    .filter(x -> x % 2 == 0)
+    .toList();
+```
+
+2. String hossz
+
+```java
+list.stream()
+    .map(String::length)
+    .toList();
+```
+
+3. Összeg
+
+```java
+int sum = list.stream()
+              .mapToInt(Integer::intValue)
+              .sum();
+```
 
 ## Példák a használatra
 
@@ -3385,6 +3513,8 @@ List<String> varosok = lista.stream().map(AbcKosarlabdaLiga::getHelyszin).distin
                  *
                  * Váltás: Menet közben is válthatsz .parallel() és .sequential() hívásokkal a
                  * láncon belül.
+                 * 
+                 * Nem mindig gyorsabb, thread safety gondok, sorrend nem garantált.
                  */
 
                 // 😊 5. Párhuzamosítás
