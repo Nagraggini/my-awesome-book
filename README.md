@@ -112,7 +112,6 @@ render.com regisztrálj -> Kösd össze a github fiókoddal.
 New -> Web Service -> Válaszd ki a listából a progjekt nevét (blog)
 Language: Docker
 -> Deploy web service Kb 15 percig eltart a deploy.
-```
 
 ## SSH key
 

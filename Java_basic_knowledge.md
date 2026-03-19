@@ -171,6 +171,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [4. peek() használata](#4-peek-használata)
 - [Rövid összefoglaló](#rövid-összefoglaló)
 - [Menü rendszer](#menü-rendszer)
+- [Debug](#debug)
 
 # Források
 
@@ -208,6 +209,10 @@ React ↔ Spring (REST, JSON),
 
 Frontend: React (JavaScript)  
 Backend: Spring Boot (Java)
+
+A lenti kép magyarázata a Spring Boot kezdőknek szóló fájlban található. [Itt](https://github.com/Nagraggini/springboot-for-beginners/blob/main/HowToDoIt_Hungarian_version.md)
+
+![alt text](assets/SzoftverarchitekturaEsFogalmiOsszefoglalo.png)
 
 # Általános infók
 
@@ -1231,9 +1236,9 @@ LocalDate ujDatum = date.plusYears(2);
 LocalDate d1 = LocalDate.of(2024, 5, 1);
 LocalDate d2 = LocalDate.of(2025, 5, 1);
 
-d1.isBefore(d2);
-d1.isAfter(d2);
-d1.isEqual(d2);
+d1.isBefore(d2);  // true
+d1.isAfter(d2);  //false
+d1.isEqual(d2);  //false
 ```
 
 **Két dátum különbsége**
@@ -2979,7 +2984,7 @@ A különbség, hogy Stream esetén a műveleteket egymás után láncoljuk, és
 
 ### Rövidebb verzió
 
-```bash
+
 | Szint           | Művelet               | Leírás                                                 |
 | :-------------- | :-------------------- | :----------------------------------------------------- |
 | **1. FORRÁS**   | `.stream()`           | Elindítja a folyamatot. (**KÖTELEZŐ**)                 |
@@ -2993,7 +2998,6 @@ A különbség, hogy Stream esetén a műveleteket egymás után láncoljuk, és
 | lehet a végén!) | `.toList()`           | Új listába gyűjt. (Eredmény: `List<T>`)                |
 |                 | `.anyMatch(x -> ...)` | Van-e legalább egy ilyen? (Eredmény: `boolean`)        |
 |                 | `.findFirst()`        | Visszaadja a legelsőt. (Eredmény: `Optional<T>`)       |
-```
 
 ---
 
@@ -3005,7 +3009,6 @@ Java Stream API – Cheat Sheet
 
 A Stream mindig valamilyen adatforrásból indul. Pontosan egyet használhatsz. Nincs felsorolva az összes fajta.
 
-```bash
 | Forrás                        | Példa                   | Leírás          |
 | ----------------------------- | ----------------------- | --------------- |
 | `collection.stream()`         | `list.stream()`         | Normál stream   |
@@ -3014,7 +3017,6 @@ A Stream mindig valamilyen adatforrásból indul. Pontosan egyet használhatsz. 
 | `Stream.of()`                 | `Stream.of(1,2,3)`      | Manuális stream |
 | `Files.lines()`               | `Files.lines(path)`     | Fájl sorai      |
 | `BufferedReader.lines()`      | `br.lines()`            | Input stream    |
-```
 
 Példa:
 ```java
@@ -3040,7 +3042,6 @@ Még léteznek más fajta források is, melyekhez más köztes elemek tartoznak,
 Ezek nem hajtódnak végre azonnal, bármennyit használhatsz.
 Csak a lezáró műveletnél futnak le.
 
-```bash
 | Művelet              | Példa                                           | Leírás                    |
 | -------------------- | ----------------------------------------------- | ------------------------- |
 | `filter()`           | `.filter(x -> x > 10)`                          | Szűrés                    |
@@ -3053,7 +3054,7 @@ Csak a lezáró műveletnél futnak le.
 | `limit()`            | `.limit(5)`                                     | Első n elem               |
 | `skip()`             | `.skip(1)`                                      | Első n kihagyása          |
 | `peek()`             | `.peek(System.out::println)`                    | Debug                     |
-```
+
 
 3. Lezáró műveletek (Terminal)
 
@@ -3097,6 +3098,10 @@ Ha egy terminális művelet `Optional`-t ad vissza (pl. `average()`, `min()`, `m
 // orElse
 double avg = numbers.stream().mapToInt(i -> i).average().orElse(0);
 
+numbers.stream().findFirst().ifPresentOrElse( // Ha van találat...
+                x -> System.out.println("Első szám: " + x),
+                () -> System.out.println("Nincs első szám, a lista üres.") // Ha nincs...
+
 // orElseThrow
 int max = numbers.stream().max(Integer::compare).orElseThrow();
 
@@ -3112,29 +3117,28 @@ A collect() segítségével összegyűjthetjük az adatokat.
 ```java
 .collect(Collectors.xxx())
 ```
-``` bash
+
 | Collector              | Visszatérési típus    | Leírás                                       |
 | ---------------------- | --------------------- | -------------------------------------------- |
 | `toList()`             | List                  | Elemeket List-be gyűjt (sorrend megmarad)    |
 | `toSet()`              | Set                   | Elemeket Set-be gyűjt (duplikációk eltűnnek) |
 | `toMap()`              | Map                   | Kulcs-érték párokat hoz létre                |
-| `joining(", ")`        | String                | Elemek összefűzése Stringgé                  |
+| `joining(", ")`        | String                | Elemek összefűzése Stringgé, elválasztóval   |
 | `summingInt()`         | int                   | Int értékek összegzése                       |
 | `summingDouble()`      | double                | Double értékek összegzése                    |
 | `averagingInt()`       | double                | Int értékek átlagának kiszámítása            |
 | `averagingDouble()`    | double                | Double értékek átlagának kiszámítása         |
 | `groupingBy(x -> x)`   | Map<K, List<V>>       | Csoportosítás kulcs alapján                  |
 | `partitioningBy(x ->)` | Map<Boolean, List<T>> | Két csoportra bont feltétel alapján          |
-```
 
 1 soros “cheat sheet”
 ```java
 list.stream().filter(...).map(...).collect(...)
 ```
 
-![alt text](image.png)
+![alt text](assets/Java8StreamsCheatSheet.png)
 
-![alt text](image-1.png)
+![alt text](assets/StreamPipeline.png)
 
 ```java
 List<String> nevek =
@@ -3712,10 +3716,7 @@ A `peek()`:
         // try-with-resource
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8))) {
 
-            String bekertSor;
-
-            LocalDate hatarido1 = LocalDate.of(1989, 12, 31);
-            LocalDate hatarido2 = LocalDate.of(2000, 01, 01);
+            String bekertSor;           
 
             while (true) {
                 System.out.print("Kérek egy 1990 és 1999 közötti évszámot!:");
@@ -3725,8 +3726,8 @@ A `peek()`:
                 int ev = Integer.parseInt(bekertSor);
 
                 if (ev >= 1990 && ev <= 1999) {
-
                     //System.out.print("Ügyes vagy!");
+                    // Hívd meg a kövi feladat metódusát!
                     break; // Kilépünk a ciklusból.
                 } else {
                     System.out.print("Hibás adat!");
@@ -3738,5 +3739,15 @@ A `peek()`:
 ```
 
 
-TODO Írj egy fejezetet a generikus meg a funkcionális programozásról.
+TODO generikus meg funkcionális programozásról
 
+# Debug
+
+Ha sok projekted pirossan jelenik meg, akkor:
+
+Tisztítsd meg a munkafolyamatot: Nyomj Ctrl+Shift+P-t, és futtasd: "Java: Clean Java Language Server Workspace". Ezután válaszd a "Restart" gombot. Ez kényszeríti a VS Code-ot, hogy újra átnézze az összes fájlt.
+
+Vagy lehet a package névben van nagy betű.
+
+Vagy kattints jobb gombbal a src mappára a bal oldali fában.
+Válaszd a "Add Folder to Java Source Path" lehetőséget (ha felkínálja).
