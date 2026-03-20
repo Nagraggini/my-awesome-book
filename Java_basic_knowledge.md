@@ -1,5 +1,7 @@
 # Programozás Java nyelven
 
+Útmutató, hogyan legyél programozó:
+
 1. Nézz meg egy gyorstalpaló tananyagot.
 2. Készíts el 3 darab irányított (guided) projektet.
 3. Készíts egy saját projektet minden segítség nélkül.
