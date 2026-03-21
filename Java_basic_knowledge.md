@@ -3740,8 +3740,8 @@ A `peek()`:
     }
 ```
 
+<!-- TODO later generikus meg funkcionális programozásról -->
 
-TODO later generikus meg funkcionális programozásról
 
 # Debug
 
