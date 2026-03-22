@@ -173,6 +173,8 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [4. peek() használata](#4-peek-használata)
 - [Rövid összefoglaló](#rövid-összefoglaló)
 - [Menü rendszer](#menü-rendszer)
+- [enum](#enum)
+  - [Példa használatra](#példa-használatra)
 - [Debug](#debug)
 
 # Források
@@ -3738,6 +3740,50 @@ A `peek()`:
         } catch (IOException e) { }
 
     }
+```
+
+# enum
+
+Az enum (angolul enumeration, magyarul „felsorolás”) egy különleges típus a Java-ban (és más nyelvekben is), aminek az a lényege, hogy egy változó csak bizonyos előre definiált értékeket vehet fel.
+
+Olyan, mintha létrehoznál egy listát vagy halmazt az értékekből, és a változó nem lehet más, csak a listában lévő értékek egyike.
+
+```java
+public enum Status {
+    PENDING,   // függőben
+    COMPLETED, // teljesített
+    CANCELLED  // törölt
+}
+```
+
+Itt a Status egy új típus, ami csak három lehetséges értéket engedélyez: PENDING, COMPLETED, CANCELLED.
+
+## Példa használatra
+
+```java
+public class Order {
+    private Status status; // változó típusa enum
+
+    public Order(Status status) {
+        this.status = status;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public static void main(String[] args) {
+        Order order = new Order(Status.PENDING);
+        System.out.println(order.getStatus()); // PENDING
+
+        order.setStatus(Status.COMPLETED);
+        System.out.println(order.getStatus()); // COMPLETED
+    }
+}
 ```
 
 <!-- TODO later generikus meg funkcionális programozásról -->
