@@ -171,6 +171,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [2. A stream csak egyszer használható](#2-a-stream-csak-egyszer-használható)
   - [3. A forEach() lezáró művelet](#3-a-foreach-lezáró-művelet)
   - [4. peek() használata](#4-peek-használata)
+  - [5. instanceof](#5-instanceof)
 - [Rövid összefoglaló](#rövid-összefoglaló)
 - [Menü rendszer](#menü-rendszer)
 - [enum](#enum)
@@ -3097,6 +3098,7 @@ Ha egy terminális művelet `Optional`-t ad vissza (pl. `average()`, `min()`, `m
 | `.orElse(value)`       | Ha az Optional üres, ad egy default értéket | Ha stream lehet üres, de szeretnél **konkrét értéket**   |
 | `.orElseThrow()`       | Ha az Optional üres, kivételt dob           | Ha üres érték **hibás állapot**, és nem akarsz defaultot |
 | `.ifPresent(Consumer)` | Ha van érték, lefuttat egy műveletet        | Ha csak **mellékhatást** akarsz, de nem kell érték       |
+| `.ifPresentOrElse(if)` | Mindenképpen lefut, ha van / nincs találat. | Ha mindkét esetben valamit kiakarsz írni.                |
 
 ```java
 // orElse
@@ -3112,6 +3114,11 @@ int max = numbers.stream().max(Integer::compare).orElseThrow();
 // ifPresent
 numbers.stream().max(Integer::compare)
        .ifPresent(n -> System.out.println("Max: " + n));
+
+// ifPresentOrElse
+numbers.stream().max(Integer::compare)
+       .ifPresentOrElse(n -> System.out.println("Max: " + n),
+                        () -> System.out.println("Nincs találat."));
 ```
 
 4. Collectors (gyűjtés)
@@ -3698,6 +3705,18 @@ A `peek()`:
 
 ---
 
+## 5. instanceof
+
+```java
+ArrayList <Animal> lista=new ArrayList <>();
+lista.add(new Cat("Cirmi"));
+lista.add(new Dog("Blöki"));
+
+lista.stream()
+    .filter(x -> x instanceof Cat)
+    .forEach(c -> System.out.println(c));
+```
+
 # Rövid összefoglaló
 
 ``` bash
@@ -3799,3 +3818,10 @@ Vagy lehet a package névben van nagy betű.
 
 Vagy kattints jobb gombbal a src mappára a bal oldali fában.
 Válaszd a "Add Folder to Java Source Path" lehetőséget (ha felkínálja).
+
+Vagy, csak simán töröld ki a .vscode mappát és .classpath, .project fájlt.
+
+És a .classpath fájlba írd át a sort erre: 
+```bash
+	<classpathentry kind="src" path="src"/>
+```
