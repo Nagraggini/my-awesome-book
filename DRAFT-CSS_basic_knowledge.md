@@ -29,8 +29,15 @@ ul > li {
   width: 50px;
 }
 
+# CSS
 
-Tailwind telepítése: 
+moder verzió a pszeudóra:
+1. ::before és ::after
+
+Többi: https://www.codedex.io/css/bonus/pseudo-elements-in-css
+
+
+# Tailwind telepítése: 
 
 Terminálban: 
 
