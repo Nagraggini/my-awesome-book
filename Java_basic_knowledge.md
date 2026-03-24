@@ -187,7 +187,8 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 [Java Programozás Kezdőknek - SkillVersum](https://www.youtube.com/playlist?list=PL92V_WHHt2CnXaUIA9T2ww7peDK4lqmZj)                    
 [Java Streams API Explained (with examples)](https://www.youtube.com/watch?v=2StXP1XaU04) 
 [Java Streams and Collectors](https://medium.com/@code.wizzard01/java-streams-and-collectors-a-practical-guide-and-cheat-sheet-with-real-world-examples-67dcf84156b5)    
-[Java programozási nyelv](https://richardkorom.hu/java/backend/bevezetes/)     
+[Java programozási nyelv](https://richardkorom.hu/java/backend/bevezetes/)  
+[100+ JavaScript Concepts you Need to Know](https://www.youtube.com/watch?v=lkIFF4maKMU&list=PLuP8i_ZB_YW4dQVl4oZJsFDBOynyBu-uV)  
 
 [Pályakezdő fullstack tutorial csomag](https://www.skillversum.com/note/view/c256d513dd9e6f970aa3daa5ded7496b38d01e78)
 
