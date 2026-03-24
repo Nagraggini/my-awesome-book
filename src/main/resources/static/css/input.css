@@ -1,0 +1,12 @@
+/* src/main/resources/static/css/input.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+    @apply text-3xl font-bold text-purple-500;
+}
+
+header {
+    @apply bg-slate-800 border-b border-slate-700 p-6;
+}

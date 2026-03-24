@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <script src="https://cdn.tailwindcss.com"></script>
+        <!-- TODO Tailwind output.css beállítása.-->
+        <!--<link rel="stylesheet" href="/css/output.css" />-->
 
         <!-- Fontos: a scriptet defer-rel töltsd be, hogy az DOM betöltődjön előtte -->
         <script src="script.js" defer></script>
@@ -308,7 +310,7 @@
                             Hasznos linkek
                         </h2>
 
-                        <ul class="list-none p-0 m-0 text-sm">
+                        <ul class="list-none p-0 m-0 text-m">
                             <li>
                                 <a
                                     href="https://www.youtube.com/playlist?list=PLyriihBWoulwgaKMNF6M20iD0c6iDtu0S"
@@ -464,7 +466,7 @@
                         >
                             Python és még sok máshoz
                         </h3>
-                        <ul class="list-none p-0 m-0 text-sm">
+                        <ul class="list-none p-0 m-0 text-m">
                             <li>
                                 <a
                                     href="https://realpython.com/html-css-python/"
@@ -495,7 +497,7 @@
                         >
                             CSS Források
                         </h3>
-                        <ul class="list-none p-0 m-0 text-sm">
+                        <ul class="list-none p-0 m-0 text-m">
                             <li>
                                 <a
                                     href="https://cssbattle.dev/"
@@ -515,7 +517,7 @@
                         >
                             Projekt vezetéshez
                         </h3>
-                        <ul class="list-none p-0 m-0 text-sm">
+                        <ul class="list-none p-0 m-0 text-m">
                             <li>
                                 <a
                                     href="https://www.github.com"
@@ -543,7 +545,7 @@
                         >
                             Teszteléshez
                         </h3>
-                        <ul class="list-none p-0 m-0 text-sm">
+                        <ul class="list-none p-0 m-0 text-m">
                             <li>
                                 <a
                                     href="https://www.youtube.com/watch?v=XKFWANvLoGo&list=PLimzEeSv6f4XDEg0glRcKVvLNUgZdjbQa&index=2"
@@ -847,7 +849,7 @@
                         <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             A HTML 6 különböző szintű címsort használ:
                         </p>
-                        <ul class="list-none p-0 m-0 text-sm">
+                        <ul class="list-none p-0 m-0 text-m">
                             <li>
                                 <code>&lt;h1&gt;</code> – a legnagyobb, főcím
                             </li>
@@ -1238,10 +1240,7 @@
         &lt;/html&gt;
         </code></pre>
 
-                        <h2
-                            class="text-2xl font-bold text-white"
-                            class="text-2xl font-bold text-white"
-                        >
+                        <h2 class="text-2xl font-bold text-white">
                             Szöveg és struktúra
                         </h2>
                         <ul>
@@ -1264,12 +1263,7 @@
                             </li>
                         </ul>
 
-                        <h2
-                            class="text-2xl font-bold text-white"
-                            class="text-2xl font-bold text-white"
-                        >
-                            Linkek
-                        </h2>
+                        <h2 class="text-2xl font-bold text-white">Linkek</h2>
                         <ul>
                             <li>
                                 <code>a</code> → &lt;a href=""&gt;&lt;/a&gt;
@@ -1284,12 +1278,7 @@
                             </li>
                         </ul>
 
-                        <h2
-                            class="text-2xl font-bold text-white"
-                            class="text-2xl font-bold text-white"
-                        >
-                            Képek
-                        </h2>
+                        <h2 class="text-2xl font-bold text-white">Képek</h2>
                         <ul>
                             <li>
                                 <code>img</code> → &lt;img src="" alt=""&gt;
@@ -1304,12 +1293,7 @@
                                 src="" alt=""&gt;&lt;/picture&gt;
                             </li>
                         </ul>
-                        <h2
-                            class="text-2xl font-bold text-white"
-                            class="text-2xl font-bold text-white"
-                        >
-                            Űrlapok
-                        </h2>
+                        <h2 class="text-2xl font-bold text-white">Űrlapok</h2>
                         <ul>
                             <li>
                                 <code>form</code> → &lt;form
@@ -1381,10 +1365,7 @@
                             <li><code>nav</code> → &lt;nav&gt;&lt;/nav&gt;</li>
                         </ul>
 
-                        <h2
-                            class="text-2xl font-bold text-white"
-                            class="text-2xl font-bold text-white"
-                        >
+                        <h2 class="text-2xl font-bold text-white">
                             Táblázatok
                         </h2>
                         <ul>
@@ -1398,12 +1379,7 @@
                             </li>
                         </ul>
 
-                        <h2
-                            class="text-2xl font-bold text-white"
-                            class="text-2xl font-bold text-white"
-                        >
-                            Import-ok
-                        </h2>
+                        <h2 class="text-2xl font-bold text-white">Import-ok</h2>
                         <ul>
                             <li><code>link:css</code> → CSS importáláshoz.</li>
                             <li><code>script:src</code> → JS importáláshoz.</li>
@@ -1571,7 +1547,7 @@ ul>li*5
                         <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             CSS tulajdonságok:
                         </p>
-                        <ul>
+                        <ul class="list-none p-0 m-0 text-m">
                             <li>padding: belső térköz</li>
                             <li>width: szélesség</li>
                             <li>margin: külső térköz</li>
@@ -1616,7 +1592,7 @@ ul>li*5
                             Viszont léteznek kiterjesztései, mint például:
                         </p>
 
-                        <ul>
+                        <ul class="list-none p-0 m-0 text-m">
                             <li>Sass (Syntactically Awesome Style Sheets)</li>
                             <li>Less</li>
                         </ul>
@@ -1630,7 +1606,7 @@ ul>li*5
                         </p>
 
                         <img
-                            src="../../Assets/Images/Box_model.png"
+                            src="../../../../assets/CSS/Box_model.png"
                             alt="box-sizing"
                             class="wide-img"
                         />
@@ -1647,7 +1623,7 @@ ul>li*5
                         <p class="mt-4 mb-4 leading-relaxed text-gray-300">
                             Flex paraméterek:
                         </p>
-                        <ul>
+                        <ul class="list-none p-0 m-0 text-m">
                             <li><code>flex: grow shrink basis</code></li>
                             <li>Pl.: <code>flex: 0 0 70%</code></li>
                             <li>grow = 0 → nem nő</li>
@@ -1780,22 +1756,22 @@ ul>li*5
                             </tbody>
                         </table>
                     </article>
+                    <article class="bg-slate-800 p-6 rounded-lg shadow">
+                        <p class="mt-4 mb-4 leading-relaxed text-gray-300">
+                            <a
+                                href="https://www.w3schools.com/cssref/css_selectors.php"
+                                >CSS Selectors (W3 School)</a
+                            >
+                        </p>
 
-                    <p class="mt-4 mb-4 leading-relaxed text-gray-300">
-                        <a
-                            href="https://www.w3schools.com/cssref/css_selectors.php"
-                            >CSS Selectors (W3 School)</a
-                        >
-                    </p>
+                        <img
+                            src="../../../../assets/HTML/HTML_Selector.png"
+                            alt="HTML Selector"
+                            width="70%"
+                            height="70%"
+                        />
 
-                    <img
-                        src="../../Assets/Images/HTML_Selector.png"
-                        alt="HTML Selector"
-                        width="70%"
-                        height="70%"
-                    />
-
-                    <pre><code>
+                        <pre><code>
 
     /* Globális elemek / h1, h2, h3, h4, h5, h6, p, ul, li, ol {  
         /* Ezekre az elemekre egységes stílust adunk */
@@ -2006,6 +1982,7 @@ ul>li*5
     }
 
     </code></pre>
+                    </article>
                 </section>
 
                 <section class="mt-12">
