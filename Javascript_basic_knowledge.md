@@ -6,7 +6,7 @@
 - [Prompt](#prompt)
 - [Explicit és implicit](#explicit-és-implicit)
 - [Adattípusok(primitívek)](#adattípusokprimitívek)
-  - [let vs var](#let-vs-var)
+  - [let vs var vs const](#let-vs-var-vs-const)
 - [If - elágazások](#if---elágazások)
 - [Switch szerkezet](#switch-szerkezet)
   - [Tömb műveletek](#tömb-műveletek)
@@ -25,13 +25,18 @@
 - [Metódusok](#metódusok)
 - [Időzítő beállítása](#időzítő-beállítása)
 - [Html és js összekötése](#html-és-js-összekötése)
+- [Összefoglaló](#összefoglaló)
+- [Hibák](#hibák)
+  - [Leggyakoribb hibatípusok](#leggyakoribb-hibatípusok)
+  - [Hibakezelés (Error Handling)](#hibakezelés-error-handling)
 
 # Források
 
 https://sanfranciscoboljottem.com            
 https://www.youtube.com/playlist?list=PLyriihBWoulwgaKMNF6M20iD0c6iDtu0S        
-https://www.youtube.com/watch?v=BUFagBZZafo&list=PLg7lel5LdVjyO7jk-4biyr0fqPVygTLOk&index=5            
-
+https://www.youtube.com/watch?v=BUFagBZZafo&list=PLg7lel5LdVjyO7jk-4biyr0fqPVygTLOk&index=5      
+https://www.codedex.io/home
+    
 # Alert
 ```javascript
     alert("Itt írtam a kódot: https://jsfiddle.net/");
@@ -82,14 +87,20 @@ A backtick (`) speciális, mert enged változóbeillesztést és többsoros szö
 ```javascript
     let name = "Andrea";
     var c = `Hello`; // backtick (templateliterál)
+    const a =2;
 
     let message = `Hello, ${name}!`; // → "Hello, Andrea!"
     var g = true; //boolean
     var i = null; //null
     var j; //undefined
+
 ```
 
-## let vs var
+## let vs var vs const
+
+A “var” simán újra definiálható, ezért inkább **nem használják**.
+A “let” nem definiálható újra, ugyanabban a hatókörben.
+A "const"-nak csak egyszer lehet értéket adni, olyanmint a javaban a final típusú változó.
 
 ```javascript
     //for ciklus:
@@ -118,6 +129,11 @@ A backtick (`) speciális, mert enged változóbeillesztést és többsoros szö
         } else {
             //alert("Gyula már nagykorú.");
     }
+```
+
+```javascript
+const a=1;
+a=2; //Error, csak egyszer lehet értéket adni a const változónak.
 ```
 
 # Switch szerkezet
@@ -635,3 +651,79 @@ Ezzel nem fog csinálni semmit az oldal, ha rákattintok a gombra:
         evt.preventDefault()
     });
 ```
+
+# Összefoglaló
+
+1. A DOM (Document Object Model)
+A böngésző a HTML dokumentumot egy "fa struktúraként" értelmezi, amit DOM-nak hívunk. A JavaScript segítségével hozzáférhetünk ezekhez az elemekhez (ágakhoz), és módosíthatjuk őket.
+
+2. Elemek kiválasztása
+Megtanulhatod, hogyan "találd meg" a HTML elemeket a kódban, például:
+
+```javascript
+document.getElementById('azonosito');
+document.querySelector('.osztaly-nev');
+```
+
+3. Eseménykezelés (Event Listeners)
+Ez a webes interaktivitás lelke. A JavaScript képes "figyelni" a felhasználó mozdulatait, például:
+
+- Kattintás (click)
+- Billentyűleütés (keydown)
+- Egér mozgatása (mouseover)
+
+Példa egy gombnyomás kezelésére:
+
+```javascript
+const gomb = document.querySelector('button');
+gomb.addEventListener('click', () => {
+  alert('Megnyomtad a gombot!');
+});
+```
+
+4. HTML/CSS dinamikus módosítása
+A JavaScripttel nemcsak a szöveget cserélhetjük ki az oldalon, hanem stílusokat is módosíthatunk (pl. egy gomb színe megváltozik, ha rákattintanak), vagy új elemeket hozhatunk létre és törölhetünk.
+
+
+# Hibák
+
+A programozás során elkerülhetetlen, hogy hibákba fussunk, ezért kulcsfontosságú megérteni, miért történnek, és hogyan javíthatjuk ki őket.
+
+Íme egy összefoglaló a JavaScript leggyakoribb hibaüzeneteiről és a hibakezelési technikákról:
+
+## Leggyakoribb hibatípusok
+
+**SyntaxError** (Szintaktikai hiba): Akkor fordul elő, ha a kód nem felel meg a nyelv nyelvtani szabályainak (pl. hiányzó zárójel, idézőjel vagy vessző). A JavaScript értelmezője ilyenkor el sem tudja indítani a futtatást.
+
+Példa: console.log("Hello"; (hiányzik a bezáró zárójel).
+
+**ReferenceError** (Referencia hiba): Akkor jelentkezik, ha egy olyan változóra vagy függvényre hivatkozunk, amely nem létezik, vagy nincs definiálva az adott hatókörben (scope).
+
+Példa: console.log(x); (ha x korábban nem lett deklarálva).
+
+**TypeError** (Típus hiba): Akkor kapjuk, ha egy műveletet nem megfelelő típusú adaton próbálunk elvégezni. Például olyan értéket próbálunk függvényként meghívni, ami nem az, vagy egy null érték tulajdonságát akarjuk elérni.
+
+Példa: let num = 5; num.toUpperCase(); (a számoknak nincs ilyen metódusa).
+
+**RangeError** (Tartomány hiba): Akkor fordul elő, ha egy érték kívül esik a megengedett tartományon.
+
+Példa: Egy tömbnek negatív hosszt próbálunk megadni.
+
+## Hibakezelés (Error Handling)
+
+A JavaScript biztosítja a try...catch szerkezetet, amellyel "elkaphatjuk" a futásidejű hibákat, így megakadályozhatjuk, hogy az egész program összeomoljon.
+
+**try blokk**: Itt helyezzük el azt a kódot, amely potenciálisan hibát dobhat.
+
+**catch blokk**: Ha a try blokkban hiba történik, a futtatás ide ugrik át. Itt kezelhetjük a hibát (pl. hibaüzenet kiírása).
+
+**finally blokk**: Ez a rész mindenképpen lefut, függetlenül attól, hogy történt-e hiba vagy sem. Gyakran használják erőforrások felszabadítására vagy takarításra.
+
+**throw** kulcsszó: Segítségével mi magunk is létrehozhatunk és "dobhatunk" egyedi hibákat, ha egy bizonyos feltétel nem teljesül.
+
+Miért fontos ez?
+A hibák megértése segít a hibakeresésben (debugging). Ahelyett, hogy találgatnánk, a hibaüzenet pontosan megmondja:
+
+- Mi a hiba típusa.
+- Hol történt (fájl és sor száma).
+- Hogyan háríthatjuk el.
