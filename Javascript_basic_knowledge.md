@@ -29,6 +29,8 @@
 - [Hibák](#hibák)
   - [Leggyakoribb hibatípusok](#leggyakoribb-hibatípusok)
   - [Hibakezelés (Error Handling)](#hibakezelés-error-handling)
+- [Modern JS és lambda (arrow function) verzió](#modern-js-és-lambda-arrow-function-verzió)
+- [Cheat Sheet](#cheat-sheet)
 
 # Források
 
@@ -727,3 +729,41 @@ A hibák megértése segít a hibakeresésben (debugging). Ahelyett, hogy talál
 - Mi a hiba típusa.
 - Hol történt (fájl és sor száma).
 - Hogyan háríthatjuk el.
+
+# Modern JS és lambda (arrow function) verzió
+
+```javascript
+document.addEventListener("DOMContentLoaded", () => {
+
+    //HTML-ben a button id=gomb
+    const gomb = document.getElementById("gomb");
+
+    gomb.addEventListener("click", () => {
+        alert("Rákattintottál!");
+    });
+});
+
+```
+
+# Cheat Sheet
+
+```bash
+//Ebbe kell az egész js kódot beírni.
+document.addEventListener("DOMContentLoaded", () => {}
+
+| Téma                | Szintaxis / Példa                                                                     | Magyarázat                        |
+| ------------------- | ------------------------------------------------------------------------------------- | --------------------------------- |
+| **Változók**        | `let nev = "Anna";`<br>`const PI = 3.14;`                                             | `let` változtatható, `const` nem  |
+| **Típusok**         | `string, number, boolean, null, undefined, object`                                    | Alap JS típusok                   |
+| **Feltételek**      | `if (x > 10) {...} else {...}`<br>`x > 10 ? "igen" : "nem";`                          | If/else és ternary                |
+| **Ciklusok**        | `for (let i=0;i<5;i++){}`<br>`while(x<10){x++}`<br>`array.forEach(i=>console.log(i))` | For, while, foreach               |
+| **Függvények**      | `function osszeg(a,b){return a+b}`<br>`const osszeg = (a,b)=>a+b`                     | Klasszikus és arrow függvény      |
+| **Tömbök**          | `tomb.push(4)`<br>`tomb.pop()`<br>`tomb.map(x=>x*2)`                                  | Elem hozzáadás/törlés, átalakítás |
+| **Objektumok**      | `const ember={nev:"Anna",kor:25}`<br>`console.log(ember.nev)`                         | Tulajdonságok és metódusok        |
+| **DOM kiválasztás** | `document.getElementById("id")`<br>`document.querySelector(".class")`                 | Elem kiválasztása                 |
+| **DOM módosítás**   | `elem.innerText="Hello"`<br>`elem.style.color="red"`                                  | Szöveg és stílus módosítás        |
+| **Eseménykezelés**  | `gomb.addEventListener("click", (e)=>console.log(e.target))`                          | Arrow function + event objektum   |
+| **this vs event**   | `function(){console.log(this)}`<br>`(e)=>console.log(e.target)`                       | Arrow nem ad saját `this`-t       |
+| **DOM létrehozás**  | `const p=document.createElement("p"); p.innerText="Új"; document.body.appendChild(p)` | Új elem létrehozása és hozzáadása |
+| **Tipikus hibák**   | `document.getElementById("gomb")` túl korán → null                                    | DOM mindig legyen betöltve        |
+```
