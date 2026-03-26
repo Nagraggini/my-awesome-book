@@ -38,6 +38,7 @@ https://sanfranciscoboljottem.com
 https://www.youtube.com/playlist?list=PLyriihBWoulwgaKMNF6M20iD0c6iDtu0S        
 https://www.youtube.com/watch?v=BUFagBZZafo&list=PLg7lel5LdVjyO7jk-4biyr0fqPVygTLOk&index=5      
 https://www.codedex.io/home
+https://www.freecodecamp.org/learn/javascript-v9/lecture-working-with-the-dom-click-events-and-web-apis/how-do-you-create-new-nodes-using-innerhtml-and-createelement
     
 # Alert
 ```javascript
@@ -767,3 +768,199 @@ document.addEventListener("DOMContentLoaded", () => {}
 | **DOM létrehozás**  | `const p=document.createElement("p"); p.innerText="Új"; document.body.appendChild(p)` | Új elem létrehozása és hozzáadása |
 | **Tipikus hibák**   | `document.getElementById("gomb")` túl korán → null                                    | DOM mindig legyen betöltve        |
 ```
+
+
+JSON (JavaScript Object Notation) 
+
+---
+
+# DOM kiválasztó metódusok
+
+1. Egyetlen elem kiválasztása
+Ha pontosan tudod, melyik elemet akarod módosítani, ezeket használd:
+
+**document.getElementById("azonosito")**: A leggyorsabb és legbiztosabb módszer. Mivel az id egyedi kell legyen az oldalon, ez mindig pontosan egy elemet ad vissza.
+
+**document.querySelector(".osztaly")**: Nagyon rugalmas, mert CSS szintaxist használ. Ha több elem is megfelel a feltételnek, csak a legelsőt adja vissza.
+
+2. Több elem kiválasztása (Listák)
+Gyakran előfordul, hogy egyszerre több elemen akarsz változtatni (például az összes bekezdés színét átírni):
+
+**document.getElementsByTagName("p")**: Összegyűjti az összes <p> (bekezdés) elemet egy listába.
+
+**document.getElementsByClassName("kiemelt")**: Minden elemet visszaad, aminek az osztályneve "kiemelt".
+
+**document.querySelectorAll(".doboz")**: Ez a "svájci bicska". Bármilyen CSS szelektorral (osztály, ID, attribútum) megkeresi az összes egyező elemet.
+
+Fontos tudnivaló: Amikor listát kapsz vissza (pl. querySelectorAll), nem tudod közvetlenül módosítani a stílusát (mint pl. .style.color = "red"). Ilyenkor egy for ciklussal vagy forEach metódussal végig kell menned a lista elemein.
+
+# querySelectorAll
+
+```javascript
+document.querySelectorAll("div"); //html tag.
+
+document.querySelectorAll(".rounded"); //class
+
+document.querySelectorAll("#logo"); //specifikus id
+```
+
+```javascript
+document.querySelectorAll("a[href='https://www.freecodecamp.org/']"); //Minden elem aminek ez az attribútuma.
+
+  //A querySelectorAll nem egyetlen elemet ad vissza, hanem egy NodeList-et (olyan, mint egy tömb/lista).
+  const ingredientsLista = document.querySelectorAll("ul.ingredients li");
+  const negyedikGomb = document.getElementById("negyedikGomb");
+
+  negyedikGomb.addEventListener("click", () => {
+    // Egy ciklussal végigmegyünk a lista minden egyes elemén
+    ingredientsLista.forEach((e) => {
+      e.style.backgroundColor = "blue";
+      e.style.color = "white";
+    });
+  });
+```
+
+```html
+<ul class="ingredients">
+          <li>Liszt</li>
+          <li>Tojás</li>
+</ul>
+```
+
+
+# innerHTML vs textContent vs innerText
+
+Ez a három tulajdonság a leggyakoribb módja annak, hogy JavaScript segítségével kezeljük egy HTML elem tartalmát. Bár hasonlónak tűnnek, kritikus különbségek vannak köztük.
+
+1. element.innerHTML
+Ez a tulajdonság a teljes HTML kódot kezeli, ami az elemen belül van.
+
+Írás: Ha értéket adsz neki, a böngésző HTML-ként értelmezi a szöveget. Ha beleírsz egy <b> taget, a szöveg félkövér lesz.
+
+Olvasás: Visszaadja a szöveget az összes belső HTML taggel együtt.
+
+Veszély: XSS (Cross-Site Scripting) támadási felületet nyit. Ha ismeretlen felhasználótól érkező adatot (pl. kommentet) illesztesz be vele, kártékony scriptek futhatnak le az oldaladon.
+
+2. element.textContent
+Ez a tulajdonság a nyers szöveggel foglalkozik, és ez a legbiztonságosabb választás.
+
+Írás: Minden karaktert sima szövegként kezel. Ha beleírsz egy <b> taget, az szövegként fog megjelenni (<b>szöveg</b>), nem lesz félkövér.
+
+Olvasás: Visszaadja az elemben lévő összes szöveget, beleértve a rejtett elemeket is (amikre display: none van állítva).
+
+Előny: Gyorsabb, mert a böngészőnek nem kell HTML-t elemeznie, és biztonságos, mert nem futtat kódokat.
+
+3. element.innerText
+Gyakran összekeverik a textContent-tel, de van egy fontos különbség: az innerText stílus-tudatos.
+
+Láthatóság: Csak azt a szöveget adja vissza, ami látható a képernyőn. Ha egy szövegrész el van rejtve CSS-sel, az innerText nem fogja látni, míg a textContent igen.
+
+Formázás: Figyelembe veszi a sortöréseket és a stílusokat (pl. a csupa nagybetűs CSS formázást nagybetűként adja vissza).
+
+Hátrány: Valamivel lassabb, mert a böngészőnek ki kell számolnia a CSS-t (layout/reflow), mielőtt visszaadná az eredményt.
+
+## Mikor melyiket használd?
+
+**textContent**: Használd ezt alapértelmezettként, ha szöveget akarsz módosítani. Ez a leggyorsabb és legbiztonságosabb.
+
+**innerText**: Csak akkor használd, ha kifejezetten csak a felhasználó által ténylegesen látott szövegre van szükséged.
+
+**innerHTML**: Csak akkor használd, ha valódi HTML struktúrát akarsz létrehozni (pl. egy új listát vagy táblázatot), és a forrásod 100%-ig megbízható.
+
+## Példák
+
+```javascript
+document.getElementById("elsoGomb").innerHTML = "<b>Szia</b>";
+Félkövérrel lesz kiírva.
+
+document.getElementById("elsoGomb").textContent =("Szia <b>Barátom</b>!"); 
+//output: Szia <b>Barátom</b>!
+
+document.getElementById("elsoGomb").innerText=("Szia <b>Barátom</b>!"); 
+//output: Szia <b>Barátom</b>!
+```
+
+# HTML DOM API Képességek és Alapok
+
+A DOM (Document Object Model) API lehetővé teszi a fejlesztők számára a weboldalak dinamikus kezelését.
+
+## Mit tehetünk a DOM API-val?
+
+A DOM API segítségével a következőkre vagyunk képesek:
+* **Elemek keresése és kiválasztása** a dokumentumban.
+* **Tartalom és attribútumok módosítása** (pl. szöveg átírása, képforrás cseréje).
+* **Elemek hozzáadása, eltávolítása vagy módosítása** a struktúrában.
+* **CSS stílusok megváltoztatása** futásidőben.
+* **Eseménykezelők hozzáadása**, hogy reagáljunk a felhasználói bevitelre (kattintás, gépelés, stb.).
+
+## A JavaScript a közvetítő nyelv
+
+* A **DOM API** egy szabvány, amely meghatározza, hogyan lehet lekérni, módosítani, hozzáadni vagy törölni a HTML DOM elemeket.
+* A **JavaScript** az a programozási nyelv, amelyet a böngészőkben használunk, hogy ezen az API-n keresztül elérjük a DOM-ot.
+
+
+## API Metódusok és Tulajdonságok
+
+### Globális objektumok
+A fejlesztők olyan globális objektumokat használnak belépési pontként az API-hoz, mint a `document` és a `window`.
+
+### A Document objektum
+Ha egy HTML oldal bármely eleméhez hozzá akarsz férni, mindig a `document` objektummal kell kezdened. 
+> A **document objektum** jelképezi a teljes weboldaladat.
+
+### Kiválasztás (Selection)
+Ahhoz, hogy JavaScripttel manipulálni tudj egy HTML elemet, legelőször **ki kell választanod** azt az elemet (például az ID-ja vagy a CSS osztálya alapján).
+
+---
+
+## Gyakori kiválasztási módszerek:
+* `document.getElementById("id")` – Elem kiválasztása egyedi azonosító alapján.
+* `document.querySelector(".osztaly")` – Az első olyan elem, amely megfelel a CSS választónak.
+* `document.querySelectorAll("p")` – Az összes adott típusú/osztályú elem kiválasztása.
+
+# JavaScript DOM Manipuláció Puska
+
+Ez a dokumentum a legfontosabb DOM (Document Object Model) metódusokat és tulajdonságokat foglalja össze.
+
+---
+```bash
+## 1. Tartalom elérése és módosítása
+
+| Tulajdonság           | Leírás                                                                       |
+| :-------------------- | :--------------------------------------------------------------------------- |
+| `element.innerHTML`   | Az elem belső HTML tartalmát adja vissza vagy módosítja (tag-ekkel együtt).  |
+| `element.textContent` | Az elem nyers szöveges tartalmát kezeli (biztonságosabb, mint az innerHTML). |
+
+## 2. Attribútumok és Stílusok
+
+| Tulajdonság / Metódus               | Leírás                                                                     |
+| :---------------------------------- | :------------------------------------------------------------------------- |
+| `element.attribute`                 | Közvetlen elérés (pl. `element.id` vagy `element.src`).                    |
+| `element.style.property`            | Az elem inline CSS stílusát módosítja (pl. `element.style.color = "red"`). |
+| `element.setAttribute(attr, value)` | Új attribútumot hoz létre vagy módosít egy meglévőt.                       |
+| `element.getAttribute(attr)`        | Lekéri egy adott attribútum értékét.                                       |
+
+## 3. Struktúra manipulálása (DOM fa)
+
+| Metódus                           | Leírás                                               |
+| :-------------------------------- | :--------------------------------------------------- |
+| `document.createElement(tag)`     | Létrehoz egy új HTML elemet a memóriában.            |
+| `document.appendChild(node)`      | Hozzáad egy elemet egy szülőelem utolsó gyerekeként. |
+| `document.removeChild(node)`      | Eltávolít egy gyerekobjektumot a DOM-ból.            |
+| `document.replaceChild(new, old)` | Kicserél egy létező gyerek elemet egy újra.          |
+```
+
+## 4. Eseménykezelők
+
+### Alapszintű (HTML-központú):
+```javascript
+document.getElementById("gomb").onclick = function() {
+    alert("Kattintottál!");
+};
+
+---
+<p id="demo"></p>
+
+document.getElementsByTagName("p")[0].innerHTML = "Hello";
+---
+
