@@ -177,6 +177,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 - [enum](#enum)
   - [Példa használatra](#példa-használatra)
 - [Debug](#debug)
+- [Deadlock](#deadlock)
 
 # Források
 
@@ -3826,3 +3827,10 @@ Vagy, csak simán töröld ki a .vscode mappát és .classpath, .project fájlt.
 ```bash
 	<classpathentry kind="src" path="src"/>
 ```
+# Deadlock
+
+<!-- TODO --> thread
+
+A programozásban a deadlock (magyarul gyakran holtverseny vagy holtpont) egy olyan állapot, amelyben két vagy több folyamat (process) vagy szál (thread) kölcsönösen egymásra vár, így egyik sem tud továbbhaladni.
+
+Ez a jelenség leggyakrabban a párhuzamos programozás során fordul elő, amikor az erőforrások (például memória, fájlok vagy adatbázis-zárolások) elérése nincs megfelelően összehangolva.
