@@ -8,6 +8,7 @@
 - [Explicit és implicit](#explicit-és-implicit)
 - [Adattípusok(primitívek)](#adattípusokprimitívek)
   - [let vs var vs const](#let-vs-var-vs-const)
+- [VS Code debug](#vs-code-debug)
 - [If - elágazások](#if---elágazások)
 - [Switch szerkezet](#switch-szerkezet)
 - [JavaScript operátorok – összefoglaló cheat sheet](#javascript-operátorok--összefoglaló-cheat-sheet)
@@ -156,6 +157,11 @@ A "const"-nak csak egyszer lehet értéket adni, olyanmint a javaban a final tí
     }
     console.log(i);//Hibaüzenetet kapunk, mert a let-el deklarált változó, csak a scope-n belül létezik.
 ```
+# VS Code debug
+
+[Itt](https://nagraggini-blog.onrender.com/#vscode_install) találod az útmutatót a telepítéshez.
+
+Futtatáskor a Chromeban F12-t nyomj a devtool eléréséhez és a console részre te is tudsz írni, pl új változót is deklarálhatsz.
 
 # If - elágazások
 
@@ -524,6 +530,10 @@ A prompt stringet ad vissza, ezért Number()-ral számmá kell alakítani.
     }
 ```
 
+```javascript
+Boolean(10>9); //true
+```
+
 1. feladat – Gyümölcs kereső 🍎
    
 ```javascript
@@ -719,6 +729,13 @@ setInterval(() => console.log("hello"), 1000);
 ```
 
 # Html és js összekötése
+
+A html kódba ezt írd bele, rakhatod a head, vagy a body-ba is.
+
+```html
+    <!--defer: A script csak akkor fut le, amikor a HTML teljesen betöltődött.-->
+    <script src="script.js" defer></script>
+```
 
 Egy komponens id-jára, így kell hivatkozni:
 
