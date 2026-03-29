@@ -2,6 +2,7 @@
 
 - [Tartalomjegyzék](#tartalomjegyzék)
 - [Források](#források)
+- [Strict mód](#strict-mód)
 - [Alert](#alert)
 - [Prompt](#prompt)
 - [Explicit és implicit](#explicit-és-implicit)
@@ -9,6 +10,18 @@
   - [let vs var vs const](#let-vs-var-vs-const)
 - [If - elágazások](#if---elágazások)
 - [Switch szerkezet](#switch-szerkezet)
+- [JavaScript operátorok – összefoglaló cheat sheet](#javascript-operátorok--összefoglaló-cheat-sheet)
+- [📌 ARITMETIKAI OPERÁTOROK](#-aritmetikai-operátorok)
+- [📌 ÖSSZEHASONLÍTÓ OPERÁTOROK](#-összehasonlító-operátorok)
+- [📌 LOGIKAI OPERÁTOROK](#-logikai-operátorok)
+- [📌 ÉRTÉKADÓ OPERÁTOROK](#-értékadó-operátorok)
+- [📌 INKREMENT / DEKREMENT](#-inkrement--dekrement)
+- [📌 TÍPUS OPERÁTOROK](#-típus-operátorok)
+- [📌 HÁRMAS (TERNARY) OPERÁTOR](#-hármas-ternary-operátor)
+- [📌 NULLISH COALESCING](#-nullish-coalescing)
+- [📌 OPTIONAL CHAINING](#-optional-chaining)
+- [📌 BITWISE OPERÁTOROK](#-bitwise-operátorok)
+- [📌 STRING OPERÁTOR](#-string-operátor)
   - [Tömb műveletek](#tömb-műveletek)
     - [sort](#sort)
   - [pop/push/shift](#poppushshift)
@@ -23,6 +36,8 @@
 - [Memória túlcsordulás HD (StackOverflow)](#memória-túlcsordulás-hd-stackoverflow)
 - [Inkrementálás](#inkrementálás)
 - [Metódusok](#metódusok)
+- [Math.](#math)
+- [OOP](#oop)
 - [Időzítő beállítása](#időzítő-beállítása)
 - [Html és js összekötése](#html-és-js-összekötése)
 - [Összefoglaló](#összefoglaló)
@@ -31,7 +46,9 @@
   - [Hibakezelés (Error Handling)](#hibakezelés-error-handling)
 - [Modern JS és lambda (arrow function) verzió](#modern-js-és-lambda-arrow-function-verzió)
 - [Cheat Sheet](#cheat-sheet)
-- [DOM kiválasztó metódusok](#dom-kiválasztó-metódusok)
+- [DOM manipuláció](#dom-manipuláció)
+  - [DOM kiválasztó metódusok](#dom-kiválasztó-metódusok)
+- [style](#style)
 - [querySelectorAll](#queryselectorall)
 - [innerHTML vs textContent vs innerText](#innerhtml-vs-textcontent-vs-innertext)
   - [Mikor melyiket használd?](#mikor-melyiket-használd)
@@ -47,7 +64,8 @@
 - [JavaScript DOM Manipuláció Puska](#javascript-dom-manipuláció-puska)
   - [4. Eseménykezelők](#4-eseménykezelők)
     - [Alapszintű (HTML-központú):](#alapszintű-html-központú)
-  - [document.getElementsByTagName("p")\[0\].innerHTML = "Hello";](#documentgetelementsbytagnamep0innerhtml--hello)
+- [localStorage](#localstorage)
+- [Haladóbb (toggle)](#haladóbb-toggle)
 
 # Források
 
@@ -57,7 +75,20 @@ https://www.youtube.com/watch?v=BUFagBZZafo&list=PLg7lel5LdVjyO7jk-4biyr0fqPVygT
 https://www.codedex.io/home
 https://www.freecodecamp.org/learn/javascript-v9/lecture-working-with-the-dom-click-events-and-web-apis/how-do-you-create-new-nodes-using-innerhtml-and-createelement
 https://www.udemy.com/course/the-complete-javascript-course/
-    
+
+# Strict mód
+
+```javascript
+"use strict";
+```
+
+/*
+Strict mode segít:
+
+hibákat korábban észrevenni
+tisztább, biztonságosabb kódot írni
+elkerülni rejtett bugokat
+*/
 # Alert
 ```javascript
     alert("Itt írtam a kódot: https://jsfiddle.net/");
@@ -76,6 +107,8 @@ https://www.udemy.com/course/the-complete-javascript-course/
 ```
 
 # Explicit és implicit
+
+Kötőjelet nem lehet írni a js-ben a változó nevébe.
 
 Explicit érték adás.
 Ez explicit, mert az értékadás külön történik a deklarációtól.
@@ -212,6 +245,105 @@ Csak akkor ad true-t, ha érték és adattípus is megegyezik.
     a.push(1, 2, 3, 4, 5); //hozzáadjuk az elemeket.
     console.log(a); //Kiírja az elemeit. output: (5) [1, 2, 3, 4, 5]
 ```
+
+# JavaScript operátorok – összefoglaló cheat sheet
+
+========================
+📌 ARITMETIKAI OPERÁTOROK
+========================
++     # összeadás
+-     # kivonás
+*     # szorzás
+/     # osztás
+%     # maradék (modulus)
+**    # hatványozás
+
+========================
+📌 ÖSSZEHASONLÍTÓ OPERÁTOROK
+========================
+==    # egyenlő (típus konverzióval)
+===   # szigorúan egyenlő (érték + típus)
+!=    # nem egyenlő (típus konverzióval)
+!==   # szigorúan nem egyenlő
+
+>     # nagyobb
+<     # kisebb
+>=    # nagyobb vagy egyenlő
+<=    # kisebb vagy egyenlő
+
+========================
+📌 LOGIKAI OPERÁTOROK
+========================
+&&    # ÉS (AND)
+||    # VAGY (OR)
+!     # NEM (NOT)
+
+========================
+📌 ÉRTÉKADÓ OPERÁTOROK
+========================
+=     # értékadás
++=    # hozzáadás és értékadás
+-=    # kivonás és értékadás
+*=    # szorzás és értékadás
+/=    # osztás és értékadás
+%=    # maradék és értékadás
+**=   # hatványozás és értékadás
+
+========================
+📌 INKREMENT / DEKREMENT
+========================
+++    # növelés 1-gyel
+--    # csökkentés 1-gyel
+
+========================
+📌 TÍPUS OPERÁTOROK
+========================
+typeof        # típust ad vissza
+instanceof    # objektum típust ellenőriz
+
+========================
+📌 HÁRMAS (TERNARY) OPERÁTOR
+========================
+feltétel ? érték1 : érték2
+
+Példa:
+let x = 10;
+let result = x > 5 ? "nagy" : "kicsi";
+
+========================
+📌 NULLISH COALESCING
+========================
+??   # ha null vagy undefined → másik érték
+
+Példa:
+let a = null ?? "default"; // "default"
+
+========================
+📌 OPTIONAL CHAINING
+========================
+?.   # biztonságos hozzáférés
+
+Példa:
+user?.name   # nem dob hibát, ha user nincs
+
+========================
+📌 BITWISE OPERÁTOROK
+========================
+&    # AND
+|    # OR
+^    # XOR
+~    # NOT
+<<   # balra shift
+>>   # jobbra shift
+>>>  # jobbra shift (unsigned)
+
+========================
+📌 STRING OPERÁTOR
+========================
++    # string összefűzés
+
+Példa:
+"Hello" + " World"
 
 ## Tömb műveletek
 
@@ -539,6 +671,24 @@ Helyes megoldás:
     sum(3, 5);
 ```
 
+# Math.
+
+```javascript
+//Minimum: 0 (előfordulhat)
+//Maximum: 0.999999... (de 1 sosem lesz)
+Math.random();
+
+const number = Math.trunc(Math.random()*20)+1; // 1-20 közötti szám kreálása.
+//A +1 azért kell, hogy lehessen 20 is az eredmény.
+```
+
+Van még egy pár metódusa a Math osztálynak.
+<!-- TODO -->
+
+# OOP
+
+<!-- TODO -->
+
 # Időzítő beállítása
 
 ```javascript
@@ -599,6 +749,27 @@ Egy komponens value-ra való hivatkozás:
 
     c.value; //'SuBmit'
     c.value='SEND', //'SEND'
+```
+
+```javasript
+//Elem szövegét módosítjuk. pl.: div,p , span
+document.querySelector(".number").textContent = 13;
+
+//Szám beállítása az input mezőben. ez lehet input, vagy textarea
+document.querySelector(".guess").value = 23;
+```
+
+
+Típus csekkolás
+
+```javascript
+    // 1. Az elem szövegként jön ki (string)
+    let a = document.querySelector(".number").textContent;
+    typeof a; // "string"
+
+    // 2. Átalakítás számmá
+    a = Number(a);
+    typeof a; // "number"
 ```
 
 A táblázat összes cellájára való hivatkozás:
@@ -673,6 +844,15 @@ Ezzel nem fog csinálni semmit az oldal, ha rákattintok a gombra:
     });
 ```
 
+A class-on belül meg lehet adni alosztályt, ha van: 
+
+```javascript
+// <button class="btn check">Check!</button>
+//A btn class-on belül a check gombot kérjük le.
+document.querySelector(".check").addEventListener();
+```
+
+
 # Összefoglaló
 
 1. A DOM (Document Object Model)
@@ -682,8 +862,10 @@ A böngésző a HTML dokumentumot egy "fa struktúraként" értelmezi, amit DOM-
 Megtanulhatod, hogyan "találd meg" a HTML elemeket a kódban, például:
 
 ```javascript
-document.getElementById('azonosito');
-document.querySelector('.osztaly-nev');
+document.getElementById('azonosito'); // id-ra hivatkozunk.
+document.querySelector("#azonosito"); // id-ra hivatkozunk.
+document.querySelector('.osztaly-nev'); // class-ra hivatkozunk.
+
 ```
 
 3. Eseménykezelés (Event Listeners)
@@ -704,7 +886,6 @@ gomb.addEventListener('click', () => {
 
 4. HTML/CSS dinamikus módosítása
 A JavaScripttel nemcsak a szöveget cserélhetjük ki az oldalon, hanem stílusokat is módosíthatunk (pl. egy gomb színe megváltozik, ha rákattintanak), vagy új elemeket hozhatunk létre és törölhetünk.
-
 
 # Hibák
 
@@ -791,8 +972,13 @@ document.addEventListener("DOMContentLoaded", () => {}
 JSON (JavaScript Object Notation) 
 
 ---
+# DOM manipuláció
 
-# DOM kiválasztó metódusok
+//A querySelector-al tudunk hozzáférni a DOM fához, amit a html-ben hoztunk létre. A tag-ek a node-ok.
+
+
+
+## DOM kiválasztó metódusok
 
 1. Egyetlen elem kiválasztása
 Ha pontosan tudod, melyik elemet akarod módosítani, ezeket használd:
@@ -811,6 +997,44 @@ Gyakran előfordul, hogy egyszerre több elemen akarsz változtatni (például a
 **document.querySelectorAll(".doboz")**: Ez a "svájci bicska". Bármilyen CSS szelektorral (osztály, ID, attribútum) megkeresi az összes egyező elemet.
 
 Fontos tudnivaló: Amikor listát kapsz vissza (pl. querySelectorAll), nem tudod közvetlenül módosítani a stílusát (mint pl. .style.color = "red"). Ilyenkor egy for ciklussal vagy forEach metódussal végig kell menned a lista elemein.
+
+# style
+
+A css -> js alakításnál a kebab-case → camelCase lesz.
+
+```javascript
+document.getElementById('demo').style.display = 'none';   // eltünteti
+document.getElementById('demo').style.display = 'block';  // megjeleníti blokk elemként
+document.getElementById('demo').style.display = 'inline';   // soron belül
+document.getElementById('demo').style.display = 'flex';   // modern layout
+document.getElementById('demo').style.display = 'grid';   // komplex layout
+
+//Layout / megjelenés
+el.style.display = "block";
+el.style.visibility = "hidden";
+el.style.overflow = "hidden";
+
+//Színek és háttér
+el.style.color = "red";
+el.style.backgroundColor = "blue";
+el.style.opacity = "0.5";
+
+//Méret és térköz
+el.style.width = "200px";
+el.style.height = "100px";
+
+el.style.margin = "10px";
+el.style.padding = "5px";
+
+//Szöveg
+el.style.fontSize = "20px";
+el.style.fontWeight = "bold";
+el.style.textAlign = "center";
+
+//Pozicionálás
+//Transzformációk / animáció
+//Border és shadow
+```
 
 # querySelectorAll
 
@@ -981,4 +1205,46 @@ document.getElementById("gomb").onclick = function() {
 
 document.getElementsByTagName("p")[0].innerHTML = "Hello";
 ---
+```
+
+# localStorage
+
+```javascript
+//Mentés
+localStorage.setItem("nev", "Andrea");
+
+//Lekérés
+const nev = localStorage.getItem("nev");
+console.log(nev); // Andrea
+
+//Törlés
+localStorage.removeItem("nev");
+
+//Összestörlése
+localStorage.clear();
+
+//Mentés tömbbel
+const todos = ["tanulás", "edzés", "projekt"];
+localStorage.setItem("todos", JSON.stringify(todos));
+
+//Visszaolvaás
+const todos = JSON.parse(localStorage.getItem("todos")) || [];
+console.log(todos);
+```
+
+# Haladóbb (toggle)
+
+```javascript
+// .style → közvetlenül ír
+document.getElementById("demo").style.color = "red";
+
+// getComputedStyle → olvas (végleges stílus)
+console.log(getComputedStyle(document.getElementById("demo")).color);
+
+// classList.add → CSS osztály hozzáadása
+document.getElementById("demo").classList.add("active");
+
+// classList (profi megoldás) → pl. toggle használat
+document.getElementById("demo").classList.toggle("hidden");
+```
 
