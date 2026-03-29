@@ -11,17 +11,6 @@
 - [If - elágazások](#if---elágazások)
 - [Switch szerkezet](#switch-szerkezet)
 - [JavaScript operátorok – összefoglaló cheat sheet](#javascript-operátorok--összefoglaló-cheat-sheet)
-- [📌 ARITMETIKAI OPERÁTOROK](#-aritmetikai-operátorok)
-- [📌 ÖSSZEHASONLÍTÓ OPERÁTOROK](#-összehasonlító-operátorok)
-- [📌 LOGIKAI OPERÁTOROK](#-logikai-operátorok)
-- [📌 ÉRTÉKADÓ OPERÁTOROK](#-értékadó-operátorok)
-- [📌 INKREMENT / DEKREMENT](#-inkrement--dekrement)
-- [📌 TÍPUS OPERÁTOROK](#-típus-operátorok)
-- [📌 HÁRMAS (TERNARY) OPERÁTOR](#-hármas-ternary-operátor)
-- [📌 NULLISH COALESCING](#-nullish-coalescing)
-- [📌 OPTIONAL CHAINING](#-optional-chaining)
-- [📌 BITWISE OPERÁTOROK](#-bitwise-operátorok)
-- [📌 STRING OPERÁTOR](#-string-operátor)
   - [Tömb műveletek](#tömb-műveletek)
     - [sort](#sort)
   - [pop/push/shift](#poppushshift)
@@ -248,8 +237,9 @@ Csak akkor ad true-t, ha érték és adattípus is megegyezik.
 
 # JavaScript operátorok – összefoglaló cheat sheet
 
+```bash
 ========================
-📌 ARITMETIKAI OPERÁTOROK
+ARITMETIKAI OPERÁTOROK
 ========================
 +     # összeadás
 -     # kivonás
@@ -259,7 +249,7 @@ Csak akkor ad true-t, ha érték és adattípus is megegyezik.
 **    # hatványozás
 
 ========================
-📌 ÖSSZEHASONLÍTÓ OPERÁTOROK
+ÖSSZEHASONLÍTÓ OPERÁTOROK
 ========================
 ==    # egyenlő (típus konverzióval)
 ===   # szigorúan egyenlő (érték + típus)
@@ -272,14 +262,14 @@ Csak akkor ad true-t, ha érték és adattípus is megegyezik.
 <=    # kisebb vagy egyenlő
 
 ========================
-📌 LOGIKAI OPERÁTOROK
+ LOGIKAI OPERÁTOROK
 ========================
 &&    # ÉS (AND)
 ||    # VAGY (OR)
 !     # NEM (NOT)
 
 ========================
-📌 ÉRTÉKADÓ OPERÁTOROK
+ÉRTÉKADÓ OPERÁTOROK
 ========================
 =     # értékadás
 +=    # hozzáadás és értékadás
@@ -290,19 +280,19 @@ Csak akkor ad true-t, ha érték és adattípus is megegyezik.
 **=   # hatványozás és értékadás
 
 ========================
-📌 INKREMENT / DEKREMENT
+INKREMENT / DEKREMENT
 ========================
 ++    # növelés 1-gyel
 --    # csökkentés 1-gyel
 
 ========================
-📌 TÍPUS OPERÁTOROK
+TÍPUS OPERÁTOROK
 ========================
 typeof        # típust ad vissza
 instanceof    # objektum típust ellenőriz
 
 ========================
-📌 HÁRMAS (TERNARY) OPERÁTOR
+HÁRMAS (TERNARY) OPERÁTOR
 ========================
 feltétel ? érték1 : érték2
 
@@ -311,7 +301,7 @@ let x = 10;
 let result = x > 5 ? "nagy" : "kicsi";
 
 ========================
-📌 NULLISH COALESCING
+NULLISH COALESCING
 ========================
 ??   # ha null vagy undefined → másik érték
 
@@ -319,7 +309,7 @@ Példa:
 let a = null ?? "default"; // "default"
 
 ========================
-📌 OPTIONAL CHAINING
+OPTIONAL CHAINING
 ========================
 ?.   # biztonságos hozzáférés
 
@@ -327,7 +317,7 @@ Példa:
 user?.name   # nem dob hibát, ha user nincs
 
 ========================
-📌 BITWISE OPERÁTOROK
+BITWISE OPERÁTOROK
 ========================
 &    # AND
 |    # OR
@@ -338,12 +328,13 @@ user?.name   # nem dob hibát, ha user nincs
 >>>  # jobbra shift (unsigned)
 
 ========================
-📌 STRING OPERÁTOR
+STRING OPERÁTOR
 ========================
 +    # string összefűzés
 
 Példa:
 "Hello" + " World"
+```
 
 ## Tömb műveletek
 
