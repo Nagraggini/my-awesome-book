@@ -690,6 +690,49 @@ Van még egy pár metódusa a Math osztálynak.
 
 <!-- TODO -->
 
+```javascript
+class Felhasznalo {
+  // 1. Mezők (Property-k) deklarálása (opcionális, de tiszta)
+  szerep = 'tag'; 
+  #jelszo; // Privát mező (kívülről nem elérhető)
+
+  // 2. Konstruktor: ez fut le példányosításkor (new Felhasznalo)
+  constructor(nev, kor, jelszo) {
+    this.nev = nev; // Nyilvános tulajdonság
+    this.kor = kor;
+    this.#jelszo = jelszo;
+  }
+
+  // 3. Metódus (függvény az osztályon belül)
+  koszon() {
+    console.log(`Szia, a nevem ${this.nev}, és ${this.kor} éves vagyok.`);
+  }
+
+  // 4. Getter és Setter (kontrollált hozzáférés)
+  get profilInfo() {
+    return `${this.nev} (${this.szerep})`;
+  }
+
+  set eletkorFrissites(ujKor) {
+    if (ujKor > 0) {
+      this.kor = ujKor;
+    }
+  }
+
+  // 5. Statikus metódus (az osztályhoz tartozik, nem a példányhoz)
+  static leiras() {
+    console.log("Ez egy Felhasználó osztály sablon.");
+  }
+}
+
+// HASZNÁLAT:
+const adam = new Felhasznalo('Ádám', 28, 'titok123');
+adam.koszon(); // "Szia, a nevem Ádám..."
+console.log(adam.profilInfo); // "Ádám (tag)"
+Felhasznalo.leiras(); // Osztály szintű hívás
+```
+
+
 # Időzítő beállítása
 
 ```javascript
@@ -870,9 +913,10 @@ A böngésző a HTML dokumentumot egy "fa struktúraként" értelmezi, amit DOM-
 Megtanulhatod, hogyan "találd meg" a HTML elemeket a kódban, például:
 
 ```javascript
-document.getElementById('azonosito'); // id-ra hivatkozunk.
+document.getElementById("azonosito"); // id-ra hivatkozunk.
+document.querySelector("body");  // tag, amiből tuti egy darab van.
 document.querySelector("#azonosito"); // id-ra hivatkozunk.
-document.querySelector('.osztaly-nev'); // class-ra hivatkozunk.
+document.querySelector(".osztaly-nev"); // class-ra hivatkozunk.
 
 ```
 
@@ -1008,9 +1052,14 @@ Fontos tudnivaló: Amikor listát kapsz vissza (pl. querySelectorAll), nem tudod
 
 # style
 
-A css -> js alakításnál a kebab-case → camelCase lesz.
+A css -> js alakításnál a kebab-case → camelCase lesz. Ezek inline stílusok lesznek a htmlben, a css fájlban nem fog megváltozni semmi sem.
 
 ```javascript
+
+//Csak egy elemet módosít (az első találatot)
+document.querySelector(".number").style.width = "30rem"; //rem: Egy relatív mértékegység a html font-size-hoz viszonyítva.
+//font-size: 10px -> 30rem = 30 × 10px = 300px
+
 document.getElementById('demo').style.display = 'none';   // eltünteti
 document.getElementById('demo').style.display = 'block';  // megjeleníti blokk elemként
 document.getElementById('demo').style.display = 'inline';   // soron belül
@@ -1025,7 +1074,7 @@ el.style.overflow = "hidden";
 //Színek és háttér
 el.style.color = "red";
 el.style.backgroundColor = "blue";
-el.style.opacity = "0.5";
+el.style.opacity = "0.5"; //Muszáj a számokat is idézőjelek közé beírnunk, mert string kell nekünk. 
 
 //Méret és térköz
 el.style.width = "200px";
@@ -1219,11 +1268,11 @@ document.getElementsByTagName("p")[0].innerHTML = "Hello";
 
 ```javascript
 //Mentés
-localStorage.setItem("nev", "Andrea");
+localStorage.setItem("nev", "Leroy");
 
 //Lekérés
 const nev = localStorage.getItem("nev");
-console.log(nev); // Andrea
+console.log(nev); // Leroy
 
 //Törlés
 localStorage.removeItem("nev");
