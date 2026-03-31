@@ -997,6 +997,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ```
 
+DE!!! Nem kell a fenti, ha a html-ben a </body> mögé rakod ezt:
+```html
+ <script src="script.js" defer></script>
+ ```
+
 # Cheat Sheet
 
 ```bash

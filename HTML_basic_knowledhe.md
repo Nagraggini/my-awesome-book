@@ -61,3 +61,31 @@
 </html>
 
 ```
+# Források
+
+https://www.udemy.com/course/the-complete-javascript-course/
+https://www.youtube.com/playlist?list=PLP9IO4UYNF0VdAajP_5pYG-jG2JRrG72s
+
+
+# Táblázat
+
+```html
+<table>
+                    <thead>
+                        <tr>
+                            <th>Checkbox</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Done</td>
+                            <td>Check my mail box.</td>
+                            <td>2026/04/06</td>
+                            <td>Important</td>
+                        </tr>
+                    </tbody>
+                </table>
+```
