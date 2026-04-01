@@ -27,6 +27,7 @@
 - [Inkrementálás](#inkrementálás)
 - [Metódusok](#metódusok)
 - [Math.](#math)
+- [document.write()](#documentwrite)
 - [OOP](#oop)
 - [Időzítő beállítása](#időzítő-beállítása)
 - [Html és js összekötése](#html-és-js-összekötése)
@@ -55,6 +56,8 @@
   - [4. Eseménykezelők](#4-eseménykezelők)
     - [Alapszintű (HTML-központú):](#alapszintű-html-központú)
 - [localStorage](#localstorage)
+- [LOCALSTORAGE ÖSSZEFOGLALÓ](#localstorage-összefoglaló)
+- [Teszt adatok generálása](#teszt-adatok-generálása)
 - [Haladóbb (toggle)](#haladóbb-toggle)
 
 # Források
@@ -96,6 +99,16 @@ elkerülni rejtett bugokat
     console.log("hello " + n)
 ```
 
+Console
+
+console.log("Hello, World!");
+console.error("This is an error message.");
+console.warn("This is a warning message.");
+console.table([{name: "Amit", age: 30}, {name: "Jatin", age: 25}]);
+
+Továbbiak [itt](https://www.geeksforgeeks.org/javascript/console-in-javascript/) találhatóak.
+
+
 # Explicit és implicit
 
 Kötőjelet nem lehet írni a js-ben a változó nevébe.
@@ -117,6 +130,23 @@ Ez implicit, mert az értékadás „bele van foglalva” a deklarációba.
 ```
 
 # Adattípusok(primitívek)
+
+```
+Típus                   Leírás
+String (Karakterlánc),  Időzőjelek közé zárt szöveges karakterek sorozata.
+Number (Szám)           Matematikai értéket képviselő szám (egész vagy tizedes).
+BigInt                  "Olyan szám, amely a normál szám típusnál nagyobb egész értékeket képvisel."
+Boolean (Logikai)       "Logikai érték, amely vagy true (igaz), vagy false (hamis) lehet."
+Object (Objektum)       Adatok kulcs-érték párjainak gyűjteménye.
+Undefined               "Olyan primitív változó, amelyhez még nem rendeltek értéket."
+Null                    "Primitív érték, amely egy objektum hiányát jelzi."
+Symbol                  (Szimbólum),Egyedi és megváltoztathatatlan primitív azonosító.
+```
+**Néhány fontos megjegyzés:**
+
+Primitív típusok: A fenti listából hét (String, Number, BigInt, Boolean, Undefined, Null, Symbol) primitív típus, ami azt jelenti, hogy egyszerre csak egy értéket tárolnak és megváltoztathatatlanok. Amikor azt mondjuk, hogy a primitív típusok (mint a String vagy a Number) megváltoztathatatlanok (immutable), az nem azt jelenti, hogy a változó értékét nem írhatod felül, hanem azt, hogy magát az értéket a memóriában nem tudod módosítani.
+
+Összetett típus: Az Object az egyetlen összetett típus, ide tartoznak a tömbök (Arrays) és a függvények (Functions) is a JavaScriptben.
 
 ```javascript
     var c = 3; //number
@@ -515,7 +545,7 @@ Kiíratjuk a tömb elemeit.
 # Feladatok
 
 1. feladat – Életkor ellenőrzés
-2. 
+
 ```javascript
 A prompt stringet ad vissza, ezért Number()-ral számmá kell alakítani.
 
@@ -529,12 +559,13 @@ A prompt stringet ad vissza, ezért Number()-ral számmá kell alakítani.
             alert("Felnőtt");
     }
 ```
+String()-el meg szöveggé lehet konvertálni.
 
 ```javascript
 Boolean(10>9); //true
 ```
 
-1. feladat – Gyümölcs kereső 🍎
+2. feladat – Gyümölcs kereső 🍎
    
 ```javascript
 //Van egy tömb:
@@ -562,7 +593,7 @@ fruits.includes(keresettGyumolcs)
     }
 ```
 
-2. feladat – Számláló ciklus \_🔁
+3. feladat – Számláló ciklus \_🔁
 
 Írj egy while ciklust, ami:
 0-tól indul,
@@ -623,6 +654,8 @@ Pre-increment (++a) → előbb növeli, majd használja az értéket
 ```
 
 # Metódusok
+
+[DOM Element Properties and Methods](https://www.w3schools.com/jsref/dom_obj_all.asp)
 
 ```javascript
     function house() {
@@ -685,6 +718,29 @@ const number = Math.trunc(Math.random()*20)+1; // 1-20 közötti szám kreálás
 
 Van még egy pár metódusa a Math osztálynak.
 <!-- TODO -->
+
+# document.write()
+
+Csak a html body-ban tud le futni.
+
+```html
+        <script>
+            document.open();
+            document.write("<h1>Hello World</h1>");
+            document.writeln("Hello World!");
+            document.close();
+        </script>
+
+        <button onclick="myFunction()">Open</button>
+        <script>
+            function myFunction() {
+                const myWindow = window.open();
+                myWindow.document.write("<h1>New Window</h1>");
+                myWindow.document.write("<p>Hello World!</p>");
+            }
+        </script>
+        <button onclick="window.print()">Print this page.</button>
+```
 
 # OOP
 
@@ -1271,6 +1327,8 @@ document.getElementsByTagName("p")[0].innerHTML = "Hello";
 
 # localStorage
 
+Folyamatban lévő űrlap kitöltésnél jó használni, hogy ne vesszenek el azok az adatok, amiket eddig beírt a felhasználó.
+
 ```javascript
 //Mentés
 localStorage.setItem("nev", "Leroy");
@@ -1286,13 +1344,126 @@ localStorage.removeItem("nev");
 localStorage.clear();
 
 //Mentés tömbbel
-const todos = ["tanulás", "edzés", "projekt"];
-localStorage.setItem("todos", JSON.stringify(todos));
+const tod = ["tanulás", "edzés", "projekt"];
+localStorage.setItem("tod", JSON.stringify(tod));
 
 //Visszaolvaás
-const todos = JSON.parse(localStorage.getItem("todos")) || [];
-console.log(todos);
+const tod = JSON.parse(localStorage.getItem("tod")) || [];
+console.log(tod);
+
+//========================================================
+
+// Mentésnél (Objektum -> String):
+const first = { name: "Anna", age: 25 };
+localStorage.setItem("first", JSON.stringify(first));
+
+// 1. módszer: Közvetlen lekérés
+const getFirst = JSON.parse(localStorage.getItem("first"));
+console.log("getFirst (teljes objektum):", getFirst);
+console.log("getFirst (teljes objektum):" + getFirst); //getFirst (teljes objektum):[object Object]
+
+// 2. módszer: Referencia használatával (ourStorage)
+const ourStorage = window.localStorage;
+const storedUser = JSON.parse(ourStorage.getItem("first"));
+
+// Itt a javítás: a .name-et kérjük le a storedUser-ből
+console.log("A keresett név: ", storedUser.name); // Eredmény: "Anna"
 ```
+
+
+# LOCALSTORAGE ÖSSZEFOGLALÓ
+
+```bash
+  ALAPVETŐ JELLEMZŐK
+ ------------------------------------------
+ Kapacitás:  ~5-10 MB (böngészőtől függően)
+ Formátum:   Csak String (szöveg)
+ Élettartam: Örökké megmarad (manuális törlésig)
+ Hatókör:    Domain-specifikus (apple.hu != google.hu)
+```
+
+  A 4 LEGFONTOSABB METÓDUS
+```bash
+ Művelet         | Kód                                   | Leírás
+ ----------------|---------------------------------------|-------------------------
+ Mentés          | localStorage.setItem('kulcs', 'érték')| Adat elhelyezése
+ Lekérés         | localStorage.getItem('kulcs')         | Adat kiolvasása
+ Lekérés index-el| localStorage.key(index)               | Lekéri az adott indexen található kulcs nevét.
+ Hossz           | localStorage.length                   | Visszaadja a tárolóban lévő elemek (adatok) számát. 
+ Törlés          | localStorage.removeItem('kulcs')      | Egy elem törlése
+ Mindent töröl   | localStorage.clear()                  | Összes adat törlése
+```
+
+ GYAKORLATI PÉLDA (JS)
+```javascript
+// Mentés
+localStorage.setItem('felhasznaloNev', 'Kovács János');
+
+// Lekérés
+const nev = localStorage.getItem('felhasznaloNev');
+console.log(nev); // "Kovács János"
+```
+
+ OBJEKTUMOK TÁROLÁSA (JSON)
+```javascript
+// MENTÉS (Szerializáció)
+const user = { id: 1, nev: 'Péter', rang: 'Admin' };
+localStorage.setItem('user_data', JSON.stringify(user));
+
+// BETÖLTÉS (Deszerializáció)
+const mentettAdat = localStorage.getItem('user_data');
+  if (mentettAdat) {
+    const userObj = JSON.parse(mentettAdat);
+    console.log(userObj.nev); // "Péter"
+  }
+```
+
+ MIKOR HASZNÁLD?
+
+[OK]  - Sötét/Világos mód, űrlap vázlatok, beállítások.
+[!]   - SOHA NE: Jelszavak, bankkártya adatok (biztonsági kockázat).
+[!]   - NE: Nagy fájlok (képek, videók).
+
+[JavaScript localStorage](https://www.geeksforgeeks.org/javascript/javascript-localstorage/)
+# Teszt adatok generálása
+
+//Teszt adatok.
+function newTestQuest() {
+    //13 karakteres szám.
+    let id = Math.floor(Math.random() * 9000000000000) + 1000000000000;
+
+    //Random true vagy false.
+
+    let check = {
+        id: Date.now(),
+        check: ["true", "false"][Math.floor(Math.random() * 2)],
+    };
+
+    let checkbox = check.check;
+    //Random szöveg.
+    let descriptionInput = crypto.randomUUID();
+
+    //Random dátum.
+    let d = new Date(
+        +new Date(2024, 0, 1) +
+            Math.random() * (+new Date(2026, 11, 31) - +new Date(2024, 0, 1)),
+    );
+    let dateInput = `${d.getFullYear()}. ${String(d.getMonth() + 1).padStart(2, "0")}. ${String(d.getDate()).padStart(2, "0")}`;
+
+    //Random priority.
+    let task = {
+        id: Date.now(),
+        priority: ["Low", "Normal", "High"][Math.floor(Math.random() * 3)],
+    };
+
+    let priorityInput = task.priority;
+
+    let list = [id, checkbox, descriptionInput, dateInput, priorityInput];
+
+    localStorage.setItem(id, JSON.stringify(list));
+    console.log("A lista hossza: " + list.length);
+    console.log(list.toString()); //62120516,[object HTMLInputElement],,,
+}
 
 # Haladóbb (toggle)
 
