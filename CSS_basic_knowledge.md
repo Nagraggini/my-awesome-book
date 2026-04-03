@@ -77,3 +77,12 @@ HTML:
 
 Le kell buildelni a css fájlt:
 npx tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch
+
+---
+```css
+/*A :has() segítségével megváltoztathatod egy eleme stílusát attól függően, hogy mi van benne. De ez, csak akkor működik, ha nem a js-ben van a módosítás. :( */
+h2:has(.Andi) {
+    background-color: rgba(255, 255, 255, 0.716);
+    color: white;
+}
+```
