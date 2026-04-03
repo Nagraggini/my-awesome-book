@@ -37,6 +37,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 - [Adattípusok](#adattípusok)
   - [Primitív adattípusok](#primitív-adattípusok)
   - [Összetett adattípusok (referencia típusok)](#összetett-adattípusok-referencia-típusok)
+  - [Joker](#joker)
   - [Pontosan hogyan tárolódnak a változók a memóriában](#pontosan-hogyan-tárolódnak-a-változók-a-memóriában)
 - [Objektum orientált programozás (OOP)](#objektum-orientált-programozás-oop)
   - [Metódusok](#metódusok)
@@ -67,11 +68,12 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [Lefut-e?](#lefut-e)
   - [Explicit cast (szűkítés)](#explicit-cast-szűkítés)
   - [Overflow (Túlcsordulás)](#overflow-túlcsordulás)
-  - [Típuskonverzió szabály](#típuskonverzió-szabály)
+  - [Típuskonverzió szabály (Kényszerítés)](#típuskonverzió-szabály-kényszerítés)
     - [double → int szűkítő (narrowing) konverzió](#double--int-szűkítő-narrowing-konverzió)
   - [Változónevek szabályai](#változónevek-szabályai)
 - [Kasztolás](#kasztolás)
     - [Helyes megoldások char → String konvertálásra](#helyes-megoldások-char--string-konvertálásra)
+  - [Parse](#parse)
 - [Java dátum és idő kezelés (java.time)](#java-dátum-és-idő-kezelés-javatime)
   - [Rövid cheat sheet](#rövid-cheat-sheet)
 - [Math()](#math)
@@ -80,6 +82,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 - [Stack, Heap és Garbage Collector](#stack-heap-és-garbage-collector)
   - [Stack](#stack)
   - [Heap](#heap)
+  - [Főbb nem-primitív típusok](#főbb-nem-primitív-típusok)
   - [Garbage Collector (Szemétgyűjtő)](#garbage-collector-szemétgyűjtő)
 - [Környezet változók és a manuális fordítás](#környezet-változók-és-a-manuális-fordítás)
 - [Véletlen mondat generátor készítés](#véletlen-mondat-generátor-készítés)
@@ -507,19 +510,19 @@ Alapértéke: 0
 Lebegőpontos szám (egyszeres pontosság).
 Tartomány: ≈ 1.175494 × 10⁻³⁸ - ≈ 3.402823 × 10³⁸
 Foglalt memória: 4 Byte
-Alapértéke: 0.0f
+Alapértéke: 5.06e2f //$5.06 \times 10^2$ Hatványozás az "e". "f" mint float.
 
 **double**
 
 Törtszám szám (kétszeres pontosság).
 Tartomány: 2.2250738585072014 × 10⁻³⁰⁸ - 1.7976931348623157 × 10³⁰⁸
 Foglalt memória: 8 Byte
-Alapértéke: 0.0d
+Alapértéke: 0.0d //A d elhagyható az, csak arra utal, hogy double.
 
 **char**
 
 Egy karakter.
-Tartomány: 1 karakter (0–65 535)
+Tartomány: 1 Unicode karakter (0–65.535) pl.: 65 // A
 Foglalt memória: 2 Byte
 Alapértéke: '\u0000'
 
@@ -550,6 +553,20 @@ saját osztályok
 
 Az alapértelmezett értékük: **null**
 Sok függvény megvan hozzájuk írva. pl.: .Length()
+
+## Joker
+
+Java 10-ben jelent meg 2018-ban.
+
+```java
+var myNum = 5;         // int
+
+// var nélkül
+ArrayList<String> cars = new ArrayList<String>();
+
+// var-al rövidebb könyebben olvashatóbb.
+var cars = new ArrayList<String>();
+```
 
 ## Pontosan hogyan tárolódnak a változók a memóriában
 
@@ -1101,13 +1118,15 @@ A Java nem engedi az automatikus (implicit) szűkítést, mert adatvesztés tör
 
 A byte tartománya túllépésre kerül → körbefordul.
 
-## Típuskonverzió szabály
+## Típuskonverzió szabály (Kényszerítés)
 
 Szélesítés (widening) → automatikus
 
-byte → short → int → long → float → double
+byte -> short -> char -> int -> long -> float -> double
 
-Szűkítés
+Szűkítés (narrowing)
+
+double -> float -> long -> int -> char -> short -> byte
 
 ❌ nem automatikus
 ✅ csak cast-tal
@@ -1155,6 +1174,27 @@ A primitívek speciálisak, az objektumok nem, azok minding ugyanúgy működnek
 
     //A Character örököl az Object osztálytól, de itt nem az Object toString() metódusa hívódik meg.
     //Hanem a Character.toString(char) statikus metódus.
+
+## Parse
+
+Négy fajtája van:
+- String → int
+- String → double
+- String → long
+- String → boolean
+
+Példa:
+```java
+//String → int
+int szam = Integer.parseInt("123");
+```
+
+Visszafelé (number → String)
+```java
+String text = String.valueOf(123);
+```
+
+Ha hibás formátumba kasznolnál, akkor NumberFormatException-t kapsz.
 
 # Java dátum és idő kezelés (java.time)
 
@@ -1530,13 +1570,13 @@ Példa:
 
 Verem. Gyorsabb memória terület.
 
-A Stack egy memóriaterület, ahol a program lokális változóit (int, double, boolean, stb.) és függvényhívások adatait tárolják.  
+A Stack egy memóriaterület, ahol a program lokális változóit (int, double, boolean, stb.) és függvényhívások adatait tárolják. Itt tárolódik maga a változó neve és a referencia (a címe a memóriában)  
 LIFO (Last In, First Out) elven működik – az utolsó elem, amit betettünk, az első, amit kiveszünk.
 
 ## Heap
 
 Kupac.
-A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat.
+A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat. Itt tárolódik a tényleges adat/objektum.
 
 Maga az Objektum a Heapben tárolódik, a stack-ban, csak hivatkozunk rá.  
 Minden, ami benne van egy osztályban az az objektum része, vagyis a Heap-ben tárolódik, az osztályváltozók (int, String) is.
@@ -1563,6 +1603,30 @@ Mi történik?
 - o1  
   → hivatkozás, ami a stackben van (o1 = null;)  
   → a heapben lévő objektum címére mutat
+
+## Főbb nem-primitív típusok
+
+A nem-primitív (non-primitive) adattípusokat más néven referencia típusoknak is nevezzük. Ahogy a neve is sugallja, ezek nem közvetlenül az értéket tárolják (mint pl. egy számot), hanem egy referenciát (memóriacímet) arra a helyre, ahol az objektum található.
+
+Strings (Karakterláncok): Szövegek tárolására szolgálnak. Bár a Java-ban kiemelt szerepük van, valójában objektumok.
+
+Arrays (Tömbök): Azonos típusú elemek gyűjteménye (lehet primitív vagy objektum is benne).
+
+Classes (Osztályok): Felhasználó által definiált sablonok, amelyekből objektumok hozhatók létre.
+
+Interfaces (Interfészek): Absztrakt típusok, amelyek előírják, hogy egy osztálynak milyen metódusokat kell megvalósítania.
+
+**Primitív vs. Nem-primitív:** 
+A legfontosabb különbségek
+
+```bash
+| Jellemző  | Primitív típusok (pl. int, boolean)         |Nem-primitív típusok (pl. String, Array)
+| Definíció | Előre definiáltak a Java nyelvben.          | A programozó hozza létre őket (kivéve a String-et).
+| Metódusok | Nincsenek metódusaik, csak értéket tárolnak.| Vannak metódusaik, amikkel műveleteket végezhetünk.
+| Érték     | Mindig van értékük (nem lehetnek nullák).   | Lehet az értékük null (ha nem mutatnak sehova).
+| Írásmód   | Kisbetűvel kezdődnek (pl. int).             | Általában nagybetűvel kezdődnek (pl. String).
+| Méret     | A típustól függ (fix méret). Kiv: boolean   | Minden referencia azonos méretű a memóriában.
+```
 
 ## Garbage Collector (Szemétgyűjtő)
 

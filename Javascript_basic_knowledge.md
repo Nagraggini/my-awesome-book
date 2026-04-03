@@ -1,5 +1,8 @@
+# # Programozás JavaScript nyelven
+
 # Tartalomjegyzék
 
+- [# Programozás JavaScript nyelven](#-programozás-javascript-nyelven)
 - [Tartalomjegyzék](#tartalomjegyzék)
 - [Források](#források)
 - [Strict mód](#strict-mód)
@@ -68,6 +71,7 @@ https://www.youtube.com/watch?v=BUFagBZZafo&list=PLg7lel5LdVjyO7jk-4biyr0fqPVygT
 https://www.codedex.io/home
 https://www.freecodecamp.org/learn/javascript-v9/lecture-working-with-the-dom-click-events-and-web-apis/how-do-you-create-new-nodes-using-innerhtml-and-createelement
 https://www.udemy.com/course/the-complete-javascript-course/
+[100+ Web Development Things you Should Know](https://youtu.be/erEgovG9WBs?si=vEFXO3P_WufyaR-C)
 
 # Strict mód
 
@@ -130,6 +134,8 @@ Ez implicit, mert az értékadás „bele van foglalva” a deklarációba.
 ```
 
 # Adattípusok(primitívek)
+
+8 db van.
 
 ```
 Típus                   Leírás
@@ -1053,7 +1059,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ```
 
-DE!!! Nem kell a fenti, ha a html-ben a </body> mögé rakod ezt:
+DE!!! Nem kötelező a fenti, ha a html-ben a </body> mögé rakod a lentit. Viszont, ha felakarsz tölteni egy táblázatot, vagy az épp folyamatban lévő űrlap piszkozatát, akarod betölteni, akkor jól jön.
 ```html
  <script src="script.js" defer></script>
  ```

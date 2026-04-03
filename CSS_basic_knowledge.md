@@ -1,6 +1,56 @@
+# CSS stílusok a weboldalakhoz
+
+# Tartalomjegyzék
+- [CSS stílusok a weboldalakhoz](#css-stílusok-a-weboldalakhoz)
+- [Tartalomjegyzék](#tartalomjegyzék)
+- [Forrásaim](#forrásaim)
+- [Alapok](#alapok)
+- [Szelektor (Selector)](#szelektor-selector)
+- [Modern CSS](#modern-css)
+- [Media Query helyett if](#media-query-helyett-if)
+  - [Pszeudó (pseudeo)](#pszeudó-pseudeo)
+- [Tailwind telepítése:](#tailwind-telepítése)
+
+# Forrásaim
+https://www.w3schools.com/css/default.asp
+https://www.w3schools.com/htmlcss/default.asp
+[100+ Web Development Things you Should Know](https://youtu.be/erEgovG9WBs?si=vEFXO3P_WufyaR-C)
+
+
+
+# Alapok
+
+[Itt](https://codepen.io/) tudsz gyakorolni.
+CSS magyarázatok és interaktív példákat [itt](https://www.w3schools.com/css/default.asp) találsz, valamint [itt](https://www.w3schools.com/htmlcss/default.asp).
+
+![CSS szintaktika](/assets/CSS/css-sytax.png)
+
+```css
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+
+/*Univerzális szelektor.*/
+*{
+
+}
+```
+
+# Szelektor (Selector)
+
 html
 
-
+```html
 <h2>Continents 🗺️</h2>
 <ul>
   <li>Africa</li>
@@ -20,22 +70,48 @@ html
   <li>Antarctic/Southern</li>
   <li>Arctic</li>
 </ol>
-
+```
 css
-
+```css
 ul > li { 
     /* Csak azokra az elemekre érvényes, amelyek közvetlenül az ul alatt vannak, nem mélyebben, vagyis jeleneseben, csak az elsőre.   */
   border: 1px solid;
   width: 50px;
 }
+```
 
-# CSS
+[Ez](https://specifishity.com/specifishity.pdf) az egyik legjobb magyarázat a css szelektorokra.
 
-moder verzió a pszeudóra:
+
+# Modern CSS
+
+# Media Query helyett if
+
+https://www.youtube.com/watch?v=THvg9DQPs94&list=WL&index=18
+
+max-width:767px
+
+max-width: 1024px
+
+
+## Pszeudó (pseudeo)
+
+Modern verzió a pszeudóra:
 1. ::before és ::after
 
-Többi: https://www.codedex.io/css/bonus/pseudo-elements-in-css
+Többit [itt](https://www.codedex.io/css/bonus/pseudo-elements-in-css) találod. 
 
+Modern 
+
+```css
+/*A :has() segítségével megváltoztathatod egy eleme stílusát attól függően, hogy mi van benne. De ez, csak akkor működik, ha nem a js-ben van a módosítás. :( */
+h2:has(.Andi) {
+    background-color: rgba(255, 255, 255, 0.716);
+    color: white;
+}
+```
+
+---
 
 # Tailwind telepítése: 
 
@@ -79,10 +155,3 @@ Le kell buildelni a css fájlt:
 npx tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch
 
 ---
-```css
-/*A :has() segítségével megváltoztathatod egy eleme stílusát attól függően, hogy mi van benne. De ez, csak akkor működik, ha nem a js-ben van a módosítás. :( */
-h2:has(.Andi) {
-    background-color: rgba(255, 255, 255, 0.716);
-    color: white;
-}
-```

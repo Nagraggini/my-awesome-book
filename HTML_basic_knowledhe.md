@@ -1,3 +1,26 @@
+# HTML csontváz a weboldalakhoz
+
+# Tartalomjegyzék
+- [HTML csontváz a weboldalakhoz](#html-csontváz-a-weboldalakhoz)
+- [Tartalomjegyzék](#tartalomjegyzék)
+- [Források](#források)
+- [Alapok](#alapok)
+- [Struktúra](#struktúra)
+- [Táblázat](#táblázat)
+
+# Források
+
+https://www.udemy.com/course/the-complete-javascript-course/
+https://www.youtube.com/playlist?list=PLP9IO4UYNF0VdAajP_5pYG-jG2JRrG72s
+https://www.w3schools.com/html/default.asp
+[100+ Web Development Things you Should Know](https://youtu.be/erEgovG9WBs?si=vEFXO3P_WufyaR-C)
+
+# Alapok
+
+[Itt](https://codepen.io/) tudsz gyakorolni.
+HTML magyarázatok és interaktív példákat [itt](https://www.w3schools.com/html/default.asp) találsz.
+
+
 # Struktúra
 
 ```html
@@ -61,10 +84,6 @@
 </html>
 
 ```
-# Források
-
-https://www.udemy.com/course/the-complete-javascript-course/
-https://www.youtube.com/playlist?list=PLP9IO4UYNF0VdAajP_5pYG-jG2JRrG72s
 
 
 # Táblázat
