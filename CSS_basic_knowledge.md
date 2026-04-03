@@ -5,7 +5,8 @@
 - [Tartalomjegyzék](#tartalomjegyzék)
 - [Forrásaim](#forrásaim)
 - [Alapok](#alapok)
-- [Szelektor (Selector)](#szelektor-selector)
+- [Futtatás](#futtatás)
+- [F12](#f12)
 - [Modern CSS](#modern-css)
 - [Media Query helyett if](#media-query-helyett-if)
   - [Pszeudó (pseudeo)](#pszeudó-pseudeo)
@@ -46,7 +47,21 @@ p {
 }
 ```
 
-# Szelektor (Selector)
+# Futtatás
+
+VC Code-ban töltsd le a Live Servert. Bal oldalt az Explorerben kattints jobb klikkel az adott html fájlodra -> Open with Live Server. Rögtön elindul a böngésződben a http://127.0.0.1:5500/ -on a weboldalad.
+
+Ctrl+F5 csodákra képes, ha épp valami nem töltene be, pedig már lekódoltad.
+
+# F12
+
+Futtatáskor az F12-t nyomd meg a böngészőben, válaszd a kis nyíl ikont (kijelölő), és kattints egy adott részre amit ellenőrizni szeretnél. A böngésző narancssárgával jelzi a margót (margin) és zölddel a párnázást (padding). Így pontosan látni fogod, melyik elem "tolja" el a másikat!
+
+Felül a kis nyíl mellett van az eszköz váltó, vagyis meg tudod nézni, hogy telón hogyan néz ki. Akár fel is tudod venni a telefonodat is: Bal felül Dimension melletti nyílra katt -> Edit -> Add custom device -> Add meg a telefonod nevét és pixelben a magasságát és szélességét (Ha nem tudod kérdezd meg az AI-t.) Device pixel ratio:3 -> Save.
+
+Application -> Storare bal oldalt -> Local storage -> Itt látod az elmentett adatokat (JS-ben localStorage-el tudsz menteni.), ha vannak.
+
+#Extra szelektor (Selector)
 
 html
 
