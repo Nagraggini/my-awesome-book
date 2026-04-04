@@ -24,6 +24,9 @@ Ez a videó 7 alapvető kódolási projektet mutat be, amelyeket érdemes megép
 
 A videó végén a készítő megjegyzi, hogy ha már rendelkezel az alapokkal és az önéletrajzodhoz keresel komolyabb ötleteket, érdemes körülnézned neves egyetemek (pl. Harvard, MIT) hackathon projektjei között, vagy inspirálódni a [Product Hunt](https://www.producthunt.com/) weboldalon.
 
+Gyakorlás (Kezdőtől haladó szintig):
+Exercism.org
+
 Java-központú webfejlesztés:
 https://start.vaadin.com/
 https://www.skillversum.com/note/view/e2b3bd715f5d6eefcb2f3d91e6362ec0b238d71cac3fc57c5d3c9bff7b9fb89c

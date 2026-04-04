@@ -60,7 +60,7 @@
     - [Alapszintű (HTML-központú):](#alapszintű-html-központú)
 - [localStorage](#localstorage)
 - [LOCALSTORAGE ÖSSZEFOGLALÓ](#localstorage-összefoglaló)
-- [Teszt adatok generálása](#teszt-adatok-generálása)
+- [Teszt adatok generálása és gyors teszt](#teszt-adatok-generálása-és-gyors-teszt)
 - [Haladóbb (toggle)](#haladóbb-toggle)
 
 # Források
@@ -1431,7 +1431,12 @@ const mentettAdat = localStorage.getItem('user_data');
 [!]   - NE: Nagy fájlok (képek, videók).
 
 [JavaScript localStorage](https://www.geeksforgeeks.org/javascript/javascript-localstorage/)
-# Teszt adatok generálása
+# Teszt adatok generálása és gyors teszt
+
+```javascript
+//A body végére kiírja az adatot.
+document.writeln("Hello World!");
+
 
 //Teszt adatok.
 function newTestQuest() {
@@ -1470,6 +1475,7 @@ function newTestQuest() {
     console.log("A lista hossza: " + list.length);
     console.log(list.toString()); //62120516,[object HTMLInputElement],,,
 }
+```
 
 # Haladóbb (toggle)
 

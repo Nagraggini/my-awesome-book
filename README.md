@@ -1,3 +1,5 @@
+![Top Language](https://img.shields.io/github/languages/top/Nagraggini/blog)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 Hungarian version - Magyar verzió
 

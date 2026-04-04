@@ -21,6 +21,13 @@ https://www.w3schools.com/htmlcss/default.asp
 
 # Alapok
 
+A tartalmakhoz adunk stílust a css-el. Bizonyos korlátokon belül lehet némi interaktivitást is csinálni css-el pl.: egérműveleteknél, színváltoztatás. Interaktivitás fokozásához javascriptre van szükség.
+
+
+Ezekkel játékosan meg lehet tanulni a CSS használatát: 
+https://flexboxfroggy.com/#hu
+https://cssgridgarden.com/#hu
+
 [Itt](https://codepen.io/) tudsz gyakorolni.
 CSS magyarázatok és interaktív példákat [itt](https://www.w3schools.com/css/default.asp) találsz, valamint [itt](https://www.w3schools.com/htmlcss/default.asp).
 
@@ -45,6 +52,13 @@ p {
 *{
 
 }
+```
+
+Ezeket együtt érdemes használni:
+```css
+    display: flex;
+    flex-direction: column;
+    align-items: center; /*Ezt együtt kell használni pl.: flex/grid-el*/
 ```
 
 # Futtatás
