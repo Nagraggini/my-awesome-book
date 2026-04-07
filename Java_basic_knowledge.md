@@ -27,6 +27,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 - [Általános infók](#általános-infók)
   - [Java fordítási és futtatási folyamat](#java-fordítási-és-futtatási-folyamat)
 - [Fejlesztői környezet](#fejlesztői-környezet)
+  - [JDoodle](#jdoodle)
   - [Visual Studio Code](#visual-studio-code)
   - [Eclipse](#eclipse)
     - [Eclipse további beállítás:](#eclipse-további-beállítás)
@@ -47,6 +48,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [Példák](#példák)
     - [Első és második példa:](#első-és-második-példa)
   - [Háromoperandusú Operátor](#háromoperandusú-operátor)
+  - [Változó ellenőrzése (üres? != \&\& .isBlank())](#változó-ellenőrzése-üres---isblank)
   - [Javadoc](#javadoc)
   - [Logika](#logika)
   - [Polimorfizmus (Többalakúság)](#polimorfizmus-többalakúság)
@@ -125,13 +127,14 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
     - [Checked Exceptions](#checked-exceptions)
     - [Unchecked Exceptions](#unchecked-exceptions)
     - [Eldobjuk a hibát](#eldobjuk-a-hibát)
+    - [Gyakori módszer a hiba eldobására](#gyakori-módszer-a-hiba-eldobására)
 - [Inner és Anonim Class](#inner-és-anonim-class)
 - [Adatbekérés a felhasználótól](#adatbekérés-a-felhasználótól)
 - [Példák](#példák-2)
-  - [Elágazások](#elágazások)
+  - [Elágazások (if)](#elágazások-if)
   - [For ciklus és tömbök, valamint kasztolás](#for-ciklus-és-tömbök-valamint-kasztolás)
   - [Switch-case](#switch-case)
-    - [Másik megoldás (Java 14+ switch expression és do-while)](#másik-megoldás-java-14-switch-expression-és-do-while)
+    - [Másik megoldás (Java 14+ switch expression lambdás és do-while)](#másik-megoldás-java-14-switch-expression-lambdás-és-do-while)
   - [Do-while és if elágazás](#do-while-és-if-elágazás)
 - [Java Dinamikus weboldal létrehozása](#java-dinamikus-weboldal-létrehozása)
 - [Gyakorlás gyakorlás gyakorlás](#gyakorlás-gyakorlás-gyakorlás)
@@ -198,7 +201,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 
 A sanfranciscoboljottem tananyag sorrendje:  
 Programozási alapismeretek  
-Git Alapismeretek  
+Git Alapismeretek  <!--TODO -->
 Java alapismeretek  
 SQL alapismeretek  
 JavaFX alapismeretek  
@@ -209,6 +212,7 @@ Java szerver
 Spring Boot Ismeretek  
 Spring Boot Ismeretek II.
 
+[Java cheat sheet magyarul](https://www.skillversum.com/note/view/eb07ff3326b3dcfa2d68157d50c3106b5f825e9d742dab44d6baf1e09ba49d7c)
 [Java Cheat Sheet](https://github.com/luankevinferreira/java-dev-cheat-sheet/tree/main)
 [Java Streams and Collectors: A Practical Guide and Cheat Sheet with Real-World Examples](https://medium.com/@code.wizzard01/java-streams-and-collectors-a-practical-guide-and-cheat-sheet-with-real-world-examples-67dcf84156b5)
 
@@ -351,6 +355,12 @@ Feladatai például:
 A JVM tehát egy absztrakciós réteg a Java alkalmazás és a hardver között, amely elrejti a platformfüggő részleteket a fejlesztő elől.
 
 # Fejlesztői környezet
+
+## JDoodle
+
+Egy ideig elég az online fordító:
+https://www.jdoodle.com/
+
 
 ## Visual Studio Code
 
@@ -749,6 +759,67 @@ first.setAge(20);
         }
          */
 ```
+
+## Változó ellenőrzése (üres? != && .isBlank())
+
+
+```java
+
+        String myStr1 = "Hello";
+        String myStr2 = "";
+        String myStr3 = null;
+        String myStr4 = "   ";
+
+        // --- null ellenőrzés ---
+        System.out.println("myStr1 == null: " + (myStr1 == null)); //false
+        System.out.println("myStr2 == null: " + (myStr2 == null)); //false
+        System.out.println("myStr3 == null: " + (myStr3 == null)); //true
+
+        System.out.println();
+
+        // --- isEmpty() ---
+        System.out.println("myStr1.isEmpty(): " + myStr1.isEmpty()); //false
+        System.out.println("myStr2.isEmpty(): " + myStr2.isEmpty()); //true
+        //myStr3.isEmpty() -> NullPointerException!
+        System.out.println("myStr4.isEmpty(): " + myStr4.isEmpty()); //false
+
+        System.out.println();
+
+        // --- isBlank() ---
+        System.out.println("myStr1.isBlank(): " + myStr1.isBlank());  //false
+        System.out.println("myStr2.isBlank(): " + myStr2.isBlank()); //true
+        System.out.println("myStr4.isBlank(): " + myStr4.isBlank()); //true
+
+        System.out.println();
+
+        // --- length() ---
+        System.out.println("myStr1 length: " + myStr1.length()); //5
+        System.out.println("myStr2 length: " + myStr2.length()); //0
+        System.out.println("myStr4 length: " + myStr4.length()); //3
+
+        System.out.println();
+
+        // --- safe check (null + empty/blank) --- EZT HASZNÁLD!
+        if (myStr1 != null && !myStr1.isBlank()) { //myStr1 has meaningful content
+        /*
+        Hiba: Ha az && operátort használod, a program megpróbálja lefuttatni az .isEmpty()-t egy null objektumon, ami azonnali NullPointerException-t (összeomlást) okoz.
+        */
+            System.out.println("myStr1 has meaningful content");
+        }
+
+        if (myStr3 != null || !myStr3.isBlank()) { //myStr3 is null or blank
+            System.out.println("myStr3 has meaningful content");
+        } else {
+            System.out.println("myStr3 is null or blank");
+        }
+
+        System.out.println();
+
+        // --- equals biztonságos használat ---
+        System.out.println("\"\".equals(myStr2): " + "".equals(myStr2)); //true
+        System.out.println("\"\".equals(myStr3): " + "".equals(myStr3)); // nem dob hibát és false
+```
+
 
 ## Javadoc
 
@@ -1471,12 +1542,14 @@ Mire jók a wrapper osztályok?
 
 Példa (autoboxing)
 
+```java
     int x = 5;
     Integer y = x;      // autoboxing
     int z = y;          // unboxing
-
+```
 Példa az automatikus becsomagolásra.
 
+```java
     public static void main(String[] args) {
         int second = 2;
 
@@ -1487,16 +1560,17 @@ Példa az automatikus becsomagolásra.
     public static void test(Integer c) {
         System.out.println(c);
     }
-
+```
 Példa a primitív és objektum másolásra:
 
 Lemásolja az első értékét. **Primitív típus → érték másolódik.**
 
+```java
         int a = 1;
         int b = a; //
         b++;
         System.out.println(" a: " + a + " ; b: " + b);
-
+```
 Mindkét változó ugyanarra az objektumra mutat.  
 setName("Fluffy") az egyetlen közös objektumot módosítja.
 
@@ -1517,9 +1591,10 @@ Példa:
 double → int szűkítő (narrowing) konverzió  
 Java nem engedi automatikusan az adatvesztéssel járó konverziót.
 
+```java
     double d = 3.5;
     int i = d; //❌ Fordítási hiba.
-
+```
 💥 Futási hiba (runtime error)  
 👉 A program elindul, de futás közben elszáll.
 
@@ -1550,6 +1625,7 @@ Mint a nyomtatópapíroknál, ha eggyesével rakod be a papírokat a tárolóba.
 
 Példa:
 
+```java
     public class ElsoProject {
         public static void main(String[] args) {
             int i = 2;
@@ -1565,6 +1641,7 @@ Példa:
             System.out.println(str); //Ennél a sornál már kikerült a lenti képen lévő proba, param és str a Stack-ből.
         }
     }
+```
 
 ## Stack
 
@@ -1585,6 +1662,7 @@ Minden, ami benne van egy osztályban az az objektum része, vagyis a Heap-ben t
 
 Példa:
 
+```java
     public static void main(String[] args) {
         Object o1 = new Object();
         o1 = null;
@@ -1594,6 +1672,7 @@ Példa:
 
     private void proba(Object param) {
     }
+```
 
 Mi történik?
 
@@ -2087,6 +2166,14 @@ Ha kiterjeszthető lenne a Dog osztály, nem lenne final és írunk bele egy fin
 
 # static
 
+A statikus metódusokat és változókat osztály inicializálás nélkül is elkérhetjük és meghívhatjuk. Általában konstansokat ildomos megadni vele. 
+
+```java
+public static final String APP_NAME = "Nagraggini Blogja"
+```
+
+Ekkor név konvenció szerint nagybetűvel írjuk a dolgokat.
+
 ## static metódus
 
 Ha egy osztálynak van statikus metódusa, akkor az példányosítás nélkül meghívható, mert az osztályhoz tartozik, nem az objektumhoz.
@@ -2268,20 +2355,24 @@ Második példa try-with-resources-os:
 
 ArrayIndexOutOfBoundsException
 
+```java
     int num[] = {1, 2, 3, 4, 5};
     System.out.println(num[6]);
+```
 
 NullPointerException
 
+```java
     Cat cat = new Cat();
-    if (cat.getName().equals("Aladár")) {
+    if (cat.getName().equals("Aladár")) { //.equals()
     }
-
+```
 Ezzel is le lehet ellenőrizni, hogy egyenlőe nullával.
 
-    if (cat != null && cat.getName() != null) {
+```java
+    if (cat != null || cat.getName() != null) {
         }
-
+```
 InputMismatchException
 
 pl.: Számot kérünk be, de a felhasználó szöveget ad meg.
@@ -2329,6 +2420,17 @@ Példa:
             //A FileReader sora eljén kattints a villanykörtére -> Add throws declaration
 
         }
+### Gyakori módszer a hiba eldobására
+
+```java
+  String nickname = "   "; // próbáld meg: "Penguin", "", null
+
+        if (nickname == null || nickname.isBlank()) {
+            throw new IllegalArgumentException("Nem lehet üres!");
+        }
+
+        System.out.println("Nickname: " + nickname);
+```
 
 # Inner és Anonim Class
 
@@ -2346,8 +2448,9 @@ scanner.nextInt()
 
 # Példák
 
-## Elágazások
+## Elágazások (if)
 
+```java
     System.out.println("Adj meg egy életkort, és írd kiírom, hogy kiskorú, felnőtt vagy nyugdíjas-e!");
     Scanner sc = new Scanner(System.in);
     int age = sc.nextInt();
@@ -2359,9 +2462,11 @@ scanner.nextInt()
     } else {
         System.out.println("Nyugdíjas");
     }
+```
 
 ## For ciklus és tömbök, valamint kasztolás
 
+```
     System.out.println("Adj meg három számot vesszővel elválasztva, és kiírom, melyik a legnagyobb!");
     Scanner sc = new Scanner(System.in);
     String numbers = sc.nextLine();
@@ -2377,11 +2482,13 @@ scanner.nextInt()
      }
 
     System.out.println("A legnagyobb szám: " + max);
+```
 
 ## Switch-case
 
 A switch nem feltételeket, hanem konkrét értékeket vizsgál; tartományok ellenőrzésére if–else szerkezetet használunk.
 
+```java
     //Csak egyszer fut le.
     Scanner sc = new Scanner(System.in);
     System.out.println("Adj meg egy érdemjegyet (1-5-ig), \n és kiírom szövegesen az eredményt (elégtelen, jeles, stb).");
@@ -2414,9 +2521,11 @@ A switch nem feltételeket, hanem konkrét értékeket vizsgál; tartományok el
     } else {
         System.out.println("Nem számot adtál meg.");
     }
+```
 
-### Másik megoldás (Java 14+ switch expression és do-while)
+### Másik megoldás (Java 14+ switch expression lambdás és do-while)
 
+```java
     Scanner sc = new Scanner(System.in);
     int grade;
 
@@ -2453,9 +2562,11 @@ A switch nem feltételeket, hanem konkrét értékeket vizsgál; tartományok el
     }
 
     sc.close();
+```
 
 ## Do-while és if elágazás
 
+```java
     Scanner sc = new Scanner(System.in);
 
         int number;
@@ -2480,6 +2591,7 @@ A switch nem feltételeket, hanem konkrét értékeket vizsgál; tartományok el
             }
         } while (number < 1 || number > 10);
         System.out.println("Jó a szám, 1 és 10 között van!");
+```
 
 # Java Dinamikus weboldal létrehozása
 
