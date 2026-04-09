@@ -2745,7 +2745,7 @@ public void fajlKiiras() {
         Files.write(
             Path.of("eredmeny.txt"),
             lista.stream()
-                 .map(Object::toString)
+                 .map(Object::toString) //Vagy lehet más metódust is használni.
                  .toList(),
             StandardCharsets.UTF_8
         );
