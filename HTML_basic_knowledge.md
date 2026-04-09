@@ -7,6 +7,7 @@
 - [Alapok](#alapok)
 - [Struktúra](#struktúra)
 - [Táblázat](#táblázat)
+- [Minta struktúra](#minta-struktúra)
 
 # Források
 
@@ -23,6 +24,8 @@ HTML magyarázatok és interaktív példákat [itt](https://www.w3schools.com/ht
 
 # Struktúra
 
+Sorrend: header, main, nav, footer
+
 ```html
 <!doctype html>
 <html lang="en">
@@ -32,6 +35,7 @@ HTML magyarázatok és interaktív példákat [itt](https://www.w3schools.com/ht
         <link rel="stylesheet" href="style.css" />
         <title>Questlog</title>
     </head>
+    <!-- Itt szokott lenni a <nav> tag, a navigációhoz. -->
     <body>
         <header>
             <h1>Gamer/geek teendő lista</h1>
@@ -79,6 +83,9 @@ HTML magyarázatok és interaktív példákat [itt](https://www.w3schools.com/ht
                 </ul>
             </section>
         </main>
+        <footer>
+            <p>Author</p>
+        </footer>
     </body>
     <script src="script.js" defer></script>
 </html>
@@ -107,4 +114,20 @@ HTML magyarázatok és interaktív példákat [itt](https://www.w3schools.com/ht
                         </tr>
                     </tbody>
                 </table>
+```
+
+# Minta struktúra
+
+```bash
+my-website/
+  index.html
+  about.html
+  css/
+    styles.css
+    utilities.css
+  images/
+    logo.svg
+  components/
+    header.html
+    footer.html
 ```
