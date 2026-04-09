@@ -197,7 +197,8 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 [Java programozási nyelv](https://richardkorom.hu/java/backend/bevezetes/)  
 [100+ JavaScript Concepts you Need to Know](https://www.youtube.com/watch?v=lkIFF4maKMU&list=PLuP8i_ZB_YW4dQVl4oZJsFDBOynyBu-uV)  
 
-[Pályakezdő fullstack tutorial csomag](https://www.skillversum.com/note/view/c256d513dd9e6f970aa3daa5ded7496b38d01e78)
+<!--TODO -->
+[Pályakezdő fullstack tutorial csomag](https://www.skillversum.com/note/view/c256d513dd9e6f970aa3daa5ded7496b38d01e78) 
 
 A sanfranciscoboljottem tananyag sorrendje:  
 Programozási alapismeretek  
@@ -2328,15 +2329,18 @@ Használati eset: programhibák, logikai hibák, pl. nem inicializált változó
 
 Első példa:
 
+```java
     try {
         byte a = 300;
         //Ha nem sikerül ezt lefuttatni, akkor az exception részre ugrik a program.
     } catch (Exception e) {
         System.out.println("Kivétel: " + e); //Kiíratjuk a hibaüzenetet.
     }
+```
 
 Második példa try-with-resources-os:
 
+```java
     public static void main(String[] args) {
         File file = new File("C://file.txt");
         try (//A try-catch-t automatikusan hoztam létre az IDE segítségével.
@@ -2350,6 +2354,7 @@ Második példa try-with-resources-os:
             System.out.println("Mindenképpen ez ki lesz írva.");
         }
     }
+```
 
 ### Unchecked Exceptions
 
@@ -2695,6 +2700,29 @@ Egyedi kulcsos keresés: Csak akkor készíts HashMap-et, ha a feladat kifejezet
 # Java Példák és Magyarázatok
 
 ## 1. Fájlbeolvasás
+
+Egyszerű példa:
+
+```java
+  try {
+            File file = new File("fajlnev.txt");
+            if (file.createNewFile()) {
+                System.out.println("A fájl létrehozva ide: " + file.getName()); // System.out.println(file.getAbsoluteFile());
+
+            } else {
+                System.out.println("A fájl már létezik. " + file.exists());
+                System.out.println(".canWrite(): " + file.canWrite()); // ".canWrite(): "+
+                System.out.println(".canRead(): " + file.canRead()); // ".canWrite(): "+
+                file.delete();
+                System.out.println("Fájl törlése sikeres.");
+
+                System.out.println(file.getAbsolutePath()); // System.out.println(file.getAbsoluteFile());
+            }
+        } catch (IOException e) {
+            System.out.println("Error.");
+            e.printStackTrace();
+        }
+```
 
 ```java
 public void fajlBeolvasas(String fajlneve) {
