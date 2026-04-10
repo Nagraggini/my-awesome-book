@@ -43,3 +43,10 @@ projekt-neve/
 ```
 
 Mindegyik fájl ékezet nélküli és kötöjeles (Kebab-case) legyen, valamint átlátható és konzistens.
+
+# Github branch
+
+A Settingben állj át az új branchre és a Pages-en is.
+
+Pages -> build and deployment -> source -> GitHub Actions -> Static HTML
+A branch névre figyelj, hogy megfelelő legyen beállítva.
