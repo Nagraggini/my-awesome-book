@@ -10,6 +10,7 @@
 - [Modern CSS](#modern-css)
 - [Media Query helyett if](#media-query-helyett-if)
   - [Pszeudó (pseudeo)](#pszeudó-pseudeo)
+- [Régebbi böngészők](#régebbi-böngészők)
 - [Tailwind telepítése:](#tailwind-telepítése)
 
 # Forrásaim
@@ -141,6 +142,10 @@ h2:has(.Andi) {
 ```
 
 ---
+
+# Régebbi böngészők
+
+Sok régi böngésző nem támogatja a modern css-t. Emiatt érdemes a css-auto-prefix vs code kiegészítőt letölteni.
 
 # Tailwind telepítése: 
 
