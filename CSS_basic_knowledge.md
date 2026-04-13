@@ -7,6 +7,7 @@
 - [Alapok](#alapok)
 - [Futtatás](#futtatás)
 - [F12](#f12)
+- [Ikonok](#ikonok)
 - [Modern CSS](#modern-css)
 - [Media Query helyett if](#media-query-helyett-if)
   - [Pszeudó (pseudeo)](#pszeudó-pseudeo)
@@ -21,6 +22,9 @@ https://www.w3schools.com/htmlcss/default.asp
 
 
 # Alapok
+
+Érdemes előre megtervezni a weboldal kinézetét. Például itt: https://draw.io/
+Elég egy sematikus ábra, hogy kb itt lesz ennyi gomb stb. Ezt fogja majd tudni.
 
 A tartalmakhoz adunk stílust a css-el. Bizonyos korlátokon belül lehet némi interaktivitást is csinálni css-el pl.: egérműveleteknél, színváltoztatás. Interaktivitás fokozásához javascriptre van szükség.
 
@@ -112,6 +116,9 @@ ul > li {
 
 [Ez](https://specifishity.com/specifishity.pdf) az egyik legjobb magyarázat a css szelektorokra.
 
+# Ikonok
+
+https://fonts.google.com/icons
 
 # Modern CSS
 

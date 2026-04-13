@@ -18,6 +18,9 @@ https://www.w3schools.com/html/default.asp
 
 # Alapok
 
+Érdemes előre megtervezni a weboldal kinézetét. Például itt: https://draw.io/
+Elég egy sematikus ábra, hogy kb itt lesz ennyi gomb stb. Ezt fogja majd tudni.
+
 [Itt](https://codepen.io/) tudsz gyakorolni.
 HTML magyarázatok és interaktív példákat [itt](https://www.w3schools.com/html/default.asp) találsz.
 
