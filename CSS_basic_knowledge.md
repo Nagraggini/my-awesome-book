@@ -7,6 +7,9 @@
 - [Alapok](#alapok)
 - [Futtatás](#futtatás)
 - [F12](#f12)
+- [Miért nem tölt be a js/css?](#miért-nem-tölt-be-a-jscss)
+  - [Abszolut vs relatív útvonal](#abszolut-vs-relatív-útvonal)
+- [Extra szelektor (Selector)](#extra-szelektor-selector)
 - [Ikonok](#ikonok)
 - [Modern CSS](#modern-css)
 - [Media Query helyett if](#media-query-helyett-if)
@@ -18,7 +21,6 @@
 https://www.w3schools.com/css/default.asp
 https://www.w3schools.com/htmlcss/default.asp
 [100+ Web Development Things you Should Know](https://youtu.be/erEgovG9WBs?si=vEFXO3P_WufyaR-C)
-
 
 
 # Alapok
@@ -80,7 +82,63 @@ Felül a kis nyíl mellett van az eszköz váltó, vagyis meg tudod nézni, hogy
 
 Application -> Storare bal oldalt -> Local storage -> Itt látod az elmentett adatokat (JS-ben localStorage-el tudsz menteni.), ha vannak.
 
-#Extra szelektor (Selector)
+# Miért nem tölt be a js/css?
+
+Futtatáskor nyomd mega  böngészőben az F12-t. -> Sources -> Page -> Csekkold le, hogy ott vannak-e a css/js fájlok.
+
+## Abszolut vs relatív útvonal
+
+A mappa szerkezeted (példa):
+Tegyük fel, hogy így néz ki a projekted:
+
+```plaintext
+my-website/
+├── index.html           <-- Te itt állsz a böngészővel
+├── about.html
+└── components/          <-- Ez egy almapa
+    └── header.html      <-- Ezt akarod betölteni
+```
+
+1. Rossz módszer (Abszolút útvonal)
+const path = "/components/header.html";
+
+Jelentése: "Menj a legelső főkapuhoz (szerver gyökér), és ott keresd a components mappát."
+
+Hiba: Ha GitHubon a projekted a /my-website/ mappában van, a főkapunál nem lesz components mappa, csak a my-website mappán belül. Offline is elromlik, mert a számítógéped "főkapuja" a C:/ meghajtó vagy a localhost gyökere.
+
+2. Jó módszer (Relatív útvonal)
+const path = "./components/header.html";
+(Vagy egyszerűen: components/header.html)
+
+Jelentése: "Nézz körbe abban a mappában, ahol most vagyunk (./), keress egy components mappát, és menj bele."
+
+Miért jó? Mindegy, hogy a mappád neve my-website vagy valami-mas, és mindegy, hogy a GitHubon van vagy a gépeden. Mivel az index.html mellett ott van a components mappa, mindig meg fogja találni.
+
+Kipróbálható kódpélda
+Ha az index.html fájlból futtatod a scriptet, így nézzen ki a fetch:
+
+```JavaScript
+// A lényeg: NINCS perjel az elején!
+const url = "components/header-component.html"; 
+
+async function loadHeader() {
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            const html = await response.text();
+            document.getElementById("header-helye").innerHTML = html;
+        } else {
+            console.error("Nem találom a fájlt ezen az úton:", url);
+        }
+    } catch (hiba) {
+        console.error("Hiba történt:", hiba);
+    }
+}
+
+loadHeader();
+```
+
+# Extra szelektor (Selector)
 
 html
 

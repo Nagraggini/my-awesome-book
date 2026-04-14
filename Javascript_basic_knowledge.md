@@ -5,6 +5,7 @@
 - [# Programozás JavaScript nyelven](#-programozás-javascript-nyelven)
 - [Tartalomjegyzék](#tartalomjegyzék)
 - [Források](#források)
+- [Miért nem tölt be a js/css?](#miért-nem-tölt-be-a-jscss)
 - [Strict mód](#strict-mód)
 - [Alert](#alert)
 - [Prompt](#prompt)
@@ -72,6 +73,10 @@ https://www.codedex.io/home
 https://www.freecodecamp.org/learn/javascript-v9/lecture-working-with-the-dom-click-events-and-web-apis/how-do-you-create-new-nodes-using-innerhtml-and-createelement
 https://www.udemy.com/course/the-complete-javascript-course/
 [100+ Web Development Things you Should Know](https://youtu.be/erEgovG9WBs?si=vEFXO3P_WufyaR-C)
+
+# Miért nem tölt be a js/css?
+
+Futtatáskor nyomd mega  böngészőben az F12-t. -> Sources -> Page -> Csekkold le, hogy ott vannak-e a css/js fájlok.
 
 # Strict mód
 
