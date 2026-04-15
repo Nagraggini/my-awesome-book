@@ -11,6 +11,7 @@
   - [Abszolut vs relatív útvonal](#abszolut-vs-relatív-útvonal)
 - [Extra szelektor (Selector)](#extra-szelektor-selector)
 - [Ikonok](#ikonok)
+- [Media Query használata](#media-query-használata)
 - [Modern CSS](#modern-css)
 - [Media Query helyett if](#media-query-helyett-if)
   - [Pszeudó (pseudeo)](#pszeudó-pseudeo)
@@ -177,6 +178,19 @@ ul > li {
 # Ikonok
 
 https://fonts.google.com/icons
+
+# Media Query használata
+
+Fontos, hogy a html tagjében ez szerepeljen, ezzel érzékelni fogja, hogy épp mobilon vagy asztali böngészőben nézi a felhasználó az oldalt:
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+A css-ben:
+```css
+@media (max-width: 768px) {
+    /* Ide jönnek a mobilra szánt módosítások */
+}
+```
 
 # Modern CSS
 
