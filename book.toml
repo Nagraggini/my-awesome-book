@@ -8,19 +8,20 @@ title = "Útmutató kezdőtől haladó szintig a programozáshoz"
 
 # Megjelenés és HTML beállítások
 [output.html]
-# A téma színei és a betűtípusok alapértelmezett beállításai
 default-theme = "light"
 preferred-dark-theme = "navy"
-
-# Kereső funkció (nagyon hasznos az olvasóknak)
 search = true
 
-# Git repository link (ha GitHubon vagy GitLabon van a kód)
-git-repository-url = "https://github.com/felhasznalonev/projekt"
-edit-url-template = "https://github.com/felhasznalonev/projekt/edit/main/src/{path}"
+# Fontos: A link végére kell a /{path}, hogy az adott oldal szerkesztésére vigyen!
+git-repository-url = "https://github.com/Nagraggini/my-awesome-book"
+edit-url-template = "https://github.com/Nagraggini/my-awesome-book/edit/main/src/{path}"
 
-# Lehetővé teszi a kód futtatását és másolását egy gombnyomással. A Playpen bekapcsolása
+# Kódblokk beállítások (Playpen)
 [output.html.playground]
-editable = true      # Szerkesztheti az olvasó a kódot?
-copyable = true      # Legyen "Másolás" gomb a kódblokkon?
-line-numbers = true  # Jelenjenek meg a sorszámok?
+enabled = true
+editable = true
+copyable = true
+line-numbers = true
+
+# Figyelemfelhívó dobozok (admonitions)
+[preprocessor.admonition]

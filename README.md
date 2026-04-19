@@ -13,7 +13,11 @@ Terminálban: sudo snap install mdbook
 mdbook build
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+source $HOME/.cargo/env
 ```
+
+<!--TODO mdbook-admonition telepítése nem sikerült. -->
 
 Ez csak akkor kell, ha van nagy méretű fájlod is.
 Terminálban: 
