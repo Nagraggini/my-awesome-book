@@ -22,7 +22,7 @@ jobs:
               run: mdbook build
 
             - name: Deploy to GitHub Pages
-              uses: peaceiris/actions-gh-pages@v3 # Erre a gp-pages-re kell átállítani a Settings -> Pages-ben.
+              uses: peaceiris/actions-gh-pages@373f9f4a2b7b0c1f9f5e6b9d6f4a123456789abc # Erre a gp-pages-re kell átállítani a Settings -> Pages-ben.
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./book
