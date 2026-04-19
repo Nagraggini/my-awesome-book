@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Playwright - Útmutató kezdőtől haladó szintig a programozáshoz</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="README.html">Bevezető</a></li><li><a href="webfejlesztes-alapok.html"><strong>1.</strong> Webfejlesztés alapok</a></li><li><a href="html.html"><strong>2.</strong> HTML alapok</a></li><li><a href="css.html"><strong>3.</strong> CSS alapok</a></li><li><a href="javascript.html"><strong>4.</strong> JavaScript ismeretek</a></li><li><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong>5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong>6.</strong> Frontend Fejlesztő Checklista</a></li><li><a href="java.html"><strong>7.</strong> Java nyelv</a></li><li><a href="playwright-hasznalata.html" class="active"><strong>8.</strong> Playwright</a></li><li><a href="spring-boot-bevezetese.html"><strong>9.</strong> Spring Boot</a></li><li><a href="kiberbiztonsag.html"><strong>10.</strong> Kiberbiztonság</a></li><li><a href="penzugy.html"><strong>11.</strong> Pénzügyi ismeretek</a></li><li><a href="english-learning.html"><strong>12.</strong> Angol nyelvtanulás</a></li><li><a href="mappa-struktura-es-github.html"><strong>13.</strong> Mappa struktúra és GitHub</a></li><li><a href="webfejlesztes-attekintes.html"><strong>14.</strong> Webfejlesztés áttekintés</a></li><li><a href="motivacio.html"><strong>15.</strong> Motiváció</a></li><li><a href="projekt-otletek.html"><strong>16.</strong> Projekt ötletek</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Útmutató kezdőtől haladó szintig a programozáshoz</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="playwright-hasznalata.html#teszt-playwright" id="teszt-playwright"><h1>Teszt (Playwright)</h1></a>
+<p>Terminálba: npm init playwright@latest
+JavaScript -&gt; tests -&gt; GitHub Actions yes -&gt; Install Playwright browsers? yes</p>
+<p>Egy test mappád legyen, akár kicsi akár nagy betűs.
+Ezután a playwright.config.js-ben csekold le ezt: testDir: './tests',</p>
+<p><strong>Így indítsd el a &quot;Kattintgatós&quot; módot</strong></p>
+<p>Live Server-en indítsd el az oldalt.</p>
+<p>Kattints a bal oldali sávban a Testing (lombik) ikonra.</p>
+<p>Az alsó részen keresd meg a &quot;Record new&quot; gombot.</p>
+<p>Ekkor a Playwright megnyit egy üres böngészőt és egy &quot;Playwright Inspector&quot; ablakot.</p>
+<p>Írd be a címsorba a helyi weboldalad címét (pl. http://127.0.0.1:5500).</p>
+<p>Kezdj el kattintgatni: vegyél fel egy új questet, pipáld ki, töröld le stb.</p>
+<p>Látni fogod, hogy az Inspector ablakban automatikusan generálódik a kód.</p>
+<p>Ha végeztél, csak zárd be a böngészőt, és a VS Code-ban ott lesz az új tesztfájl a kész kóddal!
+Bal oldalt frissítsd a test explorert és nyisd le a test részt ott láthatod az imént felvitt tesztedet.</p>
+<p><strong>Tesztek futtatása</strong></p>
+<p>Live Server-en indítsd el az oldalt.</p>
+<p>Kattints a bal oldali sávban a Testing (lombik) ikonra.
+A test melletti play ikonra kattints.</p>
+<p><strong>GitHub Actions</strong></p>
+<p>Ennek meg kell lennie:
+.github/workflows/playwright.yml</p>
+<p>A szóközöre és tabokra nagyon figyelj.</p>
+<pre><code class="language-yml">name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ] # Ha más a branch neve, akkor írd át.
+  pull_request:
+    branches: [ main, master ] # Ha más a branch neve, akkor írd át.
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+</code></pre>
+<p>Ez az útmutató, hogy mi alapján futtassa a GitHub a teszteket.</p>
+<p>Amikor a terminálban telepítetted a playwright-ot (npm init playwright@latest), akkor yes-t kellett nyomni a GitHub Action-s kérdésre.</p>
+<p>A README-dbe felülre ezt másold be és persze írd be a felhasználónevet és a reponevét.</p>
+<pre><code class="language-bash">![Workflow neve](https://github.com/FELHASZNALONEV/REPO_NEVE/actions/workflows/playwright.yml/badge.svg)
+</code></pre>
+<a class="header" href="playwright-hasznalata.html#playwrightconfigjs" id="playwrightconfigjs"><h2>playwright.config.js</h2></a>
+<p>A GitHub Actions egy üres szerveren fut, ahol nincs elindítva a Live Server, ezért a playwright.config.js fájlba a lentit írd bele, amivel megmondjuk a Playwright-nak, hogy indítsa el a webszervert a tesztek előtt.</p>
+<pre><code class="language-javascript">export default defineConfig({
+
+    use: { //Fontos, hogy ne duplikáld a use részt!
+     //... korábbi sorok
+        baseURL: &quot;http://127.0.0.1:8080&quot;, // Így nem kell mindig beírni.
+        actionTimeout: 10000, // 10 másodperc minden kattintásra/gépelésre
+        navigationTimeout: 15000,
+
+    // ... többi sorok
+        trace: &quot;on-first-retry&quot;,
+    },
+
+//... korábbi sorok
+    /* Run your local dev server before starting the tests */
+    webServer: {
+        command: &quot;npm run start&quot;,
+        url: &quot;http://127.0.0.1:8080&quot;,
+        reuseExistingServer: !process.env.CI,
+        stdout: 'ignore',
+        stderr: 'pipe',
+    },
+// ... többi sor
+});
+</code></pre>
+<p>A &quot;projects: [..]&quot; részen kommenteld ki a safarit és a firefox-ot, ha nem akarod a gépedre is telepíteni azokat.</p>
+<a class="header" href="playwright-hasznalata.html#packagejson" id="packagejson"><h2>package.json</h2></a>
+<p>A gyökér könyvtárban lévő package.json-t ki kell egészíteni a playwright függőséggel:</p>
+<pre><code class="language-js">{
+{
+  }
+ //... korábbi sorok 
+  ,
+  &quot;devDependencies&quot;: {
+    &quot;@playwright/test&quot;: &quot;^1.44.0&quot;
+  }
+// ... többi sor
+}
+</code></pre>
+<p>Valamint ennél:</p>
+<pre><code class="language-js">  &quot;scripts&quot;: {},
+</code></pre>
+<p>Javítsd ki erre:</p>
+<pre><code class="language-js">&quot;scripts&quot;: {
+  &quot;test&quot;: &quot;npx playwright test&quot;,
+  &quot;start&quot;: &quot;servor . 8080 --reload&quot; 
+} //Duplikálni nem szabad.
+</code></pre>
+<p>Fontos , hogy a port számnak mindenhol egyeznie kell.</p>
+<p>Terminálba: npm install --save-dev servor</p>
+<p>Ezek után még csekkold le, hogy tuti nem a live servert akarja használni playwright.
+Terminálba írd be ezt: npx playwright test</p>
+<p>Ha hiba van írd be ezt: npx playwright show-report
+Meg tudod nézni részletesen a hibát.</p>
+<p>Ezután jöhet a commitolás a master/main-be. &quot;Add GitHub Actions workflow&quot; címmel.</p>
+<p>Ezután a GitHub-on az adott reponál az Actions lapfülön láthatod, hogy sikerült-e a teszt.</p>
+<p><strong>Teljes teszthez</strong></p>
+<p>Terminálban:
+Ezzel csak a chromium típusú böngészőben futtatod a tesztet.
+npx playwright test --project=chromium</p>
+<p>npm run start</p>
+<p>Miután elindult minden a leállításhoz a terminálban nyomd meg a ctrl+C-t.
+npx playwright test</p>
+<p>Többi hasznos terminál parancs a teszteléshez:
+npx playwright test --ui
+npx playwright test --debug</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="java.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="spring-boot-bevezetese.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="java.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="spring-boot-bevezetese.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Projekt ötletek - Útmutató kezdőtől haladó szintig a programozáshoz</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="README.html">Bevezető</a></li><li><a href="webfejlesztes-alapok.html"><strong>1.</strong> Webfejlesztés alapok</a></li><li><a href="html.html"><strong>2.</strong> HTML alapok</a></li><li><a href="css.html"><strong>3.</strong> CSS alapok</a></li><li><a href="javascript.html"><strong>4.</strong> JavaScript ismeretek</a></li><li><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong>5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong>6.</strong> Frontend Fejlesztő Checklista</a></li><li><a href="java.html"><strong>7.</strong> Java nyelv</a></li><li><a href="playwright-hasznalata.html"><strong>8.</strong> Playwright</a></li><li><a href="spring-boot-bevezetese.html"><strong>9.</strong> Spring Boot</a></li><li><a href="kiberbiztonsag.html"><strong>10.</strong> Kiberbiztonság</a></li><li><a href="penzugy.html"><strong>11.</strong> Pénzügyi ismeretek</a></li><li><a href="english-learning.html"><strong>12.</strong> Angol nyelvtanulás</a></li><li><a href="mappa-struktura-es-github.html"><strong>13.</strong> Mappa struktúra és GitHub</a></li><li><a href="webfejlesztes-attekintes.html"><strong>14.</strong> Webfejlesztés áttekintés</a></li><li><a href="motivacio.html"><strong>15.</strong> Motiváció</a></li><li><a href="projekt-otletek.html" class="active"><strong>16.</strong> Projekt ötletek</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Útmutató kezdőtől haladó szintig a programozáshoz</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <p><a href="https://www.youtube.com/watch?v=o-TZl7DVvCU">You NEED To Build These 7 Coding Projects</a></p>
+<a class="header" href="projekt-otletek.html#7-kódolási-projekt-kezdőknek" id="7-kódolási-projekt-kezdőknek"><h1>7 Kódolási Projekt Kezdőknek</h1></a>
+<p>Ez a videó 7 alapvető kódolási projektet mutat be, amelyeket érdemes megépítened, ha el akarod sajátítani a programozás alapjait. A készítő hangsúlyozza, hogy ezek a feladatok a tanulást szolgálják, és nem feltétlenül az önéletrajzba valók.</p>
+<!-- TODO later -->
+## Íme a javasolt projektek listája:
+<ol>
+<li>
+<p>Egyszerű számológép alkalmazás: Segít elsajátítani a szintaxist és az alapvető számtani műveleteket.</p>
+</li>
+<li>
+<p>Kvíz alkalmazás: Megtanítja a felhasználói bevitel kezelését és a feltételes logikát.</p>
+</li>
+<li>
+<p>Teendőlista (To-do list): Segítségével megismerheted az alapvető CRUD műveleteket (létrehozás, olvasás, frissítés, törlés) és az adattárolást.</p>
+</li>
+<li>
+<p>Élő valutaátváltó: Fejleszti az API integrációs készségeidet.</p>
+</li>
+<li>
+<p>Időjárás-előrejelző alkalmazás: Szintén az API-k használatát gyakoroltatja, és bevezet a helymeghatározási szolgáltatások használatába.</p>
+</li>
+<li>
+<p>Blog platform: Megtanít a felhasználói bejelentkezés kezelésére és az adatok tartós tárolására.</p>
+</li>
+<li>
+<p>Teljesen működő e-kereskedelmi platform: Ez a legösszetettebb projekt, amely magában foglalja a fizetési integrációt, a felhasználói hitelesítést és az adatbázisokkal való munkát.</p>
+</li>
+</ol>
+<p>A videó végén a készítő megjegyzi, hogy ha már rendelkezel az alapokkal és az önéletrajzodhoz keresel komolyabb ötleteket, érdemes körülnézned neves egyetemek (pl. Harvard, MIT) hackathon projektjei között, vagy inspirálódni a <a href="https://www.producthunt.com/">Product Hunt</a> weboldalon.</p>
+<p>Gyakorlás (Kezdőtől haladó szintig):
+Exercism.org</p>
+<p>Java-központú webfejlesztés:
+https://start.vaadin.com/
+https://www.skillversum.com/note/view/e2b3bd715f5d6eefcb2f3d91e6362ec0b238d71cac3fc57c5d3c9bff7b9fb89c</p>
+<p>Későbbre: https://www.builder.io/</p>
+<p>PWA Tutorial for Beginners
+https://www.youtube.com/watch?v=4XT23X0Fjfk&amp;list=PL4cUxeGkcC9gTxqJBcDmoi5Q2pzDusSL7</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="motivacio.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+
+            </div>
+
+            
+                <a href="motivacio.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

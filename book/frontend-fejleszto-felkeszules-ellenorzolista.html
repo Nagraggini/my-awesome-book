@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Frontend Fejlesztő Checklista - Útmutató kezdőtől haladó szintig a programozáshoz</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="README.html">Bevezető</a></li><li><a href="webfejlesztes-alapok.html"><strong>1.</strong> Webfejlesztés alapok</a></li><li><a href="html.html"><strong>2.</strong> HTML alapok</a></li><li><a href="css.html"><strong>3.</strong> CSS alapok</a></li><li><a href="javascript.html"><strong>4.</strong> JavaScript ismeretek</a></li><li><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong>5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li><a href="frontend-fejleszto-felkeszules-ellenorzolista.html" class="active"><strong>6.</strong> Frontend Fejlesztő Checklista</a></li><li><a href="java.html"><strong>7.</strong> Java nyelv</a></li><li><a href="playwright-hasznalata.html"><strong>8.</strong> Playwright</a></li><li><a href="spring-boot-bevezetese.html"><strong>9.</strong> Spring Boot</a></li><li><a href="kiberbiztonsag.html"><strong>10.</strong> Kiberbiztonság</a></li><li><a href="penzugy.html"><strong>11.</strong> Pénzügyi ismeretek</a></li><li><a href="english-learning.html"><strong>12.</strong> Angol nyelvtanulás</a></li><li><a href="mappa-struktura-es-github.html"><strong>13.</strong> Mappa struktúra és GitHub</a></li><li><a href="webfejlesztes-attekintes.html"><strong>14.</strong> Webfejlesztés áttekintés</a></li><li><a href="motivacio.html"><strong>15.</strong> Motiváció</a></li><li><a href="projekt-otletek.html"><strong>16.</strong> Projekt ötletek</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Útmutató kezdőtől haladó szintig a programozáshoz</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <!--TODO -->
+# Tematika
+<p>Gyakorlati, célzott lista, amit érdemes megtanulnod, ha frontend-es akarsz lenni. A lista a legfontosabb és leggyakrabban elvárt készségeket tartalmazza, sorrendben, hogy könnyebb legyen haladni:</p>
+<ol>
+<li>Alapok</li>
+</ol>
+<p>HTML5 → strukturált, szemantikus elemek, formok, táblázatok, meta tag-ek.
+CSS3 → layoutok (flexbox, grid), színek, tipográfia, animációk, pseudo-élések.
+JavaScript (ES6+) → változók, függvények, arrow function, DOM manipuláció, eventek, async/await, Promise-k.</p>
+<ol start="2">
+<li>Modern frontend keretrendszerek</li>
+</ol>
+<p>React.js (leggyakoribb) → komponensek, state, props, lifecycle, hooks.
+Angular vagy Vue.js → ha hirdetés kifejezetten ezeket kéri.
+TypeScript → erősen ajánlott a React/Angular projekteknél, típusbiztonság.</p>
+<ol start="3">
+<li>Stílusok, preprocesszorok</li>
+</ol>
+<p>SASS / SCSS → változók, mixin-ek, nesting.
+CSS modulok → lokális stíluskezelés.
+Responsive design → media query-k, mobilbarát elrendezés, reszponzív UI.</p>
+<ol start="4">
+<li>Verziókezelés és eszközök</li>
+</ol>
+<p>Git → commit, branch, merge, pull, push, rebase.
+NPM/Yarn → csomagkezelés, dependency management.
+Webpack / Vite / Parcel → projekt buildelés, bundling alapok.</p>
+<ol start="5">
+<li>API-k és kommunikáció backenddel</li>
+</ol>
+<p>REST API → fetch, axios, HTTP metódusok (GET, POST, PUT, DELETE).
+GraphQL → ha az állás kéri.
+Async programozás → Promise, async/await, error handling.</p>
+<ol start="6">
+<li>Tesztelés és minőségbiztosítás</li>
+</ol>
+<p>Unit testing → Jest, React Testing Library.
+End-to-end teszt → Cypress, Playwright (előny, nem mindenhol kötelező).</p>
+<ol start="7">
+<li>Egyéb fontos készségek</li>
+</ol>
+<p>Cross-browser kompatibilitás → Chrome, Firefox, Edge, Safari.
+Performance optimalizálás → lazy loading, code splitting, image optimization.
+Soft skillek → csapatmunka, dokumentáció, problémamegoldás.
+Angol nyelvtudás → dokumentáció, kommunikáció, külföldi csapatok.</p>
+<ol start="8">
+<li>Tapasztalat / portfólió</li>
+</ol>
+<p>GitHub / GitLab → saját projektek, kódminták.
+Mini projektek → pl. To do app, weather app, saját portfólió oldal.
+Junior pozíciókhoz → 1–2 kisebb projekt is elég.
+Medior/Senior pozíciókhoz → 3–5 projekt, komplex UI, API integráció, esetleg csapatban végzett munka.</p>
+<a class="header" href="frontend-fejleszto-felkeszules-ellenorzolista.html#12-hónapos-tanulási-terv--frontend-fejlesztő" id="12-hónapos-tanulási-terv--frontend-fejlesztő"><h1>1–2 hónapos tanulási terv – Frontend fejlesztő</h1></a>
+<ol>
+<li>hét – HTML5 és CSS3 alapok</li>
+</ol>
+<p>HTML5: szemantikus elemek (header, footer, article, section), formok, táblázatok, linkek, képek, meta tag-ek.
+CSS3: alapok (színek, fontok, box-model), display (block, inline, inline-block), pozicionálás, float, clear.
+Gyakorlat: készíts egy egyszerű saját portfólió oldalt, amiben van fejléc, navigáció, tartalom, lábléc.</p>
+<ol start="2">
+<li>hét – CSS fejlettebb technikák</li>
+</ol>
+<p>Flexbox → layoutok készítése, igazítás, rugalmas elemek.
+CSS Grid → rács alapú elrendezések.
+Reszponzív design → media query-k, mobilbarát elrendezések.
+Gyakorlat: a portfólió oldal legyen reszponzív, különböző képernyőméretekre.</p>
+<ol start="3">
+<li>hét – JavaScript alapok</li>
+</ol>
+<p>Alapok: változók (let, const), függvények, ciklusok, feltételek.
+DOM manipuláció → elemek lekérdezése, eseménykezelés (addEventListener).
+Async programozás → Promise, async/await, fetch API.
+Gyakorlat: készíts egy interaktív To do alkalmazást (hozzáadás, törlés, státusz módosítás).</p>
+<ol start="4">
+<li>hét – Modern JavaScript + TypeScript</li>
+</ol>
+<p>ES6+: arrow function, destructuring, template string, spread/rest operator.
+TypeScript: alapok (típusok, interface-ek, osztályok), egyszerű JS projekt átalakítása TS-re.
+Gyakorlat: To do alkalmazás átalakítása TypeScript-tel.</p>
+<ol start="5">
+<li>hét – Frontend keretrendszer</li>
+</ol>
+<p>React.js: komponensek, state, props, lifecycle, hooks (useState, useEffect).
+Routing → React Router alapok.
+Form kezelés → kontrollált és kontrollálatlan komponensek.
+Gyakorlat: To do app újraírása React + TS + CSS modulok segítségével.</p>
+<ol start="6">
+<li>hét – API integráció és verziókezelés</li>
+</ol>
+<p>REST API → fetch/axios, CRUD műveletek.
+Git alapok → commit, branch, merge, pull, push.
+Projekt feltöltése GitHub-ra → portfólió link.
+Gyakorlat: To do app adatainak tárolása egy külső API-val.</p>
+<ol start="7">
+<li>hét – Tesztelés és optimalizáció</li>
+</ol>
+<p>Unit teszt → Jest, React Testing Library alapok.
+E2E teszt → alap Cypress teszt (pl. To do app működésének ellenőrzése).
+Teljesítmény → képek optimalizálása, lazy loading, kód splitting.
+Gyakorlat: portfólió oldal betöltési idejének optimalizálása, alap tesztek írása.</p>
+<ol start="8">
+<li>hét – Portfólió és soft-skillek</li>
+</ol>
+<p>Portfólió oldal véglegesítése → linkek, projekt bemutatók, GitHub referenciák.
+Soft-skillek → kommunikáció, dokumentáció írása, angol nyelvű rövid leírások a projektekhez.</p>
+<p>Gyakorlat: minden projekt legyen dokumentálva, működő linkek, rövid leírások, screenshotok.</p>
+<p>Ez a terv heti 10–15 óra tanulást feltételez, de akár gyorsabban is haladhatsz, ha több időd van.</p>
+<a class="header" href="frontend-fejleszto-felkeszules-ellenorzolista.html#frontend-fejlesztői-felkészülési-checklist" id="frontend-fejlesztői-felkészülési-checklist"><h1>Frontend fejlesztői felkészülési checklist</h1></a>
+<ol>
+<li>hét – HTML5 és CSS3 alapok</li>
+</ol>
+<p>[ ] HTML5 szemantikus elemek (header, footer, article, section)
+[ ] Linkek, képek, formok, táblázatok
+[ ] CSS3 alapok: box-model, színek, fontok, display
+[ ] Saját egyszerű portfólió oldal készítése</p>
+<ol start="2">
+<li>hét – CSS fejlettebb technikák</li>
+</ol>
+<p>[ ] Flexbox alapok, igazítás, rugalmas elemek
+[ ] CSS Grid alapok
+[ ] Reszponzív design: media query-k, mobilbarát elrendezések
+[ ] Portfólió oldal reszponzív kialakítása</p>
+<ol start="3">
+<li>hét – JavaScript alapok</li>
+</ol>
+<p>[ ] Változók (let, const), függvények, ciklusok, feltételek
+[ ] DOM manipuláció, eseménykezelés (addEventListener)
+[ ] Async programozás: Promise, async/await, fetch API
+[ ] Interaktív To do alkalmazás készítése</p>
+<ol start="4">
+<li>hét – Modern JavaScript + TypeScript</li>
+</ol>
+<p>[ ] ES6+ funkciók: arrow function, destructuring, template string, spread/rest
+[ ] TypeScript alapok: típusok, interface-ek, osztályok
+[ ] To do alkalmazás átalakítása TypeScript-tel</p>
+<ol start="5">
+<li>hét – Frontend keretrendszer</li>
+</ol>
+<p>[ ] React.js alapok: komponensek, state, props, lifecycle, hooks
+[ ] Routing: React Router alapok
+[ ] Form kezelés: kontrollált és kontrollálatlan formok
+[ ] To do app újraírása React + TS + CSS modulok segítségével</p>
+<ol start="6">
+<li>hét – API integráció és verziókezelés</li>
+</ol>
+<p>[ ] REST API: fetch/axios, CRUD műveletek
+[ ] Git alapok: commit, branch, merge, pull, push
+[ ] Projekt feltöltése GitHub-ra, portfólió link létrehozása
+[ ] To do app adatainak tárolása külső API-val</p>
+<ol start="7">
+<li>hét – Tesztelés és optimalizáció</li>
+</ol>
+<p>[ ] Unit teszt: Jest, React Testing Library alapok
+[ ] E2E teszt: Cypress alap (pl. To do app működésének ellenőrzése)
+[ ] Teljesítmény optimalizálás: képek, lazy loading, code splitting
+[ ] Portfólió oldal betöltési idejének javítása, alap tesztek írása</p>
+<ol start="8">
+<li>hét – Portfólió és soft-skillek</li>
+</ol>
+<p>[ ] Portfólió oldal véglegesítése: linkek, projekt bemutatók, GitHub referenciák
+[ ] Dokumentáció: rövid leírások minden projekthez, angol nyelvű verzió
+[ ] Soft-skillek: problémamegoldás, csapatmunka, kommunikáció</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="uj-webes-projekt-letrehozasa-kozepszint.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="java.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="uj-webes-projekt-letrehozasa-kozepszint.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="java.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>
