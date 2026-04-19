@@ -1,0 +1,24 @@
+name: deploy
+on:
+    push:
+        branches:
+            - main
+permissions:
+    contents: write
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Install mdBook
+              run: |
+                  curl -sSL [https://github.com/rust-lang/mdBook/releases/download/v0.4.37/mdbook-v0.4.37-x86_64-unknown-linux-gnu.tar.gz](https://github.com/rust-lang/mdBook/releases/download/v0.4.37/mdbook-v0.4.37-x86_64-unknown-linux-gnu.tar.gz) | tar -xz
+                  chmod +x mdbook
+                  mv mdbook /usr/local/bin/
+            - name: Build and Deploy
+              run: mdbook build
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./book

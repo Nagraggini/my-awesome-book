@@ -6,6 +6,7 @@
 - [HTML alapok](html.md)
 - [CSS alapok](css.md)
 - [JavaScript ismeretek](javascript.md)
+- [Automatizált webes projekt létrejozása - középhaladó szint](uj-webes-projekt-letrehozasa-kozepszint.md)
 - [Frontend Fejlesztő Checklista](frontend-fejleszto-felkeszules-ellenorzolista.md)
 
 ## Programozási Nyelvek és Eszközök

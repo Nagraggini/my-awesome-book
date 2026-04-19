@@ -1,3 +1,5 @@
+Live demo: 
+
 # Könyv létrehozása
 
 ## Előkészületek
@@ -7,9 +9,19 @@ A book.toml fájl elején definiálod a legfontosabb metaadatokat. Ez a fájl a 
 ## Telepítés
 
 Terminálban: sudo snap install mdbook
+```bash
 mdbook build
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Ez csak akkor kell, ha van nagy méretű fájlod is.
+Terminálban: 
+```bash
+sudo apt update
+sudo apt install git-lfs
+git lfs install
+```
 
 ## Mappa struktúra
 
@@ -39,8 +51,22 @@ my-awesome-book/
     └── draft/              # Pisztolatok (amiket még nem veszel fel a SUMMARY-ba)
 ```
 
+Kommitolj egyet.
 
+# Weboldal link kreálás
 
+Github-on a könyvet repojába lépj be. -> Settings -> Pages -> Branch-nél válaszd ki a main-t, vagy ahogy elnevezted. -> Save
+
+Pár perc múlva meg fog jelenni felül a linked.
+
+## A publikálás automatizálása (GitHub Actions)
+
+Ez a legprofibb módszer: minden alkalommal, amikor feltöltöd a kódot, a GitHub automatikusan "megépíti" és frissíti a könyv linkjét.
+
+A VS Code-ban hozz létre egy ilyen mappaszerkezetet: .github/workflows/ (ponttal az elején!).
+
+Ebbe a mappába hozz létre egy fájlt: deploy.yml.
+A sablon szöveget a deploy.yml fájlomban láthatod.
 
 # Futtatás
 Tesztelés: mdbook serve
