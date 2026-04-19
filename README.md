@@ -58,13 +58,7 @@ my-awesome-book/
 
 Kommitolj egyet.
 
-# Weboldal link kreálás
-
-Github-on a könyvet repojába lépj be. -> Settings -> Pages -> Branch-nél válaszd ki a main-t, vagy ahogy elnevezted. -> Save
-
-Pár perc múlva meg fog jelenni felül a linked.
-
-## A publikálás automatizálása (GitHub Actions)
+# A publikálás automatizálása (GitHub Actions)
 
 Ez a legprofibb módszer: minden alkalommal, amikor feltöltöd a kódot, a GitHub automatikusan "megépíti" és frissíti a könyv linkjét.
 
@@ -73,6 +67,20 @@ A VS Code-ban hozz létre egy ilyen mappaszerkezetet: .github/workflows/ (pontta
 Ebbe a mappába hozz létre egy fájlt: deploy.yml.
 A sablon szöveget a deploy.yml fájlomban láthatod.
 
+Github-on a könyvet repojába lépj be. -> Settings -> Pages -> Branch-nél válaszd ki a gp-pages-t, vagy ahogy elnevezted a workflow-ban. -> Save
+
+Pár perc múlva meg fog jelenni felül a linked.
+
 # Futtatás
+
 Tesztelés: mdbook serve
 Leállítás: Terminálban nyomj egy ctrl+c-t.
+
+## Commitoláshoz
+
+Kijelölés: git add .
+Mentés: git commit -m "Fixed: "
+Feltöltés: git push
+
+Csekkolás:
+git status
