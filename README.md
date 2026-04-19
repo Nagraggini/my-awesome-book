@@ -73,9 +73,7 @@ Pár perc múlva meg fog jelenni felül a linked.
 
 # Futtatás
 
-Tesztelés: 
-mdbook build
-mdbook serve
+Tesztelés: mdbook serve
 
 Leállítás: Terminálban nyomj egy ctrl+c-t.
 
