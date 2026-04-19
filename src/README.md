@@ -57,3 +57,5 @@
 
 * [Tesztelés alapjai](https://www.youtube.com/watch?v=XKFWANvLoGo&list=PLimzEeSv6f4XDEg0glRcKVvLNUgZdjbQa&index=2)
 * [JUnit test](https://www.codecademy.com/courses/learn-intermediate-java-junit-testing/lessons/junit-testing/exercises/junit-classes-and-methods)
+
+A könyveb repoját [itt](https://github.com/Nagraggini/my-awesome-book) találod.
