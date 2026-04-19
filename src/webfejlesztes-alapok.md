@@ -2,7 +2,8 @@
 
 ## Stabil alapok
 
-**Nagyon fontos, hogy meglegyenek a stabil alapok. Elsőnek érdemes megtanulni a webprogramozást. És nem-nem kell framework és különféle library!**
+> [!NOTE]
+> Nagyon fontos, hogy meglegyenek a stabil alapok. Elsőnek érdemes megtanulni a webprogramozást. És nem-nem kell framework és különféle library!
 
 # Hasznos linkek
 

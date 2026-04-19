@@ -17,7 +17,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 ```
 
-<!--TODO mdbook-admonition telepítése nem sikerült. -->
+<!--TODO mdbook-admonition telepítése nem sikerült. mdbook-playpen, mdbook test, mdbook-toc, mdbook-mermaid használata -->
+<!--TODO Link checker: Megnézi, hogy van-e halott link a könyvben.-->
 
 Ez csak akkor kell, ha van nagy méretű fájlod is.
 Terminálban: 
