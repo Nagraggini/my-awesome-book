@@ -8,6 +8,8 @@ title = "Útmutató kezdőtől haladó szintig a programozáshoz"
 
 # Megjelenés és HTML beállítások
 [output.html]
+# Ez a sor a kulcs! A tárolód neve kell ide perjelek között.
+site-url = "/my-awesome-book/"
 default-theme = "light"
 preferred-dark-theme = "navy"
 search = true
