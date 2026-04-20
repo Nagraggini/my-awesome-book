@@ -146,6 +146,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
     - [Melyiket válaszd?](#melyiket-válaszd)
   - [Mit használj a vizsgán?](#mit-használj-a-vizsgán)
 - [Java Példák és Magyarázatok](#java-példák-és-magyarázatok)
+  - [Összehasonlítás: Lambda vs. Metódusreferencia](#összehasonlítás-lambda-vs-metódusreferencia)
   - [1. Fájlbeolvasás](#1-fájlbeolvasás)
   - [2. Fájlkiírás](#2-fájlkiírás)
   - [3. Stream műveletek](#3-stream-műveletek)
@@ -2698,6 +2699,14 @@ Egyedi kulcsos keresés: Csak akkor készíts HashMap-et, ha a feladat kifejezet
 
 
 # Java Példák és Magyarázatok
+
+## Összehasonlítás: Lambda vs. Metódusreferencia
+
+Metódus referencia: Object::toString
+Nem kell átadni paramétert.
+
+Lambda: o -> o.toString(elvalsztojel)
+Kell átadni paramétert.
 
 ## 1. Fájlbeolvasás
 

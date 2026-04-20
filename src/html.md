@@ -31,66 +31,111 @@ Sorrend: header, main, nav, footer
 
 ```html
 <!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
-        <title>Questlog</title>
-    </head>
-    <!-- Itt szokott lenni a <nav> tag, a navigációhoz. -->
-    <body>
-        <header>
-            <h1>Gamer/geek teendő lista</h1>
-            <!--A bekért nevet írjuk ki.-->
-            <h2>Szia!</h2>
-            <section class="inputSection">
-                <form id="nameForm">
-                    <label>Your name: </label>
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="Pls write your name"
-                        required
-                    />
-                    <button type="sumbit">Submit</button>
-                </form>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Questlog - Gamer teendő lista" />
 
-                <form id="newquestForm">
-                    <!--Megnevezés, Dátum, Fontosság {nem fontos, normál, fontos}  -->
-                    <label>Quest name: </label>
-                    <input
-                        type="text"
-                        id="description"
-                        placeholder="Pls describe"
-                        required
-                    />
-                    <input type="date" required />
-                    <select name="priority" id="priority" required>
-                        <option value="">Choose priority</option>
-                        <option value="Not important">Not important</option>
-                        <option value="Normal">Normal</option>
-                        <option value="Important">Important</option>
+    <title>Questlog</title>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="site-header">
+        <nav class="nav">
+            <h1 class="logo">Questlog</h1>
+        </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- USER SECTION -->
+        <section aria-labelledby="user-title">
+            <h2 id="user-title">Felhasználó</h2>
+
+            <form id="nameForm" class="card">
+                <label for="name">Neved</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name"
+                    placeholder="Írd be a neved"
+                    autocomplete="name"
+                    required 
+                />
+                <button type="submit">Mentés</button>
+            </form>
+
+            <p id="greeting" aria-live="polite"></p>
+        </section>
+
+        <!-- ADD QUEST -->
+        <section aria-labelledby="quest-form-title">
+            <h2 id="quest-form-title">Új küldetés</h2>
+
+            <form id="questForm" class="card">
+                <div class="form-group">
+                    <label for="description">Megnevezés</label>
+                    <input type="text" id="description" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Határidő</label>
+                    <input type="date" id="date" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="priority">Prioritás</label>
+                    <select id="priority" required>
+                        <option value="">Válassz</option>
+                        <option value="low">Nem fontos</option>
+                        <option value="normal">Normál</option>
+                        <option value="high">Fontos</option>
                     </select>
-                    <button type="sumbit">Submit</button>
-                </form>
-            </section>
-        </header>
-        <main>
-            <section class="mainSection">
-                <!--Nem minden esetben kell.-->
-                <!--<article></article>-->
-                <h3>Active quests</h3>
-                <ul id="quest-list">
-                    <li>Check my mail box.</li>
-                </ul>
-            </section>
-        </main>
-        <footer>
-            <p>Author</p>
-        </footer>
-    </body>
+                </div>
+
+                <button type="submit">Hozzáadás</button>
+            </form>
+        </section>
+
+        <!-- QUEST LIST -->
+        <section aria-labelledby="quest-list-title">
+            <h2 id="quest-list-title">Aktív küldetések</h2>
+
+            <ul id="quest-list" class="quest-list">
+                
+                <li>
+                    <article class="quest-card" data-priority="normal">
+                        <header>
+                            <h3>Check my mailbox</h3>
+                        </header>
+
+                        <p><strong>Határidő:</strong> 2026-04-20</p>
+                        <p><strong>Prioritás:</strong> Normál</p>
+
+                        <footer>
+                            <button class="complete-btn">Kész</button>
+                            <button class="delete-btn">Törlés</button>
+                        </footer>
+                    </article>
+                </li>
+
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <small>&copy; 2026 Questlog</small>
+    </footer>
+
     <script src="script.js" defer></script>
+</body>
 </html>
 
 ```
