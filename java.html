@@ -1,0 +1,3606 @@
+<!DOCTYPE HTML>
+<html lang="hu" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Java nyelv - Útmutató kezdőtől haladó szintig a programozáshoz</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Bevezető</a></li><li class="chapter-item expanded "><a href="webfejlesztes-alapok.html"><strong aria-hidden="true">1.</strong> Webfejlesztés alapok</a></li><li class="chapter-item expanded "><a href="html.html"><strong aria-hidden="true">2.</strong> HTML alapok</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">3.</strong> CSS alapok</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.</strong> JavaScript ismeretek</a></li><li class="chapter-item expanded "><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong aria-hidden="true">5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li class="chapter-item expanded "><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong aria-hidden="true">6.</strong> Frontend Fejlesztő Checklista</a></li><li class="chapter-item expanded "><a href="java.html" class="active"><strong aria-hidden="true">7.</strong> Java nyelv</a></li><li class="chapter-item expanded "><a href="teszt-automatizalas.html"><strong aria-hidden="true">8.</strong> Teszt automatizálás</a></li><li class="chapter-item expanded "><a href="playwright-hasznalata.html"><strong aria-hidden="true">9.</strong> Playwright</a></li><li class="chapter-item expanded "><a href="spring-boot-bevezetese.html"><strong aria-hidden="true">10.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="kiberbiztonsag.html"><strong aria-hidden="true">11.</strong> Kiberbiztonság</a></li><li class="chapter-item expanded "><a href="penzugy.html"><strong aria-hidden="true">12.</strong> Pénzügyi ismeretek</a></li><li class="chapter-item expanded "><a href="english-learning.html"><strong aria-hidden="true">13.</strong> Angol nyelvtanulás</a></li><li class="chapter-item expanded "><a href="mappa-struktura-es-github.html"><strong aria-hidden="true">14.</strong> Mappa struktúra és GitHub</a></li><li class="chapter-item expanded "><a href="webfejlesztes-attekintes.html"><strong aria-hidden="true">15.</strong> Webfejlesztés áttekintés</a></li><li class="chapter-item expanded "><a href="extra-nagyon-hasznos-kiegeszitok.html"><strong aria-hidden="true">16.</strong> Extra nagyon hasznos kiegészítők</a></li><li class="chapter-item expanded "><a href="motivacio.html"><strong aria-hidden="true">17.</strong> Motiváció</a></li><li class="chapter-item expanded "><a href="projekt-otletek.html"><strong aria-hidden="true">18.</strong> Projekt ötletek</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Útmutató kezdőtől haladó szintig a programozáshoz</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="programozás-java-nyelven"><a class="header" href="#programozás-java-nyelven">Programozás Java nyelven</a></h1>
+<p>Útmutató, hogyan legyél programozó:</p>
+<ol>
+<li>Nézz meg egy gyorstalpaló tananyagot.</li>
+<li>Készíts el 3 darab irányított (guided) projektet.</li>
+<li>Készíts egy saját projektet minden segítség nélkül.</li>
+</ol>
+<p>Ez a jegyzet a Java programozási nyelv legfontosabb alapfogalmait foglalja össze tanulási célból.</p>
+<p>A dokumentum bemutatja:</p>
+<ul>
+<li>a Java működésének alapjait (JVM, fordítási folyamat),</li>
+<li>az alapvető adattípusokat,</li>
+<li>az objektumorientált programozás (OOP) fő elveit,</li>
+<li>a metódusok, osztályok, konstruktorok és öröklődés használatát,</li>
+<li>valamint néhány gyakori programozási és állásinterjús kérdést.</li>
+</ul>
+<p>A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java alapjairól, amely segíti a tanulást és a gyors ismétlést.</p>
+<h1 id="tartalomjegyzék"><a class="header" href="#tartalomjegyzék">Tartalomjegyzék</a></h1>
+<p><a href="#programoz%C3%A1s-java-nyelven">Programozás Java nyelven</a></p>
+<ul>
+<li><a href="#programoz%C3%A1s-java-nyelven">Programozás Java nyelven</a></li>
+<li><a href="#tartalomjegyz%C3%A9k">Tartalomjegyzék</a></li>
+<li><a href="#forr%C3%A1sok">Források</a></li>
+<li><a href="#%C3%A1ltal%C3%A1nos-inf%C3%B3k">Általános infók</a>
+<ul>
+<li><a href="#java-ford%C3%ADt%C3%A1si-%C3%A9s-futtat%C3%A1si-folyamat">Java fordítási és futtatási folyamat</a></li>
+</ul>
+</li>
+<li><a href="#fejleszt%C5%91i-k%C3%B6rnyezet">Fejlesztői környezet</a>
+<ul>
+<li><a href="#jdoodle">JDoodle</a></li>
+<li><a href="#visual-studio-code">Visual Studio Code</a></li>
+<li><a href="#eclipse">Eclipse</a>
+<ul>
+<li><a href="#eclipse-tov%C3%A1bbi-be%C3%A1ll%C3%ADt%C3%A1s">Eclipse további beállítás:</a></li>
+<li><a href="#java-technol%C3%B3giai-%C3%A1ttekint%C3%A9s-%C3%A9s-m%C5%B1k%C3%B6d%C3%A9s">Java technológiai áttekintés és működés</a></li>
+</ul>
+</li>
+<li><a href="#netbeans">Netbeans</a></li>
+<li><a href="#intellij-idea">IntelliJ IDEA</a></li>
+</ul>
+</li>
+<li><a href="#projekt-import%C3%A1l%C3%A1sa-vs-code-ban">Projekt importálása VS Code-ban</a></li>
+<li><a href="#adatt%C3%ADpusok">Adattípusok</a>
+<ul>
+<li><a href="#primit%C3%ADv-adatt%C3%ADpusok">Primitív adattípusok</a></li>
+<li><a href="#%C3%B6sszetett-adatt%C3%ADpusok-referencia-t%C3%ADpusok">Összetett adattípusok (referencia típusok)</a></li>
+<li><a href="#joker">Joker</a></li>
+<li><a href="#pontosan-hogyan-t%C3%A1rol%C3%B3dnak-a-v%C3%A1ltoz%C3%B3k-a-mem%C3%B3ri%C3%A1ban">Pontosan hogyan tárolódnak a változók a memóriában</a></li>
+</ul>
+</li>
+<li><a href="#objektum-orient%C3%A1lt-programoz%C3%A1s-oop">Objektum orientált programozás (OOP)</a>
+<ul>
+<li><a href="#met%C3%B3dusok">Metódusok</a></li>
+<li><a href="#netbeans-1">NetBeans</a></li>
+<li><a href="#vs-code">VS Code</a></li>
+<li><a href="#this">This</a></li>
+<li><a href="#p%C3%A9ld%C3%A1k">Példák</a>
+<ul>
+<li><a href="#els%C5%91-%C3%A9s-m%C3%A1sodik-p%C3%A9lda">Első és második példa:</a></li>
+</ul>
+</li>
+<li><a href="#h%C3%A1romoperandus%C3%BA-oper%C3%A1tor">Háromoperandusú Operátor</a></li>
+<li><a href="#v%C3%A1ltoz%C3%B3-ellen%C5%91rz%C3%A9se-%C3%BCres---isblank">Változó ellenőrzése (üres? != &amp;&amp; .isBlank())</a></li>
+<li><a href="#javadoc">Javadoc</a></li>
+<li><a href="#logika">Logika</a></li>
+<li><a href="#polimorfizmus-t%C3%B6bbalak%C3%BAs%C3%A1g">Polimorfizmus (Többalakúság)</a></li>
+<li><a href="#%C3%B6r%C3%B6kl%C3%A9s-%C3%A9s-override">Öröklés és Override</a></li>
+<li><a href="#interf%C3%A9sz">Interfész</a></li>
+<li><a href="#konstruktor">Konstruktor</a>
+<ul>
+<li><a href="#els%C5%91-m%C3%B3dszer-a-n%C3%A9v-megv%C3%A1ltoztat%C3%A1s%C3%A1ra">Első módszer a név megváltoztatására:</a></li>
+<li><a href="#m%C3%A1sodik-m%C3%B3dszer-a-n%C3%A9v-megv%C3%A1ltoztat%C3%A1s%C3%A1ra">Második módszer a név megváltoztatására:</a></li>
+<li><a href="#harmadik-m%C3%B3dszer-a-n%C3%A9v-megv%C3%A1ltoztat%C3%A1s%C3%A1ra">Harmadik módszer a név megváltoztatására:</a></li>
+<li><a href="#negyedik-m%C3%B3dszer-a-n%C3%A9v-megv%C3%A1ltoztat%C3%A1s%C3%A1ra">Negyedik módszer a név megváltoztatására:</a></li>
+<li><a href="#overloading-t%C3%BAlterhel%C3%A9s">Overloading (túlterhelés)</a></li>
+</ul>
+</li>
+<li><a href="#super">Super</a></li>
+<li><a href="#oop-alapelve">OOP alapelve</a></li>
+</ul>
+</li>
+<li><a href="#ism%C3%A9tl%C3%A9s-%C3%A9s-k%C3%B6nny%C5%B1-%C3%A1ll%C3%A1sinterj%C3%BAs-k%C3%A9rd%C3%A9sek">Ismétlés és könnyű állásinterjús kérdések</a>
+<ul>
+<li><a href="#konkaten%C3%A1ci%C3%B3">Konkatenáció</a>
+<ul>
+<li><a href="#becsap%C3%B3s-k%C3%A9rd%C3%A9s">Becsapós kérdés</a></li>
+<li><a href="#2-becsap%C3%B3s-k%C3%A9rd%C3%A9s">2. Becsapós kérdés</a></li>
+</ul>
+</li>
+<li><a href="#sort%C3%B6r%C3%A9sek">Sortörések</a></li>
+<li><a href="#lefut-e">Lefut-e?</a></li>
+<li><a href="#explicit-cast-sz%C5%B1k%C3%ADt%C3%A9s">Explicit cast (szűkítés)</a></li>
+<li><a href="#overflow-t%C3%BAlcsordul%C3%A1s">Overflow (Túlcsordulás)</a></li>
+<li><a href="#t%C3%ADpuskonverzi%C3%B3-szab%C3%A1ly-k%C3%A9nyszer%C3%ADt%C3%A9s">Típuskonverzió szabály (Kényszerítés)</a>
+<ul>
+<li><a href="#double--int-sz%C5%B1k%C3%ADt%C5%91-narrowing-konverzi%C3%B3">double → int szűkítő (narrowing) konverzió</a></li>
+</ul>
+</li>
+<li><a href="#v%C3%A1ltoz%C3%B3nevek-szab%C3%A1lyai">Változónevek szabályai</a></li>
+</ul>
+</li>
+<li><a href="#kasztol%C3%A1s">Kasztolás</a>
+<ul>
+<li><a href="#helyes-megold%C3%A1sok-char--string-konvert%C3%A1l%C3%A1sra">Helyes megoldások char → String konvertálásra</a></li>
+<li><a href="#parse">Parse</a></li>
+</ul>
+</li>
+<li><a href="#java-d%C3%A1tum-%C3%A9s-id%C5%91-kezel%C3%A9s-javatime">Java dátum és idő kezelés (java.time)</a>
+<ul>
+<li><a href="#r%C3%B6vid-cheat-sheet">Rövid cheat sheet</a></li>
+</ul>
+</li>
+<li><a href="#math">Math()</a></li>
+<li><a href="#wrapper-burkol%C3%B3-oszt%C3%A1lyok">Wrapper (burkoló) osztályok</a>
+<ul>
+<li><a href="#ford%C3%ADt%C3%A1si-hiba--fut%C3%A1si-hiba">Fordítási hiba ≠ futási hiba</a></li>
+</ul>
+</li>
+<li><a href="#stack-heap-%C3%A9s-garbage-collector">Stack, Heap és Garbage Collector</a>
+<ul>
+<li><a href="#stack">Stack</a></li>
+<li><a href="#heap">Heap</a></li>
+<li><a href="#f%C5%91bb-nem-primit%C3%ADv-t%C3%ADpusok">Főbb nem-primitív típusok</a></li>
+<li><a href="#garbage-collector-szem%C3%A9tgy%C5%B1jt%C5%91">Garbage Collector (Szemétgyűjtő)</a></li>
+</ul>
+</li>
+<li><a href="#k%C3%B6rnyezet-v%C3%A1ltoz%C3%B3k-%C3%A9s-a-manu%C3%A1lis-ford%C3%ADt%C3%A1s">Környezet változók és a manuális fordítás</a></li>
+<li><a href="#v%C3%A9letlen-mondat-gener%C3%A1tor-k%C3%A9sz%C3%ADt%C3%A9s">Véletlen mondat generátor készítés</a></li>
+<li><a href="#t%C3%B6mb-vs-arraylist">Tömb vs. ArrayList</a>
+<ul>
+<li><a href="#t%C3%B6mb-array">Tömb (Array)</a>
+<ul>
+<li><a href="#t%C3%B6mb-%C3%A9rt%C3%A9kad%C3%A1sa">Tömb értékadása</a>
+<ul>
+<li><a href="#deklar%C3%A1l%C3%A1s--%C3%A9rt%C3%A9kad%C3%A1s-egy-sorban">Deklarálás + értékadás egy sorban</a></li>
+<li><a href="#deklar%C3%A1l%C3%A1s-k%C3%BCl%C3%B6n-%C3%A9rt%C3%A9kad%C3%A1s-k%C3%A9s%C5%91bb">Deklarálás külön, értékadás később</a></li>
+<li><a href="#m%C3%A9ret-megad%C3%A1sa-majd-elemenk%C3%A9nti-%C3%A9rt%C3%A9kad%C3%A1s">Méret megadása, majd elemenkénti értékadás</a></li>
+<li><a href="#t%C3%B6mb-%C3%BAjra%C3%A9rt%C3%A9kad%C3%A1sa-fel%C3%BCl%C3%ADr%C3%A1s">Tömb újraértékadása (felülírás)</a></li>
+<li><a href="#%C3%A9rt%C3%A9kad%C3%A1s-ciklussal">Értékadás ciklussal</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#arraylist">ArrayList</a></li>
+</ul>
+</li>
+<li><a href="#az-arraylistek-%C3%A9s-a-sz%C3%BCl%C5%91k-kapcsolata">Az ArrayListek és a szülők kapcsolata</a>
+<ul>
+<li><a href="#arraylist-haszn%C3%A1lata-az-%C3%B6r%C3%B6kl%C3%A9ssel">ArrayList használata az örökléssel</a></li>
+<li><a href="#oszt%C3%A1ly-kasztol%C3%A1sa">Osztály kasztolása</a></li>
+<li><a href="#object-%C5%91soszt%C3%A1ly-haszn%C3%A1lata">Object ősosztály használata</a></li>
+<li><a href="#hib%C3%A1s-k%C3%B3d-%C3%A9s-fut%C3%A1sid%C5%91ben-kiv%C3%A9telt-fog-dobni">Hibás kód és futásidőben kivételt fog dobni</a></li>
+</ul>
+</li>
+<li><a href="#mit-hagyott-r%C3%A1nk-az-object">Mit hagyott ránk az Object?</a>
+<ul>
+<li><a href="#instanceof">instanceof</a></li>
+<li><a href="#tostring">toString()</a></li>
+</ul>
+</li>
+<li><a href="#immutable-final-%C3%A9s-static">Immutable, Final és Static</a>
+<ul>
+<li><a href="#immutable">Immutable</a>
+<ul>
+<li><a href="#mikre-figyelj-egy-immutable-class-l%C3%A9trehoz%C3%A1sakor">Mikre figyelj egy immutable class létrehozásakor!</a></li>
+</ul>
+</li>
+<li><a href="#final">final</a></li>
+</ul>
+</li>
+<li><a href="#static">static</a>
+<ul>
+<li><a href="#static-met%C3%B3dus">static metódus</a>
+<ul>
+<li><a href="#static-oszt%C3%A1ly">static osztály</a></li>
+<li><a href="#static-v%C3%A1ltoz%C3%B3">static változó</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#diagramok-%C3%A9s-kapcsolatok">Diagramok és Kapcsolatok</a>
+<ul>
+<li><a href="#diagramok">Diagramok</a>
+<ul>
+<li><a href="#is-a-kapcsolat-%C3%B6r%C3%B6kl%C3%A9s--inheritance">„Is-a” kapcsolat (öröklés – inheritance)</a></li>
+<li><a href="#has-a-kapcsolat-%C3%B6sszet%C3%A9tel--tartalmaz%C3%A1s">Has-a” kapcsolat (összetétel / tartalmazás)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#kiv%C3%A9telek-kezel%C3%A9se---try-catch-finally">Kivételek kezelése - Try Catch Finally</a>
+<ul>
+<li><a href="#throwable-el%C5%91fordulhat%C3%B3-hib%C3%A1kelkaphat%C3%B3-probl%C3%A9m%C3%A1k">Throwable (Előfordulható hibák/Elkapható problémák)</a>
+<ul>
+<li><a href="#error-hiba">Error (Hiba)</a></li>
+<li><a href="#exception-kiv%C3%A9tel">Exception (Kivétel)</a>
+<ul>
+<li><a href="#exception-n-bel%C3%BCl-checked-exceptions-ellen%C5%91rz%C3%B6tt-kiv%C3%A9telek">Exception-n belül: Checked Exceptions (ellenőrzött kivételek)</a></li>
+<li><a href="#exception-n-bel%C3%BCl-unchecked-exceptions-ellen%C5%91rz%C3%A9s-n%C3%A9lk%C3%BCli-kiv%C3%A9telek">Exception-n belül: Unchecked Exceptions (ellenőrzés nélküli kivételek)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#p%C3%A9ld%C3%A1k-1">Példák</a>
+<ul>
+<li><a href="#checked-exceptions">Checked Exceptions</a></li>
+<li><a href="#unchecked-exceptions">Unchecked Exceptions</a></li>
+<li><a href="#eldobjuk-a-hib%C3%A1t">Eldobjuk a hibát</a></li>
+<li><a href="#gyakori-m%C3%B3dszer-a-hiba-eldob%C3%A1s%C3%A1ra">Gyakori módszer a hiba eldobására</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#inner-%C3%A9s-anonim-class">Inner és Anonim Class</a></li>
+<li><a href="#adatbek%C3%A9r%C3%A9s-a-felhaszn%C3%A1l%C3%B3t%C3%B3l">Adatbekérés a felhasználótól</a></li>
+<li><a href="#p%C3%A9ld%C3%A1k-2">Példák</a>
+<ul>
+<li><a href="#el%C3%A1gaz%C3%A1sok-if">Elágazások (if)</a></li>
+<li><a href="#for-ciklus-%C3%A9s-t%C3%B6mb%C3%B6k-valamint-kasztol%C3%A1s">For ciklus és tömbök, valamint kasztolás</a></li>
+<li><a href="#switch-case">Switch-case</a>
+<ul>
+<li><a href="#m%C3%A1sik-megold%C3%A1s-java-14-switch-expression-lambd%C3%A1s-%C3%A9s-do-while">Másik megoldás (Java 14+ switch expression lambdás és do-while)</a></li>
+</ul>
+</li>
+<li><a href="#do-while-%C3%A9s-if-el%C3%A1gaz%C3%A1s">Do-while és if elágazás</a></li>
+</ul>
+</li>
+<li><a href="#java-dinamikus-weboldal-l%C3%A9trehoz%C3%A1sa">Java Dinamikus weboldal létrehozása</a></li>
+<li><a href="#gyakorl%C3%A1s-gyakorl%C3%A1s-gyakorl%C3%A1s">Gyakorlás gyakorlás gyakorlás</a></li>
+<li><a href="#map">Map</a>
+<ul>
+<li><a href="#f%C5%91bb-k%C3%BCl%C3%B6nbs%C3%A9gek-%C3%B6sszefoglalva">Főbb különbségek összefoglalva</a></li>
+<li><a href="#1-hashmap">1. HashMap</a></li>
+<li><a href="#2-linkedhashmap">2. LinkedHashMap</a></li>
+<li><a href="#3-treemap">3. TreeMap</a>
+<ul>
+<li><a href="#melyiket-v%C3%A1laszd">Melyiket válaszd?</a></li>
+</ul>
+</li>
+<li><a href="#mit-haszn%C3%A1lj-a-vizsg%C3%A1n">Mit használj a vizsgán?</a></li>
+</ul>
+</li>
+<li><a href="#java-p%C3%A9ld%C3%A1k-%C3%A9s-magyar%C3%A1zatok">Java Példák és Magyarázatok</a>
+<ul>
+<li><a href="#%C3%B6sszehasonl%C3%ADt%C3%A1s-lambda-vs-met%C3%B3dusreferencia">Összehasonlítás: Lambda vs. Metódusreferencia</a></li>
+<li><a href="#1-f%C3%A1jlbeolvas%C3%A1s">1. Fájlbeolvasás</a></li>
+<li><a href="#2-f%C3%A1jlki%C3%ADr%C3%A1s">2. Fájlkiírás</a></li>
+<li><a href="#3-stream-m%C5%B1veletek">3. Stream műveletek</a></li>
+<li><a href="#4-hashmap-p%C3%A9ld%C3%A1k">4. HashMap példák</a></li>
+<li><a href="#5-%C3%B6sszefoglal%C3%B3-adatszerkezetek-%C3%A9s-alapok">5. Összefoglaló adatszerkezetek és alapok</a></li>
+<li><a href="#6-arraylist-ki%C3%ADrat%C3%A1s">6. ArrayList kiíratás</a></li>
+</ul>
+</li>
+<li><a href="#printf">Printf</a>
+<ul>
+<li><a href="#mi-az-a-printf">Mi az a printf?</a></li>
+<li><a href="#form%C3%A1z%C3%B3-jelek-">Formázó jelek (%)</a></li>
+<li><a href="#lebeg%C5%91pontos-sz%C3%A1m-f">Lebegőpontos szám (%f)</a></li>
+<li><a href="#tizedesjegyek-megad%C3%A1sa">Tizedesjegyek megadása</a></li>
+<li><a href="#t%C3%A1bl%C3%A1zatos-ki%C3%ADr%C3%A1s">Táblázatos kiírás</a></li>
+</ul>
+</li>
+<li><a href="#java-stream-api">Java Stream API</a>
+<ul>
+<li><a href="#java-stream-api-gyorsseg%C3%A9d">Java Stream API Gyorssegéd</a>
+<ul>
+<li><a href="#r%C3%B6videbb-verzi%C3%B3">Rövidebb verzió</a></li>
+<li><a href="#halad%C3%B3-verzi%C3%B3">Haladó verzió</a></li>
+</ul>
+</li>
+<li><a href="#stream-pipeline-alap-m%C5%B1k%C3%B6d%C3%A9s">Stream pipeline (alap működés)</a></li>
+<li><a href="#map-vs-filter">map vs filter</a></li>
+<li><a href="#top-5-stream-m%C5%B1velet">TOP 5 Stream művelet</a></li>
+<li><a href="#p%C3%A9ld%C3%A1k-a-haszn%C3%A1latra">Példák a használatra</a>
+<ul>
+<li><a href="#1-megsz%C3%A1mol%C3%A1s">1. Megszámolás</a></li>
+<li><a href="#2-ki%C3%ADrat%C3%A1s">2. Kiíratás</a></li>
+<li><a href="#3-gy%C5%B1jt%C3%A9s">3. Gyűjtés</a></li>
+</ul>
+</li>
+<li><a href="#collectorspartitioningby-%C3%A9s-groupingby-parallelstream-p%C3%A9ld%C3%A1kkal">Collectors.partitioningBy és groupingBy, parallelStream példákkal</a></li>
+<li><a href="#collectgroupingbyentrysetfilter-p%C3%A9ld%C3%A1kkal">collect(groupingBy)+entrySet+filter példákkal</a></li>
+<li><a href="#tov%C3%A1bbi-p%C3%A9ld%C3%A1k-magyar%C3%A1zatokkal">További példák magyarázatokkal</a></li>
+</ul>
+</li>
+<li><a href="#java-stream--gyakori-vizsgacsapd%C3%A1k">Java Stream – Gyakori vizsgacsapdák</a>
+<ul>
+<li><a href="#1-a-stream-csak-a-lez%C3%A1r%C3%B3-m%C5%B1veletn%C3%A9l-fut-le-lazy-evaluation">1. A Stream csak a lezáró műveletnél fut le (lazy evaluation)</a></li>
+<li><a href="#2-a-stream-csak-egyszer-haszn%C3%A1lhat%C3%B3">2. A stream csak egyszer használható</a></li>
+<li><a href="#3-a-foreach-lez%C3%A1r%C3%B3-m%C5%B1velet">3. A forEach() lezáró művelet</a></li>
+<li><a href="#4-peek-haszn%C3%A1lata">4. peek() használata</a></li>
+<li><a href="#5-instanceof">5. instanceof</a></li>
+</ul>
+</li>
+<li><a href="#r%C3%B6vid-%C3%B6sszefoglal%C3%B3">Rövid összefoglaló</a></li>
+<li><a href="#men%C3%BC-rendszer">Menü rendszer</a></li>
+<li><a href="#enum">enum</a>
+<ul>
+<li><a href="#p%C3%A9lda-haszn%C3%A1latra">Példa használatra</a></li>
+</ul>
+</li>
+<li><a href="#debug">Debug</a></li>
+<li><a href="#deadlock">Deadlock</a></li>
+</ul>
+<h1 id="források"><a class="header" href="#források">Források</a></h1>
+<p><a href="https://sanfranciscoboljottem.com">Sanfranciscoboljottem tananyag</a><br />
+<a href="https://okt.inf.szte.hu/prog1/gyakorlat/eloadas/Java/objectsAndClasses/">SZTE - Programozás I. jegyzet</a><br />
+<a href="https://data-flair.training/blogs/stacks-and-queues-in-c/">Stacks and queues</a><br />
+<a href="https://itszotar.hu/jvm-java-virtualis-gep-mi-a-mukodese-es-mi-a-szerepe-a-java-kod-futtatasaban/">IT Szótár</a><br />
+<a href="https://www.youtube.com/playlist?list=PL92V_WHHt2CnXaUIA9T2ww7peDK4lqmZj">Java Programozás Kezdőknek - SkillVersum</a><br />
+<a href="https://www.youtube.com/watch?v=2StXP1XaU04">Java Streams API Explained (with examples)</a>
+<a href="https://medium.com/@code.wizzard01/java-streams-and-collectors-a-practical-guide-and-cheat-sheet-with-real-world-examples-67dcf84156b5">Java Streams and Collectors</a><br />
+<a href="https://richardkorom.hu/java/backend/bevezetes/">Java programozási nyelv</a><br />
+<a href="https://www.youtube.com/watch?v=lkIFF4maKMU&amp;list=PLuP8i_ZB_YW4dQVl4oZJsFDBOynyBu-uV">100+ JavaScript Concepts you Need to Know</a></p>
+<!--TODO -->
+<p><a href="https://www.skillversum.com/note/view/c256d513dd9e6f970aa3daa5ded7496b38d01e78">Pályakezdő fullstack tutorial csomag</a></p>
+<p>A sanfranciscoboljottem tananyag sorrendje:<br />
+Programozási alapismeretek<br />
+Git Alapismeretek  <!--TODO -->
+Java alapismeretek<br />
+SQL alapismeretek<br />
+JavaFX alapismeretek<br />
+JavaFX Középhaladó<br />
+Java Középhaladó (Vagy esetleg a szerver után.)<br />
+JDBC - Adatbázis kapcsolatok<br />
+Java szerver<br />
+Spring Boot Ismeretek<br />
+Spring Boot Ismeretek II.</p>
+<p><a href="https://www.skillversum.com/note/view/eb07ff3326b3dcfa2d68157d50c3106b5f825e9d742dab44d6baf1e09ba49d7c">Java cheat sheet magyarul</a>
+<a href="https://github.com/luankevinferreira/java-dev-cheat-sheet/tree/main">Java Cheat Sheet</a>
+<a href="https://medium.com/@code.wizzard01/java-streams-and-collectors-a-practical-guide-and-cheat-sheet-with-real-world-examples-67dcf84156b5">Java Streams and Collectors: A Practical Guide and Cheat Sheet with Real-World Examples</a></p>
+<p>📌 Klasszikus full-stack webalkalmazás felépítés.</p>
+<p>React ↔ Spring (REST, JSON),</p>
+<p>Frontend: React (JavaScript)<br />
+Backend: Spring Boot (Java)</p>
+<p>A lenti kép magyarázata a Spring Boot kezdőknek szóló fájlban található. <a href="https://github.com/Nagraggini/springboot-for-beginners/blob/main/HowToDoIt_Hungarian_version.md">Itt</a></p>
+<p><img src="assets/SzoftverarchitekturaEsFogalmiOsszefoglalo.png" alt="alt text" /></p>
+<h1 id="Általános-infók"><a class="header" href="#Általános-infók">Általános infók</a></h1>
+<p>A Java egy általános célú, objektumorientált programozási nyelv.
+Több operációs rendszeren is futtatható (Windows, macOS, Linux stb.).</p>
+<p>A Java nyelvet a Sun Microsystems fejlesztette ki, amelyet később az Oracle vásárolt fel.</p>
+<p>A Java programok futtatását a JVM (Java Virtual Machine) teszi lehetővé, amely különböző operációs rendszereken is képes végrehajtani a Java bytecode-ot.</p>
+<p>Több operációs rendszeren is lehet futtatni, pl.: windows, mac, linux.
+A Sun Microsystem alkotta meg a javat. Később az Oracle vette meg a céget.
+A JVM miatt a Java programok sok különböző operációs rendszeren futtathatók.
+A JVM a Java bytecode-ot (.class fájlok) futtatja, amelyeket gyakran .jar fájlba csomagolnak. A windows/linux pedig futtatja a JVM-t.</p>
+<h2 id="java-fordítási-és-futtatási-folyamat"><a class="header" href="#java-fordítási-és-futtatási-folyamat">Java fordítási és futtatási folyamat</a></h2>
+<p>A Java egyik legfontosabb tulajdonsága a platformfüggetlenség. Ez azt jelenti, hogy egy programot egyszer kell megírni, és az különböző operációs rendszereken is futtatható.</p>
+<p>Ez a tulajdonság a bytecode és a Java Virtual Machine (JVM) együttműködésének köszönhető.</p>
+<p>A fordítás és futtatás lépései</p>
+<pre><code>Java forráskód (.java)
+        ↓
+javac fordító
+        ↓
+Bytecode (.class)
+        ↓
+Java Virtual Machine (JVM)
+        ↓
+Natív gépi kód (machine code)
+</code></pre>
+<ol>
+<li>Forráskód</li>
+</ol>
+<p>A fejlesztő Java forráskódot ír (.java fájlok).
+Ez ember által olvasható programkód.</p>
+<ol start="2">
+<li>Fordítás (javac)</li>
+</ol>
+<p>A javac fordító lefordítja a Java forráskódot bytecode-ra.</p>
+<ul>
+<li>bemenet: .java</li>
+<li>kimenet: .class</li>
+</ul>
+<p>A bytecode egy platformfüggetlen utasításkészlet, amelyet nem közvetlenül a processzor hajt végre.</p>
+<ol start="3">
+<li>Bytecode</li>
+</ol>
+<p>A bytecode egy köztes kód, amelyet a JVM képes értelmezni.
+A .class fájlokat gyakran .jar (Java Archive) fájlba csomagolják, ami több class fájlt és erőforrást tartalmazhat.</p>
+<ol start="4">
+<li>Futás a JVM-ben</li>
+</ol>
+<p>A Java Virtual Machine (JVM) betölti és futtatja a bytecode-ot.</p>
+<p>A JVM működése:</p>
+<ul>
+<li>betölti az osztályokat</li>
+<li>ellenőrzi a bytecode biztonságát</li>
+<li>végrehajtja a kódot</li>
+</ul>
+<p>A végrehajtás két módon történhet:</p>
+<ul>
+<li>Interpreter – soronként értelmezi a bytecode-ot</li>
+<li>JIT (Just-In-Time) compiler – a gyakran futó kódrészeket natív gépi kóddá fordítja a gyorsabb futás érdekében</li>
+</ul>
+<ol start="5">
+<li>Natív gépi kód</li>
+</ol>
+<p>A JVM az adott operációs rendszerhez és processzorhoz igazodó machine code-ot hoz létre, amelyet a CPU közvetlenül végrehajthat.</p>
+<p><strong>Write Once, Run Anywhere</strong></p>
+<p>A Java híres elve:
+"Write once, run anywhere"</p>
+<p>Ez azt jelenti:</p>
+<ul>
+<li>a programot egyszer kell lefordítani bytecode-ra</li>
+<li>minden platformon csak a JVM-nek kell léteznie</li>
+</ul>
+<p>Például:</p>
+<ul>
+<li>Windows → Windows JVM</li>
+<li>Linux → Linux JVM</li>
+<li>macOS → macOS JVM</li>
+</ul>
+<p>A bytecode mindenhol ugyanaz marad.</p>
+<p><strong>Java környezet komponensei</strong></p>
+<p>JDK – Java Development Kit (Program írása + futtatása)</p>
+<p>A JDK a Java fejlesztéshez szükséges teljes eszközkészlet.</p>
+<p>Tartalmazza:</p>
+<ul>
+<li>javac (fordító)</li>
+<li>JRE (Program futtatása)</li>
+<li>fejlesztői eszközök</li>
+</ul>
+<p><strong>JRE – Java Runtime Environment</strong></p>
+<p>A JRE a Java programok futtatásához szükséges környezet.</p>
+<p>Tartalmazza:</p>
+<ul>
+<li>JVM (A Java program futtatása)</li>
+<li>Java szabványos könyvtárak</li>
+</ul>
+<p><strong>JVM – Java Virtual Machine</strong></p>
+<p>A JVM egy virtuális futtatókörnyezet, amely:</p>
+<ul>
+<li>betölti az osztályokat</li>
+<li>végrehajtja a bytecode-ot</li>
+<li>kezeli a memóriát</li>
+<li>végzi a Garbage Collectiont</li>
+</ul>
+<p><strong>A JVM szerepe</strong></p>
+<p>A JVM nem csak a kód futtatásáért felelős.</p>
+<p>Feladatai például:</p>
+<ul>
+<li>Class loading – osztályok betöltése</li>
+<li>Bytecode verification – biztonsági ellenőrzés</li>
+<li>Memory management – memória kezelése</li>
+<li>Garbage Collection – automatikus memóriatisztítás</li>
+<li>JIT fordítás – teljesítmény optimalizálása</li>
+</ul>
+<p>A JVM tehát egy absztrakciós réteg a Java alkalmazás és a hardver között, amely elrejti a platformfüggő részleteket a fejlesztő elől.</p>
+<h1 id="fejlesztői-környezet"><a class="header" href="#fejlesztői-környezet">Fejlesztői környezet</a></h1>
+<h2 id="jdoodle"><a class="header" href="#jdoodle">JDoodle</a></h2>
+<p>Egy ideig elég az online fordító:
+https://www.jdoodle.com/</p>
+<h2 id="visual-studio-code"><a class="header" href="#visual-studio-code">Visual Studio Code</a></h2>
+<p>Egy népszerű, ingyenes kódszerkesztő, amelyhez rengeteg bővítmény érhető el.</p>
+<p>Részletes magyarázót a telepítéshez <a href="https://nagraggini-blog.onrender.com/#vscode_install">itt</a> találsz.</p>
+<p>Hasznos kiegészítők <a href="https://nagraggini-blog.onrender.com/#vscode_extension_list">itt</a></p>
+<p><a href="https://nagraggini-blog.onrender.com/#hotkeys_for_vscode">Hotkeys</a></p>
+<h2 id="eclipse"><a class="header" href="#eclipse">Eclipse</a></h2>
+<p><a href="https://www.eclipse.org/downloads/packages/release/2024-06/r%5D">Innen</a> töltsd le a csomagolt változatot (zip fájl).</p>
+<p>Ezt: Eclipse IDE for Enterprise Java and Web Developers <a href="https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2024-06/R/eclipse-jee-2024-06-R-win32-x86_64.zip">link</a></p>
+<p>A letöltött zip fájlt kicsomagoljuk, máris indítható az IDE.<br />
+Első indításkor meg kell adni egy mappát (Workspace), ahová a projektek kerülnek. Munkaterületeket váltogathatunk: File/Switch workspace</p>
+<p>Eclipse egyik furcasága, hogy alapból nem tudunk nyitó kapcsos zárójelet írni (Alt+b), csak akkor, ha kikapcsoljuk a gyorsbillentyű hozzárendelést:
+Window/Preferences/General/Keys (vagy keresőben:”bind”)
+Szűrjünk „alt+b”-re és mindkét bejegyzésnél „Unbind command”
+Apply and close</p>
+<h3 id="eclipse-további-beállítás"><a class="header" href="#eclipse-további-beállítás">Eclipse további beállítás:</a></h3>
+<p>Window/Preferences/General/Editors/Text Editors:
+pipáljuk be a Show Line numbers opciót</p>
+<p>New Project -&gt; Java Project -&gt;
+Configure JRE-s: "Use default JRE 'jdk-25.0.1' and workspace compiler preferences"
+Vedd ki a pipát -&gt; "Create module-info.java file"</p>
+<p>Bal szélén a projekten jobb klikk package.</p>
+<p>Billentyű parancsok:
+Ha elfelejtjük a main-t, akkor Main + ctrl+space
+ctrl+7 kommentjel
+kitesz/visszavesz ctrl+shift+o: Importok fixálása, valamint a nem használtakat törli.
+ctrl+shift+f Formázás
+syso + ctrl +space Egyes verziókban: sout 2x ctrl +space
+F11 Futtatás</p>
+<p>Eclipse beállítása:
+TO DO komment kikapcsolása Eclipse-ben</p>
+<p>Window → Preferences</p>
+<p>Menj ide:
+Java → Code Style → Code Templates</p>
+<p>A jobb oldalon keresd meg:</p>
+<p>Code → Method body</p>
+<p>Jelöld ki → Edit</p>
+<p>Töröld ki ezt a sort:</p>
+<p>// TO DO Auto-generated method stub</p>
+<p>OK → Apply and Close</p>
+<h3 id="java-technológiai-áttekintés-és-működés"><a class="header" href="#java-technológiai-áttekintés-és-működés">Java technológiai áttekintés és működés</a></h3>
+<p>Platformok:
+Java SE Standard Edition: általános célú platform.
+Java EE - Enterprise Edition: elosztott, hibatűrő rendszerek fejlesztéséhez.
+Jakarta EE - JE-nek 2017-től az Eclipse Foundation általi fejlesztése.</p>
+<p>JAVA EE8 (2017) óta Jakarta EE a neve. Az Oracle átadta a specifikációt az Eclipse Foundationnek.</p>
+<p>Futtató környezet:
+JRE - Java Runtime Enviroment</p>
+<p>Fejlesztői környezet:
+DK - Java Development Kit</p>
+<p>JVM – Java Virtual Machine: virtuális gép</p>
+<p>Munkafolyamat forráskódtól futtatásig:
+.java → javac .class JVM → platformfüggetlen futtatás</p>
+<h2 id="netbeans"><a class="header" href="#netbeans">Netbeans</a></h2>
+<p>netbeans+java-t töltsd le. -&gt; Java EE változat kell. Tomcat-t rakd fel, a glasfish-t ne.</p>
+<p>Java SE (Standard Edition): asztali alkalmazásokat lehet benne készíteni.</p>
+<p>Java EE (Enterprise Edition): Céges környezet. Szerverek készítésehez jó.</p>
+<p>Java FX: Segít szép grafikus környezetet létrehozni. Java Swing (régebbi) és Effect alkalmazások.</p>
+<p>A netbeans telepítés végén a jobb alsó sarokban felajánl pár plugin-t, azokat telepítsd.</p>
+<h2 id="intellij-idea"><a class="header" href="#intellij-idea">IntelliJ IDEA</a></h2>
+<h1 id="projekt-importálása-vs-code-ban"><a class="header" href="#projekt-importálása-vs-code-ban">Projekt importálása VS Code-ban</a></h1>
+<ol>
+<li>Futtatás ellenőrzése</li>
+</ol>
+<p>Nyomd meg az F5-öt a projekt futtatásához.
+Ha a projekt piros minden ellenére is a "Clean" után:</p>
+<ul>
+<li>Ellenőrizd, hogy a bal oldali sávban a "Java Projects" fül alatt látszanak-e a forrásfájlok (src).</li>
+<li>Ha nem látszanak, a VS Code nem projektként kezeli a mappát, csak sima fájlokként.</li>
+</ul>
+<ol start="2">
+<li>JDK verzió problémák</li>
+</ol>
+<p>Ha a kód mindenhol piros, lehet, hogy a VS Code nem találja a telepített Java JDK-t.</p>
+<p>Megoldás:</p>
+<ul>
+<li>Nyomd meg Ctrl + Shift + P.</li>
+<li>Írd be: "Java: Configure Java Runtime".</li>
+<li>Válaszd ki a megfelelő JDK-t.</li>
+</ul>
+<h1 id="adattípusok"><a class="header" href="#adattípusok">Adattípusok</a></h1>
+<h2 id="primitív-adattípusok"><a class="header" href="#primitív-adattípusok">Primitív adattípusok</a></h2>
+<p>8 féle primitív adattípus létezik, mindent kis betűvel kell írni programozáskor.
+A megadott memóriát fogja lefoglalni a változó, hiába nincsen benne semmi.
+A Java statikusan típusos nyelv, meg kell adni, hogy a változó szám, vagy szöveg stb formátumú.</p>
+<p><strong>byte</strong></p>
+<p>Egész szám.
+Tartomány: -128 - 127
+Foglalt memória: 1 Byte=8 Bit
+Alapértéke: 0</p>
+<p><strong>short</strong></p>
+<p>Egész szám.
+Tartomány: -32 768 - 32 767
+Foglalt memória: 2 Byte
+Alapértéke: 0</p>
+<p><strong>int</strong></p>
+<p>Egész szám.
+Tartomány: -2 milliárd - 2 milliárd
+Foglalt memória: 4 Byte
+Alapértéke: 0</p>
+<p><strong>long</strong></p>
+<p>Egész szám.
+Tartomány: −9 223 372 036 854 775 808 – 9 223 372 036 854 775 807
+Pontos magyar elnevezés:
+9 kvintillió 223 kvadrillió 372 trillió 36 billió 854 milliárd 775 millió 808
+Foglalt memória: 8 Byte
+Alapértéke: 0</p>
+<p><strong>float</strong></p>
+<p>Lebegőpontos szám (egyszeres pontosság).
+Tartomány: ≈ 1.175494 × 10⁻³⁸ - ≈ 3.402823 × 10³⁸
+Foglalt memória: 4 Byte
+Alapértéke: 5.06e2f //$5.06 \times 10^2$ Hatványozás az "e". "f" mint float.</p>
+<p><strong>double</strong></p>
+<p>Törtszám szám (kétszeres pontosság).
+Tartomány: 2.2250738585072014 × 10⁻³⁰⁸ - 1.7976931348623157 × 10³⁰⁸
+Foglalt memória: 8 Byte
+Alapértéke: 0.0d //A d elhagyható az, csak arra utal, hogy double.</p>
+<p><strong>char</strong></p>
+<p>Egy karakter.
+Tartomány: 1 Unicode karakter (0–65.535) pl.: 65 // A
+Foglalt memória: 2 Byte
+Alapértéke: '\u0000'</p>
+<p><strong>boolean</strong></p>
+<p>Logikai.
+Tartomány: true/false
+Foglalt memória: a JVMre bízza (technikai okokból nem fix).
+Alapértéke: false</p>
+<p>Röviden:
+byte = 1 byte
+short = 2 byte
+char = 2 byte
+int = 4 byte
+float = 4 byte
+double = 8 byte
+long = 8 byte
+boolean = A JVMre bízza.</p>
+<h2 id="Összetett-adattípusok-referencia-típusok"><a class="header" href="#Összetett-adattípusok-referencia-típusok">Összetett adattípusok (referencia típusok)</a></h2>
+<p>Ezek objektumok, a heap memórián tárolódnak, és nagy kezdőbetűvel íródnak:
+String → karakterlánc (objektum)
+Array (pl. int[])
+List, Map, Set
+saját osztályok</p>
+<p>Az alapértelmezett értékük: <strong>null</strong>
+Sok függvény megvan hozzájuk írva. pl.: .Length()</p>
+<h2 id="joker"><a class="header" href="#joker">Joker</a></h2>
+<p>Java 10-ben jelent meg 2018-ban.</p>
+<pre><code class="language-java">var myNum = 5;         // int
+
+// var nélkül
+ArrayList&lt;String&gt; cars = new ArrayList&lt;String&gt;();
+
+// var-al rövidebb könyebben olvashatóbb.
+var cars = new ArrayList&lt;String&gt;();
+</code></pre>
+<h2 id="pontosan-hogyan-tárolódnak-a-változók-a-memóriában"><a class="header" href="#pontosan-hogyan-tárolódnak-a-változók-a-memóriában">Pontosan hogyan tárolódnak a változók a memóriában</a></h2>
+<p><a href="https://www.binaryhexconverter.com/decimal-to-binary-converter">Decimal to Binary Converter</a></p>
+<p>2 decimális = 10 bináris</p>
+<p>1 byte = 8 bit, tehát 0–255 közötti egész számot lehet vele ábrázolni előjel nélküli (unsigned) formában.</p>
+<p>Ha a byte előjeles (signed), akkor a tartománya –128…+127.</p>
+<p>A lentiképen látszik, hogy a felső fekete hátterű értékeket kell megszorozni az alattuk lévőkkel.</p>
+<p><img src="assets/Binary_Converter.png" alt="alt text" /></p>
+<h1 id="objektum-orientált-programozás-oop"><a class="header" href="#objektum-orientált-programozás-oop">Objektum orientált programozás (OOP)</a></h1>
+<p>Távoli példa: Két nyelv. Az angol 8 betűvel, a magyar 5 betűvel fejezi ki ugyanazt.</p>
+<p>You <code>drink</code>. | Isz<code>ol</code>.</p>
+<p>Következő példa:
+Készítünk egy játékot, melyben van fű is. Leprogramozzuk a fűszálat és valahányszor szükségünk van rá elég a fűszál osztályt meghívni. Minden tulajdonsága benne lesz, pl a mozgása, felszíne.</p>
+<p>Harmadik példa:
+Kocsmát építünk egy játékban.
+Leprogramozzuk a padlót, a pultot, ezeket bármikor meghívhatjuk újra. Mindegyik entitás, a java-ban objektum.</p>
+<p>Osztály (tervrajz) -&gt; Objektum (A belőle készült példány.) Még egy objektum.</p>
+<p>Utána készítsük el az Firstproject nevű package-t.</p>
+<p>A NetBeans-ben alapvetően megtalálható a java compiler a program fordításához.</p>
+<h2 id="metódusok"><a class="header" href="#metódusok">Metódusok</a></h2>
+<p>void= Nincs visszatérési értéke.</p>
+<p>String Fuggveny() {return null;} = Van visszatérési értéke.</p>
+<p>Ökölszabály: Osztályon belül statikus metódusból nem hívhatunk meg nem statikus metódust.</p>
+<h2 id="netbeans-1"><a class="header" href="#netbeans-1">NetBeans</a></h2>
+<p>Jobb egér gomb a kódban és Insert code -&gt; Getter és Setter.
+Encapsulate Fields-t, ha bepipálod és elfelejtetted privátra állítani a változót, akkor ezt kijavítja.</p>
+<h2 id="vs-code"><a class="header" href="#vs-code">VS Code</a></h2>
+<p>A változon nyomsz egy jobb klikket és source action-n belül lesz a konstruktor létrehozása opció.</p>
+<h2 id="this"><a class="header" href="#this">This</a></h2>
+<p>Miért nem másolódnak a metódusok minden objektumba?</p>
+<p>Ha minden objektum saját példányban tartalmazná az összes metódusát, az valóban pazarló lenne memóriában. Ehelyett a legtöbb objektumorientált nyelv ezt csinálja:</p>
+<ul>
+<li>
+<p>Az <strong>adatok (mezők, attribútumok)</strong> objektumonként külön vannak.</p>
+</li>
+<li>
+<p>A <strong>metódusok</strong> közösek (osztályhoz vagy prototípushoz tartoznak).</p>
+</li>
+</ul>
+<p>Így egy metódusból egyetlen példány létezik, amit sok objektum használ.</p>
+<p>De akkor honnan tudja a metódus, melyik objektummal dolgozzon?</p>
+<p>👉 A <strong>this</strong> referencia miatt.</p>
+<p>Amikor egy metódust egy objektumon keresztül hívsz meg, a rendszer automatikusan átadja azt az objektumot, amelyen a hívás történt.</p>
+<p>Ez történik a háttérben:</p>
+<pre><code>obj.metodus(param1, param2)
+↓
+metodus(obj, param1, param2)   // a this = obj
+</code></pre>
+<p>Ez az általad említett „titkos paraméter”.</p>
+<h2 id="példák"><a class="header" href="#példák">Példák</a></h2>
+<h3 id="első-és-második-példa"><a class="header" href="#első-és-második-példa">Első és második példa:</a></h3>
+<pre><code class="language-java">package firstproject;
+
+//Az osztálynevet mindig nagy betűvel kezd.
+public class FirstProject {
+
+//Ökölszabály: Osztályon belül statikus metódusból nem hívhatunk meg nem statikus metódust.
+public static void main(String[] args) {
+//String result = censor("A kutya nagyon aranyos kutya.", "kutya", "macska");
+// System.out.println(result);
+
+        //Új sablont hozok létre, példányosítom.
+        Human first = new Human();
+
+        first.setName("J"); //Beállítjuk a konstruktorral.
+        System.out.println(first.getName()); //Lehívjuk a konstruktoral.
+        first.writeMyName();
+
+        Human second = new Human();
+        System.out.println(second.getName());
+    }
+
+    // Metódus.
+    // Ha nem írod oda a hozzáférési módosítót, akkor package-private (default) lesz.
+    // Ez azt jelenti, hogy csak ugyanabban a package-ben érhető el.
+    // void = nincs visszatérési értéke.
+    // String fuggveny() { return null; } = van visszatérési értéke.
+    // A zárójelben a paraméterek (argumentumok) vannak.
+    public static String censor(String text, String toChange, String newWord) {
+
+        if (text.contains(toChange)) {
+        }
+
+        text = text.replaceAll(toChange, newWord); // (keresett szó, új szó)
+
+        return text;
+    }
+
+}
+</code></pre>
+<hr />
+<pre><code class="language-java">package firstproject;
+
+//Sablon. Blueprint.
+public class Human {
+
+    //Oszály változó, nem tartozik konkrét függvényhez.
+    //Privátra kell állítani, hogy a Main-ből ne lehessen elérni.
+    private String name = "Gy";
+    private int age;
+
+    //Metódus, aminek nincs visszatérési értéke, de kiírja az értéket.
+    void writeMyName() {
+        System.out.println(name);
+    }
+
+    /*A getter és setter konstruktorok lényege, hogy ne tudjuk közvetlenül megváltoztatni a változó értékét. */
+    public String getName() {
+        return this.name; //this = Ez az osztály változó, amit fent privátként deklaráltál. Most épp a Human.
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+}
+</code></pre>
+<hr />
+<h2 id="háromoperandusú-operátor"><a class="header" href="#háromoperandusú-operátor">Háromoperandusú Operátor</a></h2>
+<pre><code class="language-java">//Új sablont hozok létre, példányosítom.
+Human first = new Human();
+first.setName("Gy");
+first.setAge(20);
+
+        //Háromoperandusú Operátor (Ternary Operator)
+        //Igaz ez ? Igen : Nem
+        System.out.println(first.getName() == null ? "Nincs név" : "Van név.\n" + first.getName());
+        /*
+        if (first.getName() == null) {
+            System.out.println("Nincs név.");
+            System.out.println(first.getName());
+        } else {
+            System.out.println("Van. név.");
+            System.out.println(first.getName()); //Lehívjuk a konstruktoral.
+        }
+         */
+</code></pre>
+<h2 id="változó-ellenőrzése-üres---isblank"><a class="header" href="#változó-ellenőrzése-üres---isblank">Változó ellenőrzése (üres? != &amp;&amp; .isBlank())</a></h2>
+<pre><code class="language-java">
+        String myStr1 = "Hello";
+        String myStr2 = "";
+        String myStr3 = null;
+        String myStr4 = "   ";
+
+        // --- null ellenőrzés ---
+        System.out.println("myStr1 == null: " + (myStr1 == null)); //false
+        System.out.println("myStr2 == null: " + (myStr2 == null)); //false
+        System.out.println("myStr3 == null: " + (myStr3 == null)); //true
+
+        System.out.println();
+
+        // --- isEmpty() ---
+        System.out.println("myStr1.isEmpty(): " + myStr1.isEmpty()); //false
+        System.out.println("myStr2.isEmpty(): " + myStr2.isEmpty()); //true
+        //myStr3.isEmpty() -&gt; NullPointerException!
+        System.out.println("myStr4.isEmpty(): " + myStr4.isEmpty()); //false
+
+        System.out.println();
+
+        // --- isBlank() ---
+        System.out.println("myStr1.isBlank(): " + myStr1.isBlank());  //false
+        System.out.println("myStr2.isBlank(): " + myStr2.isBlank()); //true
+        System.out.println("myStr4.isBlank(): " + myStr4.isBlank()); //true
+
+        System.out.println();
+
+        // --- length() ---
+        System.out.println("myStr1 length: " + myStr1.length()); //5
+        System.out.println("myStr2 length: " + myStr2.length()); //0
+        System.out.println("myStr4 length: " + myStr4.length()); //3
+
+        System.out.println();
+
+        // --- safe check (null + empty/blank) --- EZT HASZNÁLD!
+        if (myStr1 != null &amp;&amp; !myStr1.isBlank()) { //myStr1 has meaningful content
+        /*
+        Hiba: Ha az &amp;&amp; operátort használod, a program megpróbálja lefuttatni az .isEmpty()-t egy null objektumon, ami azonnali NullPointerException-t (összeomlást) okoz.
+        */
+            System.out.println("myStr1 has meaningful content");
+        }
+
+        if (myStr3 != null || !myStr3.isBlank()) { //myStr3 is null or blank
+            System.out.println("myStr3 has meaningful content");
+        } else {
+            System.out.println("myStr3 is null or blank");
+        }
+
+        System.out.println();
+
+        // --- equals biztonságos használat ---
+        System.out.println("\"\".equals(myStr2): " + "".equals(myStr2)); //true
+        System.out.println("\"\".equals(myStr3): " + "".equals(myStr3)); // nem dob hibát és false
+</code></pre>
+<h2 id="javadoc"><a class="header" href="#javadoc">Javadoc</a></h2>
+<p>Ezzel a jelöléssel meg fog jelenni a crtl+space-el a kommented a metódus meghívásakor.</p>
+<p>/*_ A getter és setter konstruktorok lényege, hogy ne tudjuk közvetlenül megváltoztatni a változó értékét. _/
+public String getName() {
+return this.name; //this = Ez az osztály változó, amit fent privátként deklaráltál. Most épp a Human.
+}</p>
+<h2 id="logika"><a class="header" href="#logika">Logika</a></h2>
+<pre><code class="language-java">        Human valami = new Human();
+        String thing = "Alma";
+        String thing2 = new String("Alma");
+        System.out.println(thing + "\n" + thing2);
+        System.out.println(thing.charAt(0)); //Az első karaktert adja vissza.
+        thing.length(); //mérete, output: 4
+</code></pre>
+<h2 id="polimorfizmus-többalakúság"><a class="header" href="#polimorfizmus-többalakúság">Polimorfizmus (Többalakúság)</a></h2>
+<p>A megírt kód újrafelhasználása, pl.: ha már létre van hozva az állat osztály, akkor azt lehet többször is használni.
+Mindegyik osztály ősosztálya az Object.</p>
+<pre><code class="language-java">package firstproject;
+
+//Öröklés. Így tudod használni az Animal osztály getter és setterjét.
+//Nincsen többszörös öröklődés a java-ban, ebben a formában, csak hosszú többszörös örökléssel. pl.: Gerincesek -&gt; NAgy macska -&gt; Macska.
+public class Cat extends Animal {
+
+    public void meow() {
+        System.out.println("MEOW!");
+    }
+
+}
+</code></pre>
+<p>Másik osztály-ban:</p>
+<pre><code class="language-java">    public static void main(String[] args) {
+        Cat macska = new Cat();
+        Cat macska2 = new Cat();
+
+        //Azért false az értéke, mert nem az értéket, hanem a referenciákat hasonlítja össze, macska és macska2 két külön objektum a memóriában.
+        System.out.println(macska.equals(macska2));
+        macska.meow();
+
+    }
+</code></pre>
+<h2 id="Öröklés-és-override"><a class="header" href="#Öröklés-és-override">Öröklés és Override</a></h2>
+<p>Annotáció (annotation) egy metaadat, amivel osztályokat, metódusokat, változókat stb. jelölünk meg, és amit a fordító vagy futásidőben a program fel tud dolgozni.</p>
+<pre><code class="language-java">    @Override //Felülírás.
+    public void makeSound() {
+        System.out.println("MEOW!");
+    }
+
+}
+</code></pre>
+<p>Elérési módosítók:<br />
+4 féle láthatóság van, amiből 3-hoz kapcsolódik kulcsszó (private, protected, public), az utolsó pedig az alapértelmezett eset, amire szokás package private-ként hivatkozni.</p>
+<p><strong>Public:</strong>
+Nyilvános, bárhonnan el lehet érni.</p>
+<p><strong>Protected:</strong><br />
+A protected metódusokat, csak az örökléssel létrehozott osztályok használhatják.</p>
+<p><strong>Abstract:</strong><br />
+Az asbsztrakt osztályok nem példányosíthatók.<br />
+Ezt nem lehet csinálni:</p>
+<pre><code>    abstract class Animal {}
+
+    Animal állat =new Animal();
+</code></pre>
+<h2 id="interfész"><a class="header" href="#interfész">Interfész</a></h2>
+<p>Minden interface alapból public abstract, ezért ez a kettő ugyanazt jelenti:</p>
+<pre><code class="language-java">    interface Pet {
+        void play();
+    }
+</code></pre>
+<p>és</p>
+<pre><code class="language-java">    interface Pet {
+        public abstract void play();
+    }
+</code></pre>
+<hr />
+<p>Ez egy nyilvántartás, hogy a háziállatoknak mi a képességük.</p>
+<pre><code>    abstract interface Pet {
+
+        public void cuddle();
+
+        public void sit();
+
+        public void layDown();
+    }
+</code></pre>
+<hr />
+<p>Implementáljuk a Pet interfészt, után kötelező felülírni a metódusokat.<br />
+Jobb klikk a Cat szón és Source Action -&gt; Override/Implement Methods... -&gt; Válaszd ki a metódusokat.<br />
+Fontos infó, hogy bármennyi infészt lehet implementálni, nincs megkötés mint az öröklésnél.</p>
+<pre><code>public class Cat extends Animal implements Pet {
+
+    @Override //Felülírás.
+    public void makeSound() {
+        System.out.println("MEOW!");
+    }
+
+    @Override
+    public void cuddle() {          
+
+    }
+
+    @Override
+    public void layDown() {     
+
+    }
+
+    @Override
+    public void sit() {        
+
+    }
+}
+</code></pre>
+<h2 id="konstruktor"><a class="header" href="#konstruktor">Konstruktor</a></h2>
+<p>A konstruktor, csak egyszer hívható meg, amikor az objektum létrejön. Nincs meghatározva, hogy van-e visszatérési értéke, avagy nincs.<br />
+A konstruktor neve megegyezik az osztályéval, ha nem hozod létre, akkor az IDE automatikusan létrehozza.<br />
+Amikor létre jön az objektum, akkor automatikusan lefut.</p>
+<h3 id="első-módszer-a-név-megváltoztatására"><a class="header" href="#első-módszer-a-név-megváltoztatására">Első módszer a név megváltoztatására:</a></h3>
+<p>Main-ben:</p>
+<pre><code>Cat macska = new Cat();
+macska.setName("G");
+
+System.out.println(macska.getName()); //output: G
+</code></pre>
+<h3 id="második-módszer-a-név-megváltoztatására"><a class="header" href="#második-módszer-a-név-megváltoztatására">Második módszer a név megváltoztatására:</a></h3>
+<p>A privát változót nem éri el az öröklőtt osztály, ezért kell a protected.</p>
+<pre><code>abstract class Animal {
+    protected String name;
+}
+</code></pre>
+<hr />
+<pre><code>// Ez a konstruktor:
+public Cat() {
+     this.name = "Cirmi";
+}
+</code></pre>
+<hr />
+<p>Main-ben:<br />
+//new Cat(); -&gt; Rész a konstruktor.</p>
+<pre><code>    Cat macska = new Cat();
+    System.out.println(macska.getName()); //output: Cirmi
+</code></pre>
+<h3 id="harmadik-módszer-a-név-megváltoztatására"><a class="header" href="#harmadik-módszer-a-név-megváltoztatására">Harmadik módszer a név megváltoztatására:</a></h3>
+<p>Maradt privát a name változó és a setName metódus meghívásával módosítjuk a name értékét.</p>
+<pre><code>public Cat() {
+        this.setName("Dörmi");
+    }
+</code></pre>
+<p>Main-ben:</p>
+<pre><code>    //new Cat(); -&gt; Konstruktor.
+    Cat macska = new Cat();
+
+    System.out.println(macska.getName());
+</code></pre>
+<h3 id="negyedik-módszer-a-név-megváltoztatására"><a class="header" href="#negyedik-módszer-a-név-megváltoztatására">Negyedik módszer a név megváltoztatására:</a></h3>
+<p>Többféle konstruktort is létre lehet hozni, de az alap üres konstruktort ebben az esetben neked kell külön létrehoznod.</p>
+<pre><code>public Cat(String name) {
+        this.setName(name);
+    }
+</code></pre>
+<p>Main-ben:</p>
+<pre><code>    //new Cat(); -&gt; Konstruktor.
+    Cat macska = new Cat("Cirmos");
+
+    System.out.println(macska.getName());
+</code></pre>
+<p>Másik konstruktor:</p>
+<pre><code>public class Cat(){
+    public Cat(String name,
+                int weight
+        ) {
+            this.setName(name);
+            this.setWeight(weight);
+
+        }
+ }
+</code></pre>
+<p>Main-ben:</p>
+<pre><code>Cat macska = new Cat("J", 5);
+
+System.out.println(macska.getName() + " " + macska.getWeight() + " kg");
+</code></pre>
+<h3 id="overloading-túlterhelés"><a class="header" href="#overloading-túlterhelés">Overloading (túlterhelés)</a></h3>
+<p>Overloading akkor történik, amikor azonos nevű konstruktorok vagy metódusok vannak egy osztályban, de a paraméterlistájuk különbözik. Ugyanez igaz a metódusokra is.</p>
+<p><strong>Mit jelent, hogy különbözik a paraméterlista?</strong></p>
+<p>Legalább az egyiknek igaznak kell lennie:</p>
+<ul>
+<li>
+<p>más paraméterszám, vagy</p>
+</li>
+<li>
+<p>más paramétertípus, vagy</p>
+</li>
+<li>
+<p>más sorrendű paramétertípus.</p>
+</li>
+</ul>
+<p>⚠️ A paraméternevek NEM számítanak, csak a típus és a sorrend!</p>
+<h2 id="super"><a class="header" href="#super">Super</a></h2>
+<p>Az első parancsnak kell lennie. A super mindig arra utal akitől öröklök.</p>
+<pre><code>public class Cat extends Animal {
+
+    public Cat() {
+        //Az Animal konstruktorát hívja meg.
+        super();
+
+        //Az Animal osztály implementációját is meg lehet hívni. Ősosztály metódusát hívjuk meg.
+        super.makeSound();
+    }
+}
+</code></pre>
+<h2 id="oop-alapelve"><a class="header" href="#oop-alapelve">OOP alapelve</a></h2>
+<p>Íme az OOP (Objektumorientált Programozás) négy alappillére, mindegyikhez egy rövid magyarázattal és egy-egy gyakorlati példával, hogy könnyen megjegyezhető legyen:</p>
+<ol>
+<li>Encapsulation (Egységbezárás)
+Lényege: Az adatok (mezők) és az rajtuk végzett műveletek (metódusok) egy egységbe (osztályba) zárása, miközben az adatokhoz való közvetlen hozzáférést korlátozzuk (pl. private módosítóval).</li>
+</ol>
+<p>Példa: Egy Bankszamla osztályban az egyenleg változó privát, így nem írható át kívülről tetszőlegesen, csak a befizet() vagy kivesz() metódusokon keresztül, amik ellenőrizni tudják a művelet érvényességét.</p>
+<ol start="2">
+<li>Inheritance (Öröklődés)
+Lényege: Lehetővé teszi, hogy egy osztály (gyerekosztály) átvegye egy másik osztály (szülőosztály) tulajdonságait és viselkedését, így elkerülhető a kódismétlés.</li>
+</ol>
+<p>Példa: Van egy általános Jarmu szülőosztályod (aminek van sebesseg mezője), és ebből származtatod az Auto és Motor osztályokat, amik automatikusan megkapják a sebesség kezelését, de hozzáadhatnak saját extrákat.</p>
+<ol start="3">
+<li>Polymorphism (Többalakúság)
+Lényege: Egyazon metódushívás különböző módon viselkedhet attól függően, hogy milyen típusú objektumra hívjuk meg (gyakran interfészeken vagy felüldefiniáláson keresztül).</li>
+</ol>
+<p>Példa: Van egy Allat osztályod hangotAd() metódussal. Ha a Kutya objektumra hívod meg, azt írja ki, hogy "Vau", ha a Macska objektumra, akkor azt, hogy "Miau" – a hívó kódnak viszont nem kell tudnia, pontosan milyen állattal dolgozik.</p>
+<ol start="4">
+<li>Abstraction (Absztrakció)
+Lényege: A lényeges jellemzők kiemelése és a belső megvalósítás részleteinek elrejtése; csak azt mutatjuk meg a külvilágnak, "mit" csinál az objektum, nem azt, hogy "hogyan".</li>
+</ol>
+<p>Példa: Egy Kavefozo gombját megnyomod (interfész), és megkapod a kávét. Nem kell tudnod, pontosan hány bár nyomáson vagy milyen hőmérsékleten dolgozik belül a gép.</p>
+<p>Bónusz: Interface vs. Abstract Class (Interjú kedvenc!)
+Ez a két eszköz segíti az absztrakciót, de más a céljuk:</p>
+<p>Interface: Egy "szerződés". Csak azt mondja meg, hogy egy osztálynak mire kell képesnek lennie (pl. Minden ami ehető, rendelkezzen egy egyel() metódussal). Egy osztály több interfészt is megvalósíthat.</p>
+<p>Abstract Class: Egy "félkész sablon". Tartalmazhat közös kódot (megvalósított metódusokat) és absztrakt metódusokat is. Akkor használjuk, ha az osztályok között szoros "egyfajta" (is-a) kapcsolat van (pl. minden Kutya egy Allat).</p>
+<h1 id="ismétlés-és-könnyű-állásinterjús-kérdések"><a class="header" href="#ismétlés-és-könnyű-állásinterjús-kérdések">Ismétlés és könnyű állásinterjús kérdések</a></h1>
+<h2 id="konkatenáció"><a class="header" href="#konkatenáció">Konkatenáció</a></h2>
+<pre><code>//Az ln csinál utána egy sortörést.
+System.out.println(1 + 1 + " a " + 1 + 1); //output: 2 a 11
+</code></pre>
+<p>Miért?</p>
+<ul>
+<li>Balról jobbra értékel.</li>
+<li>Amíg szám + szám → összeadás.</li>
+<li>Amint megjelenik a String, onnantól konkatenáció.</li>
+</ul>
+<h3 id="becsapós-kérdés"><a class="header" href="#becsapós-kérdés">Becsapós kérdés</a></h3>
+<pre><code>char first = 'a';
+int second = 2;
+String third = first; //❌ NEM fut le. A Java nem konvertál automatikusan primitív típust String-gé.
+String fourst = "" + first; //✅ Lefut.
+
+fourst = "" + second; //✅ Lefut.
+</code></pre>
+<p>Mi történik itt?</p>
+<ul>
+<li>"" → String</li>
+<li>+first → String konkatenáció</li>
+<li>A char automatikusan String - gé alakul.</li>
+</ul>
+<p>A kasztolás külön fejezetben lesz szó a további módszerekről.</p>
+<h3 id="2-becsapós-kérdés"><a class="header" href="#2-becsapós-kérdés">2. Becsapós kérdés</a></h3>
+<pre><code>char first = 'a';
+int second = 2;
+System.out.println(first + second); //output: 99
+</code></pre>
+<p>👉 first = 'a' → ASCII/Unicode érték: 97</p>
+<h2 id="sortörések"><a class="header" href="#sortörések">Sortörések</a></h2>
+<pre><code>//Az ln csinál utána egy sortörést.
+System.out.println("Ah"); //output: Ah és sortörés.
+
+System.out.print("a"); //Nincs sortörés.
+System.out.print("\n"); //Manuális sortörés.
+</code></pre>
+<h2 id="lefut-e"><a class="header" href="#lefut-e">Lefut-e?</a></h2>
+<pre><code>int x = 22;
+byte b = x;
+</code></pre>
+<p>❌ Nem fut le. Mi a probléma?</p>
+<p>int → 32 bites
+byte → 8 bites (−128 … 127)</p>
+<p>A Java nem engedi az automatikus (implicit) szűkítést, mert adatvesztés történhetne.</p>
+<pre><code>byte b = 22;
+int x = b; //Így működik, mert az int sokkal nagyobb.
+</code></pre>
+<h2 id="explicit-cast-szűkítés"><a class="header" href="#explicit-cast-szűkítés">Explicit cast (szűkítés)</a></h2>
+<pre><code>int x = 22;
+byte b = (byte) x;
+</code></pre>
+<p>✅ Lefordul
+⚠️ A programozó felelőssége az adatvesztés.</p>
+<h2 id="overflow-túlcsordulás"><a class="header" href="#overflow-túlcsordulás">Overflow (Túlcsordulás)</a></h2>
+<pre><code>int x = 130;
+byte b = (byte) x;
+System.out.println(b); //output: -126
+</code></pre>
+<p>A byte tartománya túllépésre kerül → körbefordul.</p>
+<h2 id="típuskonverzió-szabály-kényszerítés"><a class="header" href="#típuskonverzió-szabály-kényszerítés">Típuskonverzió szabály (Kényszerítés)</a></h2>
+<p>Szélesítés (widening) → automatikus</p>
+<p>byte -&gt; short -&gt; char -&gt; int -&gt; long -&gt; float -&gt; double</p>
+<p>Szűkítés (narrowing)</p>
+<p>double -&gt; float -&gt; long -&gt; int -&gt; char -&gt; short -&gt; byte</p>
+<p>❌ nem automatikus
+✅ csak cast-tal</p>
+<h3 id="double--int-szűkítő-narrowing-konverzió"><a class="header" href="#double--int-szűkítő-narrowing-konverzió">double → int szűkítő (narrowing) konverzió</a></h3>
+<pre><code>double d = 3.5;
+int i = d; //❌ Fordítási hiba.
+
+int i = (int) d;
+System.out.println(i); // Mindig a tizedespont jobb oldalát eldobja. output: 3
+</code></pre>
+<h2 id="változónevek-szabályai"><a class="header" href="#változónevek-szabályai">Változónevek szabályai</a></h2>
+<p>📌 Változónév:</p>
+<ul>
+<li>nem kezdődhet számmal;</li>
+<li>kezdődhet betűvel, _-al vagy $-al;</li>
+<li>camelCase ajánlott Java-ban, mert a változó és a függvényneveket kisbetűvel kezdjük.</li>
+</ul>
+<p>Számmal soha nem kezdünk változó deklarálást.</p>
+<pre><code>int 1stVariable; //❌ Nem jó!
+int st1Variable; //✅ Jó.
+</code></pre>
+<h1 id="kasztolás"><a class="header" href="#kasztolás">Kasztolás</a></h1>
+<p>Az Object osztálytól örököli a metódusokat az osztályunk. pl.: .equals()</p>
+<p>A primitívek speciálisak, az objektumok nem, azok minding ugyanúgy működnek.</p>
+<h3 id="helyes-megoldások-char--string-konvertálásra"><a class="header" href="#helyes-megoldások-char--string-konvertálásra">Helyes megoldások char → String konvertálásra</a></h3>
+<p>✅ 1. Konkatenáció (gyakori, egyszerű, inkább NE használd intrejún)</p>
+<pre><code>String s = "" + first;
+</code></pre>
+<p>✅ 2. String.valueOf() (legbiztonságosabb)</p>
+<pre><code>String s = String.valueOf(first);
+</code></pre>
+<p>✅ 3. Character.toString() (szabályos OOP megoldás)</p>
+<pre><code>String s = Character.toString(first);
+
+//A Character örököl az Object osztálytól, de itt nem az Object toString() metódusa hívódik meg.
+//Hanem a Character.toString(char) statikus metódus.
+</code></pre>
+<h2 id="parse"><a class="header" href="#parse">Parse</a></h2>
+<p>Négy fajtája van:</p>
+<ul>
+<li>String → int</li>
+<li>String → double</li>
+<li>String → long</li>
+<li>String → boolean</li>
+</ul>
+<p>Példa:</p>
+<pre><code class="language-java">//String → int
+int szam = Integer.parseInt("123");
+</code></pre>
+<p>Visszafelé (number → String)</p>
+<pre><code class="language-java">String text = String.valueOf(123);
+</code></pre>
+<p>Ha hibás formátumba kasznolnál, akkor NumberFormatException-t kapsz.</p>
+<h1 id="java-dátum-és-idő-kezelés-javatime"><a class="header" href="#java-dátum-és-idő-kezelés-javatime">Java dátum és idő kezelés (java.time)</a></h1>
+<p>A Java 8 óta a dátum és idő kezelésére a java.time API csomagot használjuk.
+Ez leváltotta a régi Date és Calendar osztályokat.</p>
+<p>Előnyei:</p>
+<ul>
+<li>immutable (nem módosítható objektumok)</li>
+<li>biztonságosabb</li>
+<li>könnyebb használni</li>
+<li>jobban olvasható</li>
+</ul>
+<p>Legfontosabb osztályok</p>
+<pre><code class="language-java">| Osztály           | Mire használjuk |
+| ----------------- | --------------- |
+| LocalDate         | csak dátum      |
+| LocalTime         | csak idő        |
+| LocalDateTime     | dátum + idő     |
+| Period            | dátum különbség |
+| Duration          | idő különbség   |
+| DateTimeFormatter | formázás        |
+</code></pre>
+<p><strong>LocalDate (dátum kezelés)</strong></p>
+<p>A LocalDate év, hónap és nap tárolására szolgál.</p>
+<p><strong>Aktuális dátum</strong></p>
+<pre><code class="language-java">LocalDate today = LocalDate.now();
+System.out.println(today);
+</code></pre>
+<p>példa kimenet:
+2026-03-15</p>
+<p><strong>Dátum létrehozása</strong></p>
+<pre><code class="language-java">LocalDate date = LocalDate.of(2024, 5, 10);
+System.out.println(date);
+</code></pre>
+<p>kimenet:
+2024-05-10</p>
+<p><em>Év, hónap, nap lekérése</em></p>
+<pre><code class="language-java">LocalDate date = LocalDate.now();
+
+
+int ev = date.getYear();
+int honap = date.getMonthValue();
+int nap = date.getDayOfMonth();
+</code></pre>
+<p><strong>Dátum módosítása</strong></p>
+<p>A LocalDate immutable, ezért minden művelet új objektumot ad vissza.</p>
+<p><em>Év módosítása</em></p>
+<pre><code class="language-java">LocalDate ujDatum = date.withYear(2030);
+</code></pre>
+<p><em>Nap hozzáadása</em></p>
+<pre><code class="language-java">LocalDate ujDatum = date.plusDays(10);
+</code></pre>
+<p>*Nap kivonása</p>
+<pre><code class="language-java">LocalDate ujDatum = date.minusDays(5);
+</code></pre>
+<p><em>Év hozzáadása</em></p>
+<pre><code class="language-java">LocalDate ujDatum = date.plusYears(2);
+</code></pre>
+<p><em>Dátum összehasonlítása</em></p>
+<pre><code class="language-java">LocalDate d1 = LocalDate.of(2024, 5, 1);
+LocalDate d2 = LocalDate.of(2025, 5, 1);
+
+d1.isBefore(d2);  // true
+d1.isAfter(d2);  //false
+d1.isEqual(d2);  //false
+</code></pre>
+<p><strong>Két dátum különbsége</strong></p>
+<p>A Period osztály segítségével számolhatjuk ki.</p>
+<pre><code class="language-java">LocalDate szuletes = LocalDate.of(2000, 3, 10);
+LocalDate today = LocalDate.now();
+
+Period kulonbseg = Period.between(szuletes, today);
+
+System.out.println(kulonbseg.getYears());
+</code></pre>
+<p>Ez kiszámolja az életkort években.</p>
+<pre><code class="language-java">LocalTime (csak idő)
+LocalTime time = LocalTime.now();
+
+System.out.println(time);
+</code></pre>
+<p>példa:
+18:45:21.123</p>
+<p><strong>LocalDateTime (dátum + idő)</strong></p>
+<pre><code class="language-java">LocalDateTime now = LocalDateTime.now();
+
+System.out.println(now);
+</code></pre>
+<p>példa:
+2026-03-15T18:45:21</p>
+<p><strong>Dátum formázása</strong></p>
+<p>A DateTimeFormatter segítségével.</p>
+<pre><code class="language-java">LocalDate today = LocalDate.now();
+
+DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("yyyy.MM.dd");
+
+System.out.println(today.format(formatter));
+</code></pre>
+<p>kimenet:
+2026.03.15</p>
+<p><strong>Gyakori formátumok</strong></p>
+<pre><code class="language-java">| Formátum | Jelentés  |
+| -------- | --------- |
+| `yyyy`   | év        |
+| `MM`     | hónap     |
+| `dd`     | nap       |
+| `HH`     | óra       |
+| `mm`     | perc      |
+| `ss`     | másodperc |
+</code></pre>
+<p><strong>Példa dátum + idő formázás</strong></p>
+<pre><code class="language-java">LocalDateTime now = LocalDateTime.now();
+
+DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
+
+System.out.println(now.format(formatter));
+</code></pre>
+<p>példa kimenet</p>
+<p>2026.03.15 18:45</p>
+<p><strong>String → dátum</strong></p>
+<pre><code class="language-java">String datum = "2024-05-10";
+
+LocalDate date = LocalDate.parse(datum);
+Dátum → String
+LocalDate date = LocalDate.now();
+
+String text = date.toString();
+</code></pre>
+<p><strong>Tipikus Java feladatok</strong></p>
+<p>Java vizsgákon gyakran kérik:</p>
+<ul>
+<li>aktuális dátum lekérése</li>
+<li>életkor számítása</li>
+<li>dátum összehasonlítása</li>
+<li>dátum formázása</li>
+<li>dátumhoz nap / év hozzáadása</li>
+</ul>
+<h2 id="rövid-cheat-sheet"><a class="header" href="#rövid-cheat-sheet">Rövid cheat sheet</a></h2>
+<pre><code class="language-java">LocalDate.now();
+LocalDate.of(2024,5,10)
+
+date.getYear()
+date.getMonthValue()
+date.getDayOfMonth()
+
+date.plusDays(5)
+date.plusYears(1)
+
+date.isBefore(d2)
+date.isAfter(d2)
+
+LocalDate.parse("2024-05-10")
+
+date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))
+</code></pre>
+<h1 id="math"><a class="header" href="#math">Math()</a></h1>
+<p>A Math osztály matematikai műveletek és konstansok elérését biztosítja:
+Használata  Math.&lt;metódus() vagy konstans&gt;;
+Függvények:</p>
+<p>abs(érték) // abszolút értékkel tér vissza
+min(érték1, érték2) //két szám közül a kisebbel tér vissza</p>
+<p>max(érték1, érték2)- két szám közül a nagyobbal tér vissza
+sqrt(érték)- a szám négyzetgyökével tér vissza
+pow(alap, kitevő)- az alap hatványkitevőre emelésével tér vissza
+round(érték)- a legközelebbi egész számra kerekít
+floor(érték) //Lefelé kerekítés, de nem levágás. p.l: -6.99 =&gt; -7
+//Felfelé kerekítés. Math.floor(6.99) =&gt; 6 //Nem csak kerekítés.
+ceil(érték) // Felfelé kerekítés, mindig. 6.31 =&gt; 7 | -6.3 =&gt; -6</p>
+<p>Konstansok:
+Pi (3.141592653589793)
+E (2.718281828459045)</p>
+<p>Példák:</p>
+<p>ceil: Visszaadja a legkisebb egész számot (double formában), ami nem kisebb, mint az érték.
+Negatív számnál a felfelé kerekítés → az érték kevésbé negatív lesz.
+6.31 -&gt; 7.0
+6.99 -&gt; 7.0
+-6.3 -&gt; -6.0
+-6.99 -&gt; -6.0</p>
+<p>floor: Visszaadja a legnagyobb egész számot (double formában), ami nem nagyobb, mint az érték.
+Negatív számnál lefelé kerekít → az érték kisebb lesz.
+6.99 -&gt; 6.0
+6.01 -&gt; 6.0
+-6.01 -&gt; -7.0
+-6.99 -&gt; -7.0</p>
+<h1 id="wrapper-burkoló-osztályok"><a class="header" href="#wrapper-burkoló-osztályok">Wrapper (burkoló) osztályok</a></h1>
+<p>Java-ban a wrapper (burkoló) osztályok a primitív adattípusok objektum megfelelői.</p>
+<p>Primitív típus → Wrapper osztály</p>
+<p>boolean → Boolean<br />
+byte → Byte<br />
+short → Short<br />
+int → Integer<br />
+long → Long<br />
+float → Float<br />
+double → Double<br />
+char → Character</p>
+<p>Mire jók a wrapper osztályok?</p>
+<ul>
+<li>Objektumként kezelhetők (pl. kollekciókban: List, Map).</li>
+<li>Tartalmaznak hasznos metódusokat (pl. parseInt, valueOf).</li>
+<li>Lehetővé teszik az autoboxing / unboxing használatát.</li>
+<li>Könyebb velük bonyolultabb dolgokat elvégezni.</li>
+</ul>
+<p>Példa (autoboxing)</p>
+<pre><code class="language-java">    int x = 5;
+    Integer y = x;      // autoboxing
+    int z = y;          // unboxing
+</code></pre>
+<p>Példa az automatikus becsomagolásra.</p>
+<pre><code class="language-java">    public static void main(String[] args) {
+        int second = 2;
+
+        test(second);
+    }
+
+    //A java automatikusan becsomagolja az int-et egy Integer objektumba, így lehet váltogatni, működik ugyanez fordítva is.
+    public static void test(Integer c) {
+        System.out.println(c);
+    }
+</code></pre>
+<p>Példa a primitív és objektum másolásra:</p>
+<p>Lemásolja az első értékét. <strong>Primitív típus → érték másolódik.</strong></p>
+<pre><code class="language-java">        int a = 1;
+        int b = a; //
+        b++;
+        System.out.println(" a: " + a + " ; b: " + b);
+</code></pre>
+<p>Mindkét változó ugyanarra az objektumra mutat.<br />
+setName("Fluffy") az egyetlen közös objektumot módosítja.</p>
+<p><strong>Objektumoknál nem az objektum másolódik, csak a memóriacím(referencia).</strong></p>
+<pre><code>    Cat macska = new Cat(); //macska létrehoz egy Cat objektumot
+
+    Cat macska2 = macska; //→ referencia másolása
+    macska.setName("Fluffy");
+    System.out.println(macska.getName() + " " + macska2.getName()); //output: Fluffy Fluffy
+</code></pre>
+<h3 id="fordítási-hiba--futási-hiba"><a class="header" href="#fordítási-hiba--futási-hiba">Fordítási hiba ≠ futási hiba</a></h3>
+<p>❌ Fordítási hiba (compile-time error): A fordító (javac) nem tudja lefordítani a kódot. Pl.: hiányzik a pontosvessző, szintaktikai hiba.<br />
+👉 A program el sem indul.</p>
+<p>Példa:
+double → int szűkítő (narrowing) konverzió<br />
+Java nem engedi automatikusan az adatvesztéssel járó konverziót.</p>
+<pre><code class="language-java">    double d = 3.5;
+    int i = d; //❌ Fordítási hiba.
+</code></pre>
+<p>💥 Futási hiba (runtime error)<br />
+👉 A program elindul, de futás közben elszáll.</p>
+<p>Mikor történik?</p>
+<ul>
+<li>A kód szintaktikailag helyes.</li>
+<li>Logikai vagy környezeti probléma futás közben. pl.: 0-val való osztás.</li>
+</ul>
+<p>Explicit kasztolás (cast)</p>
+<pre><code>double d = 3.5;
+int i = (int) d;
+System.out.println(i); // Mindig a tizedespont jobb oldalát eldobja. output: 3
+
+System.out.println((int) 3.9);   // 3
+System.out.println((int) -3.9);  // -3
+</code></pre>
+<h1 id="stack-heap-és-garbage-collector"><a class="header" href="#stack-heap-és-garbage-collector">Stack, Heap és Garbage Collector</a></h1>
+<p>A FIFO és LIFO adatszervezési elvek azt írják le, milyen sorrendben kerülnek ki az elemek egy tárolóból.</p>
+<p>FIFO – First In, First Out „Aki először jött, először megy.”</p>
+<p>LIFO – First In, Last Out „Aki először jött, utoljára megy.”<br />
+Mint a nyomtatópapíroknál, ha eggyesével rakod be a papírokat a tárolóba. Íhy működik a verem, vagyis stack.</p>
+<p><img src="/assets/Stacks_and_Queues.png" alt="alt text" /></p>
+<p>Példa:</p>
+<pre><code class="language-java">    public class ElsoProject {
+        public static void main(String[] args) {
+            int i = 2;
+            Object obj = new Object();
+            ElsoProject ep = new ElsoProject(); //Osztály példányosítása.
+            ep.proba(obj);
+
+        }
+
+        //Azért nem kell ide a static, mert példányosítottuk az osztályt.
+        private void proba(Object param) {
+            String str = param.toString();
+            System.out.println(str); //Ennél a sornál már kikerült a lenti képen lévő proba, param és str a Stack-ből.
+        }
+    }
+</code></pre>
+<h2 id="stack"><a class="header" href="#stack">Stack</a></h2>
+<p>Verem. Gyorsabb memória terület.</p>
+<p>A Stack egy memóriaterület, ahol a program lokális változóit (int, double, boolean, stb.) és függvényhívások adatait tárolják. Itt tárolódik maga a változó neve és a referencia (a címe a memóriában)<br />
+LIFO (Last In, First Out) elven működik – az utolsó elem, amit betettünk, az első, amit kiveszünk.</p>
+<h2 id="heap"><a class="header" href="#heap">Heap</a></h2>
+<p>Kupac.
+A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat. Itt tárolódik a tényleges adat/objektum.</p>
+<p>Maga az Objektum a Heapben tárolódik, a stack-ban, csak hivatkozunk rá.<br />
+Minden, ami benne van egy osztályban az az objektum része, vagyis a Heap-ben tárolódik, az osztályváltozók (int, String) is.</p>
+<p><img src="assets/Stack_and_Heap.png" alt="alt text" /></p>
+<p>Példa:</p>
+<pre><code class="language-java">    public static void main(String[] args) {
+        Object o1 = new Object();
+        o1 = null;
+        o1 = new Object(); //Ne ugyanaz, mint a két sorral feljebb lévő.
+
+    }
+
+    private void proba(Object param) {
+    }
+</code></pre>
+<p>Mi történik?</p>
+<ul>
+<li>
+<p>new Object()<br />
+→ objektum létrejön a heapben</p>
+</li>
+<li>
+<p>o1<br />
+→ hivatkozás, ami a stackben van (o1 = null;)<br />
+→ a heapben lévő objektum címére mutat</p>
+</li>
+</ul>
+<h2 id="főbb-nem-primitív-típusok"><a class="header" href="#főbb-nem-primitív-típusok">Főbb nem-primitív típusok</a></h2>
+<p>A nem-primitív (non-primitive) adattípusokat más néven referencia típusoknak is nevezzük. Ahogy a neve is sugallja, ezek nem közvetlenül az értéket tárolják (mint pl. egy számot), hanem egy referenciát (memóriacímet) arra a helyre, ahol az objektum található.</p>
+<p>Strings (Karakterláncok): Szövegek tárolására szolgálnak. Bár a Java-ban kiemelt szerepük van, valójában objektumok.</p>
+<p>Arrays (Tömbök): Azonos típusú elemek gyűjteménye (lehet primitív vagy objektum is benne).</p>
+<p>Classes (Osztályok): Felhasználó által definiált sablonok, amelyekből objektumok hozhatók létre.</p>
+<p>Interfaces (Interfészek): Absztrakt típusok, amelyek előírják, hogy egy osztálynak milyen metódusokat kell megvalósítania.</p>
+<p><strong>Primitív vs. Nem-primitív:</strong>
+A legfontosabb különbségek</p>
+<pre><code class="language-bash">| Jellemző  | Primitív típusok (pl. int, boolean)         |Nem-primitív típusok (pl. String, Array)
+| Definíció | Előre definiáltak a Java nyelvben.          | A programozó hozza létre őket (kivéve a String-et).
+| Metódusok | Nincsenek metódusaik, csak értéket tárolnak.| Vannak metódusaik, amikkel műveleteket végezhetünk.
+| Érték     | Mindig van értékük (nem lehetnek nullák).   | Lehet az értékük null (ha nem mutatnak sehova).
+| Írásmód   | Kisbetűvel kezdődnek (pl. int).             | Általában nagybetűvel kezdődnek (pl. String).
+| Méret     | A típustól függ (fix méret). Kiv: boolean   | Minden referencia azonos méretű a memóriában.
+</code></pre>
+<h2 id="garbage-collector-szemétgyűjtő"><a class="header" href="#garbage-collector-szemétgyűjtő">Garbage Collector (Szemétgyűjtő)</a></h2>
+<p>A Garbage Collector (GC) egy automatikus memória-kezelő mechanizmus, ami a Heap-en lévő, már nem használt objektumokat felszabadítja. Figyeli, hogy mely objektumokra már nincs hivatkozás (pl. minden változó, ami mutat rá, megszűnt). Eltávolítja ezeket a memória felszabadításához. Nem garantált azonnali felszabadítás.</p>
+<h1 id="környezet-változók-és-a-manuális-fordítás"><a class="header" href="#környezet-változók-és-a-manuális-fordítás">Környezet változók és a manuális fordítás</a></h1>
+<p>Új JDK letöltése <a href="https://jdk.java.net/25/?utm_source">innen</a>.</p>
+<p>Win + S → "environment variables" → Edit the system environment variables.<br />
+Itt láthatók a környezeti változók, amiket a géped használ.<br />
+Kattints a Environment Variables… gombra.<br />
+System variables alatt: kattints a New… gombra (vagy keresd a meglévőt, ha PATH-ról van szó).</p>
+<p>Nyomj ráa Path-ra és add hozzá újként.</p>
+<p>Például JDK beállításához:</p>
+<ul>
+<li>Variable name: JAVA_HOME</li>
+<li>Variable value: C:\Program Files\Java\jdk-25 (a te telepítési útvonalad szerint)</li>
+</ul>
+<p>PATH módosítása (hogy a CMD felismerje a java és javac parancsokat):</p>
+<p>Alatta lesz:</p>
+<ol>
+<li>
+<p>Keresd meg a Path változót → Edit → New → add:</p>
+<p>%JAVA_HOME%\bin</p>
+</li>
+<li>
+<p>OK → OK → OK</p>
+</li>
+<li>
+<p>CMD ellenőrzés</p>
+</li>
+</ol>
+<p>Nyisd meg a Command Prompt-ot (Win + R → cmd → Enter).</p>
+<p>Írd be:</p>
+<pre><code>java -version
+javac -version
+</code></pre>
+<p>Ha mindkettő verziót visszaad, sikeres a beállítás.</p>
+<ol start="4">
+<li>Java fájl futtatása</li>
+</ol>
+<p>Navigálj a mappába:</p>
+<pre><code>cd C:\útvonal\a\projektedhez
+</code></pre>
+<p>Futtasd:</p>
+<pre><code>javac FajlNeve.java
+java FajlNeve
+</code></pre>
+<h1 id="véletlen-mondat-generátor-készítés"><a class="header" href="#véletlen-mondat-generátor-készítés">Véletlen mondat generátor készítés</a></h1>
+<pre><code class="language-java">    public class SentenceGenerator {
+
+        public static void main(String[] args) {
+            Game game = new Game();
+            System.out.println(game.generator());
+        }
+    }
+
+    public class Game {
+
+        public String generator() {
+            String[] firstWord = {"Nagyon jó", "Megbízható", "Érdeklődő", "Szorgalmas", "Türelmes", "Tökéletes"};
+            String[] secondWord = {"megoldás", "lehetőség", "kivitelezés"};
+            String[] thirdWord = {"neked!", "nekünk!", "mindenkinek!", "az egész világnak!"};
+
+            int oneLength = firstWord.length;
+            int secondLength = secondWord.length;
+            int thirdLength = thirdWord.length;
+
+            //Math.random() 0 0.999999 közötti számod ad vissza.
+            int random1 = (int) (Math.random() * oneLength);
+            int random2 = (int) (Math.random() * secondLength);
+            int random3 = (int) (Math.random() * thirdLength);
+
+            //0.1 - generátor X 5 = 0.5
+            //0.9 - generátor X 5 = 4.5
+            //Mivel az (int) kasztolás leveszi a tizedes utáni értéket.
+            //0-4 köz9tt értéket kapunk visza.
+            String sentence = firstWord[(int) (Math.random() * firstWord.length)] + " " + secondWord[random2] + " " + thirdWord[random3];
+
+            return sentence;
+
+        }
+    }
+</code></pre>
+<h1 id="tömb-vs-arraylist"><a class="header" href="#tömb-vs-arraylist">Tömb vs. ArrayList</a></h1>
+<h2 id="tömb-array"><a class="header" href="#tömb-array">Tömb (Array)</a></h2>
+<p>A tömb statikus, ha törölsz belőle egy elemet, akkor sem megy össze és meg kell adni az elején, hogy mekkora lesz.</p>
+<p>Példák:</p>
+<pre><code>String[] simpleArray0;  //Deklaráció.
+simpleArray0 = new String[]{"alma", "körte"};  //Nem kötelező egyből inicializálni. alma= 0. elem, körte= 1. elem
+System.out.println(simpleArray0[2]); //Ilyenkor még nem jelez hibát, hanem majd futási időben fog.
+</code></pre>
+<p>A tömb nem univerzálisan a leggyorsabb megoldás – a hatékonyság mindig attól függ, milyen műveleteket kell végrehajtani és milyen gyakran.</p>
+<p>Röviden:</p>
+<ul>
+<li>Olvasás index alapján → tömb nagyon gyors</li>
+<li>Beszúrás / törlés → tömb gyakran lassú</li>
+<li>Keresés kulcs alapján → hash alapú struktúra gyorsabb</li>
+<li>Dinamikusan változó adatmennyiség → lista vagy más adatszerkezet előnyösebb</li>
+</ul>
+<p>👉 A jó megoldás kiválasztása mindig a feladat jellegétől, az adatmérettől és a használati mintától függ, nem önmagában az adatszerkezettől.</p>
+<p>A tömb tud tárolni primitíveket.</p>
+<h3 id="tömb-értékadása"><a class="header" href="#tömb-értékadása">Tömb értékadása</a></h3>
+<h4 id="deklarálás--értékadás-egy-sorban"><a class="header" href="#deklarálás--értékadás-egy-sorban">Deklarálás + értékadás egy sorban</a></h4>
+<pre><code>String[] simpleArray0 = new String[]{"alma", "körte"};
+</code></pre>
+<h4 id="deklarálás-külön-értékadás-később"><a class="header" href="#deklarálás-külön-értékadás-később">Deklarálás külön, értékadás később</a></h4>
+<pre><code>String[] simpleArray0 = new String[2];
+simpleArray0 = new String[]{"alma", "körte"};
+</code></pre>
+<h4 id="méret-megadása-majd-elemenkénti-értékadás"><a class="header" href="#méret-megadása-majd-elemenkénti-értékadás">Méret megadása, majd elemenkénti értékadás</a></h4>
+<pre><code>String[] simpleArray0 = new String[2];
+    simpleArray0[0] = "alma";
+    simpleArray0[1] = "körte";
+</code></pre>
+<h4 id="tömb-újraértékadása-felülírás"><a class="header" href="#tömb-újraértékadása-felülírás">Tömb újraértékadása (felülírás)</a></h4>
+<pre><code>simpleArray0 = new String[] {"banán", "barack"};
+</code></pre>
+<h4 id="Értékadás-ciklussal"><a class="header" href="#Értékadás-ciklussal">Értékadás ciklussal</a></h4>
+<pre><code>for (int i = 0; i &lt; tomb.length; i++) {
+    simpleArray0[i] = "elem " + i;
+}
+</code></pre>
+<h2 id="arraylist"><a class="header" href="#arraylist">ArrayList</a></h2>
+<p>Az ArrayList dinamikusan tudja változtatni a méretét és, csak objektumokat lehet bele rakni.
+Fontos, hogy be kell importálni felül.</p>
+<pre><code class="language-java">    import java.util.ArrayList;
+
+    ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+        //Az array tudja változtatni a méretét.
+        list.add("alma");
+        list.add("körte");
+
+        list.remove(0);
+        System.out.println("0. elem: " + list.get(0));
+        list.size(); //output: 1
+</code></pre>
+<p>Nem tud tárolni primitíveket, csak wrapper osztályokat.</p>
+<p>Például:</p>
+<pre><code>ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+list.add(2); //int-t át tud konvertálni Integerré.
+</code></pre>
+<p>A tömbök természetesen lehetnek többdimenziósak.</p>
+<p>ArrayList esetén is létrehozható többdimenziós struktúra,
+de ehhez egymásba ágyazott listákat kell használni.</p>
+<pre><code>tomb[3][3];
+</code></pre>
+<h1 id="az-arraylistek-és-a-szülők-kapcsolata"><a class="header" href="#az-arraylistek-és-a-szülők-kapcsolata">Az ArrayListek és a szülők kapcsolata</a></h1>
+<pre><code class="language-java">    public static void main(String[] args) {
+
+        //Nem primitíveket, hanem objektumokat tárol.
+        //Cat egy osztály → referencia típus.
+        ArrayList&lt;Cat&gt; cats = new ArrayList&lt;&gt;();
+        //Java 7+ verzióban elég a jobb oldalon az üres &lt;&gt;, a típus öröklődik a bal oldalról.
+
+        //Régebben be kellett írni a jobb oldalra a Cat-et.
+        //ArrayList&lt;Cat&gt; cats = new ArrayList&lt;Cat&gt;();
+
+        Cat sziamiau = new Cat("Sziamiau");
+        cats.add(sziamiau); //Ha ezt nem adjuk meg, akkor üres lesz az ArrayList.
+
+        //Elkerüljük az IndexOutOfBoundsException-t hibát.
+        if (!cats.isEmpty()) { //Ha nem üres.
+            //cats.get(0) → visszaadja az első Cat referenciát. output: firstproject.Cat@1f32e575
+            System.out.println("Neve: " + cats.get(0).getName()); //output: Sziamiau
+        } else {
+            System.out.println("Üres az ArrayList.");
+        }
+
+    }
+</code></pre>
+<h2 id="arraylist-használata-az-örökléssel"><a class="header" href="#arraylist-használata-az-örökléssel">ArrayList használata az örökléssel</a></h2>
+<p>Ez a kód jól illusztrálja a polimorfizmust:</p>
+<ul>
+<li>Az ArrayList típusát az ősosztály adja.</li>
+<li>A konkrét objektum lehet leszármazott (Cat).</li>
+<li>A Cat osztály metódusai nem lesznek elérhetőek.</li>
+</ul>
+<pre><code class="language-java">    public static void main(String[] args) {
+
+                                  //ArrayList létrehozása az ősosztály típusával.
+                                  //Animal az ősosztály, a Cat pedig egy leszármazott.
+                                  //Tárol objektumokat, nem primitíveket.
+                                  ArrayList&lt;Animal&gt; cats = new ArrayList&lt;&gt;();
+
+                                  //Ez lehetséges, mert minden Cat egy Animal, az öröklés miatt.
+                                  Cat sziamiau = new Cat("Sziamiau");
+                                  cats.add(sziamiau);
+
+                                  if (!cats.isEmpty()) { //Ha nem üres.
+                                      //cats.get(0) → visszaad egy Animal referenciát, ami valójában Cat típusú objektumra mutat.
+                                      System.out.println("Neve: " + cats.get(0).getName());
+                                  } else {
+                                      System.out.println("Üres az ArrayList.");
+                                  }
+
+    }
+</code></pre>
+<h2 id="osztály-kasztolása"><a class="header" href="#osztály-kasztolása">Osztály kasztolása</a></h2>
+<p>Cat osztályban:</p>
+<pre><code class="language-java">public void purr() {
+System.out.println("Dorombolok.");
+}
+
+    public static void main(String[] args) {
+        //Polimorfizmus
+        //cats listája Animal típusú referenciákat tárol.
+        //Cat egy leszármazott osztály, ezért hozzáadható.
+        //Az ArrayList viszont csak Animal referenciákat ismer,
+        //így a Cat-hez speciális metódus (purr()) nem érhető el közvetlenül.
+
+        ArrayList&lt;Animal&gt; cats = new ArrayList&lt;&gt;();
+        Cat sziamiau = new Cat("Sziamiau");
+        cats.add(sziamiau);
+
+        //cats.get(0) visszaad egy Animal referenciát, ami valójában egy Cat objektum.
+        //A kasztolás (Cat) lehetővé teszi, hogy a Cat-specifikus metódusokat meghívd.
+
+        Cat cat = (Cat) cats.get(0);
+
+        //Most már elérhető a Cat osztály saját metódusa (purr()), mert a referenciát Cat típusúvá alakítottuk.
+        cat.purr(); //Dorombolok.
+    }
+</code></pre>
+<h2 id="object-ősosztály-használata"><a class="header" href="#object-ősosztály-használata">Object ősosztály használata</a></h2>
+<pre><code class="language-java">    public static void main(String[] args) {
+        ArrayList&lt;Object&gt; cats = new ArrayList&lt;&gt;();
+        Cat sziamiau = new Cat("Sziamiau");
+        cats.add(sziamiau);
+
+        Cat cat = (Cat) cats.get(0);
+        cat.purr(); //Dorombolok.
+    }
+</code></pre>
+<h2 id="hibás-kód-és-futásidőben-kivételt-fog-dobni"><a class="header" href="#hibás-kód-és-futásidőben-kivételt-fog-dobni">Hibás kód és futásidőben kivételt fog dobni</a></h2>
+<pre><code class="language-java">    public static void main(String[] args) {
+        ArrayList&lt;Object&gt; cats = new ArrayList&lt;&gt;();
+        Dog morzsa = new Dog();
+        Cat sziamiau = new Cat("Sziamiau");
+        cats.add(sziamiau);
+        cats.add(morzsa);
+
+        Cat cat = (Cat) cats.get(0);
+
+        //cats.get(1) egy Dog, nem lehet Cat típusra kasztolni.
+        Cat cat2 = (Cat) cats.get(1);
+
+        cat2.purr();
+    }
+</code></pre>
+<h1 id="mit-hagyott-ránk-az-object"><a class="header" href="#mit-hagyott-ránk-az-object">Mit hagyott ránk az Object?</a></h1>
+<pre><code class="language-java">    public static void main(String[] args) {
+        ArrayList&lt;Cat&gt; cats = new ArrayList&lt;&gt;();
+        Cat sziamiau = new Cat("Sziamiau");
+
+        Object o1 = new Object();
+        Object o2 = new Object();
+        Object o3 = o1;
+
+        //Amikor összehasonlítunk két objektumot,
+        //akkor gyakorlatilag a háttérben a két hashcode-t hasonlítjuk össze.
+        System.out.println(o1.hashCode() + " " + o2.hashCode() + " " + o3.hashCode());
+        //Egyedi azonosítószáma. output: 523429237 664740647 523429237
+
+        System.out.println(o1.equals(o3)); // output: true
+
+        System.out.println(sziamiau.getClass()); // output: class firstproject.Cat
+    }
+</code></pre>
+<h2 id="instanceof"><a class="header" href="#instanceof">instanceof</a></h2>
+<pre><code class="language-java">    //Akkor fut le, ha az első elem példánya a Cat osztálnak.
+        if (cats.get(1) instanceof Cat) {
+            Cat cat = (Cat) cats.get(1);
+            cat.purr();
+        }
+</code></pre>
+<h2 id="tostring"><a class="header" href="#tostring">toString()</a></h2>
+<pre><code class="language-java">    public static void main(String[] args) {
+        ArrayList&lt;Animal&gt; cats = new ArrayList&lt;&gt;();
+        Cat sziamiau = new Cat("Sziamiau");
+        cats.add(sziamiau);
+        Dog morzsi = new Dog();
+
+        Integer a = 2;
+
+        String something = a.toString();
+        System.out.println(a); // output: 2
+        System.out.println(sziamiau.toString()); // output: firstproject.Cat@279f2327
+    }
+</code></pre>
+<p>A fenti példa módosítása:
+A Cat osztályban:</p>
+<pre><code class="language-java">    @Override
+    public String toString() {
+        return "Macska vagyok, a nevem: " + this.getName();
+    }
+</code></pre>
+<p>A Mainben:</p>
+<pre><code class="language-java">    System.out.println(sziamiau.toString()); // output: Macska vagyok, a nevem: Sziamiau
+</code></pre>
+<h1 id="immutable-final-és-static"><a class="header" href="#immutable-final-és-static">Immutable, Final és Static</a></h1>
+<h2 id="immutable"><a class="header" href="#immutable">Immutable</a></h2>
+<p>Megváltoztathatatlan.</p>
+<p>String: A String egy immutable class, vagyis megváltoztathatatlan és a Heap-en belül a String Poolban van tárolva.</p>
+<p>Mi a különbség a lenti két inicializáció között?</p>
+<p>Röviden: memóriahasználatban, objektumok számában és referencia-azonosságban különböznek.</p>
+<pre><code class="language-java">    String a = "Hello!"; // String Poolban lévő String objektumra mutat.
+    /*
+    ✔️ Mit történik itt?
+    A "Hello!" egy String literál.
+    A Java a literálokat a String Constant Poolban (String Pool) tárolja.
+    A String Pool a Heap memórián belül található (Java 7 óta).
+    Ha már létezne "Hello!" a poolban, akkor a arra a meglévő objektumra mutatna.
+    */
+
+    String c = new String("Hello"); // Heapben van.
+
+    /*✔️ Mit történik itt?
+    A "Hello" literál először bekerül a String Poolba (ha még nem volt ott).
+    A new String("Hello") mindig létrehoz egy új String objektumot a Heapben, a poolon kívül.
+    c erre az új objektumra mutat, nem a poolban lévőre.
+    👉 Tehát:
+    String Pool: "Hello"
+    Heap (külön objektum): new String("Hello")
+    */
+
+    System.out.println(a == c); //== referenciát hasonlít; output: false
+</code></pre>
+<h3 id="mikre-figyelj-egy-immutable-class-létrehozásakor"><a class="header" href="#mikre-figyelj-egy-immutable-class-létrehozásakor">Mikre figyelj egy immutable class létrehozásakor!</a></h3>
+<pre><code class="language-java">//Final kulcszó legyen ott az osztály deklarálásakor.
+public final class Dog extends Animal {
+
+        //Legyen egy final változója.
+        final private int size;
+
+        //Konstruktor.
+        public Dog() {
+            size = 0;
+        }
+
+        //Konstruktor, amivel lehet a változó értékét beállítani és nem kell neki setter.
+        public Dog(int size) {
+            this.size = size;
+        }
+    }
+</code></pre>
+<h2 id="final"><a class="header" href="#final">final</a></h2>
+<p>Ez egy immutable class. =Megváltoztathatatlan.
+final: A Dog osztály nem terjeszthető ki. Nem lehet a kutyának alfaja.
+A metódusait nem lehet felülírni, mert final az osztály.</p>
+<pre><code class="language-java">    public final class Dog extends Animal {
+
+        //A final változó értékét nem lehet megváltoztatni.
+        final private int size;
+
+        public void bark() {
+        }
+
+        public Dog() {
+            size = 0;
+        }
+
+        public Dog(int size) {
+            this.size = size;
+        }
+
+        public void getSize() {
+            System.out.println(size);
+        }
+    }
+</code></pre>
+<p>Main-ben:</p>
+<pre><code class="language-java">Dog dog1 = new Dog();
+dog1.getSize(); // output: 0
+
+        Dog dog2 = new Dog(5);
+        dog2.getSize(); // output: 5
+</code></pre>
+<p>Ha kiterjeszthető lenne a Dog osztály, nem lenne final és írunk bele egy final metódust, akkor azt nem lehetne felülírni.</p>
+<h1 id="static"><a class="header" href="#static">static</a></h1>
+<p>A statikus metódusokat és változókat osztály inicializálás nélkül is elkérhetjük és meghívhatjuk. Általában konstansokat ildomos megadni vele.</p>
+<pre><code class="language-java">public static final String APP_NAME = "Nagraggini Blogja"
+</code></pre>
+<p>Ekkor név konvenció szerint nagybetűvel írjuk a dolgokat.</p>
+<h2 id="static-metódus"><a class="header" href="#static-metódus">static metódus</a></h2>
+<p>Ha egy osztálynak van statikus metódusa, akkor az példányosítás nélkül meghívható, mert az osztályhoz tartozik, nem az objektumhoz.</p>
+<p>pl.: Math.random();</p>
+<p>Másik példa:
+A Dog osztályos belül van:</p>
+<pre><code class="language-java">public static void bark() {
+System.out.println("Bark");
+}
+</code></pre>
+<p>Main-ben:</p>
+<pre><code class="language-java">    public static void main(String[] args) {
+        Dog.bark(); // Nem kellett példányosítani az osztályt, mert a metódus statikus.
+    }
+</code></pre>
+<h3 id="static-osztály"><a class="header" href="#static-osztály">static osztály</a></h3>
+<p>Egy top-level osztályt nem lehet static-ként deklarálni, csak belső (inner / nested) osztály lehet static.</p>
+<h3 id="static-változó"><a class="header" href="#static-változó">static változó</a></h3>
+<p>A statikus változó: az osztályhoz tartozik minden példány közösen használja egyetlen példányban létezik.</p>
+<p>Main-ben:</p>
+<pre><code class="language-java">public static void main(String[] args) {
+Cat cat1 = new Cat();
+Cat cat2 = new Cat();
+
+        //Az objectCount az osztályhoz tartozik, nem az objektumhoz.
+        //Ezért statikus változót mindig az osztály nevével érünk el.
+        System.out.println(Cat.objectCount); //output: 2
+    }
+</code></pre>
+<p>Cat osztály:</p>
+<pre><code class="language-java">    public class Cat extends Animal {
+
+        //Ezzel megtudjuk számolni, hogy hány objektum készült el.
+        // //Mindegyik példány osztozik ezen a statikus változón.
+        public static int objectCount;
+
+        //Konstruktor, ha nem hozod létre, akkor az IDE automatikusan létrehozza.
+        //Amikor létre jön az objektum, akkor automatikusan lefut.
+        public Cat() {
+            objectCount++;
+
+        }
+    }
+</code></pre>
+<h1 id="diagramok-és-kapcsolatok"><a class="header" href="#diagramok-és-kapcsolatok">Diagramok és Kapcsolatok</a></h1>
+<p><strong>Public:</strong><br />
+Mindenhonnan elérhető (bármely package-ből, bármely osztályból).</p>
+<p><strong>Protected:</strong><br />
+Elérhető azonos package-en belül (mint a default), más package-ből csak leszármazott (subclass) osztályból érhető el.</p>
+<p><strong>Private:</strong><br />
+Csak az adott osztályon belül elérhető. Még a leszármazott osztály sem éri el.</p>
+<p><strong>Abstact:</strong><br />
+Nem access modifier, hanem osztály/metódus jellemző. Nem lehet példányosítani, de kiterjeszteni lehet (extends).</p>
+<p><strong>Default / package-private:</strong><br />
+Ha nincs kiírva. Csak az adott package-en belül elérhető, még subclass esetén sem. NEM protected.</p>
+<p><img src="assets/class_types.png" alt="alt text" /></p>
+<h2 id="diagramok"><a class="header" href="#diagramok">Diagramok</a></h2>
+<p>Létre lehet hozni UML, vagy osztály diagramot. Hasonlít egy adatbázis kapcsolati ábrára, de nem ugyanaz (viselkedést is mutat).</p>
+<p>Has it. Vagy Is it. Nem mindegyik, hogy mi-miből van leszármaztatva.</p>
+<h3 id="is-a-kapcsolat-öröklés--inheritance"><a class="header" href="#is-a-kapcsolat-öröklés--inheritance">„Is-a” kapcsolat (öröklés – inheritance)</a></h3>
+<p>👉 Leszármazás.</p>
+<p>Szabály:
+A leszármazott osztály „egy fajta” a szülőből.</p>
+<h3 id="has-a-kapcsolat-összetétel--tartalmazás"><a class="header" href="#has-a-kapcsolat-összetétel--tartalmazás">Has-a” kapcsolat (összetétel / tartalmazás)</a></h3>
+<p>👉 Egy osztály tartalmaz egy másikat.</p>
+<p>Szabály:
+Az egyik objektumnak van egy másik objektuma.</p>
+<h1 id="kivételek-kezelése---try-catch-finally"><a class="header" href="#kivételek-kezelése---try-catch-finally">Kivételek kezelése - Try Catch Finally</a></h1>
+<h2 id="throwable-előfordulható-hibákelkapható-problémák"><a class="header" href="#throwable-előfordulható-hibákelkapható-problémák">Throwable (Előfordulható hibák/Elkapható problémák)</a></h2>
+<p>A Throwable az összes eldobható objektum alapja a Java-ban.</p>
+<p>Két fő típusa van:</p>
+<h3 id="error-hiba"><a class="header" href="#error-hiba">Error (Hiba)</a></h3>
+<p>Példa: OutOfMemoryError, StackOverflowError</p>
+<p>Jellemzők:</p>
+<ul>
+<li>Súlyos problémák a JVM működésében.</li>
+<li>Nem kell kezelni, általában nem tudod helyrehozni a programból.</li>
+<li>Rendszer-szintű súlyos hibák, amiket az alkalmazás szinten általában nem kezelünk.</li>
+<li>Unchecked, runtime hiba.</li>
+</ul>
+<h3 id="exception-kivétel"><a class="header" href="#exception-kivétel">Exception (Kivétel)</a></h3>
+<ul>
+<li>Példa: IOException, SQLException, NullPointerException</li>
+</ul>
+<p>Két fő kategória:</p>
+<h4 id="exception-n-belül-checked-exceptions-ellenőrzött-kivételek"><a class="header" href="#exception-n-belül-checked-exceptions-ellenőrzött-kivételek">Exception-n belül: Checked Exceptions (ellenőrzött kivételek)</a></h4>
+<p>Példa: IOException, FileNotFoundException</p>
+<p>Jellemzők:</p>
+<ul>
+<li>Compile-time ellenőrzés → a fordító figyelmeztet, ha nem kezeled.</li>
+<li>Meg kell oldani: try-catch blokkal, vagy throws kulcsszóval tovább dobni.</li>
+</ul>
+<p>Használati eset: amikor a hiba előre látható, pl. fájl olvasása, hálózati kommunikáció.</p>
+<h4 id="exception-n-belül-unchecked-exceptions-ellenőrzés-nélküli-kivételek"><a class="header" href="#exception-n-belül-unchecked-exceptions-ellenőrzés-nélküli-kivételek">Exception-n belül: Unchecked Exceptions (ellenőrzés nélküli kivételek)</a></h4>
+<p>Példa: NullPointerException, ArrayIndexOutOfBoundsException</p>
+<p>Jellemzők:</p>
+<ul>
+<li>Runtime exceptions → futásidőben jelentkeznek.</li>
+<li>Nem kötelező kezelni, a fordító nem kéri.</li>
+</ul>
+<p>Használati eset: programhibák, logikai hibák, pl. nem inicializált változó használata.</p>
+<h2 id="példák-1"><a class="header" href="#példák-1">Példák</a></h2>
+<h3 id="checked-exceptions"><a class="header" href="#checked-exceptions">Checked Exceptions</a></h3>
+<p>Első példa:</p>
+<pre><code class="language-java">    try {
+        byte a = 300;
+        //Ha nem sikerül ezt lefuttatni, akkor az exception részre ugrik a program.
+    } catch (Exception e) {
+        System.out.println("Kivétel: " + e); //Kiíratjuk a hibaüzenetet.
+    }
+</code></pre>
+<p>Második példa try-with-resources-os:</p>
+<pre><code class="language-java">    public static void main(String[] args) {
+        File file = new File("C://file.txt");
+        try (//A try-catch-t automatikusan hoztam létre az IDE segítségével.
+                // A FileReader sora eljén kattints a villanykörtére -&gt; surround try-catch.
+                FileReader fr = new FileReader(file)) {
+        } catch (IOException e) {
+            System.out.println(e);
+        } finally { //A finally-t nem kötelező megadni.
+            // Ez mindenképpen le fut, akár lefutott a try, vagy nem, akár lefutott a catch, vagy nem.
+            // Ez mindenkéépen lefut.
+            System.out.println("Mindenképpen ez ki lesz írva.");
+        }
+    }
+</code></pre>
+<h3 id="unchecked-exceptions"><a class="header" href="#unchecked-exceptions">Unchecked Exceptions</a></h3>
+<p>ArrayIndexOutOfBoundsException</p>
+<pre><code class="language-java">    int num[] = {1, 2, 3, 4, 5};
+    System.out.println(num[6]);
+</code></pre>
+<p>NullPointerException</p>
+<pre><code class="language-java">    Cat cat = new Cat();
+    if (cat.getName().equals("Aladár")) { //.equals()
+    }
+</code></pre>
+<p>Ezzel is le lehet ellenőrizni, hogy egyenlőe nullával.</p>
+<pre><code class="language-java">    if (cat != null || cat.getName() != null) {
+        }
+</code></pre>
+<p>InputMismatchException</p>
+<p>pl.: Számot kérünk be, de a felhasználó szöveget ad meg.</p>
+<pre><code>if (sc.hasNextInt()) {
+    grade = sc.nextInt();
+} else {
+    System.out.println("Nem számot adtál meg!");
+    sc.next();
+}
+</code></pre>
+<p>Vagy</p>
+<pre><code>try{
+
+} catch (InputMismatchException e) {
+    System.out.println("Nem számot adtál meg!");
+    sc.next(); // hibás input eldobása
+}
+</code></pre>
+<h3 id="eldobjuk-a-hibát"><a class="header" href="#eldobjuk-a-hibát">Eldobjuk a hibát</a></h3>
+<p>Ha egy kis rész programban nem szeretnéd lekezelni a hibát, akkor megteheted azt, hogy dobod.</p>
+<p>Példa:</p>
+<pre><code>import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+public class ElsoProject {
+
+    //Ökölszabály: Osztályon belül statikus metódusból nem hívhatunk meg nem statikus metódust.
+    public static void main(String[] args) {
+        try {
+            test();
+        } catch (FileNotFoundException e) {                
+            e.printStackTrace();
+        }
+    }
+
+    private static void test() throws FileNotFoundException {
+        File file = new File("C://file.txt"); //FileNotFoundException
+        FileReader fr = new FileReader(file);
+        //A FileReader sora eljén kattints a villanykörtére -&gt; Add throws declaration
+
+    }
+</code></pre>
+<h3 id="gyakori-módszer-a-hiba-eldobására"><a class="header" href="#gyakori-módszer-a-hiba-eldobására">Gyakori módszer a hiba eldobására</a></h3>
+<pre><code class="language-java">  String nickname = "   "; // próbáld meg: "Penguin", "", null
+
+        if (nickname == null || nickname.isBlank()) {
+            throw new IllegalArgumentException("Nem lehet üres!");
+        }
+
+        System.out.println("Nickname: " + nickname);
+</code></pre>
+<h1 id="inner-és-anonim-class"><a class="header" href="#inner-és-anonim-class">Inner és Anonim Class</a></h1>
+<h1 id="adatbekérés-a-felhasználótól"><a class="header" href="#adatbekérés-a-felhasználótól">Adatbekérés a felhasználótól</a></h1>
+<p>import java.util.Scanner; //Import az osztály létrehozása előtt.</p>
+<p>Scanner scanner = new Scanner(System.in); //Szkenner osztály példányosítása a használathoz.</p>
+<p>String data=scanner.nextLine(); //Egy sor beolvasása.</p>
+<p>scanner.nextDouble()
+scanner.nextBoolean()
+scanner.nextInt()</p>
+<h1 id="példák-2"><a class="header" href="#példák-2">Példák</a></h1>
+<h2 id="elágazások-if"><a class="header" href="#elágazások-if">Elágazások (if)</a></h2>
+<pre><code class="language-java">    System.out.println("Adj meg egy életkort, és írd kiírom, hogy kiskorú, felnőtt vagy nyugdíjas-e!");
+    Scanner sc = new Scanner(System.in);
+    int age = sc.nextInt();
+
+    if (18 &lt;= age &amp;&amp; age &lt; 65) {
+        System.out.println("Felnőtt");
+    } else if (age &lt; 18) {
+        System.out.println("Kiskorú");
+    } else {
+        System.out.println("Nyugdíjas");
+    }
+</code></pre>
+<h2 id="for-ciklus-és-tömbök-valamint-kasztolás"><a class="header" href="#for-ciklus-és-tömbök-valamint-kasztolás">For ciklus és tömbök, valamint kasztolás</a></h2>
+<pre><code>    System.out.println("Adj meg három számot vesszővel elválasztva, és kiírom, melyik a legnagyobb!");
+    Scanner sc = new Scanner(System.in);
+    String numbers = sc.nextLine();
+
+    String[] numbers2 = numbers.split(",");
+
+    int max = Integer.parseInt(numbers2[0]); //Negatív számok esetén, nem jó a 0.
+
+    for (int i = 0; i &lt; numbers2.length; i++) {
+        //Integer.parseInt() -&gt; Kasztolás.
+        //trim() -&gt; Leszedi a szóközöket.
+        max = Math.max(Integer.parseInt(numbers2[i].trim()), max);
+     }
+
+    System.out.println("A legnagyobb szám: " + max);
+</code></pre>
+<h2 id="switch-case"><a class="header" href="#switch-case">Switch-case</a></h2>
+<p>A switch nem feltételeket, hanem konkrét értékeket vizsgál; tartományok ellenőrzésére if–else szerkezetet használunk.</p>
+<pre><code class="language-java">    //Csak egyszer fut le.
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Adj meg egy érdemjegyet (1-5-ig), \n és kiírom szövegesen az eredményt (elégtelen, jeles, stb).");
+
+    //Leellenőrizzük, hogy tuti számot adott-e meg a felhasználó.
+    if (sc.hasNextInt()) {
+        int grade = sc.nextInt();
+
+        switch (grade) {
+            case 1:
+                System.out.println("Elégtelen.");
+                break;
+            case 2:
+                System.out.println("Elégséges.");
+                break;
+            case 3:
+                System.out.println("Közepes.");
+                break;
+            case 4:
+                System.out.println("Jó.");
+                break;
+            case 5:
+                System.out.println("Jeles.");
+                break;
+            default:
+                System.out.println("1 és 5 között adj meg egy számot.");
+        }
+        sc.close();
+
+    } else {
+        System.out.println("Nem számot adtál meg.");
+    }
+</code></pre>
+<h3 id="másik-megoldás-java-14-switch-expression-lambdás-és-do-while"><a class="header" href="#másik-megoldás-java-14-switch-expression-lambdás-és-do-while">Másik megoldás (Java 14+ switch expression lambdás és do-while)</a></h3>
+<pre><code class="language-java">    Scanner sc = new Scanner(System.in);
+    int grade;
+
+    do {
+        System.out.print("Adj meg egy érdemjegyet (1–5): ");
+
+        if (!sc.hasNextInt()) { //Nem számot adott meg a felhasználó.
+            System.out.println("Nem számot adtál meg!");
+            sc.next(); // hibás input eldobása
+            grade = 0; // biztosan rossz érték
+            continue; //Hagyd abba a ciklus aktuális körét, és ugorj a következőre.
+        }
+
+        grade = sc.nextInt();
+
+        if (grade &lt; 1 || grade &gt; 5) {
+            System.out.println("Hibás érték! 1 és 5 között add meg.");
+        }
+
+    } while (grade &lt; 1 || grade &gt; 5);
+
+    // Java 14+ switch expression
+    switch (grade) {
+        case 1 -&gt;
+            System.out.println("Elégtelen."); //A break-t sem kell kiírni.
+        case 2 -&gt;
+            System.out.println("Elégséges.");
+        case 3 -&gt;
+            System.out.println("Közepes.");
+        case 4 -&gt;
+            System.out.println("Jó.");
+        case 5 -&gt;
+            System.out.println("Jeles.");
+    }
+
+    sc.close();
+</code></pre>
+<h2 id="do-while-és-if-elágazás"><a class="header" href="#do-while-és-if-elágazás">Do-while és if elágazás</a></h2>
+<pre><code class="language-java">    Scanner sc = new Scanner(System.in);
+
+        int number;
+
+        do {
+            System.out.println("Adj meg egy számot, ami 1 és 10 között van.");
+
+            if (!sc.hasNextInt()) {
+                System.out.println("Hibás érték, próbáld újra!");
+                sc.next(); // hibás input eldobása
+                number = 0; // A do-while végén a number értékét vizsgálom, ezért a fordító kötelezően
+                            // inicializáltnak akarja látni.
+                continue;// Ezzel nem csak egyszer dobja vissza a felhasználónak az újra beírás
+                         // lehetőségét. Kiírja újra a do-while második sorát is.
+            }
+            // A vizsgálat után adjuk meg a változónak az értéket.
+            number = sc.nextInt();
+
+            // Logikai vizsgálat.
+            if (number &lt; 1 || number &gt; 10) {
+                System.out.println("Túl nagy vagy túl kicsi az érték. \n Újra!");
+            }
+        } while (number &lt; 1 || number &gt; 10);
+        System.out.println("Jó a szám, 1 és 10 között van!");
+</code></pre>
+<h1 id="java-dinamikus-weboldal-létrehozása"><a class="header" href="#java-dinamikus-weboldal-létrehozása">Java Dinamikus weboldal létrehozása</a></h1>
+<p>Első projekt létrehozásához <a href="https://www.youtube.com/watch?v=RAJI9GfPs2g">itt</a> találod azt, ami alapján csináltam.</p>
+<p>Eclipse IDE for Enterprise Java and Web Developers
+Ha, csak Java Developer van az, se gond, akkor be kell állítani ezt:
+Servlet API hozzáadása a projekthez manuálisan</p>
+<p>Menj a Tomcat mappádba, pl. C:\apache-tomcat-9.0.80\lib</p>
+<p>Ott találod: servlet-api.jar (és esetleg jsp-api.jar)</p>
+<p>Eclipse-ben:</p>
+<p>Jobb klikk a projektre → Properties → Java Build Path → Libraries → Add External JARs…</p>
+<p>Tallózd be a servlet-api.jar-t → OK</p>
+<p>Most már a import javax.servlet.*; működni fog</p>
+<p>Tomcat szervert <a href="https://tomcat.apache.org/download-10.cgi">innen</a> tudod letölteni.
+Binary -&gt; Core verzió</p>
+<p>Ha hiányzik a .class fájl a build mappából, akkor Eclipse -&gt; Project → Clean</p>
+<p><em>Ha nem működik a servlet:</em>
+Window → Show View → Servers
+Alul megjelenik a szerver panel.
+Tomcat v10.1 Server at localhost
+→ Right click -&gt; Clean -&gt;Aztán Publish -&gt; Aztán Restart.</p>
+<p>Render.com-on Dockerrel kell deployolnod, mert Render nem tud közvetlenül WAR fájlokat futtatni Tomcat nélkül.</p>
+<h1 id="gyakorlás-gyakorlás-gyakorlás"><a class="header" href="#gyakorlás-gyakorlás-gyakorlás">Gyakorlás gyakorlás gyakorlás</a></h1>
+<p><a href="https://infojegyzet.hu/vizsgafeladatok/">Gyakorló feladatok / Programozás részen</a></p>
+<p>Az én megoldásaimat <a href="https://github.com/Nagraggini/start-projects/tree/main/java-console-exams/src">itt</a> találod.</p>
+<p>További feladatokat <a href="https://www.oktatas.hu/kozneveles/erettsegi/feladatsorok">itt</a> találsz.</p>
+<p><a href="https://infojegyzet.hu/vizsgafeladatok/szoftverfejleszto-interaktiv/teszt/?tesztkod=K31G-MZYR">Interaktív tesztek a programozáshoz</a></p>
+<h1 id="map"><a class="header" href="#map">Map</a></h1>
+<h2 id="főbb-különbségek-összefoglalva"><a class="header" href="#főbb-különbségek-összefoglalva">Főbb különbségek összefoglalva</a></h2>
+<pre><code class="language-bash">| Tulajdonság         | HashMap                             | LinkedHashMap                                  | TreeMap                                               |
+| ------------------- | ----------------------------------- | ---------------------------------------------- | ----------------------------------------------------- |
+| **Sorrend**         | Nincs garantált sorrend.            | A hozzáadás sorrendjét követi.                 | Természetes sorrend (pl. ABC) vagy egyedi Comparator. |
+| **Belső felépítés** | Hash tábla (Hashtable).             | Hash tábla + Duplán láncolt lista.             | Piros-fekete fa (Red-Black Tree).                     |
+| **Gyorsaság**       | A leggyorsabb (O(1)).               | Kicsit lassabb a lista miatt, de gyors (O(1)). | Lassabb (O(log n)).                                   |
+| **Null kulcs**      | Egy darab `null` kulcs megengedett. | Egy darab `null` kulcs megengedett.            | **Nem enged meg** `null` kulcsot (hibát dob).         |
+</code></pre>
+<hr />
+<h2 id="1-hashmap"><a class="header" href="#1-hashmap">1. HashMap</a></h2>
+<p>Ez a leggyakrabban használt Map. Akkor használd, ha a <strong>teljesítmény a legfontosabb</strong>, és egyáltalán nem számít, hogy az elemek milyen sorrendben jönnek ki belőle.</p>
+<ul>
+<li><strong>Működése:</strong> Hashing technikát használ.</li>
+<li><strong>Előnye:</strong> Nagyon gyors keresés, beszúrás és törlés.</li>
+</ul>
+<h2 id="2-linkedhashmap"><a class="header" href="#2-linkedhashmap">2. LinkedHashMap</a></h2>
+<p>Olyan, mint a HashMap, de "emlékszik" arra, hogy milyen sorrendben adtad hozzá az elemeket.</p>
+<ul>
+<li><strong>Működése:</strong> Fenntart egy duplán láncolt listát az elemek között.</li>
+<li><strong>Előnye:</strong> Ha végigiterálsz rajta, pontosan abban a sorrendben kapod vissza az elemeket, ahogy betetted őket. Kiváló gyorsítótárak (cache) készítéséhez.</li>
+</ul>
+<h2 id="3-treemap"><a class="header" href="#3-treemap">3. TreeMap</a></h2>
+<p>Ez a Map <strong>mindig rendezve van</strong>.</p>
+<ul>
+<li><strong>Működése:</strong> Egy fa struktúrát épít fel.</li>
+<li><strong>Előnye:</strong> Az elemeket automatikusan sorba rendezi a kulcsok alapján (például számoknál növekvő sorrend, szövegeknél ABC). Ha szükséged van arra, hogy a kulcsaid mindig rendezettek legyenek, ez a jó választás.</li>
+</ul>
+<hr />
+<h3 id="melyiket-válaszd"><a class="header" href="#melyiket-válaszd">Melyiket válaszd?</a></h3>
+<blockquote>
+<ul>
+<li><strong>HashMap:</strong> Ha csak gyorsan akarsz tárolni és lekérdezni, és nem érdekel a sorrend.</li>
+<li><strong>LinkedHashMap:</strong> Ha fontos, hogy "ki volt az első", vagyis a hozzáadási sorrend számít.</li>
+<li><strong>TreeMap:</strong> Ha azt akarod, hogy a Map-ed mindig ABC vagy számszerinti sorrendben legyen.</li>
+</ul>
+</blockquote>
+<p><strong>Egy fontos megjegyzés:</strong> Mivel a <code>TreeMap</code> folyamatosan rendezi magát minden beszúrásnál, ez a leginkább erőforrás-igényes a három közül.</p>
+<h2 id="mit-használj-a-vizsgán"><a class="header" href="#mit-használj-a-vizsgán">Mit használj a vizsgán?</a></h2>
+<p>Beolvasás: Mindig olvass be egy ArrayList-be (ez az alap).</p>
+<p>Keresés/Szűrés/Statisztika: Használd a listát és a Stream API-t.</p>
+<p>Egyedi kulcsos keresés: Csak akkor készíts HashMap-et, ha a feladat kifejezetten kéri, hogy egy azonosító alapján keress ki valamit villámgyorsan.</p>
+<h1 id="java-példák-és-magyarázatok"><a class="header" href="#java-példák-és-magyarázatok">Java Példák és Magyarázatok</a></h1>
+<h2 id="Összehasonlítás-lambda-vs-metódusreferencia"><a class="header" href="#Összehasonlítás-lambda-vs-metódusreferencia">Összehasonlítás: Lambda vs. Metódusreferencia</a></h2>
+<p>Metódus referencia: Object::toString
+Nem kell átadni paramétert.</p>
+<p>Lambda: o -&gt; o.toString(elvalsztojel)
+Kell átadni paramétert.</p>
+<h2 id="1-fájlbeolvasás"><a class="header" href="#1-fájlbeolvasás">1. Fájlbeolvasás</a></h2>
+<p>Egyszerű példa:</p>
+<pre><code class="language-java">  try {
+            File file = new File("fajlnev.txt");
+            if (file.createNewFile()) {
+                System.out.println("A fájl létrehozva ide: " + file.getName()); // System.out.println(file.getAbsoluteFile());
+
+            } else {
+                System.out.println("A fájl már létezik. " + file.exists());
+                System.out.println(".canWrite(): " + file.canWrite()); // ".canWrite(): "+
+                System.out.println(".canRead(): " + file.canRead()); // ".canWrite(): "+
+                file.delete();
+                System.out.println("Fájl törlése sikeres.");
+
+                System.out.println(file.getAbsolutePath()); // System.out.println(file.getAbsoluteFile());
+            }
+        } catch (IOException e) {
+            System.out.println("Error.");
+            e.printStackTrace();
+        }
+</code></pre>
+<pre><code class="language-java">public void fajlBeolvasas(String fajlneve) {
+
+    // Van amikor ez a jó: StandardCharsets.UTF_8
+    // Van amikor ez a jó: Charset.forName("windows-1250")
+
+    Path path = Path.of(fajlneve);
+
+    // Ellenőrzés és beolvasás egyben
+    if (!Files.exists(path)) {
+        System.out.println("Nem létezik a fájl!\n Itt keresem: " + System.getProperty("user.dir"));
+        return; // Ha nincs fájl, ne is menjünk tovább.
+    }
+
+    ArrayList&lt;Operatorok2&gt; lista = new ArrayList&lt;&gt;();
+
+    try { // Vs code-ban: Katt a Standard-ra, majd sárga körte ikon -&gt; Surround statemnt with try-catch.
+        List&lt;String&gt; sorok = Files.readAllLines(path, StandardCharsets.UTF_8);
+
+        //Van, amikor 1-től kell menni az oszlopnevek miatt.
+        for (int i = 0; i &lt; sorok.size(); i++) {
+            String[] t = sorok.get(i).split(" ");
+
+            lista.add(new Operatorok2(Integer.parseInt(t[0]), t[1], Integer.parseInt(t[2])));
+        }
+    } catch (IOException ex) {
+        System.getLogger(Operatorok2.class.getName())
+              .log(System.Logger.Level.ERROR, (String) null, ex);
+    }
+}
+</code></pre>
+<h2 id="2-fájlkiírás"><a class="header" href="#2-fájlkiírás">2. Fájlkiírás</a></h2>
+<pre><code class="language-java">public void fajlKiiras() {
+    // 1️⃣ Lista létrehozása
+    ArrayList&lt;Operatorok2&gt; lista = new ArrayList&lt;&gt;();
+
+    // 2️⃣ Példa adatok hozzáadása
+    lista.add(new Operatorok2(10, "+", 5));
+    lista.add(new Operatorok2(20, "-", 3));
+    lista.add(new Operatorok2(4, "*", 6));
+
+    try {
+        // 3️⃣ Lista kiírása fájlba Stream segítségével
+        Files.write(
+            Path.of("eredmeny.txt"),
+            lista.stream()
+                 .map(Object::toString) //Vagy lehet más metódust is használni.
+                 .toList(),
+            StandardCharsets.UTF_8
+        );
+
+        System.out.println("Fájl kiírva: eredmeny.txt");
+
+    } catch (IOException e) {
+        System.out.println("Hiba történt a fájl írásakor.");
+    }
+}
+</code></pre>
+<h2 id="3-stream-műveletek"><a class="header" href="#3-stream-műveletek">3. Stream műveletek</a></h2>
+<pre><code class="language-java">public void StreamFunkciok() {
+                // Példa lista létrehozása
+                List&lt;Integer&gt; szamok = Arrays.asList(5, 10, 15, 20, 25, 10, 5);
+
+                // 1️⃣ Stream létrehozása a listából
+                szamok.stream(); // Adatfolyammá alakítjuk a számoka.
+                szamok.parallelStream(); // A feladatot több részre bontja és párhuzamosan a gép több prociján egyzserre
+                                         // csinálja.
+
+                // 2️⃣ Szűrés (Filtering)
+                List&lt;Integer&gt; nagyobbMint10 = szamok.stream().filter(x -&gt; x &gt; 10) // csak a 10-nél nagyobb számokat
+                                                                                  // tartjuk meg
+                                .collect(Collectors.toList()); // visszaadjuk List-ként
+                System.out.println("Számok &gt; 10: " + nagyobbMint10);
+
+                // 3️⃣ Ismétlődések eltávolítása
+                List&lt;Integer&gt; distinctSzamok = szamok.stream().distinct() // eltávolítja az ismétlődő elemeket
+                                .collect(Collectors.toList());
+                System.out.println("Ismétlődés nélkül: " + distinctSzamok);
+
+                // 4️⃣ Transzformálás (Mapping)
+                List&lt;Integer&gt; szamokNegyzet = szamok.stream().map(x -&gt; x * x) // minden számot négyzetre emelünk
+                                .collect(Collectors.toList());
+                System.out.println("Számok négyzete: " + szamokNegyzet);
+
+                // 5️⃣ Rendezés
+                List&lt;Integer&gt; rendezett = szamok.stream().sorted() // természetes sorrend (növekvő)
+                                .collect(Collectors.toList());
+                System.out.println("Rendezett számok: " + rendezett);
+
+                // Egyedi comparator
+                List&lt;Integer&gt; csokkeno = szamok.stream().sorted(Comparator.reverseOrder()) // csökkenő sorrend
+                                .collect(Collectors.toList());
+                System.out.println("Csökkenő sorrend: " + csokkeno);
+
+                // 6️⃣ Limitálás és kihagyás
+                List&lt;Integer&gt; elso3 = szamok.stream().limit(3) // csak az első 3 elem
+                                .collect(Collectors.toList());
+                System.out.println("Első 3 szám: " + elso3);
+
+                List&lt;Integer&gt; kihagy3 = szamok.stream().skip(3) // az első 3 elem kihagyása
+                                .collect(Collectors.toList());
+                System.out.println("Az első 3 elem kihagyva: " + kihagy3);
+
+                // 7️⃣ Feldolgozás / Iteráció
+                System.out.print("Minden szám kiírása: ");
+                szamok.stream().forEach(x -&gt; System.out.print(x + " ")); // minden elemre művelet
+                System.out.println();
+
+                // 8️⃣ Aggregálás / Visszatérő érték
+                long darab = szamok.stream().count(); // elemek számolása
+                System.out.println("Összes szám: " + darab);
+
+                boolean van10 = szamok.stream().anyMatch(x -&gt; x == 10); // legalább egy 10-es van-e
+                System.out.println("Van 10-es szám: " + van10);
+
+                boolean mindenPozitiv = szamok.stream().allMatch(x -&gt; x &gt; 0); // minden szám pozitív-e
+                System.out.println("Minden szám pozitív: " + mindenPozitiv);
+
+                boolean nincs0 = szamok.stream().noneMatch(x -&gt; x == 0); // egyik sem 0
+                System.out.println("Nincs 0: " + nincs0);
+
+                Optional&lt;Integer&gt; elso = szamok.stream().findFirst(); // első elem Optional-ként
+                System.out.println("Első szám: " + elso.orElse(-1));
+
+                Optional&lt;Integer&gt; barmelyik = szamok.stream().findAny(); // bármelyik elem Optional-ként
+                System.out.println("Bármelyik szám: " + barmelyik.orElse(-1));
+
+                // 9️⃣ Redukció
+                int osszeg = szamok.stream().reduce(0, Integer::sum); // összegzés
+                System.out.println("Összeg: " + osszeg);
+
+                Optional&lt;Integer&gt; max = szamok.stream().reduce(Integer::max); // maximum keresés
+                System.out.println("Maximum: " + max.orElse(-1));
+
+                // 10️⃣ Gyűjtés (Collectors)
+                String szoveg = szamok.stream().map(String::valueOf).collect(Collectors.joining(", ")); // String-é
+                                                                                                        // fűzés
+                System.out.println("Számok String-ként: " + szoveg);
+
+                List&lt;Integer&gt; listaGyujtes = szamok.stream().filter(x -&gt; x &gt; 10).collect(Collectors.toList());
+                System.out.println("Számok &gt; 10 (collect): " + listaGyujtes);
+
+                // 11️⃣ Peek (debug)
+                szamok.stream().peek(x -&gt; System.out.println("Peek: " + x)) // minden elem előtt
+                                .map(x -&gt; x * 2).forEach(x -&gt; {
+                                }); // csak demonstráció, nincs kimenet
+        }
+</code></pre>
+<h2 id="4-hashmap-példák"><a class="header" href="#4-hashmap-példák">4. HashMap példák</a></h2>
+<pre><code class="language-java">public void HashMapPelda() {
+
+                // 1️⃣ HashMap létrehozása
+                Map&lt;String, Integer&gt; gyumolcsok = new HashMap&lt;&gt;(); // kulcs-érték párokat tároló adatszerkezet (kulcs:
+                                                                   // String,
+                                                                   // érték: Integer)
+
+                // 2️⃣ Elem hozzáadása
+                gyumolcsok.put("alma", 3); // új kulcs-érték pár hozzáadása
+                gyumolcsok.put("körte", 5); // another element hozzáadása
+                gyumolcsok.put("banán", 2); // harmadik elem
+
+                System.out.println("HashMap tartalma: " + gyumolcsok);
+
+                // 3️⃣ Elem lekérése
+                int almaDb = gyumolcsok.get("alma"); // az "alma" kulcshoz tartozó érték lekérése
+                System.out.println("Alma darab: " + almaDb);
+
+                // 4️⃣ Kulcs létezésének ellenőrzése
+                boolean vanAlma = gyumolcsok.containsKey("alma"); // ellenőrzi, hogy van-e ilyen kulcs
+                System.out.println("Van alma kulcs: " + vanAlma);
+
+                // 5️⃣ Érték létezésének ellenőrzése
+                boolean van5 = gyumolcsok.containsValue(5); // ellenőrzi, hogy van-e ilyen érték
+                System.out.println("Van 5 érték: " + van5);
+
+                // 6️⃣ Elem módosítása
+                gyumolcsok.put("alma", 10); // ha már létezik a kulcs, akkor az érték felülíródik
+                System.out.println("Módosított alma érték: " + gyumolcsok.get("alma"));
+
+                // 7️⃣ Elem törlése
+                gyumolcsok.remove("banán"); // a kulcshoz tartozó pár törlése
+                System.out.println("Banán törölve: " + gyumolcsok);
+
+                // 8️⃣ HashMap mérete
+                int meret = gyumolcsok.size(); // hány kulcs-érték pár van a map-ben
+                System.out.println("HashMap mérete: " + meret);
+
+                // 9️⃣ Iterálás a kulcsokon
+                System.out.println("Kulcsok:");
+                for (String kulcs : gyumolcsok.keySet()) { // végigmegy az összes kulcson
+                        System.out.println(kulcs);
+                }
+
+                // 🔟 Iterálás kulcs-érték párokon
+                System.out.println("Kulcs-érték párok:");
+                for (Map.Entry&lt;String, Integer&gt; elem : gyumolcsok.entrySet()) { // kulcs és érték egyszerre elérhető
+                        System.out.println(elem.getKey() + " -&gt; " + elem.getValue());
+                }
+
+                // 🔟/1️⃣ Iterálás kulcs-érték párokon foreach-el
+
+                gyumolcsok.forEach((kulcs, ertek) -&gt; {
+                        System.out.println(kulcs + " " + ertek);
+                });
+
+                // 1️⃣1️⃣ getOrDefault használata
+                int narancs = gyumolcsok.getOrDefault("narancs", 0); // ha nincs ilyen kulcs, akkor alapértelmezett
+                                                                     // értéket ad
+                System.out.println("Narancs darab: " + narancs);
+
+                // 1️⃣2️⃣ clear
+                gyumolcsok.clear(); // az összes elem törlése
+                System.out.println("HashMap ürítés után: " + gyumolcsok);
+        }
+</code></pre>
+<h2 id="5-Összefoglaló-adatszerkezetek-és-alapok"><a class="header" href="#5-Összefoglaló-adatszerkezetek-és-alapok">5. Összefoglaló adatszerkezetek és alapok</a></h2>
+<pre><code class="language-java">   public void Osszefoglalo() {
+
+                List&lt;Integer&gt; lista = Arrays.asList(1, 2, 2, 3); // duplikáció lehet
+                Set&lt;Integer&gt; halmaz = new HashSet&lt;&gt;(lista); // duplikáció eltűnik
+                Map&lt;String, Integer&gt; map = new HashMap&lt;&gt;(); // kulcs -&gt; érték
+
+                List&lt;Integer&gt; szamok = Arrays.asList(5, 10, 15, 20, 25, 10, 5);
+
+                // Set használata (nagyon gyakori): duplikáció eltávolítása
+                Set&lt;Integer&gt; egyedi = new HashSet&lt;&gt;(szamok); // ismétlődések eltávolítása
+                System.out.println(egyedi);
+
+                // String műveletek
+                String szoveg = "alma körte banán";
+
+                szoveg.length(); // hossz
+                szoveg.toUpperCase(); // nagybetű
+                szoveg.toLowerCase(); // kisbetű
+                szoveg.contains("alma"); // tartalmazza-e
+                szoveg.split(" "); // szétvágás
+
+                String[] szavak = szoveg.split(" "); // szóköz mentén feldarabolás
+
+                // Gyakori algoritmus: szavak számolása (HashMap + Stream)
+
+                String szoveg2 = "alma körte alma banán alma";
+                Map&lt;String, Integer&gt; szamlalo = new HashMap&lt;&gt;();
+
+                for (String szo : szoveg2.split(" ")) {
+                        szamlalo.put(szo, szamlalo.getOrDefault(szo, 0) + 1);
+                }
+
+                System.out.println(szamlalo);
+                /*
+                 * Eredmény: alma=3 körte=1 banán=1
+                 */
+
+                // Comparator (egyedi rendezés)
+                List&lt;String&gt; nevek = Arrays.asList("Anna", "Béla", "Zoli");
+
+                nevek.sort((a, b) -&gt; a.length() - b.length()); // hossz szerint rendez
+
+                // Optional használata
+                Optional&lt;Integer&gt; szam = Optional.of(10);
+
+                szam.isPresent(); // van-e érték
+                szam.get(); // érték
+                szam.orElse(0); // ha nincs érték
+
+                // Lambda alapok
+                // bemenet -&gt; művelet
+                // x -&gt; x * 2
+
+                List&lt;Integer&gt; szamok2 = Arrays.asList(5, 10, 15, 20, 25, 10, 5);
+
+/*Ha nem teszel a végére egy lezáró műveletet (pl. .collect(Collectors.toList()) vagy .forEach(...)), akkor ez a sor gyakorlatilag nem csinál semmit.*/
+
+                szamok2.stream().map(x -&gt; x * 2);
+
+                // ArrayList -&gt; gyors index
+                // LinkedList -&gt; gyors beszúrás
+                // HashSet -&gt; egyedi elemek
+                // HashMap -&gt; kulcs → érték
+
+                // Exception kezelés
+                try {
+                        int a = 10 / 0;
+                } catch (Exception e) {
+                        System.out.println("Hiba történt");
+                }
+
+                /*
+                 * OOP alapok: Encapsulation * Inheritance * Polymorphism * Abstraction
+                 */
+        }
+</code></pre>
+<h2 id="6-arraylist-kiíratás"><a class="header" href="#6-arraylist-kiíratás">6. ArrayList kiíratás</a></h2>
+<pre><code class="language-java">public void arrayListFunkciok() {
+    ArrayList&lt;Operatorok2&gt; lista = new ArrayList&lt;&gt;();
+
+     // ^ Kiíratás. forEach+lambda
+    lista.forEach(l -&gt; System.out.println(l.getBal() + " " + l.getOperator() + " " + l.getJobb()));
+}
+</code></pre>
+<p>Megjegyzés:</p>
+<p>Mindig használj .collect(...) vagy .forEach(...) a Stream végén, különben nem történik semmi.</p>
+<p>ArrayList → gyors indexelés, LinkedList → gyors beszúrás, HashSet → egyedi elemek, HashMap → kulcs→érték.</p>
+<p>OOP alapok: Encapsulation, Inheritance, Polymorphism, Abstraction</p>
+<h1 id="printf"><a class="header" href="#printf">Printf</a></h1>
+<h2 id="mi-az-a-printf"><a class="header" href="#mi-az-a-printf">Mi az a printf?</a></h2>
+<p>A printf egy formázott kiírást végző metódus Java-ban.</p>
+<p>Segítségével pontosan megadhatjuk:</p>
+<p>hány tizedesjegy jelenjen meg
+milyen széles legyen a kiírás
+jobbra vagy balra igazítás
+több változó egy sorban</p>
+<p>A neve: print formatted</p>
+<p>Alap szintaxis
+System.out.printf("formázó szöveg", változók);</p>
+<p>Példa
+String nev = "Anna";
+int kor = 25;</p>
+<p>System.out.printf("A nevem %s és %d éves vagyok.", nev, kor);</p>
+<p>Kimenet:</p>
+<p>A nevem Anna és 25 éves vagyok.</p>
+<h2 id="formázó-jelek-"><a class="header" href="#formázó-jelek-">Formázó jelek (%)</a></h2>
+<p>A % jel mutatja, hogy ide változó kerül.</p>
+<pre><code>| Formázó | Jelentés          | Típus          |
+| ------- | ----------------- | -------------- |
+| `%s`    | szöveg            | String         |
+| `%d`    | egész szám        | int            |
+| `%f`    | lebegőpontos szám | float / double |
+| `%c`    | karakter          | char           |
+| `%b`    | logikai érték     | boolean        |
+| `%n`    | új sor            |                |
+</code></pre>
+<h2 id="lebegőpontos-szám-f"><a class="header" href="#lebegőpontos-szám-f">Lebegőpontos szám (%f)</a></h2>
+<p>double pi = 3.14159;</p>
+<p>System.out.printf("Pi értéke: %f", pi);</p>
+<p>Kimenet:</p>
+<p>Pi értéke: 3.141590</p>
+<p>Alapértelmezésben 6 tizedesjegy jelenik meg.</p>
+<h2 id="tizedesjegyek-megadása"><a class="header" href="#tizedesjegyek-megadása">Tizedesjegyek megadása</a></h2>
+<p>%.2f</p>
+<p>jelentése:</p>
+<p>2 tizedesjegy
+Példa
+double ar = 123.45678;</p>
+<p>System.out.printf("Ár: %.2f", ar);</p>
+<p>Kimenet:</p>
+<p>Ár: 123.46</p>
+<p>(Java kerekít.)</p>
+<p>Szélesség megadása
+%10.2f</p>
+<p>jelentése:</p>
+<p>10 karakter széles mező
+2 tizedes
+Példa
+double ar = 123.4;</p>
+<p>System.out.printf("|%10.2f|", ar);</p>
+<p>Kimenet:</p>
+<p>|    123.40|
+Balra igazítás
+%-10.2f</p>
+<p>A - jelenti a balra igazítást.</p>
+<p>Példa
+double ar = 123.4;</p>
+<p>System.out.printf("|%-10.2f|", ar);</p>
+<p>Kimenet:</p>
+<p>|123.40    |
+Több változó kiírása
+String nev = "Béla";
+int kor = 30;
+double magassag = 182.5;</p>
+<p>System.out.printf("%s %d éves és %.1f cm magas", nev, kor, magassag);</p>
+<p>Kimenet:</p>
+<p>Béla 30 éves és 182.5 cm magas</p>
+<h2 id="táblázatos-kiírás"><a class="header" href="#táblázatos-kiírás">Táblázatos kiírás</a></h2>
+<p>A printf nagyon jó oszlopok rendezésére.</p>
+<p>System.out.printf("%-10s %5s %10s%n", "Név", "Kor", "Fizetés");<br />
+System.out.printf("%-10s %5d %10.2f%n", "Anna", 25, 1500.5);<br />
+System.out.printf("%-10s %5d %10.2f%n", "Béla", 30, 2100.75);</p>
+<p>Kimenet:</p>
+<pre><code>Név          Kor    Fizetés
+Anna          25     1500.50
+Béla          30     2100.75
+</code></pre>
+<h1 id="java-stream-api"><a class="header" href="#java-stream-api">Java Stream API</a></h1>
+<p>Java 8 (2014): Bevezette a Lambda kifejezéseket és a Stream API-t, ami lehetővé tette a funkcionális stílusú programozást a gyűjteményekkel.</p>
+<p>Előtte, Java 7-ben vagy korábban, csak a hagyományos for-each ciklusokkal és iteratorokkal lehetett iterálni.</p>
+<p>A Java Stream API működése sok szempontból hasonlít egy SQL lekérdezés logikájára.</p>
+<p>SQL-ben:
+FROM → WHERE → SELECT</p>
+<p>Stream esetén:
+forrás → köztes műveletek → terminális művelet</p>
+<p>A különbség, hogy Stream esetén a műveleteket egymás után láncoljuk, és a feldolgozás csak a terminális művelet meghívásakor indul el.</p>
+<h2 id="java-stream-api-gyorssegéd"><a class="header" href="#java-stream-api-gyorssegéd">Java Stream API Gyorssegéd</a></h2>
+<h3 id="rövidebb-verzió"><a class="header" href="#rövidebb-verzió">Rövidebb verzió</a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Szint</th><th style="text-align: left">Művelet</th><th style="text-align: left">Leírás</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>1. FORRÁS</strong></td><td style="text-align: left"><code>.stream()</code></td><td style="text-align: left">Elindítja a folyamatot. (<strong>KÖTELEZŐ</strong>)</td></tr>
+<tr><td style="text-align: left"><strong>2. KÖZTES</strong></td><td style="text-align: left"><code>.filter(x -&gt; ...)</code></td><td style="text-align: left">Szűrés (csak az marad, ami TRUE).</td></tr>
+<tr><td style="text-align: left">(Bármennyi</td><td style="text-align: left"><code>.map(x -&gt; x.get...)</code></td><td style="text-align: left">Átalakítás (pl. objektumból csak egy String).</td></tr>
+<tr><td style="text-align: left">lehet)</td><td style="text-align: left"><code>.sorted()</code></td><td style="text-align: left">Sorba rendezés.</td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"><code>.distinct()</code></td><td style="text-align: left">Ismétlődések törlése.</td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"><code>.limit(n)</code></td><td style="text-align: left">Csak az első <em>n</em> darab elemet hagyja meg.</td></tr>
+<tr><td style="text-align: left"><strong>3. LEZÁRÓ</strong></td><td style="text-align: left"><code>.count()</code></td><td style="text-align: left">Megszámolja az elemeket. (Eredmény: <code>long</code>)</td></tr>
+<tr><td style="text-align: left">(Csak EGY</td><td style="text-align: left"><code>.forEach(x -&gt; ...)</code></td><td style="text-align: left">Művelet minden elemen (pl. kiírás). (Eredmény: <code>void</code>)</td></tr>
+<tr><td style="text-align: left">lehet a végén!)</td><td style="text-align: left"><code>.toList()</code></td><td style="text-align: left">Új listába gyűjt. (Eredmény: <code>List&lt;T&gt;</code>)</td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"><code>.anyMatch(x -&gt; ...)</code></td><td style="text-align: left">Van-e legalább egy ilyen? (Eredmény: <code>boolean</code>)</td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"><code>.findFirst()</code></td><td style="text-align: left">Visszaadja a legelsőt. (Eredmény: <code>Optional&lt;T&gt;</code>)</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="haladó-verzió"><a class="header" href="#haladó-verzió">Haladó verzió</a></h3>
+<p>Java Stream API – Cheat Sheet</p>
+<ol>
+<li>Stream létrehozása (Forrás)</li>
+</ol>
+<p>A Stream mindig valamilyen adatforrásból indul. Pontosan egyet használhatsz. Nincs felsorolva az összes fajta.</p>
+<div class="table-wrapper"><table><thead><tr><th>Forrás</th><th>Példa</th><th>Leírás</th></tr></thead><tbody>
+<tr><td><code>collection.stream()</code></td><td><code>list.stream()</code></td><td>Normál stream</td></tr>
+<tr><td><code>collection.parallelStream()</code></td><td><code>list.parallelStream()</code></td><td>Több szálon fut</td></tr>
+<tr><td><code>Arrays.stream()</code></td><td><code>Arrays.stream(array)</code></td><td>Tömbből stream</td></tr>
+<tr><td><code>Stream.of()</code></td><td><code>Stream.of(1,2,3)</code></td><td>Manuális stream</td></tr>
+<tr><td><code>Files.lines()</code></td><td><code>Files.lines(path)</code></td><td>Fájl sorai</td></tr>
+<tr><td><code>BufferedReader.lines()</code></td><td><code>br.lines()</code></td><td>Input stream</td></tr>
+</tbody></table>
+</div>
+<p>Példa:</p>
+<pre><code class="language-java">List&lt;String&gt; lista = List.of("A", "B", "C");
+
+lista.stream()
+     .forEach(System.out::println);
+</code></pre>
+<p>Még léteznek más fajta források is, melyekhez más köztes elemek tartoznak, a táblázatban nincsen felsorolva az összes.</p>
+<div class="table-wrapper"><table><thead><tr><th>Forrás</th><th>Példa</th><th>Leírás</th></tr></thead><tbody>
+<tr><td><code>IntStream.range()</code></td><td><code>IntStream.range(1, 10)</code></td><td>Egész számokra stream</td></tr>
+<tr><td><code>IntStream.of()</code></td><td><code>IntStream.of(1,2,3)</code></td><td>Manuális int stream</td></tr>
+<tr><td><code>IntStream.generate()</code></td><td><code>IntStream.generate(() -&gt; 5)</code></td><td>Végtelen int stream</td></tr>
+<tr><td><code>DoubleStream.of()</code></td><td><code>DoubleStream.of(1.0,2.0,3.0)</code></td><td>Manuális double stream</td></tr>
+<tr><td><code>LongStream.range()</code></td><td><code>LongStream.range(1, 10)</code></td><td>Long típusú stream</td></tr>
+<tr><td><code>Arrays.asList()</code></td><td><code>Arrays.asList(1,2,3).stream()</code></td><td>Listából stream</td></tr>
+</tbody></table>
+</div>
+<ol start="2">
+<li>Köztes műveletek (Intermediate)</li>
+</ol>
+<p>Ezek nem hajtódnak végre azonnal, bármennyit használhatsz.
+Csak a lezáró műveletnél futnak le.</p>
+<div class="table-wrapper"><table><thead><tr><th>Művelet</th><th>Példa</th><th>Leírás</th></tr></thead><tbody>
+<tr><td><code>filter()</code></td><td><code>.filter(x -&gt; x &gt; 10)</code></td><td>Szűrés</td></tr>
+<tr><td><code>map()</code></td><td><code>.map(Person::getName)</code></td><td>Átalakítás</td></tr>
+<tr><td><code>mapToInt()</code></td><td><code>.mapToInt(String::length)</code></td><td>Átalakítás (Elem → int)</td></tr>
+<tr><td><code>flatMap()</code></td><td><code>.flatMap(List::stream)</code></td><td>Stream-ek lapítása</td></tr>
+<tr><td><code>sorted()</code></td><td><code>.sorted()</code></td><td>Rendezés</td></tr>
+<tr><td><code>sorted(Comparator)</code></td><td><code>.sorted(Comparator.comparing(Person::getAge))</code></td><td>Egyedi rendezés</td></tr>
+<tr><td><code>distinct()</code></td><td><code>.distinct()</code></td><td>Duplikátumok eltávolítása</td></tr>
+<tr><td><code>limit()</code></td><td><code>.limit(5)</code></td><td>Első n elem</td></tr>
+<tr><td><code>skip()</code></td><td><code>.skip(1)</code></td><td>Első n kihagyása</td></tr>
+<tr><td><code>peek()</code></td><td><code>.peek(System.out::println)</code></td><td>Debug</td></tr>
+</tbody></table>
+</div>
+<ol start="3">
+<li>Lezáró műveletek (Terminal)</li>
+</ol>
+<p>Ezek a terminális (lezáró) műveletek indítják el a stream futását. Pontosan egyet használhatsz minden stream-en.</p>
+<div class="table-wrapper"><table><thead><tr><th>Művelet</th><th>Visszatérési típus</th><th>Példa</th><th>Leírás</th><th>Kell <code>.orElse()</code>?</th></tr></thead><tbody>
+<tr><td><code>forEach()</code></td><td><code>void</code></td><td><code>.forEach(System.out::println)</code></td><td>Minden elemre végrehajtódik</td><td>❌ Nem</td></tr>
+<tr><td><code>count()</code></td><td><code>long</code></td><td><code>.count()</code></td><td>Elemek száma</td><td>❌ Nem</td></tr>
+<tr><td><code>sum()</code></td><td><code>int/double</code></td><td><code>.mapToInt(x -&gt; x).sum()</code></td><td>Csak numerikus streameknél</td><td>❌ Nem</td></tr>
+<tr><td><code>average()</code></td><td><code>OptionalDouble</code></td><td><code>.mapToInt(x -&gt; x).average()</code></td><td>Átlag numerikus streameknél</td><td>✅ Igen</td></tr>
+<tr><td><code>toList()</code></td><td><code>List&lt;T&gt;</code></td><td><code>.toList()</code></td><td>Listába gyűjtés</td><td>❌ Nem</td></tr>
+<tr><td><code>collect()</code></td><td>bármi</td><td><code>.collect(Collectors.toList())</code></td><td>Gyűjtés egyéni módon</td><td>❌ Nem</td></tr>
+<tr><td><code>findFirst()</code></td><td><code>Optional&lt;T&gt;</code></td><td><code>.findFirst()</code></td><td>Első elem</td><td>✅ Igen</td></tr>
+<tr><td><code>findAny()</code></td><td><code>Optional&lt;T&gt;</code></td><td><code>.findAny()</code></td><td>Tetszőleges elem</td><td>✅ Igen</td></tr>
+<tr><td><code>anyMatch()</code></td><td><code>boolean</code></td><td><code>.anyMatch(x -&gt; x &gt; 10)</code></td><td>Legalább egy egyezik</td><td>❌ Nem</td></tr>
+<tr><td><code>allMatch()</code></td><td><code>boolean</code></td><td><code>.allMatch(x -&gt; x &gt; 0)</code></td><td>Mind egyezik</td><td>❌ Nem</td></tr>
+<tr><td><code>noneMatch()</code></td><td><code>boolean</code></td><td><code>.noneMatch(x -&gt; x &lt; 0)</code></td><td>Egy sem egyezik</td><td>❌ Nem</td></tr>
+<tr><td><code>min()</code></td><td><code>Optional&lt;T&gt;</code></td><td><code>.min(Integer::compare)</code></td><td>Legkisebb</td><td>✅ Igen</td></tr>
+<tr><td><code>max()</code></td><td><code>Optional&lt;T&gt;</code></td><td><code>.max(Integer::compare)</code></td><td>Legnagyobb</td><td>✅ Igen</td></tr>
+</tbody></table>
+</div>
+<p><strong>Megjegyzés:</strong> Az Optional visszatérési értékeknél (<code>average()</code>, <code>findFirst()</code>, <code>findAny()</code>, <code>min()</code>, <code>max()</code>) érdemes <code>.orElse(defaultValue)</code>-t használni, hogy biztosan legyen egy konkrét érték, ne Optional-ként kapd az eredményt.</p>
+<p>Enélkül "OptionalDouble[81.77380952380952]" eredményt kapsz.</p>
+<pre><code class="language-java">lista.stream().mapToInt(m -&gt; m.getHazaiPont() + m.getIdegenPont())
+                .sum();
+</code></pre>
+<ol start="3">
+<li>része Optional kezelés</li>
+</ol>
+<p>Ha egy terminális művelet <code>Optional</code>-t ad vissza (pl. <code>average()</code>, <code>min()</code>, <code>max()</code>, <code>findFirst()</code>, <code>findAny()</code>), akkor a következő metódusokkal dolgozhatunk:</p>
+<div class="table-wrapper"><table><thead><tr><th>Metódus</th><th>Mit csinál?</th><th>Mikor használjuk?</th></tr></thead><tbody>
+<tr><td><code>.orElse(value)</code></td><td>Ha az Optional üres, ad egy default értéket</td><td>Ha stream lehet üres, de szeretnél <strong>konkrét értéket</strong></td></tr>
+<tr><td><code>.orElseThrow()</code></td><td>Ha az Optional üres, kivételt dob</td><td>Ha üres érték <strong>hibás állapot</strong>, és nem akarsz defaultot</td></tr>
+<tr><td><code>.ifPresent(Consumer)</code></td><td>Ha van érték, lefuttat egy műveletet</td><td>Ha csak <strong>mellékhatást</strong> akarsz, de nem kell érték</td></tr>
+<tr><td><code>.ifPresentOrElse(if)</code></td><td>Mindenképpen lefut, ha van / nincs találat.</td><td>Ha mindkét esetben valamit kiakarsz írni.</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-java">// orElse
+double avg = numbers.stream().mapToInt(i -&gt; i).average().orElse(0);
+
+numbers.stream().findFirst().ifPresentOrElse( // Ha van találat...
+                x -&gt; System.out.println("Első szám: " + x),
+                () -&gt; System.out.println("Nincs első szám, a lista üres.") // Ha nincs...
+
+// orElseThrow
+int max = numbers.stream().max(Integer::compare).orElseThrow();
+
+// ifPresent
+numbers.stream().max(Integer::compare)
+       .ifPresent(n -&gt; System.out.println("Max: " + n));
+
+// ifPresentOrElse
+numbers.stream().max(Integer::compare)
+       .ifPresentOrElse(n -&gt; System.out.println("Max: " + n),
+                        () -&gt; System.out.println("Nincs találat."));
+</code></pre>
+<ol start="4">
+<li>Collectors (gyűjtés)</li>
+</ol>
+<p>A collect() segítségével összegyűjthetjük az adatokat.</p>
+<pre><code class="language-java">.collect(Collectors.xxx())
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Collector</th><th>Visszatérési típus</th><th>Leírás</th></tr></thead><tbody>
+<tr><td><code>toList()</code></td><td>List</td><td>Elemeket List-be gyűjt (sorrend megmarad)</td></tr>
+<tr><td><code>toSet()</code></td><td>Set</td><td>Elemeket Set-be gyűjt (duplikációk eltűnnek)</td></tr>
+<tr><td><code>toMap()</code></td><td>Map</td><td>Kulcs-érték párokat hoz létre</td></tr>
+<tr><td><code>joining(", ")</code></td><td>String</td><td>Elemek összefűzése Stringgé, elválasztóval</td></tr>
+<tr><td><code>summingInt()</code></td><td>int</td><td>Int értékek összegzése</td></tr>
+<tr><td><code>summingDouble()</code></td><td>double</td><td>Double értékek összegzése</td></tr>
+<tr><td><code>averagingInt()</code></td><td>double</td><td>Int értékek átlagának kiszámítása</td></tr>
+<tr><td><code>averagingDouble()</code></td><td>double</td><td>Double értékek átlagának kiszámítása</td></tr>
+<tr><td><code>groupingBy(x -&gt; x)</code></td><td>Map&lt;K, List<V>&gt;</td><td>Csoportosítás kulcs alapján</td></tr>
+<tr><td><code>partitioningBy(x -&gt;)</code></td><td>Map&lt;Boolean, List<T>&gt;</td><td>Két csoportra bont feltétel alapján</td></tr>
+</tbody></table>
+</div>
+<p>1 soros “cheat sheet”</p>
+<pre><code class="language-java">list.stream().filter(...).map(...).collect(...)
+</code></pre>
+<p><img src="assets/Java8StreamsCheatSheet.png" alt="alt text" /></p>
+<p><img src="assets/StreamPipeline.png" alt="alt text" /></p>
+<pre><code class="language-java">List&lt;String&gt; nevek =
+        people.stream()
+              .map(Person::getName)
+              .toList();
+</code></pre>
+<h2 id="stream-pipeline-alap-működés"><a class="header" href="#stream-pipeline-alap-működés">Stream pipeline (alap működés)</a></h2>
+<pre><code class="language-java">list.stream()
+    .filter(x -&gt; x &gt; 10)   // intermediate (szűrés)
+    .map(x -&gt; x * 2)       // intermediate (átalakítás)
+    .sorted()              // intermediate (rendezés)
+    .collect(Collectors.toList()); // terminal (lezárás)
+</code></pre>
+<p>Magyarázat</p>
+<p>A Stream műveletek láncolhatók (pipeline)</p>
+<p>Kétféle művelet van:</p>
+<ul>
+<li>Intermediate (köztes)</li>
+</ul>
+<p>új Stream-et ad vissza
+pl: filter, map, sorted</p>
+<ul>
+<li>Terminal (lezáró)</li>
+</ul>
+<p>végrehajtja a műveletet
+pl: collect, forEach, count</p>
+<p><strong>Fontos</strong></p>
+<ul>
+<li>A műveletek lazy módon futnak → csak a terminal műveletnél indul el!</li>
+<li>A Stream egyszer használható.</li>
+<li>Nem módosítja az eredeti kollekciót.</li>
+</ul>
+<h2 id="map-vs-filter"><a class="header" href="#map-vs-filter">map vs filter</a></h2>
+<pre><code class="language-java">// filter → kevesebb elem
+list.stream()
+    .filter(x -&gt; x &gt; 10)
+
+// map → ugyanannyi elem, csak átalakítva
+list.stream()
+    .map(x -&gt; x * 2)
+</code></pre>
+<ol start="5">
+<li>groupingBy</li>
+</ol>
+<p>Csoportosítás Map-be.</p>
+<pre><code class="language-java">Map&lt;String, List&lt;Person&gt;&gt; eredmeny =
+        people.stream()
+              .collect(Collectors.groupingBy(Person::getCity));
+</code></pre>
+<p>Eredmény:
+Budapest -&gt; [Person, Person]
+Debrecen -&gt; [Person]</p>
+<ol start="6">
+<li>partitioningBy</li>
+</ol>
+<p>Két csoportra bontás (true / false).</p>
+<pre><code class="language-java">Map&lt;Boolean, List&lt;Person&gt;&gt; eredmeny =
+        people.stream()
+              .collect(Collectors.partitioningBy(p -&gt; p.getAge() &gt;= 18));
+</code></pre>
+<p>Eredmény:
+true  -&gt; felnőttek
+false -&gt; gyerekek</p>
+<ol start="7">
+<li>groupingBy + filter</li>
+</ol>
+<p>Tipikus vizsgafeladat.</p>
+<pre><code class="language-java">Map&lt;String, List&lt;Person&gt;&gt; eredmeny =
+        people.stream()
+              .collect(Collectors.groupingBy(Person::getCity))
+              .entrySet()
+              .stream()
+              .filter(e -&gt; e.getValue().size() &gt; 3)
+              .collect(Collectors.toMap(
+                      Map.Entry::getKey,
+                      Map.Entry::getValue
+              ));
+</code></pre>
+<ol start="8">
+<li>groupingBy + counting</li>
+</ol>
+<pre><code class="language-java">Map&lt;String, Long&gt; stat =
+        people.stream()
+              .collect(Collectors.groupingBy(
+                      Person::getCity,
+                      Collectors.counting()
+              ));
+</code></pre>
+<ol start="9">
+<li>groupingBy + mapping</li>
+</ol>
+<pre><code class="language-java">Map&lt;String, List&lt;String&gt;&gt; stat =
+        people.stream()
+              .collect(Collectors.groupingBy(
+                      Person::getCity,
+                      Collectors.mapping(
+                              Person::getName,
+                              Collectors.toList()
+                      )
+              ));
+</code></pre>
+<ol start="10">
+<li>Stream fájlból</li>
+</ol>
+<pre><code class="language-java">List&lt;Baseball&gt; adatok =
+        Arrays.stream(Resource.balkezesek.split(System.lineSeparator()))
+              .skip(1)
+              .map(Baseball::new)
+              .toList();
+</code></pre>
+<p>Mit csinál?
+String feldarabolása sorokra
+első sor kihagyása (header)
+objektum létrehozása
+lista készítése</p>
+<ol start="11">
+<li>Optional használat</li>
+</ol>
+<p>Sok Stream művelet Optional-t ad vissza.</p>
+<pre><code class="language-java">Optional&lt;Person&gt; p =
+        people.stream()
+              .filter(x -&gt; x.getAge() &gt; 30)
+              .findFirst();
+
+// Biztonságos használat:
+p.ifPresent(System.out::println);
+
+Optional&lt;Integer&gt; max =
+    list.stream()
+        .max(Integer::compareTo);
+
+max.orElse(0);
+max.ifPresent(System.out::println);
+</code></pre>
+<ol start="12">
+<li>Parallel Stream</li>
+</ol>
+<p>Több CPU magon fut.</p>
+<pre><code class="language-java">list.parallelStream()
+    .filter(x -&gt; x &gt; 10)
+    .forEach(System.out::println);
+</code></pre>
+<p>⚠ Nem mindig gyorsabb.</p>
+<ol start="13">
+<li>Tipikus stream pipeline</li>
+</ol>
+<pre><code class="language-java">adatok.stream()
+      .filter(x -&gt; x.getAge() &gt; 18)
+      .map(Person::getName)
+      .sorted()
+      .distinct()
+      .limit(10)
+      .forEach(System.out::println);
+</code></pre>
+<ol start="14">
+<li>SQL vs Stream gondolkodás</li>
+</ol>
+<pre><code class="language-bash">| SQL      | Java Stream |
+| -------- | ----------- |
+| SELECT   | map         |
+| WHERE    | filter      |
+| GROUP BY | groupingBy  |
+| COUNT    | count       |
+| ORDER BY | sorted      |
+</code></pre>
+<ol start="15">
+<li>Stream pipeline logika</li>
+</ol>
+<p>forrás
+↓
+köztes műveletek (0..n)
+↓
+lezáró művelet (1)</p>
+<p>Példa:</p>
+<p>List -&gt; stream() -&gt; filter -&gt; map -&gt; sorted -&gt; toList()</p>
+<p>A stream csak a lezáró műveletnél hajtódik végre (lazy evaluation).</p>
+<h2 id="top-5-stream-művelet"><a class="header" href="#top-5-stream-művelet">TOP 5 Stream művelet</a></h2>
+<pre><code class="language-java">list.stream()
+    .filter(x -&gt; x &gt; 10)   // köztes (intermediate)
+    .map(x -&gt; x * 2)       // köztes
+    .sorted()              // köztes
+    .collect(Collectors.toList()); // termináló
+</code></pre>
+<p><strong>Tipikus vizsgafeladat minták</strong></p>
+<ol>
+<li>Páros számok</li>
+</ol>
+<pre><code class="language-java">list.stream()
+    .filter(x -&gt; x % 2 == 0)
+    .toList();
+</code></pre>
+<ol start="2">
+<li>String hossz</li>
+</ol>
+<pre><code class="language-java">list.stream()
+    .map(String::length)
+    .toList();
+</code></pre>
+<ol start="3">
+<li>Összeg</li>
+</ol>
+<pre><code class="language-java">int sum = list.stream()
+              .mapToInt(Integer::intValue)
+              .sum();
+</code></pre>
+<h2 id="példák-a-használatra"><a class="header" href="#példák-a-használatra">Példák a használatra</a></h2>
+<h3 id="1-megszámolás"><a class="header" href="#1-megszámolás">1. Megszámolás</a></h3>
+<p><em>Hány meccs volt Madridban?</em></p>
+<pre><code class="language-java">long db = lista.stream()
+               .filter(x -&gt; x.getHelyszin().equals("Madrid"))
+               .count();
+</code></pre>
+<h3 id="2-kiíratás"><a class="header" href="#2-kiíratás">2. Kiíratás</a></h3>
+<p><em>Írd ki a 100 pont feletti hazai meccseket!</em></p>
+<pre><code class="language-java">lista.stream().filter(x -&gt; x.getHazaiPont() &gt; 100).forEach(System.out::println);
+</code></pre>
+<h3 id="3-gyűjtés"><a class="header" href="#3-gyűjtés">3. Gyűjtés</a></h3>
+<p><em>Add vissza a városok neveit ABC sorrendben, ismétlődés nélkül!</em></p>
+<pre><code class="language-java">List&lt;String&gt; varosok = lista.stream().map(AbcKosarlabdaLiga::getHelyszin).distinct().sorted().toList();
+</code></pre>
+<h2 id="collectorspartitioningby-és-groupingby-parallelstream-példákkal"><a class="header" href="#collectorspartitioningby-és-groupingby-parallelstream-példákkal">Collectors.partitioningBy és groupingBy, parallelStream példákkal</a></h2>
+<pre><code class="language-java">        record Car(String type, String make, String model, Integer engineCapacity) { }
+
+
+        public static void main(String[] args) {
+                List&lt;Car&gt; cars = List.of(new Car("sedan", "BMW", "530", 1998),
+                                new Car("sedan", "Audi", "A5", 1998),
+                                new Car("sedan", "Mercedes", "E-Class", 2500),
+                                new Car("hatchback", "Skoda", "Octavia", 1600),
+                                new Car("hatchback", "Toyota", "TypeR", 1450));
+
+                // A .toList() visszalakítjuk listává az adatfolyamot.
+                List&lt;Car&gt; sedanCars = cars.stream().filter(x -&gt; x.type.equals("sedan")).toList();
+
+                // Csinálunk egy listát, amiben csak a kocsik make attribútuma szerepel.
+                // map: Egy az egyhez (1:1) transzformáció. Minden autóból egy márkát (String)
+                // csinál.
+                List&lt;String&gt; carMakeList = cars.stream().map(car -&gt; car.make).toList();
+
+                // Csinálunk egy listát, amiben csak a kocsik make és model attribútumai
+                // szerepelnek.
+                /*
+                 * flatMap: Egy a többhöz (1:N) transzformáció. Itt minden autóból egy Streamet
+                 * csinálsz (ami a márkát és a modellt tartalmazza), majd a flatMap ezeket a kis
+                 * streameket "kilapítja" egyetlen nagy listává.
+                 */
+                List&lt;String&gt; carMakeModelList = cars.stream().flatMap(car -&gt; Stream.of(car.make, car.model)).toList();
+
+                Stream&lt;Integer&gt; szamokStream = Stream.of(10, 11, 12, 13, 14);
+
+                /*
+                 * Ilyenkor a Java még nem csinál semmit. Nem szűri le a számokat, és nem írja
+                 * ki a konzolra a szöveget. Csak "feljegyzi" magának, hogy:
+                 * "Majd ha valaki kéri az eredményt, ezeket a számokat így kell szűrnöm."
+                 */
+                Stream&lt;Integer&gt; szurtSzamokStream = szamokStream.filter(i -&gt; {
+                        System.out.println("Vizsgálom a számot: " + i); // Ez megmutatja a "lustaságot".
+                        return i % 2 == 0;
+                });
+                /*
+                 * A Stream API olyan, mint egy gyári futószalag. A filter és a map a gépek a
+                 * szalagon, de a szalag csak akkor indul el, ha a végén valaki megnyomja a
+                 * gombot (ez a terminális művelet, pl. a count vagy a toList).
+                 */
+
+                /*
+                 * A terminális (záró) művelet (count). A tényleges munka csak itt kezdődik.
+                 */
+                System.out.println("Ennyi páros szám van:" + szurtSzamokStream.count());
+
+                // ^ Gyűjtők (Collectors), a csoportosítás és a párhuzamos végrehajtás.
+
+                // 😊 1. Partitioning
+                /*
+                 * A partitioningBy egy speciális gyűjtő, ami egy feltétel alapján pontosan két
+                 * részre osztja a listát: azokra, amikre igaz a feltétel, és azokra, amikre
+                 * nem.
+                 */
+
+                // Map&lt;Boolean, List&lt;Car&gt;&gt;: A kulcs mindig Boolean (true/false)
+                Map&lt;Boolean, List&lt;Car&gt;&gt; autokSzetvalasztasa = cars.stream().collect(
+                                Collectors.partitioningBy(car -&gt; car.type.equals("sedan"))
+
+                );
+
+                // true kulcs alatt lesznek a sedanok, false alatt minden más
+                System.out.println("Sedanok (true): " + autokSzetvalasztasa.get(true) + "/n");
+                System.out.println("Nem sedanok (false): " + autokSzetvalasztasa.get(false));
+
+                // 😊 2. GroupingBy (Csoportosítás)
+
+                /*
+                 * Amikor nem csak két kategóriánk van, a groupingBy segítségével bármilyen
+                 * tulajdonság (pl. gyártó vagy típus) alapján csoportosíthatunk.
+                 */
+
+                // Csoportosítás: Típus szerint (Map&lt;String, List&lt;Car&gt;&gt;)
+                Map&lt;String, List&lt;Car&gt;&gt; tipusSzerint = cars.stream()
+                                .collect(Collectors.groupingBy(Car::type));
+
+                // 😊 3. Összetett csoportosítás (Multi-level Map)
+                /*
+                 * A videó végén egy komplexebb példa van, ahol nem csak listába gyűjtjük az
+                 * autókat, hanem egy Map-et teszünk egy Map-be. Itt azt nézzük meg, hogy
+                 * típuson belül melyik modellnek mekkora a motorja.
+                 */
+
+                // Map&lt;Típus, Map&lt;Modell, Hengerűrtartalom&gt;&gt;
+                Map&lt;String, Map&lt;String, Integer&gt;&gt; csoportositottAutok = cars.stream()
+                                .collect(Collectors.groupingBy(
+                                                Car::type, // Elsődleges kulcs: típus (pl. sedan)
+                                                Collectors.toMap(
+                                                                Car::model, // Belső Map kulcsa: modell
+                                                                Car::engineCapacity // Belső Map értéke: motor mérete
+                                                )));
+
+                // 😊 4. Párhuzamos Streamek (Parallel Streams)
+
+                /*
+                 * Alapértelmezetten a stream egyetlen szálon (Sequential) fut.
+                 *
+                 * parallelStream(): A Java felosztja a feladatot több processzorszálra
+                 * (úgynevezett ForkJoinPool-t használ).
+                 *
+                 * Mikor használd? Csak nagyon nagy adatmennyiségnél, mert a szálak kezelése
+                 * plusz erőforrásba kerül.
+                 *
+                 * Váltás: Menet közben is válthatsz .parallel() és .sequential() hívásokkal a
+                 * láncon belül.
+                 * 
+                 * Nem mindig gyorsabb, thread safety gondok, sorrend nem garantált.
+                 */
+
+                // 😊 5. Párhuzamosítás
+                // A parallelStream() több szálon futtatja a műveleteket
+                cars.parallelStream().forEach(car -&gt; {
+                        System.out.println(
+                                        "Szál: " + Thread.currentThread().getName() + " dolgozik ezen: " + car.model());
+                });
+</code></pre>
+<h2 id="collectgroupingbyentrysetfilter-példákkal"><a class="header" href="#collectgroupingbyentrysetfilter-példákkal">collect(groupingBy)+entrySet+filter példákkal</a></h2>
+<pre><code class="language-java">import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ApikGrouping {
+
+    record Felhasznalo(String nev) {
+    }
+
+    public static void main(String[] args) {
+        List&lt;Felhasznalo&gt; lista = Arrays.asList(
+                new Felhasznalo("Andrea"), new Felhasznalo("Béla"),
+                new Felhasznalo("Andrea"), new Felhasznalo("Andrea"),
+                new Felhasznalo("Andrea"), new Felhasznalo("Béla"));
+
+        System.out.println("Szűrt eredmények:");
+
+        lista.stream()
+                // 1. Csoportosítás és számlálás (létrejön egy Map a háttérben)
+                .collect(Collectors.groupingBy(Felhasznalo::nev, Collectors.counting()))
+                // 2. Belépünk a Map bejegyzéseibe
+                .entrySet().stream()
+                // 3. Szűrés: csak a 3-nál nagyobb előfordulások
+                .filter(entry -&gt; entry.getValue() &gt; 3)
+                // 4. Azonnali kiíratás tárolás nélkül
+                .forEach(e -&gt; System.out.println(e.getKey() + " " + e.getValue() + "-szor szerepel a listában"));
+
+    }
+
+}
+
+</code></pre>
+<h2 id="további-példák-magyarázatokkal"><a class="header" href="#további-példák-magyarázatokkal">További példák magyarázatokkal</a></h2>
+<p>Kattints <a href="https://github.com/Nagraggini/start-projects/tree/main/java-console-intermediate">ide</a>.</p>
+<h1 id="java-stream--gyakori-vizsgacsapdák"><a class="header" href="#java-stream--gyakori-vizsgacsapdák">Java Stream – Gyakori vizsgacsapdák</a></h1>
+<h2 id="1-a-stream-csak-a-lezáró-műveletnél-fut-le-lazy-evaluation"><a class="header" href="#1-a-stream-csak-a-lezáró-műveletnél-fut-le-lazy-evaluation">1. A Stream csak a lezáró műveletnél fut le (lazy evaluation)</a></h2>
+<p>A köztes műveletek <strong>nem hajtódnak végre azonnal</strong>.</p>
+<p><strong>Példa</strong></p>
+<pre><code class="language-java">list.stream()
+    .filter(x -&gt; {
+        System.out.println(x);
+        return x &gt; 5;
+    });
+</code></pre>
+<p>❗ Ez a kód <strong>nem ír ki semmit</strong>.</p>
+<p>Miért?</p>
+<p>Mert <strong>nincs lezáró művelet (terminal operation)</strong>.</p>
+<hr />
+<p><strong>Helyes változat</strong></p>
+<pre><code class="language-java">list.stream()
+    .filter(x -&gt; {
+        System.out.println(x);
+        return x &gt; 5;
+    })
+    .count();
+</code></pre>
+<p>Most már végrehajtódik a stream.</p>
+<hr />
+<h2 id="2-a-stream-csak-egyszer-használható"><a class="header" href="#2-a-stream-csak-egyszer-használható">2. A stream csak egyszer használható</a></h2>
+<p>Egy <code>Stream</code> <strong>nem használható újra</strong>.</p>
+<p><strong>Hibás kód</strong></p>
+<pre><code class="language-java">Stream&lt;Integer&gt; s = list.stream();
+
+s.filter(x -&gt; x &gt; 5).count();
+s.filter(x -&gt; x &lt; 5).count();
+</code></pre>
+<p>Ez futáskor kivételt dob:</p>
+<pre><code class="language-text">java.lang.IllegalStateException: stream has already been operated upon or closed
+</code></pre>
+<hr />
+<p><strong>Helyes megoldás</strong></p>
+<p>Új streamet kell létrehozni:</p>
+<pre><code class="language-java">list.stream()
+    .filter(x -&gt; x &gt; 5)
+    .count();
+
+list.stream()
+    .filter(x -&gt; x &lt; 5)
+    .count();
+</code></pre>
+<hr />
+<h2 id="3-a-foreach-lezáró-művelet"><a class="header" href="#3-a-foreach-lezáró-művelet">3. A forEach() lezáró művelet</a></h2>
+<p>A <code>forEach()</code> <strong>terminal operation</strong>, ezért <strong>nem lehet utána folytatni a streamet</strong>.</p>
+<p><strong>Hibás pipeline</strong></p>
+<pre><code class="language-java">list.stream()
+    .filter(x -&gt; x &gt; 5)
+    .forEach(System.out::println)
+    .map(x -&gt; x * 2);
+</code></pre>
+<p>Ez <strong>fordítási hibát okoz</strong>, mert a <code>forEach()</code> lezárja a streamet.</p>
+<hr />
+<p><strong>Helyes pipeline</strong></p>
+<pre><code class="language-java">list.stream()
+    .filter(x -&gt; x &gt; 5)
+    .map(x -&gt; x * 2)
+    .forEach(System.out::println);
+</code></pre>
+<hr />
+<h2 id="4-peek-használata"><a class="header" href="#4-peek-használata">4. peek() használata</a></h2>
+<p>A <code>peek()</code> <strong>köztes művelet</strong>, általában <strong>debug célra használjuk</strong>.</p>
+<p><strong>Példa</strong></p>
+<pre><code class="language-java">list.stream()
+    .filter(x -&gt; x &gt; 5)
+    .peek(System.out::println)
+    .map(x -&gt; x * 2)
+    .toList();
+</code></pre>
+<p>A <code>peek()</code>:</p>
+<ul>
+<li>köztes művelet</li>
+<li>általában debugolásra használják</li>
+<li>nem üzleti logikára</li>
+</ul>
+<hr />
+<h2 id="5-instanceof"><a class="header" href="#5-instanceof">5. instanceof</a></h2>
+<pre><code class="language-java">ArrayList &lt;Animal&gt; lista=new ArrayList &lt;&gt;();
+lista.add(new Cat("Cirmi"));
+lista.add(new Dog("Blöki"));
+
+lista.stream()
+    .filter(x -&gt; x instanceof Cat)
+    .forEach(c -&gt; System.out.println(c));
+</code></pre>
+<h1 id="rövid-összefoglaló"><a class="header" href="#rövid-összefoglaló">Rövid összefoglaló</a></h1>
+<pre><code class="language-bash">| Szabály                    | Jelentés                              |
+| -------------------------- | ------------------------------------- |
+| Lazy execution             | A stream csak a lezáró műveletnél fut |
+| Stream egyszer használható | Új stream kell minden feldolgozáshoz  |
+| Terminal operation lezár   | Utána nem lehet új művelet            |
+| `peek()`                   | Debug célra használjuk                |
+</code></pre>
+<h1 id="menü-rendszer"><a class="header" href="#menü-rendszer">Menü rendszer</a></h1>
+<pre><code class="language-java">// 5. feladat.
+    public static void menu() {
+
+        System.out.print("5. feladat: \n");
+
+        // try-with-resource
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8))) {
+
+            String bekertSor;           
+
+            while (true) {
+                System.out.print("Kérek egy 1990 és 1999 közötti évszámot!:");
+
+                bekertSor = br.readLine();
+
+                int ev = Integer.parseInt(bekertSor);
+
+                if (ev &gt;= 1990 &amp;&amp; ev &lt;= 1999) {
+                    //System.out.print("Ügyes vagy!");
+                    // Hívd meg a kövi feladat metódusát!
+                    break; // Kilépünk a ciklusból.
+                } else {
+                    System.out.print("Hibás adat!");
+                }
+            }
+        } catch (IOException e) { }
+
+    }
+</code></pre>
+<h1 id="enum"><a class="header" href="#enum">enum</a></h1>
+<p>Az enum (angolul enumeration, magyarul „felsorolás”) egy különleges típus a Java-ban (és más nyelvekben is), aminek az a lényege, hogy egy változó csak bizonyos előre definiált értékeket vehet fel.</p>
+<p>Olyan, mintha létrehoznál egy listát vagy halmazt az értékekből, és a változó nem lehet más, csak a listában lévő értékek egyike.</p>
+<pre><code class="language-java">public enum Status {
+    PENDING,   // függőben
+    COMPLETED, // teljesített
+    CANCELLED  // törölt
+}
+</code></pre>
+<p>Itt a Status egy új típus, ami csak három lehetséges értéket engedélyez: PENDING, COMPLETED, CANCELLED.</p>
+<h2 id="példa-használatra"><a class="header" href="#példa-használatra">Példa használatra</a></h2>
+<pre><code class="language-java">public class Order {
+    private Status status; // változó típusa enum
+
+    public Order(Status status) {
+        this.status = status;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public static void main(String[] args) {
+        Order order = new Order(Status.PENDING);
+        System.out.println(order.getStatus()); // PENDING
+
+        order.setStatus(Status.COMPLETED);
+        System.out.println(order.getStatus()); // COMPLETED
+    }
+}
+</code></pre>
+<!-- TODO later generikus meg funkcionális programozásról -->
+<h1 id="debug"><a class="header" href="#debug">Debug</a></h1>
+<p>Ha sok projekted pirossan jelenik meg, akkor:</p>
+<p>Tisztítsd meg a munkafolyamatot: Nyomj Ctrl+Shift+P-t, és futtasd: "Java: Clean Java Language Server Workspace". Ezután válaszd a "Restart" gombot. Ez kényszeríti a VS Code-ot, hogy újra átnézze az összes fájlt.</p>
+<p>Vagy lehet a package névben van nagy betű.</p>
+<p>Vagy kattints jobb gombbal a src mappára a bal oldali fában.
+Válaszd a "Add Folder to Java Source Path" lehetőséget (ha felkínálja).</p>
+<p>Vagy, csak simán töröld ki a .vscode mappát és .classpath, .project fájlt.</p>
+<p>És a .classpath fájlba írd át a sort erre:</p>
+<pre><code class="language-bash">	&lt;classpathentry kind="src" path="src"/&gt;
+</code></pre>
+<h1 id="deadlock"><a class="header" href="#deadlock">Deadlock</a></h1>
+<!-- TODO --> thread
+<p>A programozásban a deadlock (magyarul gyakran holtverseny vagy holtpont) egy olyan állapot, amelyben két vagy több folyamat (process) vagy szál (thread) kölcsönösen egymásra vár, így egyik sem tud továbbhaladni.</p>
+<p>Ez a jelenség leggyakrabban a párhuzamos programozás során fordul elő, amikor az erőforrások (például memória, fájlok vagy adatbázis-zárolások) elérése nincs megfelelően összehangolva.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="frontend-fejleszto-felkeszules-ellenorzolista.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="teszt-automatizalas.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="frontend-fejleszto-felkeszules-ellenorzolista.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="teszt-automatizalas.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

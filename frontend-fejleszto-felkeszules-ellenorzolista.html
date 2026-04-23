@@ -1,0 +1,389 @@
+<!DOCTYPE HTML>
+<html lang="hu" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Frontend Fejlesztő Checklista - Útmutató kezdőtől haladó szintig a programozáshoz</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Bevezető</a></li><li class="chapter-item expanded "><a href="webfejlesztes-alapok.html"><strong aria-hidden="true">1.</strong> Webfejlesztés alapok</a></li><li class="chapter-item expanded "><a href="html.html"><strong aria-hidden="true">2.</strong> HTML alapok</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">3.</strong> CSS alapok</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.</strong> JavaScript ismeretek</a></li><li class="chapter-item expanded "><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong aria-hidden="true">5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li class="chapter-item expanded "><a href="frontend-fejleszto-felkeszules-ellenorzolista.html" class="active"><strong aria-hidden="true">6.</strong> Frontend Fejlesztő Checklista</a></li><li class="chapter-item expanded "><a href="java.html"><strong aria-hidden="true">7.</strong> Java nyelv</a></li><li class="chapter-item expanded "><a href="teszt-automatizalas.html"><strong aria-hidden="true">8.</strong> Teszt automatizálás</a></li><li class="chapter-item expanded "><a href="playwright-hasznalata.html"><strong aria-hidden="true">9.</strong> Playwright</a></li><li class="chapter-item expanded "><a href="spring-boot-bevezetese.html"><strong aria-hidden="true">10.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="kiberbiztonsag.html"><strong aria-hidden="true">11.</strong> Kiberbiztonság</a></li><li class="chapter-item expanded "><a href="penzugy.html"><strong aria-hidden="true">12.</strong> Pénzügyi ismeretek</a></li><li class="chapter-item expanded "><a href="english-learning.html"><strong aria-hidden="true">13.</strong> Angol nyelvtanulás</a></li><li class="chapter-item expanded "><a href="mappa-struktura-es-github.html"><strong aria-hidden="true">14.</strong> Mappa struktúra és GitHub</a></li><li class="chapter-item expanded "><a href="webfejlesztes-attekintes.html"><strong aria-hidden="true">15.</strong> Webfejlesztés áttekintés</a></li><li class="chapter-item expanded "><a href="extra-nagyon-hasznos-kiegeszitok.html"><strong aria-hidden="true">16.</strong> Extra nagyon hasznos kiegészítők</a></li><li class="chapter-item expanded "><a href="motivacio.html"><strong aria-hidden="true">17.</strong> Motiváció</a></li><li class="chapter-item expanded "><a href="projekt-otletek.html"><strong aria-hidden="true">18.</strong> Projekt ötletek</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Útmutató kezdőtől haladó szintig a programozáshoz</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!--TODO -->
+<h1 id="tematika"><a class="header" href="#tematika">Tematika</a></h1>
+<p>Gyakorlati, célzott lista, amit érdemes megtanulnod, ha frontend-es akarsz lenni. A lista a legfontosabb és leggyakrabban elvárt készségeket tartalmazza, sorrendben, hogy könnyebb legyen haladni:</p>
+<ol>
+<li>Alapok</li>
+</ol>
+<p>HTML5 → strukturált, szemantikus elemek, formok, táblázatok, meta tag-ek.
+CSS3 → layoutok (flexbox, grid), színek, tipográfia, animációk, pseudo-élések.
+JavaScript (ES6+) → változók, függvények, arrow function, DOM manipuláció, eventek, async/await, Promise-k.</p>
+<ol start="2">
+<li>Modern frontend keretrendszerek</li>
+</ol>
+<p>React.js (leggyakoribb) → komponensek, state, props, lifecycle, hooks.
+Angular vagy Vue.js → ha hirdetés kifejezetten ezeket kéri.
+TypeScript → erősen ajánlott a React/Angular projekteknél, típusbiztonság.</p>
+<ol start="3">
+<li>Stílusok, preprocesszorok</li>
+</ol>
+<p>SASS / SCSS → változók, mixin-ek, nesting.
+CSS modulok → lokális stíluskezelés.
+Responsive design → media query-k, mobilbarát elrendezés, reszponzív UI.</p>
+<ol start="4">
+<li>Verziókezelés és eszközök</li>
+</ol>
+<p>Git → commit, branch, merge, pull, push, rebase.
+NPM/Yarn → csomagkezelés, dependency management.
+Webpack / Vite / Parcel → projekt buildelés, bundling alapok.</p>
+<ol start="5">
+<li>API-k és kommunikáció backenddel</li>
+</ol>
+<p>REST API → fetch, axios, HTTP metódusok (GET, POST, PUT, DELETE).
+GraphQL → ha az állás kéri.
+Async programozás → Promise, async/await, error handling.</p>
+<ol start="6">
+<li>Tesztelés és minőségbiztosítás</li>
+</ol>
+<p>Unit testing → Jest, React Testing Library.
+End-to-end teszt → Cypress, Playwright (előny, nem mindenhol kötelező).</p>
+<ol start="7">
+<li>Egyéb fontos készségek</li>
+</ol>
+<p>Cross-browser kompatibilitás → Chrome, Firefox, Edge, Safari.
+Performance optimalizálás → lazy loading, code splitting, image optimization.
+Soft skillek → csapatmunka, dokumentáció, problémamegoldás.
+Angol nyelvtudás → dokumentáció, kommunikáció, külföldi csapatok.</p>
+<ol start="8">
+<li>Tapasztalat / portfólió</li>
+</ol>
+<p>GitHub / GitLab → saját projektek, kódminták.
+Mini projektek → pl. To do app, weather app, saját portfólió oldal.
+Junior pozíciókhoz → 1–2 kisebb projekt is elég.
+Medior/Senior pozíciókhoz → 3–5 projekt, komplex UI, API integráció, esetleg csapatban végzett munka.</p>
+<h1 id="12-hónapos-tanulási-terv--frontend-fejlesztő"><a class="header" href="#12-hónapos-tanulási-terv--frontend-fejlesztő">1–2 hónapos tanulási terv – Frontend fejlesztő</a></h1>
+<ol>
+<li>hét – HTML5 és CSS3 alapok</li>
+</ol>
+<p>HTML5: szemantikus elemek (header, footer, article, section), formok, táblázatok, linkek, képek, meta tag-ek.
+CSS3: alapok (színek, fontok, box-model), display (block, inline, inline-block), pozicionálás, float, clear.
+Gyakorlat: készíts egy egyszerű saját portfólió oldalt, amiben van fejléc, navigáció, tartalom, lábléc.</p>
+<ol start="2">
+<li>hét – CSS fejlettebb technikák</li>
+</ol>
+<p>Flexbox → layoutok készítése, igazítás, rugalmas elemek.
+CSS Grid → rács alapú elrendezések.
+Reszponzív design → media query-k, mobilbarát elrendezések.
+Gyakorlat: a portfólió oldal legyen reszponzív, különböző képernyőméretekre.</p>
+<ol start="3">
+<li>hét – JavaScript alapok</li>
+</ol>
+<p>Alapok: változók (let, const), függvények, ciklusok, feltételek.
+DOM manipuláció → elemek lekérdezése, eseménykezelés (addEventListener).
+Async programozás → Promise, async/await, fetch API.
+Gyakorlat: készíts egy interaktív To do alkalmazást (hozzáadás, törlés, státusz módosítás).</p>
+<ol start="4">
+<li>hét – Modern JavaScript + TypeScript</li>
+</ol>
+<p>ES6+: arrow function, destructuring, template string, spread/rest operator.
+TypeScript: alapok (típusok, interface-ek, osztályok), egyszerű JS projekt átalakítása TS-re.
+Gyakorlat: To do alkalmazás átalakítása TypeScript-tel.</p>
+<ol start="5">
+<li>hét – Frontend keretrendszer</li>
+</ol>
+<p>React.js: komponensek, state, props, lifecycle, hooks (useState, useEffect).
+Routing → React Router alapok.
+Form kezelés → kontrollált és kontrollálatlan komponensek.
+Gyakorlat: To do app újraírása React + TS + CSS modulok segítségével.</p>
+<ol start="6">
+<li>hét – API integráció és verziókezelés</li>
+</ol>
+<p>REST API → fetch/axios, CRUD műveletek.
+Git alapok → commit, branch, merge, pull, push.
+Projekt feltöltése GitHub-ra → portfólió link.
+Gyakorlat: To do app adatainak tárolása egy külső API-val.</p>
+<ol start="7">
+<li>hét – Tesztelés és optimalizáció</li>
+</ol>
+<p>Unit teszt → Jest, React Testing Library alapok.
+E2E teszt → alap Cypress teszt (pl. To do app működésének ellenőrzése).
+Teljesítmény → képek optimalizálása, lazy loading, kód splitting.
+Gyakorlat: portfólió oldal betöltési idejének optimalizálása, alap tesztek írása.</p>
+<ol start="8">
+<li>hét – Portfólió és soft-skillek</li>
+</ol>
+<p>Portfólió oldal véglegesítése → linkek, projekt bemutatók, GitHub referenciák.
+Soft-skillek → kommunikáció, dokumentáció írása, angol nyelvű rövid leírások a projektekhez.</p>
+<p>Gyakorlat: minden projekt legyen dokumentálva, működő linkek, rövid leírások, screenshotok.</p>
+<p>Ez a terv heti 10–15 óra tanulást feltételez, de akár gyorsabban is haladhatsz, ha több időd van.</p>
+<h1 id="frontend-fejlesztői-felkészülési-checklist"><a class="header" href="#frontend-fejlesztői-felkészülési-checklist">Frontend fejlesztői felkészülési checklist</a></h1>
+<ol>
+<li>hét – HTML5 és CSS3 alapok</li>
+</ol>
+<p>[ ] HTML5 szemantikus elemek (header, footer, article, section)
+[ ] Linkek, képek, formok, táblázatok
+[ ] CSS3 alapok: box-model, színek, fontok, display
+[ ] Saját egyszerű portfólió oldal készítése</p>
+<ol start="2">
+<li>hét – CSS fejlettebb technikák</li>
+</ol>
+<p>[ ] Flexbox alapok, igazítás, rugalmas elemek
+[ ] CSS Grid alapok
+[ ] Reszponzív design: media query-k, mobilbarát elrendezések
+[ ] Portfólió oldal reszponzív kialakítása</p>
+<ol start="3">
+<li>hét – JavaScript alapok</li>
+</ol>
+<p>[ ] Változók (let, const), függvények, ciklusok, feltételek
+[ ] DOM manipuláció, eseménykezelés (addEventListener)
+[ ] Async programozás: Promise, async/await, fetch API
+[ ] Interaktív To do alkalmazás készítése</p>
+<ol start="4">
+<li>hét – Modern JavaScript + TypeScript</li>
+</ol>
+<p>[ ] ES6+ funkciók: arrow function, destructuring, template string, spread/rest
+[ ] TypeScript alapok: típusok, interface-ek, osztályok
+[ ] To do alkalmazás átalakítása TypeScript-tel</p>
+<ol start="5">
+<li>hét – Frontend keretrendszer</li>
+</ol>
+<p>[ ] React.js alapok: komponensek, state, props, lifecycle, hooks
+[ ] Routing: React Router alapok
+[ ] Form kezelés: kontrollált és kontrollálatlan formok
+[ ] To do app újraírása React + TS + CSS modulok segítségével</p>
+<ol start="6">
+<li>hét – API integráció és verziókezelés</li>
+</ol>
+<p>[ ] REST API: fetch/axios, CRUD műveletek
+[ ] Git alapok: commit, branch, merge, pull, push
+[ ] Projekt feltöltése GitHub-ra, portfólió link létrehozása
+[ ] To do app adatainak tárolása külső API-val</p>
+<ol start="7">
+<li>hét – Tesztelés és optimalizáció</li>
+</ol>
+<p>[ ] Unit teszt: Jest, React Testing Library alapok
+[ ] E2E teszt: Cypress alap (pl. To do app működésének ellenőrzése)
+[ ] Teljesítmény optimalizálás: képek, lazy loading, code splitting
+[ ] Portfólió oldal betöltési idejének javítása, alap tesztek írása</p>
+<ol start="8">
+<li>hét – Portfólió és soft-skillek</li>
+</ol>
+<p>[ ] Portfólió oldal véglegesítése: linkek, projekt bemutatók, GitHub referenciák
+[ ] Dokumentáció: rövid leírások minden projekthez, angol nyelvű verzió
+[ ] Soft-skillek: problémamegoldás, csapatmunka, kommunikáció</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="uj-webes-projekt-letrehozasa-kozepszint.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="java.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="uj-webes-projekt-letrehozasa-kozepszint.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="java.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

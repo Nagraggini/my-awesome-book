@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html lang="hu" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Playwright - Útmutató kezdőtől haladó szintig a programozáshoz</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Bevezető</a></li><li class="chapter-item expanded "><a href="webfejlesztes-alapok.html"><strong aria-hidden="true">1.</strong> Webfejlesztés alapok</a></li><li class="chapter-item expanded "><a href="html.html"><strong aria-hidden="true">2.</strong> HTML alapok</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">3.</strong> CSS alapok</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.</strong> JavaScript ismeretek</a></li><li class="chapter-item expanded "><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong aria-hidden="true">5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li class="chapter-item expanded "><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong aria-hidden="true">6.</strong> Frontend Fejlesztő Checklista</a></li><li class="chapter-item expanded "><a href="java.html"><strong aria-hidden="true">7.</strong> Java nyelv</a></li><li class="chapter-item expanded "><a href="teszt-automatizalas.html"><strong aria-hidden="true">8.</strong> Teszt automatizálás</a></li><li class="chapter-item expanded "><a href="playwright-hasznalata.html" class="active"><strong aria-hidden="true">9.</strong> Playwright</a></li><li class="chapter-item expanded "><a href="spring-boot-bevezetese.html"><strong aria-hidden="true">10.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="kiberbiztonsag.html"><strong aria-hidden="true">11.</strong> Kiberbiztonság</a></li><li class="chapter-item expanded "><a href="penzugy.html"><strong aria-hidden="true">12.</strong> Pénzügyi ismeretek</a></li><li class="chapter-item expanded "><a href="english-learning.html"><strong aria-hidden="true">13.</strong> Angol nyelvtanulás</a></li><li class="chapter-item expanded "><a href="mappa-struktura-es-github.html"><strong aria-hidden="true">14.</strong> Mappa struktúra és GitHub</a></li><li class="chapter-item expanded "><a href="webfejlesztes-attekintes.html"><strong aria-hidden="true">15.</strong> Webfejlesztés áttekintés</a></li><li class="chapter-item expanded "><a href="extra-nagyon-hasznos-kiegeszitok.html"><strong aria-hidden="true">16.</strong> Extra nagyon hasznos kiegészítők</a></li><li class="chapter-item expanded "><a href="motivacio.html"><strong aria-hidden="true">17.</strong> Motiváció</a></li><li class="chapter-item expanded "><a href="projekt-otletek.html"><strong aria-hidden="true">18.</strong> Projekt ötletek</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Útmutató kezdőtől haladó szintig a programozáshoz</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="playwright"><a class="header" href="#playwright">Playwright</a></h1>
+<p><strong>Mi az a Playwright?</strong></p>
+<p>Playwright egy nyílt forráskódú (open-source) eszköz, amely:</p>
+<ul>
+<li>automatizálja a webes alkalmazások tesztelését,</li>
+<li>támogatja a több böngészőt (Chromium, Firefox, WebKit),</li>
+<li>több nyelven is használható: JavaScript, TypeScript, Python, Java, C#.</li>
+</ul>
+<p>Fő előnye a Seleniumhoz képest:
+Gyorsabb, stabilabb és könnyebb párhuzamosan futtatni a teszteket.</p>
+<h1 id="telepítés--workflow-beállítása"><a class="header" href="#telepítés--workflow-beállítása">Telepítés + workflow beállítása</a></h1>
+<p>Példa:
+https://github.com/Streptopelia-risoria/restful_booker_platform_demo</p>
+<p>Terminálba: npm init playwright@latest
+JavaScript -&gt; tests -&gt; GitHub Actions yes -&gt; Install Playwright browsers? yes</p>
+<p>Egy test mappád legyen, akár kicsi akár nagy betűs.
+Ezután a playwright.config.js-ben csekold le ezt: testDir: './tests',</p>
+<p><strong>Így indítsd el a "Kattintgatós" módot</strong></p>
+<p>Live Server-en indítsd el az oldalt.</p>
+<p>Kattints a bal oldali sávban a Testing (lombik) ikonra.</p>
+<p>Az alsó részen keresd meg a "Record new" gombot.</p>
+<p>Ekkor a Playwright megnyit egy üres böngészőt és egy "Playwright Inspector" ablakot.</p>
+<p>Írd be a címsorba a helyi weboldalad címét (pl. http://127.0.0.1:5500).</p>
+<p>Kezdj el kattintgatni: vegyél fel egy új questet, pipáld ki, töröld le stb.</p>
+<p>Látni fogod, hogy az Inspector ablakban automatikusan generálódik a kód.</p>
+<p>Ha végeztél, csak zárd be a böngészőt, és a VS Code-ban ott lesz az új tesztfájl a kész kóddal!
+Bal oldalt frissítsd a test explorert és nyisd le a test részt ott láthatod az imént felvitt tesztedet.</p>
+<p><strong>Tesztek futtatása</strong></p>
+<p>Live Server-en indítsd el az oldalt.</p>
+<p>Kattints a bal oldali sávban a Testing (lombik) ikonra.
+A test melletti play ikonra kattints.</p>
+<p><strong>GitHub Actions</strong></p>
+<p>Ennek meg kell lennie:
+.github/workflows/playwright.yml</p>
+<p>A szóközöre és tabokra nagyon figyelj.</p>
+<pre><code class="language-yml">name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ] # Ha más a branch neve, akkor írd át.
+  pull_request:
+    branches: [ main, master ] # Ha más a branch neve, akkor írd át.
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+</code></pre>
+<p>Ez az útmutató, hogy mi alapján futtassa a GitHub a teszteket.</p>
+<p>Amikor a terminálban telepítetted a playwright-ot (npm init playwright@latest), akkor yes-t kellett nyomni a GitHub Action-s kérdésre.</p>
+<p>A README-dbe felülre ezt másold be és persze írd be a felhasználónevet és a reponevét.</p>
+<pre><code class="language-bash">![Workflow neve](https://github.com/FELHASZNALONEV/REPO_NEVE/actions/workflows/playwright.yml/badge.svg)
+</code></pre>
+<h2 id="playwrightconfigjs"><a class="header" href="#playwrightconfigjs">playwright.config.js</a></h2>
+<p>A GitHub Actions egy üres szerveren fut, ahol nincs elindítva a Live Server, ezért a playwright.config.js fájlba a lentit írd bele, amivel megmondjuk a Playwright-nak, hogy indítsa el a webszervert a tesztek előtt.</p>
+<pre><code class="language-javascript">export default defineConfig({
+
+    use: { //Fontos, hogy ne duplikáld a use részt!
+     //... korábbi sorok
+        baseURL: "http://127.0.0.1:8080", // Így nem kell mindig beírni.
+        actionTimeout: 10000, // 10 másodperc minden kattintásra/gépelésre
+        navigationTimeout: 15000,
+
+    // ... többi sorok
+        trace: "on-first-retry",
+    },
+
+//... korábbi sorok
+    /* Run your local dev server before starting the tests */
+    webServer: {
+        command: "npm run start",
+        url: "http://127.0.0.1:8080",
+        reuseExistingServer: !process.env.CI,
+        stdout: 'ignore',
+        stderr: 'pipe',
+    },
+// ... többi sor
+});
+</code></pre>
+<p>A "projects: [..]" részen kommenteld ki a safarit és a firefox-ot, ha nem akarod a gépedre is telepíteni azokat.</p>
+<h2 id="packagejson"><a class="header" href="#packagejson">package.json</a></h2>
+<p>A gyökér könyvtárban lévő package.json-t ki kell egészíteni a playwright függőséggel:</p>
+<pre><code class="language-js">{
+{
+  }
+ //... korábbi sorok 
+  ,
+  "devDependencies": {
+    "@playwright/test": "^1.44.0"
+  }
+// ... többi sor
+}
+</code></pre>
+<p>Valamint ennél:</p>
+<pre><code class="language-js">  "scripts": {},
+</code></pre>
+<p>Javítsd ki erre:</p>
+<pre><code class="language-js">"scripts": {
+  "test": "npx playwright test",
+  "start": "servor . 8080 --reload" 
+} //Duplikálni nem szabad.
+</code></pre>
+<p>Fontos , hogy a port számnak mindenhol egyeznie kell.</p>
+<p>Terminálba: npm install --save-dev servor</p>
+<p>Ezek után még csekkold le, hogy tuti nem a live servert akarja használni playwright.
+Terminálba írd be ezt: npx playwright test</p>
+<p>Ha hiba van írd be ezt: npx playwright show-report
+Meg tudod nézni részletesen a hibát.</p>
+<p>Ezután jöhet a commitolás a master/main-be. "Add GitHub Actions workflow" címmel.</p>
+<p>Ezután a GitHub-on az adott reponál az Actions lapfülön láthatod, hogy sikerült-e a teszt.</p>
+<p><strong>Teljes teszthez</strong></p>
+<p>Terminálban:
+Ezzel csak a chromium típusú böngészőben futtatod a tesztet.
+npx playwright test --project=chromium</p>
+<p>npm run start</p>
+<p>Miután elindult minden a leállításhoz a terminálban nyomd meg a ctrl+C-t.
+npx playwright test</p>
+<p>Többi hasznos terminál parancs a teszteléshez:
+npx playwright test --ui
+npx playwright test --debug</p>
+<h1 id="telepítés--workflow-nélkül"><a class="header" href="#telepítés--workflow-nélkül">Telepítés + workflow nélkül</a></h1>
+<p>Lépj bele a terminálban a mappába ahova a tesztet szeretnéd.</p>
+<p>Írd be a projekt nevét. pl.: for-test
+Framework: vanilla aztán javascript</p>
+<p>Terminálba:
+npm init playwright@latest</p>
+<p>A zárójelben lévőket válaszold a terminál kérdéseire.
+js (egyet le és enter), marad a test mappa (tab és enter), no github workflow (n), yes extension (y)</p>
+<p>Egy test mappád legyen, akár kicsi akár nagy betűs.
+Ezután a playwright.config.js-ben csekold le ezt: testDir: './tests',</p>
+<h1 id="hasznos-linkek-a-gyakorláshoz"><a class="header" href="#hasznos-linkek-a-gyakorláshoz">Hasznos linkek a gyakorláshoz</a></h1>
+<p>https://playwright.dev/docs/intro
+https://the-internet.herokuapp.com/
+http://uitestingplayground.com/</p>
+<h1 id="első-teszt-felvételéhez"><a class="header" href="#első-teszt-felvételéhez">Első teszt felvételéhez</a></h1>
+<p>Bal oldalt válaszd ki a lombik ikont.</p>
+<p>TOOLS (Eszközök)
+Pick locator: Ez a legpraktikusabb. Kattints rá, menj át a böngészőbe, és mutass rá az egérrel egy elemre (pl. a gombra vagy combo boxra). A VS Code-ban azonnal megjelenik a kód, amivel az adott elemet eléred.
+Record new: Elindít egy üres tesztet és egy böngészőt. Amit a böngészőben csinálsz, azt élőben kódként rögzíti egy új fájlba.
+Record at cursor: Ugyanaz, mint az előző, de nem új fájlt nyit, hanem a meglévő kódodba, a kurzor pozíciójához szúrja be az új lépéseket.</p>
+<p>A fájlnevének mindig , így kell kinéznie: valami.spec.ts</p>
+<p>Terminálba: npx playwright codegen</p>
+<h1 id="futtatás"><a class="header" href="#futtatás">Futtatás</a></h1>
+<p>Bal oldalt üvegcse ikon és Debug Test</p>
+<p>Vagy</p>
+<p>npx playwright test --ui
+npx playwright test --debug</p>
+<h1 id="jelszó-beállítás"><a class="header" href="#jelszó-beállítás">Jelszó beállítás</a></h1>
+<p>.env fájlbe írd be e felhasználónevet és jelszet.</p>
+<p>A gitignore-ba meg, hogy ".env" ezt nem kell verziókezelés alávonni. A package.json mellé rakd.</p>
+<p>Terminálba:
+npm install dotenv --save-dev</p>
+<h1 id="minta"><a class="header" href="#minta">Minta</a></h1>
+<pre><code class="language-ts">import { test, expect } from "@playwright/test";
+import * as dotenv from "dotenv";
+dotenv.config(); // Betölti a .env fájl tartalmát
+
+
+test("Google.hu", async ({ browser }) =&gt; {
+  const context = await browser.newContext({
+    httpCredentials: {
+      username: process.env.SITE_USER || "", // A .env-ből olvassa
+      password: process.env.SITE_PASS || "", // A .env-ből olvassa
+    },
+  });
+  const page = await context.newPage();
+  await page.goto("google.hu");
+});
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="teszt-automatizalas.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="spring-boot-bevezetese.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="teszt-automatizalas.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="spring-boot-bevezetese.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

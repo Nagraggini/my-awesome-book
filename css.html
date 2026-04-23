@@ -1,0 +1,434 @@
+<!DOCTYPE HTML>
+<html lang="hu" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>CSS alapok - Útmutató kezdőtől haladó szintig a programozáshoz</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Bevezető</a></li><li class="chapter-item expanded "><a href="webfejlesztes-alapok.html"><strong aria-hidden="true">1.</strong> Webfejlesztés alapok</a></li><li class="chapter-item expanded "><a href="html.html"><strong aria-hidden="true">2.</strong> HTML alapok</a></li><li class="chapter-item expanded "><a href="css.html" class="active"><strong aria-hidden="true">3.</strong> CSS alapok</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.</strong> JavaScript ismeretek</a></li><li class="chapter-item expanded "><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong aria-hidden="true">5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li class="chapter-item expanded "><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong aria-hidden="true">6.</strong> Frontend Fejlesztő Checklista</a></li><li class="chapter-item expanded "><a href="java.html"><strong aria-hidden="true">7.</strong> Java nyelv</a></li><li class="chapter-item expanded "><a href="teszt-automatizalas.html"><strong aria-hidden="true">8.</strong> Teszt automatizálás</a></li><li class="chapter-item expanded "><a href="playwright-hasznalata.html"><strong aria-hidden="true">9.</strong> Playwright</a></li><li class="chapter-item expanded "><a href="spring-boot-bevezetese.html"><strong aria-hidden="true">10.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="kiberbiztonsag.html"><strong aria-hidden="true">11.</strong> Kiberbiztonság</a></li><li class="chapter-item expanded "><a href="penzugy.html"><strong aria-hidden="true">12.</strong> Pénzügyi ismeretek</a></li><li class="chapter-item expanded "><a href="english-learning.html"><strong aria-hidden="true">13.</strong> Angol nyelvtanulás</a></li><li class="chapter-item expanded "><a href="mappa-struktura-es-github.html"><strong aria-hidden="true">14.</strong> Mappa struktúra és GitHub</a></li><li class="chapter-item expanded "><a href="webfejlesztes-attekintes.html"><strong aria-hidden="true">15.</strong> Webfejlesztés áttekintés</a></li><li class="chapter-item expanded "><a href="extra-nagyon-hasznos-kiegeszitok.html"><strong aria-hidden="true">16.</strong> Extra nagyon hasznos kiegészítők</a></li><li class="chapter-item expanded "><a href="motivacio.html"><strong aria-hidden="true">17.</strong> Motiváció</a></li><li class="chapter-item expanded "><a href="projekt-otletek.html"><strong aria-hidden="true">18.</strong> Projekt ötletek</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Útmutató kezdőtől haladó szintig a programozáshoz</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="css-stílusok-a-weboldalakhoz"><a class="header" href="#css-stílusok-a-weboldalakhoz">CSS stílusok a weboldalakhoz</a></h1>
+<h1 id="tartalomjegyzék"><a class="header" href="#tartalomjegyzék">Tartalomjegyzék</a></h1>
+<ul>
+<li><a href="#css-st%C3%ADlusok-a-weboldalakhoz">CSS stílusok a weboldalakhoz</a></li>
+<li><a href="#tartalomjegyz%C3%A9k">Tartalomjegyzék</a></li>
+<li><a href="#forr%C3%A1saim">Forrásaim</a></li>
+<li><a href="#alapok">Alapok</a></li>
+<li><a href="#futtat%C3%A1s">Futtatás</a></li>
+<li><a href="#f12">F12</a></li>
+<li><a href="#mi%C3%A9rt-nem-t%C3%B6lt-be-a-jscss">Miért nem tölt be a js/css?</a>
+<ul>
+<li><a href="#abszolut-vs-relat%C3%ADv-%C3%BAtvonal">Abszolut vs relatív útvonal</a></li>
+</ul>
+</li>
+<li><a href="#extra-szelektor-selector">Extra szelektor (Selector)</a></li>
+<li><a href="#ikonok">Ikonok</a></li>
+<li><a href="#media-query-haszn%C3%A1lata">Media Query használata</a></li>
+<li><a href="#modern-css">Modern CSS</a></li>
+<li><a href="#media-query-helyett-if">Media Query helyett if</a>
+<ul>
+<li><a href="#pszeud%C3%B3-pseudeo">Pszeudó (pseudeo)</a></li>
+</ul>
+</li>
+<li><a href="#r%C3%A9gebbi-b%C3%B6ng%C3%A9sz%C5%91k">Régebbi böngészők</a></li>
+<li><a href="#tailwind-telep%C3%ADt%C3%A9se">Tailwind telepítése:</a></li>
+</ul>
+<h1 id="forrásaim"><a class="header" href="#forrásaim">Forrásaim</a></h1>
+<p>https://www.w3schools.com/css/default.asp
+https://www.w3schools.com/htmlcss/default.asp
+<a href="https://youtu.be/erEgovG9WBs?si=vEFXO3P_WufyaR-C">100+ Web Development Things you Should Know</a></p>
+<h1 id="alapok"><a class="header" href="#alapok">Alapok</a></h1>
+<p>Érdemes előre megtervezni a weboldal kinézetét. Például itt: https://draw.io/
+Elég egy sematikus ábra, hogy kb itt lesz ennyi gomb stb. Ezt fogja majd tudni.</p>
+<p>A tartalmakhoz adunk stílust a css-el. Bizonyos korlátokon belül lehet némi interaktivitást is csinálni css-el pl.: egérműveleteknél, színváltoztatás. Interaktivitás fokozásához javascriptre van szükség.</p>
+<p>Ezekkel játékosan meg lehet tanulni a CSS használatát:
+https://flexboxfroggy.com/#hu
+https://cssgridgarden.com/#hu</p>
+<p><a href="https://codepen.io/">Itt</a> tudsz gyakorolni.
+CSS magyarázatok és interaktív példákat <a href="https://www.w3schools.com/css/default.asp">itt</a> találsz, valamint <a href="https://www.w3schools.com/htmlcss/default.asp">itt</a>.</p>
+<p><img src="/assets/CSS/css-sytax.png" alt="CSS szintaktika" /></p>
+<pre><code class="language-css">body {
+  background-color: lightblue;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+
+/*Univerzális szelektor.*/
+*{
+
+}
+</code></pre>
+<p>Ezeket együtt érdemes használni:</p>
+<pre><code class="language-css">    display: flex;
+    flex-direction: column;
+    align-items: center; /*Ezt együtt kell használni pl.: flex/grid-el*/
+</code></pre>
+<h1 id="futtatás"><a class="header" href="#futtatás">Futtatás</a></h1>
+<p>VC Code-ban töltsd le a Live Servert. Bal oldalt az Explorerben kattints jobb klikkel az adott html fájlodra -&gt; Open with Live Server. Rögtön elindul a böngésződben a http://127.0.0.1:5500/ -on a weboldalad.</p>
+<p>Ctrl+F5 csodákra képes, ha épp valami nem töltene be, pedig már lekódoltad.</p>
+<h1 id="f12"><a class="header" href="#f12">F12</a></h1>
+<p>Futtatáskor az F12-t nyomd meg a böngészőben, válaszd a kis nyíl ikont (kijelölő), és kattints egy adott részre amit ellenőrizni szeretnél. A böngésző narancssárgával jelzi a margót (margin) és zölddel a párnázást (padding). Így pontosan látni fogod, melyik elem "tolja" el a másikat!</p>
+<p>Felül a kis nyíl mellett van az eszköz váltó, vagyis meg tudod nézni, hogy telón hogyan néz ki. Akár fel is tudod venni a telefonodat is: Bal felül Dimension melletti nyílra katt -&gt; Edit -&gt; Add custom device -&gt; Add meg a telefonod nevét és pixelben a magasságát és szélességét (Ha nem tudod kérdezd meg az AI-t.) Device pixel ratio:3 -&gt; Save.</p>
+<p>Application -&gt; Storare bal oldalt -&gt; Local storage -&gt; Itt látod az elmentett adatokat (JS-ben localStorage-el tudsz menteni.), ha vannak.</p>
+<h1 id="miért-nem-tölt-be-a-jscss"><a class="header" href="#miért-nem-tölt-be-a-jscss">Miért nem tölt be a js/css?</a></h1>
+<p>Futtatáskor nyomd mega  böngészőben az F12-t. -&gt; Sources -&gt; Page -&gt; Csekkold le, hogy ott vannak-e a css/js fájlok.</p>
+<h2 id="abszolut-vs-relatív-útvonal"><a class="header" href="#abszolut-vs-relatív-útvonal">Abszolut vs relatív útvonal</a></h2>
+<p>A mappa szerkezeted (példa):
+Tegyük fel, hogy így néz ki a projekted:</p>
+<pre><code class="language-plaintext">my-website/
+├── index.html           &lt;-- Te itt állsz a böngészővel
+├── about.html
+└── components/          &lt;-- Ez egy almapa
+    └── header.html      &lt;-- Ezt akarod betölteni
+</code></pre>
+<ol>
+<li>Rossz módszer (Abszolút útvonal)
+const path = "/components/header.html";</li>
+</ol>
+<p>Jelentése: "Menj a legelső főkapuhoz (szerver gyökér), és ott keresd a components mappát."</p>
+<p>Hiba: Ha GitHubon a projekted a /my-website/ mappában van, a főkapunál nem lesz components mappa, csak a my-website mappán belül. Offline is elromlik, mert a számítógéped "főkapuja" a C:/ meghajtó vagy a localhost gyökere.</p>
+<ol start="2">
+<li>Jó módszer (Relatív útvonal)
+const path = "./components/header.html";
+(Vagy egyszerűen: components/header.html)</li>
+</ol>
+<p>Jelentése: "Nézz körbe abban a mappában, ahol most vagyunk (./), keress egy components mappát, és menj bele."</p>
+<p>Miért jó? Mindegy, hogy a mappád neve my-website vagy valami-mas, és mindegy, hogy a GitHubon van vagy a gépeden. Mivel az index.html mellett ott van a components mappa, mindig meg fogja találni.</p>
+<p>Kipróbálható kódpélda
+Ha az index.html fájlból futtatod a scriptet, így nézzen ki a fetch:</p>
+<pre><code class="language-JavaScript">// A lényeg: NINCS perjel az elején!
+const url = "components/header-component.html"; 
+
+async function loadHeader() {
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            const html = await response.text();
+            document.getElementById("header-helye").innerHTML = html;
+        } else {
+            console.error("Nem találom a fájlt ezen az úton:", url);
+        }
+    } catch (hiba) {
+        console.error("Hiba történt:", hiba);
+    }
+}
+
+loadHeader();
+</code></pre>
+<h1 id="extra-szelektor-selector"><a class="header" href="#extra-szelektor-selector">Extra szelektor (Selector)</a></h1>
+<p>html</p>
+<pre><code class="language-html">&lt;h2&gt;Continents 🗺️&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Africa&lt;/li&gt;
+  &lt;li&gt;Antarctica&lt;/li&gt;
+  &lt;li&gt;Asia&lt;/li&gt;
+  &lt;li&gt;Australia&lt;/li&gt;
+  &lt;li&gt;Europe&lt;/li&gt;
+  &lt;li&gt;North America&lt;/li&gt;
+  &lt;li&gt;South America&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Oceans By Size 🌊&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Pacific&lt;/li&gt;
+  &lt;li&gt;Atlantic&lt;/li&gt;
+  &lt;li&gt;Indian&lt;/li&gt;
+  &lt;li&gt;Antarctic/Southern&lt;/li&gt;
+  &lt;li&gt;Arctic&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+<p>css</p>
+<pre><code class="language-css">ul &gt; li { 
+    /* Csak azokra az elemekre érvényes, amelyek közvetlenül az ul alatt vannak, nem mélyebben, vagyis jeleneseben, csak az elsőre.   */
+  border: 1px solid;
+  width: 50px;
+}
+</code></pre>
+<p><a href="https://specifishity.com/specifishity.pdf">Ez</a> az egyik legjobb magyarázat a css szelektorokra.</p>
+<h1 id="ikonok"><a class="header" href="#ikonok">Ikonok</a></h1>
+<p>https://fonts.google.com/icons</p>
+<h1 id="media-query-használata"><a class="header" href="#media-query-használata">Media Query használata</a></h1>
+<p>Fontos, hogy a html tagjében ez szerepeljen, ezzel érzékelni fogja, hogy épp mobilon vagy asztali böngészőben nézi a felhasználó az oldalt:</p>
+<pre><code class="language-html">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+</code></pre>
+<p>A css-ben:</p>
+<pre><code class="language-css">@media (max-width: 768px) {
+    /* Ide jönnek a mobilra szánt módosítások */
+}
+</code></pre>
+<h1 id="modern-css"><a class="header" href="#modern-css">Modern CSS</a></h1>
+<h1 id="media-query-helyett-if"><a class="header" href="#media-query-helyett-if">Media Query helyett if</a></h1>
+<p>https://www.youtube.com/watch?v=THvg9DQPs94&amp;list=WL&amp;index=18</p>
+<p>max-width:767px</p>
+<p>max-width: 1024px</p>
+<h2 id="pszeudó-pseudeo"><a class="header" href="#pszeudó-pseudeo">Pszeudó (pseudeo)</a></h2>
+<p>Modern verzió a pszeudóra:</p>
+<ol>
+<li>::before és ::after</li>
+</ol>
+<p>Többit <a href="https://www.codedex.io/css/bonus/pseudo-elements-in-css">itt</a> találod.</p>
+<p>Modern</p>
+<pre><code class="language-css">/*A :has() segítségével megváltoztathatod egy eleme stílusát attól függően, hogy mi van benne. De ez, csak akkor működik, ha nem a js-ben van a módosítás. :( */
+h2:has(.Andi) {
+    background-color: rgba(255, 255, 255, 0.716);
+    color: white;
+}
+</code></pre>
+<hr />
+<h1 id="régebbi-böngészők"><a class="header" href="#régebbi-böngészők">Régebbi böngészők</a></h1>
+<p>Sok régi böngésző nem támogatja a modern css-t. Emiatt érdemes a css-auto-prefix vs code kiegészítőt letölteni.</p>
+<h1 id="tailwind-telepítése"><a class="header" href="#tailwind-telepítése">Tailwind telepítése:</a></h1>
+<p>Terminálban:</p>
+<p>//Ellenőrizd Node.js és npm verziót. node 16+ az ajánlott.
+node -v
+npm -v</p>
+<p>//Ha nincs, akkor.
+npm install</p>
+<p>//Projekt gyökerében hozd létre a package.json-t (ha még nincs)
+npm init -y</p>
+<p>//Telepítsd Tailwind-et fejlesztői függőségként
+npm install -D tailwindcss@3</p>
+<p>//Ha már van telepítve, vagy problémák vannak, érdemes törölni a node_modules-t és a lock fájlt:
+rm -rf node_modules package-lock.json
+npm install</p>
+<p>//Tailwind konfiguráció létrehozása. Ez létrehozza a tailwind.config.js fájlt.
+npx tailwindcss init</p>
+<p>//Ha akarod, a -p kapcsolóval rögtön létrehozza a PostCSS configot is:
+npx tailwindcss init -p</p>
+<p>CSS fájl elkészítése</p>
+<p>CSS:
+A src/main/resources/static/css/input.css legyen így:
+@tailwind base;
+@tailwind components;
+@tailwind utilities;</p>
+<p>HTML:</p>
+<link rel="stylesheet" href="/css/output.css">
+<p>Le kell buildelni a css fájlt:
+npx tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch</p>
+<hr />
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="html.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="javascript.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="html.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="javascript.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

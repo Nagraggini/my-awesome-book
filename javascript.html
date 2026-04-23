@@ -1,0 +1,1456 @@
+<!DOCTYPE HTML>
+<html lang="hu" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>JavaScript ismeretek - Útmutató kezdőtől haladó szintig a programozáshoz</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Bevezető</a></li><li class="chapter-item expanded "><a href="webfejlesztes-alapok.html"><strong aria-hidden="true">1.</strong> Webfejlesztés alapok</a></li><li class="chapter-item expanded "><a href="html.html"><strong aria-hidden="true">2.</strong> HTML alapok</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">3.</strong> CSS alapok</a></li><li class="chapter-item expanded "><a href="javascript.html" class="active"><strong aria-hidden="true">4.</strong> JavaScript ismeretek</a></li><li class="chapter-item expanded "><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong aria-hidden="true">5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li class="chapter-item expanded "><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong aria-hidden="true">6.</strong> Frontend Fejlesztő Checklista</a></li><li class="chapter-item expanded "><a href="java.html"><strong aria-hidden="true">7.</strong> Java nyelv</a></li><li class="chapter-item expanded "><a href="teszt-automatizalas.html"><strong aria-hidden="true">8.</strong> Teszt automatizálás</a></li><li class="chapter-item expanded "><a href="playwright-hasznalata.html"><strong aria-hidden="true">9.</strong> Playwright</a></li><li class="chapter-item expanded "><a href="spring-boot-bevezetese.html"><strong aria-hidden="true">10.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="kiberbiztonsag.html"><strong aria-hidden="true">11.</strong> Kiberbiztonság</a></li><li class="chapter-item expanded "><a href="penzugy.html"><strong aria-hidden="true">12.</strong> Pénzügyi ismeretek</a></li><li class="chapter-item expanded "><a href="english-learning.html"><strong aria-hidden="true">13.</strong> Angol nyelvtanulás</a></li><li class="chapter-item expanded "><a href="mappa-struktura-es-github.html"><strong aria-hidden="true">14.</strong> Mappa struktúra és GitHub</a></li><li class="chapter-item expanded "><a href="webfejlesztes-attekintes.html"><strong aria-hidden="true">15.</strong> Webfejlesztés áttekintés</a></li><li class="chapter-item expanded "><a href="extra-nagyon-hasznos-kiegeszitok.html"><strong aria-hidden="true">16.</strong> Extra nagyon hasznos kiegészítők</a></li><li class="chapter-item expanded "><a href="motivacio.html"><strong aria-hidden="true">17.</strong> Motiváció</a></li><li class="chapter-item expanded "><a href="projekt-otletek.html"><strong aria-hidden="true">18.</strong> Projekt ötletek</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Útmutató kezdőtől haladó szintig a programozáshoz</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="programozás-javascript-nyelven"><a class="header" href="#programozás-javascript-nyelven"># Programozás JavaScript nyelven</a></h1>
+<h1 id="tartalomjegyzék"><a class="header" href="#tartalomjegyzék">Tartalomjegyzék</a></h1>
+<ul>
+<li><a href="#-programoz%C3%A1s-javascript-nyelven"># Programozás JavaScript nyelven</a></li>
+<li><a href="#tartalomjegyz%C3%A9k">Tartalomjegyzék</a></li>
+<li><a href="#forr%C3%A1sok">Források</a></li>
+<li><a href="#mi%C3%A9rt-nem-t%C3%B6lt-be-a-jscss">Miért nem tölt be a js/css?</a></li>
+<li><a href="#strict-m%C3%B3d">Strict mód</a></li>
+<li><a href="#alert">Alert</a></li>
+<li><a href="#prompt">Prompt</a></li>
+<li><a href="#explicit-%C3%A9s-implicit">Explicit és implicit</a></li>
+<li><a href="#adatt%C3%ADpusokprimit%C3%ADvek">Adattípusok(primitívek)</a>
+<ul>
+<li><a href="#let-vs-var-vs-const">let vs var vs const</a></li>
+</ul>
+</li>
+<li><a href="#vs-code-debug">VS Code debug</a></li>
+<li><a href="#if---el%C3%A1gaz%C3%A1sok">If - elágazások</a></li>
+<li><a href="#switch-szerkezet">Switch szerkezet</a></li>
+<li><a href="#javascript-oper%C3%A1torok--%C3%B6sszefoglal%C3%B3-cheat-sheet">JavaScript operátorok – összefoglaló cheat sheet</a>
+<ul>
+<li><a href="#t%C3%B6mb-m%C5%B1veletek">Tömb műveletek</a>
+<ul>
+<li><a href="#sort">sort</a></li>
+</ul>
+</li>
+<li><a href="#poppushshift">pop/push/shift</a></li>
+</ul>
+</li>
+<li><a href="#primit%C3%ADvek-referenci%C3%A1k-objektumok">Primitívek, referenciák, objektumok</a>
+<ul>
+<li><a href="#objektumok">Objektumok</a></li>
+</ul>
+</li>
+<li><a href="#ciklusok-loop">Ciklusok (Loop)</a>
+<ul>
+<li><a href="#while">While</a></li>
+<li><a href="#egy-soros-ciklus">Egy soros ciklus</a></li>
+<li><a href="#do-while">Do-while</a></li>
+<li><a href="#for-ciklus">For ciklus</a></li>
+</ul>
+</li>
+<li><a href="#feladatok">Feladatok</a></li>
+<li><a href="#mem%C3%B3ria-t%C3%BAlcsordul%C3%A1s-hd-stackoverflow">Memória túlcsordulás HD (StackOverflow)</a></li>
+<li><a href="#inkrement%C3%A1l%C3%A1s">Inkrementálás</a></li>
+<li><a href="#met%C3%B3dusok">Metódusok</a></li>
+<li><a href="#math">Math.</a></li>
+<li><a href="#documentwrite">document.write()</a></li>
+<li><a href="#oop">OOP</a></li>
+<li><a href="#id%C5%91z%C3%ADt%C5%91-be%C3%A1ll%C3%ADt%C3%A1sa">Időzítő beállítása</a></li>
+<li><a href="#html-%C3%A9s-js-%C3%B6sszek%C3%B6t%C3%A9se">Html és js összekötése</a></li>
+<li><a href="#%C3%B6sszefoglal%C3%B3">Összefoglaló</a></li>
+<li><a href="#hib%C3%A1k">Hibák</a>
+<ul>
+<li><a href="#leggyakoribb-hibat%C3%ADpusok">Leggyakoribb hibatípusok</a></li>
+<li><a href="#hibakezel%C3%A9s-error-handling">Hibakezelés (Error Handling)</a></li>
+</ul>
+</li>
+<li><a href="#modern-js-%C3%A9s-lambda-arrow-function-verzi%C3%B3">Modern JS és lambda (arrow function) verzió</a></li>
+<li><a href="#cheat-sheet">Cheat Sheet</a></li>
+<li><a href="#dom-manipul%C3%A1ci%C3%B3">DOM manipuláció</a>
+<ul>
+<li><a href="#dom-kiv%C3%A1laszt%C3%B3-met%C3%B3dusok">DOM kiválasztó metódusok</a></li>
+</ul>
+</li>
+<li><a href="#style">style</a></li>
+<li><a href="#queryselectorall">querySelectorAll</a></li>
+<li><a href="#innerhtml-vs-textcontent-vs-innertext">innerHTML vs textContent vs innerText</a>
+<ul>
+<li><a href="#mikor-melyiket-haszn%C3%A1ld">Mikor melyiket használd?</a></li>
+<li><a href="#p%C3%A9ld%C3%A1k">Példák</a></li>
+</ul>
+</li>
+<li><a href="#html-dom-api-k%C3%A9pess%C3%A9gek-%C3%A9s-alapok">HTML DOM API Képességek és Alapok</a>
+<ul>
+<li><a href="#mit-tehet%C3%BCnk-a-dom-api-val">Mit tehetünk a DOM API-val?</a></li>
+<li><a href="#a-javascript-a-k%C3%B6zvet%C3%ADt%C5%91-nyelv">A JavaScript a közvetítő nyelv</a></li>
+<li><a href="#api-met%C3%B3dusok-%C3%A9s-tulajdons%C3%A1gok">API Metódusok és Tulajdonságok</a>
+<ul>
+<li><a href="#glob%C3%A1lis-objektumok">Globális objektumok</a></li>
+<li><a href="#a-document-objektum">A Document objektum</a></li>
+<li><a href="#kiv%C3%A1laszt%C3%A1s-selection">Kiválasztás (Selection)</a></li>
+</ul>
+</li>
+<li><a href="#gyakori-kiv%C3%A1laszt%C3%A1si-m%C3%B3dszerek">Gyakori kiválasztási módszerek:</a></li>
+</ul>
+</li>
+<li><a href="#javascript-dom-manipul%C3%A1ci%C3%B3-puska">JavaScript DOM Manipuláció Puska</a>
+<ul>
+<li><a href="#4-esem%C3%A9nykezel%C5%91k">4. Eseménykezelők</a>
+<ul>
+<li><a href="#alapszint%C5%B1-html-k%C3%B6zpont%C3%BA">Alapszintű (HTML-központú):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#localstorage">localStorage</a></li>
+<li><a href="#localstorage-%C3%B6sszefoglal%C3%B3">LOCALSTORAGE ÖSSZEFOGLALÓ</a></li>
+<li><a href="#teszt-adatok-gener%C3%A1l%C3%A1sa-%C3%A9s-gyors-teszt">Teszt adatok generálása és gyors teszt</a></li>
+<li><a href="#halad%C3%B3bb-toggle">Haladóbb (toggle)</a></li>
+</ul>
+<h1 id="források"><a class="header" href="#források">Források</a></h1>
+<p>https://sanfranciscoboljottem.com<br />
+https://www.youtube.com/playlist?list=PLyriihBWoulwgaKMNF6M20iD0c6iDtu0S<br />
+https://www.youtube.com/watch?v=BUFagBZZafo&amp;list=PLg7lel5LdVjyO7jk-4biyr0fqPVygTLOk&amp;index=5<br />
+https://www.codedex.io/home
+https://www.freecodecamp.org/learn/javascript-v9/lecture-working-with-the-dom-click-events-and-web-apis/how-do-you-create-new-nodes-using-innerhtml-and-createelement
+https://www.udemy.com/course/the-complete-javascript-course/
+<a href="https://youtu.be/erEgovG9WBs?si=vEFXO3P_WufyaR-C">100+ Web Development Things you Should Know</a></p>
+<h1 id="miért-nem-tölt-be-a-jscss"><a class="header" href="#miért-nem-tölt-be-a-jscss">Miért nem tölt be a js/css?</a></h1>
+<p>Futtatáskor nyomd mega  böngészőben az F12-t. -&gt; Sources -&gt; Page -&gt; Csekkold le, hogy ott vannak-e a css/js fájlok.</p>
+<h1 id="strict-mód"><a class="header" href="#strict-mód">Strict mód</a></h1>
+<pre><code class="language-javascript">"use strict";
+</code></pre>
+<p>/*
+Strict mode segít:</p>
+<p>hibákat korábban észrevenni
+tisztább, biztonságosabb kódot írni
+elkerülni rejtett bugokat
+*/</p>
+<h1 id="alert"><a class="header" href="#alert">Alert</a></h1>
+<pre><code class="language-javascript">    alert("Itt írtam a kódot: https://jsfiddle.net/");
+    //clg -&gt; console log hotkey
+</code></pre>
+<h1 id="prompt"><a class="header" href="#prompt">Prompt</a></h1>
+<pre><code class="language-javascript">//A prompt a felugró ablak. A "name" egy címke, a "Bobby" egy input mező.
+
+    var name = window.prompt("What's your name?", "Bobby");
+    window.alert("Hello " + name + "!");
+
+    console.log("hello " + n)
+</code></pre>
+<p>Console</p>
+<p>console.log("Hello, World!");
+console.error("This is an error message.");
+console.warn("This is a warning message.");
+console.table([{name: "Amit", age: 30}, {name: "Jatin", age: 25}]);</p>
+<p>Továbbiak <a href="https://www.geeksforgeeks.org/javascript/console-in-javascript/">itt</a> találhatóak.</p>
+<h1 id="explicit-és-implicit"><a class="header" href="#explicit-és-implicit">Explicit és implicit</a></h1>
+<p>Kötőjelet nem lehet írni a js-ben a változó nevébe.</p>
+<p>Explicit érték adás.
+Ez explicit, mert az értékadás külön történik a deklarációtól.</p>
+<pre><code class="language-javascript">    var a;
+    a = 1;
+</code></pre>
+<p>Implicit érték adás.
+Ez implicit, mert az értékadás „bele van foglalva” a deklarációba.</p>
+<pre><code class="language-javascript">    var b = 2;
+    //alert(a + b);
+</code></pre>
+<h1 id="adattípusokprimitívek"><a class="header" href="#adattípusokprimitívek">Adattípusok(primitívek)</a></h1>
+<p>8 db van.</p>
+<pre><code>Típus                   Leírás
+String (Karakterlánc),  Időzőjelek közé zárt szöveges karakterek sorozata.
+Number (Szám)           Matematikai értéket képviselő szám (egész vagy tizedes).
+BigInt                  "Olyan szám, amely a normál szám típusnál nagyobb egész értékeket képvisel."
+Boolean (Logikai)       "Logikai érték, amely vagy true (igaz), vagy false (hamis) lehet."
+Object (Objektum)       Adatok kulcs-érték párjainak gyűjteménye.
+Undefined               "Olyan primitív változó, amelyhez még nem rendeltek értéket."
+Null                    "Primitív érték, amely egy objektum hiányát jelzi."
+Symbol                  (Szimbólum),Egyedi és megváltoztathatatlan primitív azonosító.
+</code></pre>
+<p><strong>Néhány fontos megjegyzés:</strong></p>
+<p>Primitív típusok: A fenti listából hét (String, Number, BigInt, Boolean, Undefined, Null, Symbol) primitív típus, ami azt jelenti, hogy egyszerre csak egy értéket tárolnak és megváltoztathatatlanok. Amikor azt mondjuk, hogy a primitív típusok (mint a String vagy a Number) megváltoztathatatlanok (immutable), az nem azt jelenti, hogy a változó értékét nem írhatod felül, hanem azt, hogy magát az értéket a memóriában nem tudod módosítani.</p>
+<p>Összetett típus: Az Object az egyetlen összetett típus, ide tartoznak a tömbök (Arrays) és a függvények (Functions) is a JavaScriptben.</p>
+<pre><code class="language-javascript">    var c = 3; //number
+    var d = 3.5; //float
+
+    var a = "Hello"; // dupla idézőjel
+    var b = "Hello"; // szimpla idézőjel
+</code></pre>
+<p>A backtick (`) speciális, mert enged változóbeillesztést és többsoros szöveget</p>
+<pre><code class="language-javascript">    let name = "Andrea";
+    var c = `Hello`; // backtick (templateliterál)
+    const a =2;
+
+    let message = `Hello, ${name}!`; // → "Hello, Andrea!"
+    var g = true; //boolean
+    var i = null; //null
+    var j; //undefined
+
+</code></pre>
+<h2 id="let-vs-var-vs-const"><a class="header" href="#let-vs-var-vs-const">let vs var vs const</a></h2>
+<p>A “var” simán újra definiálható, ezért inkább <strong>nem használják</strong>.
+A “let” nem definiálható újra, ugyanabban a hatókörben.
+A "const"-nak csak egyszer lehet értéket adni, olyanmint a javaban a final típusú változó.</p>
+<pre><code class="language-javascript">    //for ciklus:
+    for (var j=0; j&lt;10; j++){
+       console.log(j);
+    }
+
+    for (let i=0; i&lt;10; i++){
+       console.log(i);
+    }
+    console.log(i);//Hibaüzenetet kapunk, mert a let-el deklarált változó, csak a scope-n belül létezik.
+</code></pre>
+<h1 id="vs-code-debug"><a class="header" href="#vs-code-debug">VS Code debug</a></h1>
+<p><a href="https://nagraggini-blog.onrender.com/#vscode_install">Itt</a> találod az útmutatót a telepítéshez.</p>
+<p>Futtatáskor a Chromeban F12-t nyomj a devtool eléréséhez és a console részre te is tudsz írni, pl új változót is deklarálhatsz.</p>
+<h1 id="if---elágazások"><a class="header" href="#if---elágazások">If - elágazások</a></h1>
+<pre><code class="language-javascript">    var ageOfGyula = 17;
+
+    //== összehasonlító operátor
+    // felkiáltójel= nem egyenlő operátor
+
+    if (ageOfGyula == 17) {
+            //alert("Majdnem nagykorú.");
+        } else if (ageOfGyula &lt; 18) {
+            //alert("Gyula még kiskorú.");
+        } else {
+            //alert("Gyula már nagykorú.");
+    }
+</code></pre>
+<pre><code class="language-javascript">const a=1;
+a=2; //Error, csak egyszer lehet értéket adni a const változónak.
+</code></pre>
+<h1 id="switch-szerkezet"><a class="header" href="#switch-szerkezet">Switch szerkezet</a></h1>
+<pre><code class="language-javascript">    var r = "Rudi4";
+
+    switch (r) {
+        case "Rudi":
+        //alert("Rudi egy kutya.");
+        break;
+
+        case "Mici":
+        // alert("Mici egy macska.");
+        break;
+
+        default:
+        //alert("Nem kutya, sem macska.");
+    }
+</code></pre>
+<p><strong>==</strong> (egyenlőség, laza összehasonlítás)
+Automatikus típusátalakítást végez.
+Ha a két érték nem ugyanaz a típus, JavaScript megpróbáljaátkonvertálni őket, hogy össze tudja hasonlítani.
+Ezért néha váratlan eredményt ad.</p>
+<p><strong>===</strong> (szigorú egyenlőség)
+Nem végez típusátalakítást.
+Csak akkor ad true-t, ha érték és adattípus is megegyezik.</p>
+<pre><code class="language-javascript">    switch (ageOfGyula) {
+
+        case ageOfGyula === 17:
+            // alert("Majdnem nagykorú.");
+            break;
+
+        case ageOfGyula &gt; 18:
+            //alert("Gyula már nagykorú.");
+            break;
+
+        default:
+            //alert("Gyula még kiskorú.");
+    }
+```javasript
+
+# Tömbök
+
+```javascript
+    var fruits = ["grape", "apple", "banana"];
+
+    alert(fruits[0]); //első elem kiíratása
+
+    var a = [];
+    a.push(1, 2, 3, 4, 5); //hozzáadjuk az elemeket.
+    console.log(a); //Kiírja az elemeit. output: (5) [1, 2, 3, 4, 5]
+</code></pre>
+<h1 id="javascript-operátorok--összefoglaló-cheat-sheet"><a class="header" href="#javascript-operátorok--összefoglaló-cheat-sheet">JavaScript operátorok – összefoglaló cheat sheet</a></h1>
+<pre><code class="language-bash">========================
+ARITMETIKAI OPERÁTOROK
+========================
++     # összeadás
+-     # kivonás
+*     # szorzás
+/     # osztás
+%     # maradék (modulus)
+**    # hatványozás
+
+========================
+ÖSSZEHASONLÍTÓ OPERÁTOROK
+========================
+==    # egyenlő (típus konverzióval)
+===   # szigorúan egyenlő (érték + típus)
+!=    # nem egyenlő (típus konverzióval)
+!==   # szigorúan nem egyenlő
+
+&gt;     # nagyobb
+&lt;     # kisebb
+&gt;=    # nagyobb vagy egyenlő
+&lt;=    # kisebb vagy egyenlő
+
+========================
+ LOGIKAI OPERÁTOROK
+========================
+&amp;&amp;    # ÉS (AND)
+||    # VAGY (OR)
+!     # NEM (NOT)
+
+========================
+ÉRTÉKADÓ OPERÁTOROK
+========================
+=     # értékadás
++=    # hozzáadás és értékadás
+-=    # kivonás és értékadás
+*=    # szorzás és értékadás
+/=    # osztás és értékadás
+%=    # maradék és értékadás
+**=   # hatványozás és értékadás
+
+========================
+INKREMENT / DEKREMENT
+========================
+++    # növelés 1-gyel
+--    # csökkentés 1-gyel
+
+========================
+TÍPUS OPERÁTOROK
+========================
+typeof        # típust ad vissza
+instanceof    # objektum típust ellenőriz
+
+========================
+HÁRMAS (TERNARY) OPERÁTOR
+========================
+feltétel ? érték1 : érték2
+
+Példa:
+let x = 10;
+let result = x &gt; 5 ? "nagy" : "kicsi";
+
+========================
+NULLISH COALESCING
+========================
+??   # ha null vagy undefined → másik érték
+
+Példa:
+let a = null ?? "default"; // "default"
+
+========================
+OPTIONAL CHAINING
+========================
+?.   # biztonságos hozzáférés
+
+Példa:
+user?.name   # nem dob hibát, ha user nincs
+
+========================
+BITWISE OPERÁTOROK
+========================
+&amp;    # AND
+|    # OR
+^    # XOR
+~    # NOT
+&lt;&lt;   # balra shift
+&gt;&gt;   # jobbra shift
+&gt;&gt;&gt;  # jobbra shift (unsigned)
+
+========================
+STRING OPERÁTOR
+========================
++    # string összefűzés
+
+Példa:
+"Hello" + " World"
+</code></pre>
+<h2 id="tömb-műveletek"><a class="header" href="#tömb-műveletek">Tömb műveletek</a></h2>
+<h3 id="sort"><a class="header" href="#sort">sort</a></h3>
+<pre><code class="language-javascript">    var fruits = ["grape", "apple", "banana"];
+    fruits.sort(); //rendezés
+</code></pre>
+<p>A JavaScript sort() alapértelmezetten nem számként, hanem szövegként (stringként) rendez.</p>
+<pre><code class="language-javascript">    var a=[1, 2, 3, 4, 5,55,9,63,22];
+    a.sort(); //output: (9) [1, 2, 22, 3, 4, 5, 55, 63, 9]
+    a.sort((x, y) =&gt; x - y);  //output: (9) [1, 2, 3, 4, 5, 9, 22, 55, 63]
+</code></pre>
+<p>Vagy:</p>
+<pre><code class="language-javascript">    var a=[1, 2, 3, 4, 5,55,9,63,22];
+
+    // callbacks
+    function asc(a,b) {
+     return a-b;
+    }
+
+    a.sort(asc);
+</code></pre>
+<p>Látványos példa a magyarázatra:</p>
+<pre><code class="language-javascript">    var a=[1, 2, 3, 4, 5, 55, 9, 63, 22];
+
+    a.sort((x, y) =&gt; {
+        console.log(`${x} - ${y} = ${x-y}`); //Mindegyik értéket összehasonlítja mindegyik értékkel.
+        return x - y;
+    });
+
+    console.log(a);
+</code></pre>
+<h2 id="poppushshift"><a class="header" href="#poppushshift">pop/push/shift</a></h2>
+<pre><code class="language-javascript">    var x= a.pop(); //Kiszedi a legutolsó elemet és elmenti a változóba. output: undefined
+    x; //output: 5
+    a; //output: (4) [1, 2, 3, 4]
+</code></pre>
+<p>Lehet a konzolon is lekérni a változókat például, vagy újat magadni.</p>
+<pre><code class="language-javascript">    var a = [1, 2, 3];
+    var b = [];
+    b.push(4, 5, 6);
+
+    var c = a.concat(b); //Egybe fűzés. output: (6) [1, 2, 3, 4, 5, 6]
+    console.log(c);
+    console.log(c.slice(1, 3)); //output: (2)[(2, 3)];
+
+    c.shift() //Kiszedi az első elemet. output: (5) [2, 3, 4, 5, 6]
+</code></pre>
+<h1 id="primitívek-referenciák-objektumok"><a class="header" href="#primitívek-referenciák-objektumok">Primitívek, referenciák, objektumok</a></h1>
+<pre><code class="language-javascript">    var lista1 = ["alma", "körte", "makszem"];
+    var lista2 = ["alma", "körte", "makszem"];
+</code></pre>
+<p>Objektumok=Összetett adattípusok, nem egyszerű számok, vagy szövegek.</p>
+<pre><code class="language-javascript">    alert(lista1 == lista2);
+</code></pre>
+<p>false, mert két különböző objektumra mutatnak, különböző helyen vannak tárolva a memóriában.
+A == objektumok esetén referenciát hasonlít, nem tartalmat.</p>
+<pre><code class="language-javascript">    alert(lista1 === lista2);
+</code></pre>
+<p>false, mert két különböző objektumra mutatnak, különböző helyen vannak tárolva a memóriában.
+Típust is ellenőriz ÉS objektumoknál szintén csak a referenciát hasonlítja.</p>
+<pre><code class="language-javascript">    var lista1 = ["alma", "körte", "makszem"];
+    var lista2 = lista1;
+
+    alert(lista1 === lista2); // true
+</code></pre>
+<p>A fenti példában ugyanarra az objektumra mutatnak.</p>
+<h2 id="objektumok"><a class="header" href="#objektumok">Objektumok</a></h2>
+<pre><code class="language-javascript">    var myobj= new Object();
+    myobj.name='Steve';
+    myobj; //output: 'Steve'
+
+// A böngészőben van egy JS objektumom (objects):
+//Adatcserére jó.
+
+    var person = {
+        name: "bobby",
+        age: 42,
+        email: "bobbyc@sfu.ca",
+        address: {
+            number: "123",
+            street: "fake st",
+        },
+        speak: function (words) {
+            //Metódus.
+            console.log(words);
+        },
+    };
+
+    person.speak("hello"); //output: hello
+</code></pre>
+<h1 id="ciklusok-loop"><a class="header" href="#ciklusok-loop">Ciklusok (Loop)</a></h1>
+<h2 id="while"><a class="header" href="#while">While</a></h2>
+<pre><code class="language-javascript">    var a = 0;
+
+    while (a &lt; 6) {
+        alert("A értéke kisebb, mint 6, mert a= " + a);
+        a = a + 1;
+    }
+    alert("Kiléptünk a ciklusból, mert A értéke: " + a);
+</code></pre>
+<h2 id="egy-soros-ciklus"><a class="header" href="#egy-soros-ciklus">Egy soros ciklus</a></h2>
+<p>Egysoros ciklusnál nincs kapcsos zárójel, de csak egy utasítás tartozik a ciklushoz.</p>
+<pre><code class="language-javascript">    var a = 0;
+
+    while (a &lt; 6)
+        a = a + 1;
+</code></pre>
+<h2 id="do-while"><a class="header" href="#do-while">Do-while</a></h2>
+<p>Egyszer mindenképpen le fog futni.</p>
+<pre><code class="language-javascript">    var a = 0;
+
+    do {
+        alert("a= "+a);
+        a++;
+    } while (a == 0);
+</code></pre>
+<h2 id="for-ciklus"><a class="header" href="#for-ciklus">For ciklus</a></h2>
+<p>Kiíratjuk a tömb elemeit.</p>
+<pre><code class="language-javascript">    for (i = 0; i &lt; fruits.length; i++) {
+        alert(fruits[i]);
+    }
+</code></pre>
+<h1 id="feladatok"><a class="header" href="#feladatok">Feladatok</a></h1>
+<ol>
+<li>feladat – Életkor ellenőrzés</li>
+</ol>
+<pre><code class="language-javascript">A prompt stringet ad vissza, ezért Number()-ral számmá kell alakítani.
+
+    var age = Number(prompt("Kérlek, add meg az életkorodat:"));
+
+    if (age &lt; 14) {
+            alert("Gyerek");
+        } else if (age &gt;= 14 &amp;&amp; age &lt;= 17) {
+            alert("Tizenéves");
+        } else {
+            alert("Felnőtt");
+    }
+</code></pre>
+<p>String()-el meg szöveggé lehet konvertálni.</p>
+<pre><code class="language-javascript">Boolean(10&gt;9); //true
+</code></pre>
+<ol start="2">
+<li>feladat – Gyümölcs kereső 🍎</li>
+</ol>
+<pre><code class="language-javascript">//Van egy tömb:
+
+    var fruits = ["alma", "körte", "banán", "narancs"];
+</code></pre>
+<p>A program:
+Kérjen be egy gyümölcsnevet (prompt-tal).
+Ha a megadott gyümölcs benne van a tömbben → alert("Van ilyen gyümölcs!")
+Ha nincs benne → alert("Nincs ilyen gyümölcs!")</p>
+<p>Használhatsz:</p>
+<pre><code class="language-javascript">fruits.includes(keresettGyumolcs)
+
+    var fruits = ["alma", "körte", "banán", "narancs"];
+
+    var valasztottertek = prompt("Válasz egy gyümölcsöt:").toLowerCase();
+
+    if (fruits.includes(valasztottertek)) {
+            alert("Van ilyen gyümölcs.");
+        } else {
+            alert("Nincs ilyen gyümölcs.");
+    }
+</code></pre>
+<ol start="3">
+<li>feladat – Számláló ciklus _🔁</li>
+</ol>
+<p>Írj egy while ciklust, ami:
+0-tól indul,
+minden lépésben kiírja a számot (alert vagy console.log),
+és 5-ig számol.
+De ha a szám 3, akkor írja ki: "Ez a kedvenc számom!"</p>
+<pre><code class="language-javascript">    var number = 0;
+
+    while (number &lt;= 5) {
+        alert(`A szám: ${number}`);
+
+        /*=== (szigorú egyenlőség)
+        Nem végez típusátalakítást.
+        Csak akkor ad true-t, ha érték és adattípus is megegyezik.*/
+
+            if (number === 3) {
+                alert("Ez a kedvenc számom.");
+            }
+        number++;
+    }
+</code></pre>
+<h1 id="memória-túlcsordulás-hd-stackoverflow"><a class="header" href="#memória-túlcsordulás-hd-stackoverflow">Memória túlcsordulás HD (StackOverflow)</a></h1>
+<p>Ez egy végtelen ciklus, ami sosem áll meg.
+Egy idő után elfogy a rendelkezésünkre álló memória, vagyis túlcsordulunk a memóriából. -&gt; StackOverflow</p>
+<pre><code class="language-javascript">    var fruits = ["banana", "grape", "apple"];
+
+    while (a == 0) {
+        var b = "onodnfvnfdkvnkfjd";
+    }
+</code></pre>
+<h1 id="inkrementálás"><a class="header" href="#inkrementálás">Inkrementálás</a></h1>
+<p>JavaScript inkrementálás (++) működésének klasszikus példája, és valóban nem minden nyelv kezeli ugyanúgy.</p>
+<p>Post-increment (a++) → előbb használja az értéket, majd növeli</p>
+<p>Pre-increment (++a) → előbb növeli, majd használja az értéket</p>
+<pre><code class="language-javascript">    var a = 0;
+
+    // post-increment
+    var c = a++; //Az érték átadás után növeltük az értéket.
+
+    alert(c + " " + a); //output: 0 1
+
+    // pre-increment
+    c = ++a; //Először növeljük az értéket és utána adjuk át.
+
+    alert(c); //output: 2
+</code></pre>
+<h1 id="metódusok"><a class="header" href="#metódusok">Metódusok</a></h1>
+<p><a href="https://www.w3schools.com/jsref/dom_obj_all.asp">DOM Element Properties and Methods</a></p>
+<pre><code class="language-javascript">    function house() {
+    alert("Itt lakom látod, ez az a ház!");
+    }
+
+    function house2(package) {
+    alert(package);
+    }
+
+    //Meghívjuk a metódust.
+    house();
+    house2("Szevasz! Bent vagyok a házban!");
+</code></pre>
+<hr />
+<pre><code class="language-javascript">    var myfunc2 = function(){
+      console.log('hello world 2');
+    }
+
+    myfunk2;
+</code></pre>
+<hr />
+<p>Hacsak egy argumentumot adunk át, és az is már összeadott érték (68 + 96 = 164).
+Ezért a függvényben a = 164 lesz, és b = undefined.</p>
+<p>A JavaScriptben az undefined + szám → NaN (Not a Number), tehát az alert NaN-t fog mutatni.</p>
+<pre><code class="language-javascript">    function sum(a, b) {
+        alert(a + b);
+    }
+
+    sum(68 + 96);
+</code></pre>
+<p>Helyes megoldás:</p>
+<pre><code class="language-javascript">    function sum(a, b) {
+    alert(a + b);
+    }
+
+    sum(3, 5);
+</code></pre>
+<h1 id="math"><a class="header" href="#math">Math.</a></h1>
+<pre><code class="language-javascript">//Minimum: 0 (előfordulhat)
+//Maximum: 0.999999... (de 1 sosem lesz)
+Math.random();
+
+const number = Math.trunc(Math.random()*20)+1; // 1-20 közötti szám kreálása.
+//A +1 azért kell, hogy lehessen 20 is az eredmény.
+</code></pre>
+<p>Van még egy pár metódusa a Math osztálynak.</p>
+<!-- TODO -->
+<h1 id="documentwrite"><a class="header" href="#documentwrite">document.write()</a></h1>
+<p>Csak a html body-ban tud le futni.</p>
+<pre><code class="language-html">        &lt;script&gt;
+            document.open();
+            document.write("&lt;h1&gt;Hello World&lt;/h1&gt;");
+            document.writeln("Hello World!");
+            document.close();
+        &lt;/script&gt;
+
+        &lt;button onclick="myFunction()"&gt;Open&lt;/button&gt;
+        &lt;script&gt;
+            function myFunction() {
+                const myWindow = window.open();
+                myWindow.document.write("&lt;h1&gt;New Window&lt;/h1&gt;");
+                myWindow.document.write("&lt;p&gt;Hello World!&lt;/p&gt;");
+            }
+        &lt;/script&gt;
+        &lt;button onclick="window.print()"&gt;Print this page.&lt;/button&gt;
+</code></pre>
+<h1 id="oop"><a class="header" href="#oop">OOP</a></h1>
+<!-- TODO -->
+<pre><code class="language-javascript">class Felhasznalo {
+  // 1. Mezők (Property-k) deklarálása (opcionális, de tiszta)
+  szerep = 'tag'; 
+  #jelszo; // Privát mező (kívülről nem elérhető)
+
+  // 2. Konstruktor: ez fut le példányosításkor (new Felhasznalo)
+  constructor(nev, kor, jelszo) {
+    this.nev = nev; // Nyilvános tulajdonság
+    this.kor = kor;
+    this.#jelszo = jelszo;
+  }
+
+  // 3. Metódus (függvény az osztályon belül)
+  koszon() {
+    console.log(`Szia, a nevem ${this.nev}, és ${this.kor} éves vagyok.`);
+  }
+
+  // 4. Getter és Setter (kontrollált hozzáférés)
+  get profilInfo() {
+    return `${this.nev} (${this.szerep})`;
+  }
+
+  set eletkorFrissites(ujKor) {
+    if (ujKor &gt; 0) {
+      this.kor = ujKor;
+    }
+  }
+
+  // 5. Statikus metódus (az osztályhoz tartozik, nem a példányhoz)
+  static leiras() {
+    console.log("Ez egy Felhasználó osztály sablon.");
+  }
+}
+
+// HASZNÁLAT:
+const adam = new Felhasznalo('Ádám', 28, 'titok123');
+adam.koszon(); // "Szia, a nevem Ádám..."
+console.log(adam.profilInfo); // "Ádám (tag)"
+Felhasznalo.leiras(); // Osztály szintű hívás
+</code></pre>
+<h1 id="időzítő-beállítása"><a class="header" href="#időzítő-beállítása">Időzítő beállítása</a></h1>
+<pre><code class="language-javascript">    var i = 0;
+
+    //inter-ban eltároljuk az időazonosítóját.
+    var inter = window.setInterval(function(){
+        console.log(i); //Kiíratás.
+        i++; //Szám növelése.
+     },1000) //1000 milliszekundum = 1 másodperc, vagyis minden másodpercben lefut.
+
+</code></pre>
+<p>A setInterval() futtatja a kódot ismételten bizonyos időközönként.
+1-1000-ig kiírja a számokat.</p>
+<p>Ez a callback függvény:</p>
+<pre><code class="language-javascript">    function(){
+            console.log(i);
+            i++;
+        }
+</code></pre>
+<p>Ezzel lehet megállítani:</p>
+<pre><code class="language-javascript">    clearInterval(inter);
+</code></pre>
+<p>Modern módszer:</p>
+<pre><code class="language-javascript">setInterval(() =&gt; console.log("hello"), 1000);
+//A hello előtt megjelenik egy szám és az növekszik másodpercenként.
+</code></pre>
+<h1 id="html-és-js-összekötése"><a class="header" href="#html-és-js-összekötése">Html és js összekötése</a></h1>
+<p>A html kódba ezt írd bele, rakhatod a head, vagy a body-ba is.</p>
+<pre><code class="language-html">    &lt;!--defer: A script csak akkor fut le, amikor a HTML teljesen betöltődött.--&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+</code></pre>
+<p>Egy komponens id-jára, így kell hivatkozni:</p>
+<pre><code class="language-javascript">    document.getElementById("fname");
+
+    var t=document.getElementById("fname");
+    t.value; //output: ''
+
+    //Beírom az input mezőbe azt, hogy Bobby.
+    t.value; //output: 'Bobby'
+</code></pre>
+<p>Egy komponens value-ra való hivatkozás:</p>
+<pre><code class="language-javascript">    //A html-ben van egy gomb, aminek a value-ja SuBmit.
+    var c=document.querySelector('input[value="SuBmit"]');
+
+    c.value; //'SuBmit'
+    c.value='SEND', //'SEND'
+</code></pre>
+<pre><code class="language-javasript">//Elem szövegét módosítjuk. pl.: div,p , span
+document.querySelector(".number").textContent = 13;
+
+//Szám beállítása az input mezőben. ez lehet input, vagy textarea
+document.querySelector(".guess").value = 23;
+</code></pre>
+<p>Típus csekkolás</p>
+<pre><code class="language-javascript">    // 1. Az elem szövegként jön ki (string)
+    let a = document.querySelector(".number").textContent;
+    typeof a; // "string"
+
+    // 2. Átalakítás számmá
+    a = Number(a);
+    typeof a; // "number"
+</code></pre>
+<p>A táblázat összes cellájára való hivatkozás:</p>
+<pre><code class="language-javascript">    var td =document.getElementsByTagName("td");
+    td[0]; // → első td , maga az HTML elem, output: &lt;td&gt;1&lt;/td&gt;
+
+    td[0].innerHTML;
+    //→ az elem belsejében lévő tartalom (szöveg vagy HTML)
+    //output: 1
+</code></pre>
+<p>Billentyű lenyomás eseményfigyelő:</p>
+<p>Figyeli, hogy a felhasználó lenyomott-e a billentyűzeten egy gombot, azt is nézi, ha nem egy input mezőben nyomott meg valamit.</p>
+<p>addEventListener mindig függvényt vár, nem a függvény azonnali meghívását.</p>
+<pre><code class="language-javascript">    window.addEventListener('keypress',processKey);
+
+    function processKey(evt){
+        console.log(evt);
+    }
+    //output: KeyboardEvent {isTrusted: true, key: 'f', code: 'KeyF', location: 0, ctrlKey: false, …}
+</code></pre>
+<p>Ezzel, csak a betűket írjuk ki:</p>
+<pre><code class="language-javascript">    window.addEventListener('keypress',processKey);
+
+    function processKey(evt){
+        console.log (evt.key);
+    }
+    //output: f
+</code></pre>
+<p>Click eseményhez:</p>
+<pre><code class="language-javascript">    var button=document.querySelector('input[value="SuBmit"]');
+
+    button.addEventListener('click',kattintas);
+    function kattintas(){
+        console.log("Kattintottal.");
+    }
+</code></pre>
+<p>Arrow függvény click eseményhez:</p>
+<pre><code class="language-javascript">    window.addEventListener('click', () =&gt; {
+        console.log("Kattintottál.");
+    }); //Csak akkor fut, amikor valóban kattintanak az ablakban.
+</code></pre>
+<p>Még rövidebb arrow függvény:</p>
+<pre><code class="language-javascript">    addEventListener('click', () =&gt; console.log("kattintas"));
+</code></pre>
+<p>Ezzel nem fog csinálni semmit az oldal, ha rákattintok a gombra:</p>
+<pre><code class="language-javascript">    var button=document.querySelector('input[value="SuBmit"]');
+
+    button.addEventListener('click',function(evt){
+        evt.preventDefault()
+    });
+</code></pre>
+<p>A class-on belül meg lehet adni alosztályt, ha van:</p>
+<pre><code class="language-javascript">// &lt;button class="btn check"&gt;Check!&lt;/button&gt;
+//A btn class-on belül a check gombot kérjük le.
+document.querySelector(".check").addEventListener();
+</code></pre>
+<h1 id="Összefoglaló"><a class="header" href="#Összefoglaló">Összefoglaló</a></h1>
+<ol>
+<li>
+<p>A DOM (Document Object Model)
+A böngésző a HTML dokumentumot egy "fa struktúraként" értelmezi, amit DOM-nak hívunk. A JavaScript segítségével hozzáférhetünk ezekhez az elemekhez (ágakhoz), és módosíthatjuk őket.</p>
+</li>
+<li>
+<p>Elemek kiválasztása
+Megtanulhatod, hogyan "találd meg" a HTML elemeket a kódban, például:</p>
+</li>
+</ol>
+<pre><code class="language-javascript">document.getElementById("azonosito"); // id-ra hivatkozunk.
+document.querySelector("body");  // tag, amiből tuti egy darab van.
+document.querySelector("#azonosito"); // id-ra hivatkozunk.
+document.querySelector(".osztaly-nev"); // class-ra hivatkozunk.
+
+</code></pre>
+<ol start="3">
+<li>Eseménykezelés (Event Listeners)
+Ez a webes interaktivitás lelke. A JavaScript képes "figyelni" a felhasználó mozdulatait, például:</li>
+</ol>
+<ul>
+<li>Kattintás (click)</li>
+<li>Billentyűleütés (keydown)</li>
+<li>Egér mozgatása (mouseover)</li>
+</ul>
+<p>Példa egy gombnyomás kezelésére:</p>
+<pre><code class="language-javascript">const gomb = document.querySelector('button');
+gomb.addEventListener('click', () =&gt; {
+  alert('Megnyomtad a gombot!');
+});
+</code></pre>
+<ol start="4">
+<li>HTML/CSS dinamikus módosítása
+A JavaScripttel nemcsak a szöveget cserélhetjük ki az oldalon, hanem stílusokat is módosíthatunk (pl. egy gomb színe megváltozik, ha rákattintanak), vagy új elemeket hozhatunk létre és törölhetünk.</li>
+</ol>
+<h1 id="hibák"><a class="header" href="#hibák">Hibák</a></h1>
+<p>A programozás során elkerülhetetlen, hogy hibákba fussunk, ezért kulcsfontosságú megérteni, miért történnek, és hogyan javíthatjuk ki őket.</p>
+<p>Íme egy összefoglaló a JavaScript leggyakoribb hibaüzeneteiről és a hibakezelési technikákról:</p>
+<h2 id="leggyakoribb-hibatípusok"><a class="header" href="#leggyakoribb-hibatípusok">Leggyakoribb hibatípusok</a></h2>
+<p><strong>SyntaxError</strong> (Szintaktikai hiba): Akkor fordul elő, ha a kód nem felel meg a nyelv nyelvtani szabályainak (pl. hiányzó zárójel, idézőjel vagy vessző). A JavaScript értelmezője ilyenkor el sem tudja indítani a futtatást.</p>
+<p>Példa: console.log("Hello"; (hiányzik a bezáró zárójel).</p>
+<p><strong>ReferenceError</strong> (Referencia hiba): Akkor jelentkezik, ha egy olyan változóra vagy függvényre hivatkozunk, amely nem létezik, vagy nincs definiálva az adott hatókörben (scope).</p>
+<p>Példa: console.log(x); (ha x korábban nem lett deklarálva).</p>
+<p><strong>TypeError</strong> (Típus hiba): Akkor kapjuk, ha egy műveletet nem megfelelő típusú adaton próbálunk elvégezni. Például olyan értéket próbálunk függvényként meghívni, ami nem az, vagy egy null érték tulajdonságát akarjuk elérni.</p>
+<p>Példa: let num = 5; num.toUpperCase(); (a számoknak nincs ilyen metódusa).</p>
+<p><strong>RangeError</strong> (Tartomány hiba): Akkor fordul elő, ha egy érték kívül esik a megengedett tartományon.</p>
+<p>Példa: Egy tömbnek negatív hosszt próbálunk megadni.</p>
+<h2 id="hibakezelés-error-handling"><a class="header" href="#hibakezelés-error-handling">Hibakezelés (Error Handling)</a></h2>
+<p>A JavaScript biztosítja a try...catch szerkezetet, amellyel "elkaphatjuk" a futásidejű hibákat, így megakadályozhatjuk, hogy az egész program összeomoljon.</p>
+<p><strong>try blokk</strong>: Itt helyezzük el azt a kódot, amely potenciálisan hibát dobhat.</p>
+<p><strong>catch blokk</strong>: Ha a try blokkban hiba történik, a futtatás ide ugrik át. Itt kezelhetjük a hibát (pl. hibaüzenet kiírása).</p>
+<p><strong>finally blokk</strong>: Ez a rész mindenképpen lefut, függetlenül attól, hogy történt-e hiba vagy sem. Gyakran használják erőforrások felszabadítására vagy takarításra.</p>
+<p><strong>throw</strong> kulcsszó: Segítségével mi magunk is létrehozhatunk és "dobhatunk" egyedi hibákat, ha egy bizonyos feltétel nem teljesül.</p>
+<p>Miért fontos ez?
+A hibák megértése segít a hibakeresésben (debugging). Ahelyett, hogy találgatnánk, a hibaüzenet pontosan megmondja:</p>
+<ul>
+<li>Mi a hiba típusa.</li>
+<li>Hol történt (fájl és sor száma).</li>
+<li>Hogyan háríthatjuk el.</li>
+</ul>
+<h1 id="modern-js-és-lambda-arrow-function-verzió"><a class="header" href="#modern-js-és-lambda-arrow-function-verzió">Modern JS és lambda (arrow function) verzió</a></h1>
+<pre><code class="language-javascript">document.addEventListener("DOMContentLoaded", () =&gt; {
+
+    //HTML-ben a button id=gomb
+    const gomb = document.getElementById("gomb");
+
+    gomb.addEventListener("click", () =&gt; {
+        alert("Rákattintottál!");
+    });
+});
+
+</code></pre>
+<p>DE!!! Nem kötelező a fenti, ha a html-ben a </body> mögé rakod a lentit. Viszont, ha felakarsz tölteni egy táblázatot, vagy az épp folyamatban lévő űrlap piszkozatát, akarod betölteni, akkor jól jön.</p>
+<pre><code class="language-html"> &lt;script src="script.js" defer&gt;&lt;/script&gt;
+</code></pre>
+<h1 id="cheat-sheet"><a class="header" href="#cheat-sheet">Cheat Sheet</a></h1>
+<pre><code class="language-bash">//Ebbe kell az egész js kódot beírni.
+document.addEventListener("DOMContentLoaded", () =&gt; {}
+
+| Téma                | Szintaxis / Példa                                                                     | Magyarázat                        |
+| ------------------- | ------------------------------------------------------------------------------------- | --------------------------------- |
+| **Változók**        | `let nev = "Anna";`&lt;br&gt;`const PI = 3.14;`                                             | `let` változtatható, `const` nem  |
+| **Típusok**         | `string, number, boolean, null, undefined, object`                                    | Alap JS típusok                   |
+| **Feltételek**      | `if (x &gt; 10) {...} else {...}`&lt;br&gt;`x &gt; 10 ? "igen" : "nem";`                          | If/else és ternary                |
+| **Ciklusok**        | `for (let i=0;i&lt;5;i++){}`&lt;br&gt;`while(x&lt;10){x++}`&lt;br&gt;`array.forEach(i=&gt;console.log(i))` | For, while, foreach               |
+| **Függvények**      | `function osszeg(a,b){return a+b}`&lt;br&gt;`const osszeg = (a,b)=&gt;a+b`                     | Klasszikus és arrow függvény      |
+| **Tömbök**          | `tomb.push(4)`&lt;br&gt;`tomb.pop()`&lt;br&gt;`tomb.map(x=&gt;x*2)`                                  | Elem hozzáadás/törlés, átalakítás |
+| **Objektumok**      | `const ember={nev:"Anna",kor:25}`&lt;br&gt;`console.log(ember.nev)`                         | Tulajdonságok és metódusok        |
+| **DOM kiválasztás** | `document.getElementById("id")`&lt;br&gt;`document.querySelector(".class")`                 | Elem kiválasztása                 |
+| **DOM módosítás**   | `elem.innerText="Hello"`&lt;br&gt;`elem.style.color="red"`                                  | Szöveg és stílus módosítás        |
+| **Eseménykezelés**  | `gomb.addEventListener("click", (e)=&gt;console.log(e.target))`                          | Arrow function + event objektum   |
+| **this vs event**   | `function(){console.log(this)}`&lt;br&gt;`(e)=&gt;console.log(e.target)`                       | Arrow nem ad saját `this`-t       |
+| **DOM létrehozás**  | `const p=document.createElement("p"); p.innerText="Új"; document.body.appendChild(p)` | Új elem létrehozása és hozzáadása |
+| **Tipikus hibák**   | `document.getElementById("gomb")` túl korán → null                                    | DOM mindig legyen betöltve        |
+</code></pre>
+<p>JSON (JavaScript Object Notation)</p>
+<hr />
+<h1 id="dom-manipuláció"><a class="header" href="#dom-manipuláció">DOM manipuláció</a></h1>
+<p>//A querySelector-al tudunk hozzáférni a DOM fához, amit a html-ben hoztunk létre. A tag-ek a node-ok.</p>
+<h2 id="dom-kiválasztó-metódusok"><a class="header" href="#dom-kiválasztó-metódusok">DOM kiválasztó metódusok</a></h2>
+<ol>
+<li>Egyetlen elem kiválasztása
+Ha pontosan tudod, melyik elemet akarod módosítani, ezeket használd:</li>
+</ol>
+<p><strong>document.getElementById("azonosito")</strong>: A leggyorsabb és legbiztosabb módszer. Mivel az id egyedi kell legyen az oldalon, ez mindig pontosan egy elemet ad vissza.</p>
+<p><strong>document.querySelector(".osztaly")</strong>: Nagyon rugalmas, mert CSS szintaxist használ. Ha több elem is megfelel a feltételnek, csak a legelsőt adja vissza.</p>
+<ol start="2">
+<li>Több elem kiválasztása (Listák)
+Gyakran előfordul, hogy egyszerre több elemen akarsz változtatni (például az összes bekezdés színét átírni):</li>
+</ol>
+<p><strong>document.getElementsByTagName("p")</strong>: Összegyűjti az összes <p> (bekezdés) elemet egy listába.</p>
+<p><strong>document.getElementsByClassName("kiemelt")</strong>: Minden elemet visszaad, aminek az osztályneve "kiemelt".</p>
+<p><strong>document.querySelectorAll(".doboz")</strong>: Ez a "svájci bicska". Bármilyen CSS szelektorral (osztály, ID, attribútum) megkeresi az összes egyező elemet.</p>
+<p>Fontos tudnivaló: Amikor listát kapsz vissza (pl. querySelectorAll), nem tudod közvetlenül módosítani a stílusát (mint pl. .style.color = "red"). Ilyenkor egy for ciklussal vagy forEach metódussal végig kell menned a lista elemein.</p>
+<h1 id="style"><a class="header" href="#style">style</a></h1>
+<p>A css -&gt; js alakításnál a kebab-case → camelCase lesz. Ezek inline stílusok lesznek a htmlben, a css fájlban nem fog megváltozni semmi sem.</p>
+<pre><code class="language-javascript">
+//Csak egy elemet módosít (az első találatot)
+document.querySelector(".number").style.width = "30rem"; //rem: Egy relatív mértékegység a html font-size-hoz viszonyítva.
+//font-size: 10px -&gt; 30rem = 30 × 10px = 300px
+
+document.getElementById('demo').style.display = 'none';   // eltünteti
+document.getElementById('demo').style.display = 'block';  // megjeleníti blokk elemként
+document.getElementById('demo').style.display = 'inline';   // soron belül
+document.getElementById('demo').style.display = 'flex';   // modern layout
+document.getElementById('demo').style.display = 'grid';   // komplex layout
+
+//Layout / megjelenés
+el.style.display = "block";
+el.style.visibility = "hidden";
+el.style.overflow = "hidden";
+
+//Színek és háttér
+el.style.color = "red";
+el.style.backgroundColor = "blue";
+el.style.opacity = "0.5"; //Muszáj a számokat is idézőjelek közé beírnunk, mert string kell nekünk. 
+
+//Méret és térköz
+el.style.width = "200px";
+el.style.height = "100px";
+
+el.style.margin = "10px";
+el.style.padding = "5px";
+
+//Szöveg
+el.style.fontSize = "20px";
+el.style.fontWeight = "bold";
+el.style.textAlign = "center";
+
+//Pozicionálás
+//Transzformációk / animáció
+//Border és shadow
+</code></pre>
+<h1 id="queryselectorall"><a class="header" href="#queryselectorall">querySelectorAll</a></h1>
+<pre><code class="language-javascript">document.querySelectorAll("div"); //html tag.
+
+document.querySelectorAll(".rounded"); //class
+
+document.querySelectorAll("#logo"); //specifikus id
+</code></pre>
+<pre><code class="language-javascript">document.querySelectorAll("a[href='https://www.freecodecamp.org/']"); //Minden elem aminek ez az attribútuma.
+
+  //A querySelectorAll nem egyetlen elemet ad vissza, hanem egy NodeList-et (olyan, mint egy tömb/lista).
+  const ingredientsLista = document.querySelectorAll("ul.ingredients li");
+  const negyedikGomb = document.getElementById("negyedikGomb");
+
+  negyedikGomb.addEventListener("click", () =&gt; {
+    // Egy ciklussal végigmegyünk a lista minden egyes elemén
+    ingredientsLista.forEach((e) =&gt; {
+      e.style.backgroundColor = "blue";
+      e.style.color = "white";
+    });
+  });
+</code></pre>
+<pre><code class="language-html">&lt;ul class="ingredients"&gt;
+          &lt;li&gt;Liszt&lt;/li&gt;
+          &lt;li&gt;Tojás&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<h1 id="innerhtml-vs-textcontent-vs-innertext"><a class="header" href="#innerhtml-vs-textcontent-vs-innertext">innerHTML vs textContent vs innerText</a></h1>
+<p>Ez a három tulajdonság a leggyakoribb módja annak, hogy JavaScript segítségével kezeljük egy HTML elem tartalmát. Bár hasonlónak tűnnek, kritikus különbségek vannak köztük.</p>
+<ol>
+<li>element.innerHTML
+Ez a tulajdonság a teljes HTML kódot kezeli, ami az elemen belül van.</li>
+</ol>
+<p>Írás: Ha értéket adsz neki, a böngésző HTML-ként értelmezi a szöveget. Ha beleírsz egy <b> taget, a szöveg félkövér lesz.</p>
+<p>Olvasás: Visszaadja a szöveget az összes belső HTML taggel együtt.</p>
+<p>Veszély: XSS (Cross-Site Scripting) támadási felületet nyit. Ha ismeretlen felhasználótól érkező adatot (pl. kommentet) illesztesz be vele, kártékony scriptek futhatnak le az oldaladon.</p>
+<ol start="2">
+<li>element.textContent
+Ez a tulajdonság a nyers szöveggel foglalkozik, és ez a legbiztonságosabb választás.</li>
+</ol>
+<p>Írás: Minden karaktert sima szövegként kezel. Ha beleírsz egy <b> taget, az szövegként fog megjelenni (<b>szöveg</b>), nem lesz félkövér.</p>
+<p>Olvasás: Visszaadja az elemben lévő összes szöveget, beleértve a rejtett elemeket is (amikre display: none van állítva).</p>
+<p>Előny: Gyorsabb, mert a böngészőnek nem kell HTML-t elemeznie, és biztonságos, mert nem futtat kódokat.</p>
+<ol start="3">
+<li>element.innerText
+Gyakran összekeverik a textContent-tel, de van egy fontos különbség: az innerText stílus-tudatos.</li>
+</ol>
+<p>Láthatóság: Csak azt a szöveget adja vissza, ami látható a képernyőn. Ha egy szövegrész el van rejtve CSS-sel, az innerText nem fogja látni, míg a textContent igen.</p>
+<p>Formázás: Figyelembe veszi a sortöréseket és a stílusokat (pl. a csupa nagybetűs CSS formázást nagybetűként adja vissza).</p>
+<p>Hátrány: Valamivel lassabb, mert a böngészőnek ki kell számolnia a CSS-t (layout/reflow), mielőtt visszaadná az eredményt.</p>
+<h2 id="mikor-melyiket-használd"><a class="header" href="#mikor-melyiket-használd">Mikor melyiket használd?</a></h2>
+<p><strong>textContent</strong>: Használd ezt alapértelmezettként, ha szöveget akarsz módosítani. Ez a leggyorsabb és legbiztonságosabb.</p>
+<p><strong>innerText</strong>: Csak akkor használd, ha kifejezetten csak a felhasználó által ténylegesen látott szövegre van szükséged.</p>
+<p><strong>innerHTML</strong>: Csak akkor használd, ha valódi HTML struktúrát akarsz létrehozni (pl. egy új listát vagy táblázatot), és a forrásod 100%-ig megbízható.</p>
+<h2 id="példák"><a class="header" href="#példák">Példák</a></h2>
+<pre><code class="language-javascript">document.getElementById("elsoGomb").innerHTML = "&lt;b&gt;Szia&lt;/b&gt;";
+Félkövérrel lesz kiírva.
+
+document.getElementById("elsoGomb").textContent =("Szia &lt;b&gt;Barátom&lt;/b&gt;!"); 
+//output: Szia &lt;b&gt;Barátom&lt;/b&gt;!
+
+document.getElementById("elsoGomb").innerText=("Szia &lt;b&gt;Barátom&lt;/b&gt;!"); 
+//output: Szia &lt;b&gt;Barátom&lt;/b&gt;!
+</code></pre>
+<h1 id="html-dom-api-képességek-és-alapok"><a class="header" href="#html-dom-api-képességek-és-alapok">HTML DOM API Képességek és Alapok</a></h1>
+<p>A DOM (Document Object Model) API lehetővé teszi a fejlesztők számára a weboldalak dinamikus kezelését.</p>
+<h2 id="mit-tehetünk-a-dom-api-val"><a class="header" href="#mit-tehetünk-a-dom-api-val">Mit tehetünk a DOM API-val?</a></h2>
+<p>A DOM API segítségével a következőkre vagyunk képesek:</p>
+<ul>
+<li><strong>Elemek keresése és kiválasztása</strong> a dokumentumban.</li>
+<li><strong>Tartalom és attribútumok módosítása</strong> (pl. szöveg átírása, képforrás cseréje).</li>
+<li><strong>Elemek hozzáadása, eltávolítása vagy módosítása</strong> a struktúrában.</li>
+<li><strong>CSS stílusok megváltoztatása</strong> futásidőben.</li>
+<li><strong>Eseménykezelők hozzáadása</strong>, hogy reagáljunk a felhasználói bevitelre (kattintás, gépelés, stb.).</li>
+</ul>
+<h2 id="a-javascript-a-közvetítő-nyelv"><a class="header" href="#a-javascript-a-közvetítő-nyelv">A JavaScript a közvetítő nyelv</a></h2>
+<ul>
+<li>A <strong>DOM API</strong> egy szabvány, amely meghatározza, hogyan lehet lekérni, módosítani, hozzáadni vagy törölni a HTML DOM elemeket.</li>
+<li>A <strong>JavaScript</strong> az a programozási nyelv, amelyet a böngészőkben használunk, hogy ezen az API-n keresztül elérjük a DOM-ot.</li>
+</ul>
+<h2 id="api-metódusok-és-tulajdonságok"><a class="header" href="#api-metódusok-és-tulajdonságok">API Metódusok és Tulajdonságok</a></h2>
+<h3 id="globális-objektumok"><a class="header" href="#globális-objektumok">Globális objektumok</a></h3>
+<p>A fejlesztők olyan globális objektumokat használnak belépési pontként az API-hoz, mint a <code>document</code> és a <code>window</code>.</p>
+<h3 id="a-document-objektum"><a class="header" href="#a-document-objektum">A Document objektum</a></h3>
+<p>Ha egy HTML oldal bármely eleméhez hozzá akarsz férni, mindig a <code>document</code> objektummal kell kezdened.</p>
+<blockquote>
+<p>A <strong>document objektum</strong> jelképezi a teljes weboldaladat.</p>
+</blockquote>
+<h3 id="kiválasztás-selection"><a class="header" href="#kiválasztás-selection">Kiválasztás (Selection)</a></h3>
+<p>Ahhoz, hogy JavaScripttel manipulálni tudj egy HTML elemet, legelőször <strong>ki kell választanod</strong> azt az elemet (például az ID-ja vagy a CSS osztálya alapján).</p>
+<hr />
+<h2 id="gyakori-kiválasztási-módszerek"><a class="header" href="#gyakori-kiválasztási-módszerek">Gyakori kiválasztási módszerek:</a></h2>
+<ul>
+<li><code>document.getElementById("id")</code> – Elem kiválasztása egyedi azonosító alapján.</li>
+<li><code>document.querySelector(".osztaly")</code> – Az első olyan elem, amely megfelel a CSS választónak.</li>
+<li><code>document.querySelectorAll("p")</code> – Az összes adott típusú/osztályú elem kiválasztása.</li>
+</ul>
+<h1 id="javascript-dom-manipuláció-puska"><a class="header" href="#javascript-dom-manipuláció-puska">JavaScript DOM Manipuláció Puska</a></h1>
+<p>Ez a dokumentum a legfontosabb DOM (Document Object Model) metódusokat és tulajdonságokat foglalja össze.</p>
+<hr />
+<pre><code class="language-bash">## 1. Tartalom elérése és módosítása
+
+| Tulajdonság           | Leírás                                                                       |
+| :-------------------- | :--------------------------------------------------------------------------- |
+| `element.innerHTML`   | Az elem belső HTML tartalmát adja vissza vagy módosítja (tag-ekkel együtt).  |
+| `element.textContent` | Az elem nyers szöveges tartalmát kezeli (biztonságosabb, mint az innerHTML). |
+
+## 2. Attribútumok és Stílusok
+
+| Tulajdonság / Metódus               | Leírás                                                                     |
+| :---------------------------------- | :------------------------------------------------------------------------- |
+| `element.attribute`                 | Közvetlen elérés (pl. `element.id` vagy `element.src`).                    |
+| `element.style.property`            | Az elem inline CSS stílusát módosítja (pl. `element.style.color = "red"`). |
+| `element.setAttribute(attr, value)` | Új attribútumot hoz létre vagy módosít egy meglévőt.                       |
+| `element.getAttribute(attr)`        | Lekéri egy adott attribútum értékét.                                       |
+
+## 3. Struktúra manipulálása (DOM fa)
+
+| Metódus                           | Leírás                                               |
+| :-------------------------------- | :--------------------------------------------------- |
+| `document.createElement(tag)`     | Létrehoz egy új HTML elemet a memóriában.            |
+| `document.appendChild(node)`      | Hozzáad egy elemet egy szülőelem utolsó gyerekeként. |
+| `document.removeChild(node)`      | Eltávolít egy gyerekobjektumot a DOM-ból.            |
+| `document.replaceChild(new, old)` | Kicserél egy létező gyerek elemet egy újra.          |
+</code></pre>
+<h2 id="4-eseménykezelők"><a class="header" href="#4-eseménykezelők">4. Eseménykezelők</a></h2>
+<h3 id="alapszintű-html-központú"><a class="header" href="#alapszintű-html-központú">Alapszintű (HTML-központú):</a></h3>
+<pre><code class="language-javascript">document.getElementById("gomb").onclick = function() {
+    alert("Kattintottál!");
+};
+
+---
+&lt;p id="demo"&gt;&lt;/p&gt;
+
+document.getElementsByTagName("p")[0].innerHTML = "Hello";
+---
+</code></pre>
+<h1 id="localstorage"><a class="header" href="#localstorage">localStorage</a></h1>
+<p>Folyamatban lévő űrlap kitöltésnél jó használni, hogy ne vesszenek el azok az adatok, amiket eddig beírt a felhasználó.</p>
+<pre><code class="language-javascript">//Mentés
+localStorage.setItem("nev", "Leroy");
+
+//Lekérés
+const nev = localStorage.getItem("nev");
+console.log(nev); // Leroy
+
+//Törlés
+localStorage.removeItem("nev");
+
+//Összestörlése
+localStorage.clear();
+
+//Mentés tömbbel
+const tod = ["tanulás", "edzés", "projekt"];
+localStorage.setItem("tod", JSON.stringify(tod));
+
+//Visszaolvaás
+const tod = JSON.parse(localStorage.getItem("tod")) || [];
+console.log(tod);
+
+//========================================================
+
+// Mentésnél (Objektum -&gt; String):
+const first = { name: "Anna", age: 25 };
+localStorage.setItem("first", JSON.stringify(first));
+
+// 1. módszer: Közvetlen lekérés
+const getFirst = JSON.parse(localStorage.getItem("first"));
+console.log("getFirst (teljes objektum):", getFirst);
+console.log("getFirst (teljes objektum):" + getFirst); //getFirst (teljes objektum):[object Object]
+
+// 2. módszer: Referencia használatával (ourStorage)
+const ourStorage = window.localStorage;
+const storedUser = JSON.parse(ourStorage.getItem("first"));
+
+// Itt a javítás: a .name-et kérjük le a storedUser-ből
+console.log("A keresett név: ", storedUser.name); // Eredmény: "Anna"
+</code></pre>
+<h1 id="localstorage-ÖsszefoglalÓ"><a class="header" href="#localstorage-ÖsszefoglalÓ">LOCALSTORAGE ÖSSZEFOGLALÓ</a></h1>
+<pre><code class="language-bash">  ALAPVETŐ JELLEMZŐK
+ ------------------------------------------
+ Kapacitás:  ~5-10 MB (böngészőtől függően)
+ Formátum:   Csak String (szöveg)
+ Élettartam: Örökké megmarad (manuális törlésig)
+ Hatókör:    Domain-specifikus (apple.hu != google.hu)
+</code></pre>
+<p>A 4 LEGFONTOSABB METÓDUS</p>
+<pre><code class="language-bash"> Művelet         | Kód                                   | Leírás
+ ----------------|---------------------------------------|-------------------------
+ Mentés          | localStorage.setItem('kulcs', 'érték')| Adat elhelyezése
+ Lekérés         | localStorage.getItem('kulcs')         | Adat kiolvasása
+ Lekérés index-el| localStorage.key(index)               | Lekéri az adott indexen található kulcs nevét.
+ Hossz           | localStorage.length                   | Visszaadja a tárolóban lévő elemek (adatok) számát. 
+ Törlés          | localStorage.removeItem('kulcs')      | Egy elem törlése
+ Mindent töröl   | localStorage.clear()                  | Összes adat törlése
+</code></pre>
+<p>GYAKORLATI PÉLDA (JS)</p>
+<pre><code class="language-javascript">// Mentés
+localStorage.setItem('felhasznaloNev', 'Kovács János');
+
+// Lekérés
+const nev = localStorage.getItem('felhasznaloNev');
+console.log(nev); // "Kovács János"
+</code></pre>
+<p>OBJEKTUMOK TÁROLÁSA (JSON)</p>
+<pre><code class="language-javascript">// MENTÉS (Szerializáció)
+const user = { id: 1, nev: 'Péter', rang: 'Admin' };
+localStorage.setItem('user_data', JSON.stringify(user));
+
+// BETÖLTÉS (Deszerializáció)
+const mentettAdat = localStorage.getItem('user_data');
+  if (mentettAdat) {
+    const userObj = JSON.parse(mentettAdat);
+    console.log(userObj.nev); // "Péter"
+  }
+</code></pre>
+<p>MIKOR HASZNÁLD?</p>
+<p>[OK]  - Sötét/Világos mód, űrlap vázlatok, beállítások.
+[!]   - SOHA NE: Jelszavak, bankkártya adatok (biztonsági kockázat).
+[!]   - NE: Nagy fájlok (képek, videók).</p>
+<p><a href="https://www.geeksforgeeks.org/javascript/javascript-localstorage/">JavaScript localStorage</a></p>
+<h1 id="teszt-adatok-generálása-és-gyors-teszt"><a class="header" href="#teszt-adatok-generálása-és-gyors-teszt">Teszt adatok generálása és gyors teszt</a></h1>
+<pre><code class="language-javascript">//A body végére kiírja az adatot.
+document.writeln("Hello World!");
+
+
+//Teszt adatok.
+function newTestQuest() {
+    //13 karakteres szám.
+    let id = Math.floor(Math.random() * 9000000000000) + 1000000000000;
+
+    //Random true vagy false.
+
+    let check = {
+        id: Date.now(),
+        check: ["true", "false"][Math.floor(Math.random() * 2)],
+    };
+
+    let checkbox = check.check;
+    //Random szöveg.
+    let descriptionInput = crypto.randomUUID();
+
+    //Random dátum.
+    let d = new Date(
+        +new Date(2024, 0, 1) +
+            Math.random() * (+new Date(2026, 11, 31) - +new Date(2024, 0, 1)),
+    );
+    let dateInput = `${d.getFullYear()}. ${String(d.getMonth() + 1).padStart(2, "0")}. ${String(d.getDate()).padStart(2, "0")}`;
+
+    //Random priority.
+    let task = {
+        id: Date.now(),
+        priority: ["Low", "Normal", "High"][Math.floor(Math.random() * 3)],
+    };
+
+    let priorityInput = task.priority;
+
+    let list = [id, checkbox, descriptionInput, dateInput, priorityInput];
+
+    localStorage.setItem(id, JSON.stringify(list));
+    console.log("A lista hossza: " + list.length);
+    console.log(list.toString()); //62120516,[object HTMLInputElement],,,
+}
+</code></pre>
+<h1 id="haladóbb-toggle"><a class="header" href="#haladóbb-toggle">Haladóbb (toggle)</a></h1>
+<pre><code class="language-javascript">// .style → közvetlenül ír
+document.getElementById("demo").style.color = "red";
+
+// getComputedStyle → olvas (végleges stílus)
+console.log(getComputedStyle(document.getElementById("demo")).color);
+
+// classList.add → CSS osztály hozzáadása
+document.getElementById("demo").classList.add("active");
+
+// classList (profi megoldás) → pl. toggle használat
+document.getElementById("demo").classList.toggle("hidden");
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="css.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="uj-webes-projekt-letrehozasa-kozepszint.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="css.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="uj-webes-projekt-letrehozasa-kozepszint.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
