@@ -318,13 +318,13 @@ A bytecode mindenhol ugyanaz marad.
 
 **Java környezet komponensei**
 
-JDK – Java Development Kit
+JDK – Java Development Kit (Program írása + futtatása)
 
 A JDK a Java fejlesztéshez szükséges teljes eszközkészlet.
 
 Tartalmazza:
 - javac (fordító)
-- JRE
+- JRE (Program futtatása)
 - fejlesztői eszközök
 
 **JRE – Java Runtime Environment**
@@ -332,7 +332,7 @@ Tartalmazza:
 A JRE a Java programok futtatásához szükséges környezet.
 
 Tartalmazza:
-- JVM
+- JVM (A Java program futtatása)
 - Java szabványos könyvtárak
 
 **JVM – Java Virtual Machine**
