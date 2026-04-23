@@ -22,7 +22,7 @@ jobs:
               run: mdbook build
 
             - name: Deploy to GitHub Pages
-              uses: peaceiris/actions-main@v4 # Erre a branch névre kell átállítani a Settings -> Pages-ben.
+              uses: peaceiris/actions-gh-pages@v4 # Erre a branch névre kell átállítani a Settings -> Pages-ben.
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./book

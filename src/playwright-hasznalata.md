@@ -202,7 +202,7 @@ Ezután a playwright.config.js-ben csekold le ezt: testDir: './tests',
 # Hasznos linkek a gyakorláshoz
 
 https://playwright.dev/docs/intro
-https://the-internet.herokuapp.com/
+https://the-internet.herokuapp.com/     
 http://uitestingplayground.com/
 
 # Első teszt felvételéhez
