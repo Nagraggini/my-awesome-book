@@ -1,4 +1,19 @@
-# Teszt (Playwright)
+# Playwright
+
+**Mi az a Playwright?**
+
+Playwright egy nyílt forráskódú (open-source) eszköz, amely:
+- automatizálja a webes alkalmazások tesztelését,
+- támogatja a több böngészőt (Chromium, Firefox, WebKit),
+- több nyelven is használható: JavaScript, TypeScript, Python, Java, C#.
+
+Fő előnye a Seleniumhoz képest:
+ Gyorsabb, stabilabb és könnyebb párhuzamosan futtatni a teszteket.
+
+# Telepítés + workflow beállítása
+
+Példa:
+https://github.com/Streptopelia-risoria/restful_booker_platform_demo
 
 Terminálba: npm init playwright@latest
 JavaScript -> tests -> GitHub Actions yes -> Install Playwright browsers? yes
@@ -167,5 +182,82 @@ npx playwright test
 Többi hasznos terminál parancs a teszteléshez:
 npx playwright test --ui
 npx playwright test --debug
+
+# Telepítés + workflow nélkül
+
+Lépj bele a terminálban a mappába ahova a tesztet szeretnéd.
+
+Írd be a projekt nevét. pl.: for-test
+Framework: vanilla aztán javascript
+
+Terminálba:
+npm init playwright@latest
+
+A zárójelben lévőket válaszold a terminál kérdéseire.
+js (egyet le és enter), marad a test mappa (tab és enter), no github workflow (n), yes extension (y)
+
+Egy test mappád legyen, akár kicsi akár nagy betűs.
+Ezután a playwright.config.js-ben csekold le ezt: testDir: './tests',
+
+# Hasznos linkek a gyakorláshoz
+
+https://playwright.dev/docs/intro
+https://the-internet.herokuapp.com/
+http://uitestingplayground.com/
+
+# Első teszt felvételéhez
+
+Bal oldalt válaszd ki a lombik ikont.
+
+TOOLS (Eszközök)
+Pick locator: Ez a legpraktikusabb. Kattints rá, menj át a böngészőbe, és mutass rá az egérrel egy elemre (pl. a gombra vagy combo boxra). A VS Code-ban azonnal megjelenik a kód, amivel az adott elemet eléred.
+Record new: Elindít egy üres tesztet és egy böngészőt. Amit a böngészőben csinálsz, azt élőben kódként rögzíti egy új fájlba.
+Record at cursor: Ugyanaz, mint az előző, de nem új fájlt nyit, hanem a meglévő kódodba, a kurzor pozíciójához szúrja be az új lépéseket.
+
+A fájlnevének mindig , így kell kinéznie: valami.spec.ts
+
+Terminálba: npx playwright codegen
+
+
+# Futtatás
+
+Bal oldalt üvegcse ikon és Debug Test
+
+Vagy
+
+npx playwright test --ui
+npx playwright test --debug
+
+
+# Jelszó beállítás
+
+.env fájlbe írd be e felhasználónevet és jelszet.
+
+A gitignore-ba meg, hogy ".env" ezt nem kell verziókezelés alávonni. A package.json mellé rakd.
+
+Terminálba:
+npm install dotenv --save-dev
+
+
+# Minta
+
+
+```ts
+import { test, expect } from "@playwright/test";
+import * as dotenv from "dotenv";
+dotenv.config(); // Betölti a .env fájl tartalmát
+
+
+test("Google.hu", async ({ browser }) => {
+  const context = await browser.newContext({
+    httpCredentials: {
+      username: process.env.SITE_USER || "", // A .env-ből olvassa
+      password: process.env.SITE_PASS || "", // A .env-ből olvassa
+    },
+  });
+  const page = await context.newPage();
+  await page.goto("google.hu");
+});
+```
 
 

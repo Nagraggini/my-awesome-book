@@ -11,6 +11,7 @@
 
 ## Programozási Nyelvek és Eszközök
 - [Java nyelv](java.md)
+- [Teszt automatizálás](teszt-automatizalas.md)
 - [Playwright](playwright-hasznalata.md)
 - [Spring Boot](spring-boot-bevezetese.md)
 
