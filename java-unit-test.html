@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Motiváció - Útmutató kezdőtől haladó szintig a programozáshoz</title>
+        <title>Java Unit Teszt - Útmutató kezdőtől haladó szintig a programozáshoz</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Bevezető</a></li><li class="chapter-item expanded "><a href="webfejlesztes-alapok.html"><strong aria-hidden="true">1.</strong> Webfejlesztés alapok</a></li><li class="chapter-item expanded "><a href="html.html"><strong aria-hidden="true">2.</strong> HTML alapok</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">3.</strong> CSS alapok</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.</strong> JavaScript ismeretek</a></li><li class="chapter-item expanded "><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong aria-hidden="true">5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li class="chapter-item expanded "><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong aria-hidden="true">6.</strong> Frontend Fejlesztő Checklista</a></li><li class="chapter-item expanded "><a href="java.html"><strong aria-hidden="true">7.</strong> Java nyelv</a></li><li class="chapter-item expanded "><a href="teszt-automatizalas.html"><strong aria-hidden="true">8.</strong> Teszt automatizálás</a></li><li class="chapter-item expanded "><a href="java-unit-test.html"><strong aria-hidden="true">9.</strong> Java Unit Teszt</a></li><li class="chapter-item expanded "><a href="playwright-hasznalata.html"><strong aria-hidden="true">10.</strong> Playwright</a></li><li class="chapter-item expanded "><a href="spring-boot-bevezetese.html"><strong aria-hidden="true">11.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="kiberbiztonsag.html"><strong aria-hidden="true">12.</strong> Kiberbiztonság</a></li><li class="chapter-item expanded "><a href="penzugy.html"><strong aria-hidden="true">13.</strong> Pénzügyi ismeretek</a></li><li class="chapter-item expanded "><a href="english-learning.html"><strong aria-hidden="true">14.</strong> Angol nyelvtanulás</a></li><li class="chapter-item expanded "><a href="mappa-struktura-es-github.html"><strong aria-hidden="true">15.</strong> Mappa struktúra és GitHub</a></li><li class="chapter-item expanded "><a href="webfejlesztes-attekintes.html"><strong aria-hidden="true">16.</strong> Webfejlesztés áttekintés</a></li><li class="chapter-item expanded "><a href="extra-nagyon-hasznos-kiegeszitok.html"><strong aria-hidden="true">17.</strong> Extra nagyon hasznos kiegészítők</a></li><li class="chapter-item expanded "><a href="motivacio.html" class="active"><strong aria-hidden="true">18.</strong> Motiváció</a></li><li class="chapter-item expanded "><a href="projekt-otletek.html"><strong aria-hidden="true">19.</strong> Projekt ötletek</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Bevezető</a></li><li class="chapter-item expanded "><a href="webfejlesztes-alapok.html"><strong aria-hidden="true">1.</strong> Webfejlesztés alapok</a></li><li class="chapter-item expanded "><a href="html.html"><strong aria-hidden="true">2.</strong> HTML alapok</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">3.</strong> CSS alapok</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.</strong> JavaScript ismeretek</a></li><li class="chapter-item expanded "><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong aria-hidden="true">5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li class="chapter-item expanded "><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong aria-hidden="true">6.</strong> Frontend Fejlesztő Checklista</a></li><li class="chapter-item expanded "><a href="java.html"><strong aria-hidden="true">7.</strong> Java nyelv</a></li><li class="chapter-item expanded "><a href="teszt-automatizalas.html"><strong aria-hidden="true">8.</strong> Teszt automatizálás</a></li><li class="chapter-item expanded "><a href="java-unit-test.html" class="active"><strong aria-hidden="true">9.</strong> Java Unit Teszt</a></li><li class="chapter-item expanded "><a href="playwright-hasznalata.html"><strong aria-hidden="true">10.</strong> Playwright</a></li><li class="chapter-item expanded "><a href="spring-boot-bevezetese.html"><strong aria-hidden="true">11.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="kiberbiztonsag.html"><strong aria-hidden="true">12.</strong> Kiberbiztonság</a></li><li class="chapter-item expanded "><a href="penzugy.html"><strong aria-hidden="true">13.</strong> Pénzügyi ismeretek</a></li><li class="chapter-item expanded "><a href="english-learning.html"><strong aria-hidden="true">14.</strong> Angol nyelvtanulás</a></li><li class="chapter-item expanded "><a href="mappa-struktura-es-github.html"><strong aria-hidden="true">15.</strong> Mappa struktúra és GitHub</a></li><li class="chapter-item expanded "><a href="webfejlesztes-attekintes.html"><strong aria-hidden="true">16.</strong> Webfejlesztés áttekintés</a></li><li class="chapter-item expanded "><a href="extra-nagyon-hasznos-kiegeszitok.html"><strong aria-hidden="true">17.</strong> Extra nagyon hasznos kiegészítők</a></li><li class="chapter-item expanded "><a href="motivacio.html"><strong aria-hidden="true">18.</strong> Motiváció</a></li><li class="chapter-item expanded "><a href="projekt-otletek.html"><strong aria-hidden="true">19.</strong> Projekt ötletek</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -173,39 +173,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>A legtöbb akadály mentális. Egyszerűen csak el kell kezdeni. Problémákat kell megoldani. Meg kell nézni, hogy mi mit csinál. Mi mire jó, egy idő után össze fog állni a kép.
-Fontos, hogy projekt alapon tanulj.</p>
-<h1 id="a-sikernek-ára-van"><a class="header" href="#a-sikernek-ára-van">A sikernek ára van:</a></h1>
-<p>Késő esték
-Korai reggelek
-Kevés barát
-Meg nem értettség
-Túlterheltség
-A józanságod megkérdőjelezése
-Saját magad drukkerének lenni</p>
-<p>De tudod mit?
-Ne add fel, megéri!</p>
-<h1 id="tanulási-technikák-freymann"><a class="header" href="#tanulási-technikák-freymann">Tanulási technikák (Freymann):</a></h1>
-<p>Az óra előtt rászánsz egy fél órát, hogy megértsd az anyagot, lényegét, felépítését. Figyelj a tanárra, nem kell mindent leírni, csak azt ami segít a tananyag megértésében. Írd le a gyakorló kérdéseket.</p>
-<p>Azonnali ismétlés (Még aznap. Próbáld meg megválaszolni a leírt kérdéseidet.)
-Cipősdoboz módszer. Előtesztelés. Kis szakaszonként ismételd el az anyagot-&gt; Ne csak gondolatban, írd le, vagy mond ki hangosan.
-Készíts gondolattérképet, legyen vizuális, használj színeket. Ne legyen tele az apróbb részletekkel. Egy témáról, ne csak egy térképen legyen.
-Használj tanuló kártyákat. Tömör, egyértelmű, készíts sajátokat.
-Használd a Feynman módszert. Barátoknak, családnak, képzeletbeli embereknek magyarázd el az anyagot egyszerűen, mintha egy óvodásnak magyaráznád.
-Oldj meg gyakorló feladatokat, vagy gyakorló teszteket.</p>
-<h1 id="legalább-2744-szer-próbáld-meg"><a class="header" href="#legalább-2744-szer-próbáld-meg">Legalább 2744-szer próbáld meg</a></h1>
-<p>„Nem a bukás a kudarc, hanem ha feladod. Edison 2744 próbálkozással tanulta meg, mi működik. Te is minden hibából közelebb kerülsz a sikerhez.”</p>
-<p>Valójában Thomas Edison 1 000–2 000 különböző anyagból próbálta kifejleszteni a megfelelő izzószálat a villanykörtéhez.</p>
+                        <h1 id="java-unit-teszt"><a class="header" href="#java-unit-teszt">Java Unit Teszt</a></h1>
+<p>https://www.codecademy.com/courses/learn-intermediate-java-junit-testing/lessons/junit-testing/exercises/junit-classes-and-methods</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="extra-nagyon-hasznos-kiegeszitok.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="teszt-automatizalas.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="projekt-otletek.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="playwright-hasznalata.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -215,11 +194,11 @@ Oldj meg gyakorló feladatokat, vagy gyakorló teszteket.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="extra-nagyon-hasznos-kiegeszitok.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="teszt-automatizalas.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="projekt-otletek.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="playwright-hasznalata.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
