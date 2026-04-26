@@ -6336,7 +6336,50 @@ Verify -&gt; Ha a feltétel nem teljesül, a teszt tovább fut, de jelzi a hibá
 Egyszerű parancsokat használ, pl.: open, click, type, verifyText
 Támogat kommenteket is (pl. // jellel).</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="java-unit-teszt"><a class="header" href="#java-unit-teszt">Java Unit Teszt</a></h1>
-<p>https://www.codecademy.com/courses/learn-intermediate-java-junit-testing/lessons/junit-testing/exercises/junit-classes-and-methods</p>
+<p>Ez az összefoglaló a Java beépített assert-jeit és a JUnit 5 tesztelési keretrendszer alapjait tartalmazza.</p>
+<hr />
+<h2 id="1-java-native-assert-a-nyelv-része"><a class="header" href="#1-java-native-assert-a-nyelv-része">1. Java Native Assert (A nyelv része)</a></h2>
+<p>Elsősorban fejlesztés alatti belső logikai ellenőrzésre.
+<em>Figyelem: Alapból ki van kapcsolva, a <code>-ea</code> (enable assertions) kapcsolóval kell futtatni a JVM-et.</em></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Szintaxis</th><th style="text-align: left">Leírás</th></tr></thead><tbody>
+<tr><td style="text-align: left"><code>assert feltétel;</code></td><td style="text-align: left">Ha a feltétel <code>false</code>, <code>AssertionError</code>-t dob.</td></tr>
+<tr><td style="text-align: left"><code>assert feltétel : "Üzenet";</code></td><td style="text-align: left">Hiba esetén az üzenet is megjelenik a konzolon.</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="2-junit-5-Életciklus-annotációk"><a class="header" href="#2-junit-5-Életciklus-annotációk">2. JUnit 5 Életciklus (Annotációk)</a></h2>
+<p>Meghatározzák a metódusok futási sorrendjét a tesztelés során.</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Annotáció</th><th style="text-align: left">Típus</th><th style="text-align: left">Leírás</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong><code>@BeforeAll</code></strong></td><td style="text-align: left"><code>static void</code></td><td style="text-align: left"><strong>Egyszer</strong> fut le az osztály összes tesztje előtt (pl. DB kapcsolat nyitás).</td></tr>
+<tr><td style="text-align: left"><strong><code>@BeforeEach</code></strong></td><td style="text-align: left"><code>void</code></td><td style="text-align: left"><strong>Minden</strong> <code>@Test</code> előtt lefut. Setup, példányosítás, alaphelyzet.</td></tr>
+<tr><td style="text-align: left"><strong><code>@Test</code></strong></td><td style="text-align: left"><code>void</code></td><td style="text-align: left">Maga a teszteset, itt fut le a vizsgált logika.</td></tr>
+<tr><td style="text-align: left"><strong><code>@AfterEach</code></strong></td><td style="text-align: left"><code>void</code></td><td style="text-align: left"><strong>Minden</strong> <code>@Test</code> után lefut. Cleanup, cache ürítés, loggolás.</td></tr>
+<tr><td style="text-align: left"><strong><code>@AfterAll</code></strong></td><td style="text-align: left"><code>static void</code></td><td style="text-align: left"><strong>Egyszer</strong> fut le a legvégén. Erőforrások (pl. DB) lezárása.</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="3-alap-assert-ek-junit-5-assertions"><a class="header" href="#3-alap-assert-ek-junit-5-assertions">3. Alap Assert-ek (JUnit 5 Assertions)</a></h2>
+<p>Ezekkel igazoljuk, hogy a kódunk a várt módon működik-e.</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Metódus</th><th style="text-align: left">Ellenőrzés</th></tr></thead><tbody>
+<tr><td style="text-align: left"><code>assertEquals(expected, actual)</code></td><td style="text-align: left">A két érték megegyezik-e.</td></tr>
+<tr><td style="text-align: left"><code>assertNotEquals(unexpected, actual)</code></td><td style="text-align: left">A kapott érték eltér-e a megadottól.</td></tr>
+<tr><td style="text-align: left"><code>assertTrue(condition)</code></td><td style="text-align: left">A feltétel igaz-e.</td></tr>
+<tr><td style="text-align: left"><code>assertFalse(condition)</code></td><td style="text-align: left">A feltétel hamis-e.</td></tr>
+<tr><td style="text-align: left"><code>assertNull(object)</code></td><td style="text-align: left">Az objektum <code>null</code> értékű-e.</td></tr>
+<tr><td style="text-align: left"><code>assertNotNull(object)</code></td><td style="text-align: left">Az objektum létezik-e (nem <code>null</code>).</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="4-kivételkezelés-tesztelése-assertthrows"><a class="header" href="#4-kivételkezelés-tesztelése-assertthrows">4. Kivételkezelés tesztelése: <code>assertThrows</code></a></h2>
+<p>Ellenőrzi, hogy a kódunk dob-e hiba esetén megfelelő kivételt.</p>
+<pre><code class="language-java">// A metódus visszatér a kapott kivétellel, amit tovább vizsgálhatunk
+Throwable exception = assertThrows(IllegalArgumentException.class, () -&gt; {
+    myObject.doSomething(-1);
+});
+
+// Opcionális: a hibaüzenet pontos ellenőrzése
+assertEquals("Negatív szám nem megengedett!", exception.getMessage());
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="playwright"><a class="header" href="#playwright">Playwright</a></h1>
 <p><strong>Mi az a Playwright?</strong></p>
 <p>Playwright egy nyílt forráskódú (open-source) eszköz, amely:</p>
