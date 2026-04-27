@@ -10,6 +10,13 @@ Jobb felül piaci áras megbízás -> Limitáras eladási megbízás. pl.: 1 Ft 
 
 Revolut X-en érdemes tőzsdézni, de inkább dedikált platformon jó. Maradjon USD-ben az összeg nem érdemes átváltani, csak, ha tényleg kell. 
 
+# Trading 212
+
+Napi használatra a legjobb, évente 3%-os kamatot kapsz a készpénzedért, amit naponta kapsz meg, viszont adóznod kell ebből 15% SZJA.
+
+Lehet tőzsdén is kereskedni rajta, portfóliót építeni és ETF-ket vásárolni. Viszont a hasznosból adóznod kell, hosszabb távú befektetéseknél érdemes Lightyear-en TBSZ számlát nyilni, mert ha 5 évig bent tartod a pénzedet a portfóliodban, akkor adómentesen hozzá tudsz jutni a hozamodhoz. 
+Mivel nem magyar bank, ezért a TBSZ számlát neked kell bejelentened a NAV-nál és az éves adóbevallásodban feltűntetned. 
+
 # Tőzsde kezdőknek
 
 Kedvezményes kupon kódok a Binance-hoz a leírásban és "
