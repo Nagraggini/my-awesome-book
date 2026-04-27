@@ -15,6 +15,7 @@ https://www.udemy.com/course/the-complete-javascript-course/
 https://www.youtube.com/playlist?list=PLP9IO4UYNF0VdAajP_5pYG-jG2JRrG72s
 https://www.w3schools.com/html/default.asp
 [100+ Web Development Things you Should Know](https://youtu.be/erEgovG9WBs?si=vEFXO3P_WufyaR-C)
+[HTML & CSS for Absolute Beginners](https://www.youtube.com/playlist?list=PL4-IK0AVhVjOJs_UjdQeyEZ_cmEV3uJvx)
 
 # Alapok
 
@@ -125,6 +126,12 @@ Sorrend: header, main, nav, footer
                 </li>
 
             </ul>
+
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://google.hu"
+            ></a>
         </section>
 
     </main>
