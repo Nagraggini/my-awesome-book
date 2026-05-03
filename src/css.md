@@ -23,6 +23,7 @@ https://www.w3schools.com/css/default.asp
 https://www.w3schools.com/htmlcss/default.asp
 [100+ Web Development Things you Should Know](https://youtu.be/erEgovG9WBs?si=vEFXO3P_WufyaR-C)
 [HTML & CSS for Absolute Beginners](https://www.youtube.com/playlist?list=PL4-IK0AVhVjOJs_UjdQeyEZ_cmEV3uJvx)
+http://www.flexboxdefense.com/
 
 # Alapok
 
@@ -67,7 +68,48 @@ Ezeket együtt érdemes használni:
     display: flex;
     flex-direction: column;
     align-items: center; /*Ezt együtt kell használni pl.: flex/grid-el*/
+
+    /*
+    justify-content: "Hova tegyem az elemeket a sorban?" Jobbra balra pl
+    align-items: "Hova tegyem az elemet a saját sora magasságán belül? Oszlopnál jó."
+    align-content: "Hova tegyem az egymás alatt lévő sorokat?"
+    */
 ```
+**justify-content**
+
+flex-start: group items at the start of a container's main axis
+flex-end: group items at the end of the main axis
+center: group items in the center of the main axis
+space-between: evenly distribute items along the main axis such that the first item aligns at the start and the final item aligns at the end
+space-around: evenly distribute items along the main axis such that all items have equal space around them
+
+**align-items**
+
+flex-start: align items across the start of a container's cross axis
+flex-end: align items across the end of the cross axis
+center: align items across the center of the cross axis
+
+**Accordingly, flex-direction accepts the following values:**
+
+row: lay out the main axis from left to right
+row-reverse: lay out the main axis from right to left
+column: lay out the main axis from top to bottom
+column-reverse: lay out the main axis from bottom to top
+
+**order**
+
+The order property defines the order in which an item appears in the flex container and accepts both positive and negative integer values. All flex items begin with a default order of 0, so an item with an order greater than 0 will be repositioned relative to items still set to their default orders.
+
+#: position an item relative to the other items in the container
+
+**align-self**
+
+To vertically position individual towers, use align-self, which accepts the same values as align-items.
+
+flex-start: align item at the start of a container's cross axis
+flex-end: align item at the end of the cross axis
+center: align item at the center of the cross axis
+Reminder: align-self, like align-items, also accepts the values baseline and stretch, but these values cannot be used in Flexbox Defense.
 
 # Futtatás
 

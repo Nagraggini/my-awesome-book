@@ -110,6 +110,7 @@ elkerülni rejtett bugokat
 
 Console
 
+console.debug("Debugging!");
 console.log("Hello, World!");
 console.error("This is an error message.");
 console.warn("This is a warning message.");

@@ -13,6 +13,7 @@
 * [Build Responsive Real-World Websites with HTML and CSS](https://www.udemy.com/course/design-and-develop-a-killer-website-with-html5-and-css3/)
 * [Udemy - The Complete JavaScript Course 2025 From Zero to Expert! (2025)](https://www.udemy.com/course/the-complete-javascript-course/)  
 * [IT-s meetup](https://www.meetup.com/) események, hogy tud nem vagy egyedül 
+* [Önéletrajzhoz](https://rxresu.me/)
 
 ## Többi hasznos link a stabil alapokhoz
 
@@ -43,9 +44,14 @@
 * [Streamlit](https://www.streamlit.io/)
 
 ## CSS Források
-
+* [Flexbox Defense](http://www.flexboxdefense.com/)
+* [Flexbox Froggy](https://flexboxfroggy.com/#hu)
+* [Grid Garden](https://cssgridgarden.com/#hu)
+* [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* [Josh Comeau - Flexbox](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/)
+* [Josh Comeau - Gridbox](https://www.joshwcomeau.com/css/interactive-guide-to-grid/)
 * [CSS Battle](https://cssbattle.dev/)
-* [CSS Tricks](https://css-tricks.com/)
+
 
 ## Projekt vezetéshez
 

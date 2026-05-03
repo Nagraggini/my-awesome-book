@@ -53,3 +53,63 @@ A Selenium IDE saját nyelve/parancskészlete.
 Egyszerű parancsokat használ, pl.: open, click, type, verifyText
 Támogat kommenteket is (pl. // jellel).
 
+# QA (tesztautomatizálás)
+
+**Manuális vs automatizált tesztelés**
+
+Manuális tesztelés:     
+- UX/UI, kinézet, felhasználói élmény       
+- ad-hoc / exploratory tesztelés        
+- gyors validáció új feature-re     
+
+Automatizált tesztelés:     
+- ismétlődő tesztek (regresszió)        
+- stabil funkciók ellenőrzése       
+- gyors visszajelzés CI-ben     
+- UI-t is lehet automatizálni       
+
+Fontos      
+➡️ amit sokszor futtatsz → automatizáld     
+
+**Framework felépítése**
+
+Test layer – maga a teszt (JUnit/TestNG).            
+Page Object Model (POM) – UI elemek és műveletek külön osztályokban.
+    Ha változik a HTML, nem kell minden tesztet átírni, csak ezt az egy osztályt.           
+Utility réteg – pl. wait-ek, config, logger.  
+    Ez az újrahasznosítható segédkód.
+Driver kezelés – WebDriver setup/teardown.    
+    Böngésző indítása és leállítása.
+
+👉 Példa stack:
+
+Java + JUnit/TestNG     
+Selenium        
+Maven/Gradle        
+
+**CI/CD**
+
+CI (Continuous Integration):        
+    minden commit után build + teszt fut  
+
+CD (Continuous Delivery/Deployment):        
+    automatikus release pipeline        
+
+👉 Kapcsolat:
+    automatizált tesztek a pipeline részei
+    ha teszt fail → build fail
+
+**Az automatizált tesztelésben gyakran ezek a teszttípusok jönnek elő:**
+
+- Unit teszt – egy kis egységet vizsgál, például egy metódust vagy osztályt.
+- Integration teszt – több komponens együttműködését ellenőrzi.
+- End-to-End (E2E) teszt – teljes felhasználói folyamatot vizsgál elejétől végéig.
+- Regression teszt – azt ellenőrzi, hogy egy módosítás nem rontott-e el korábban működő funkciókat.
+- Smoke teszt – gyors alapellenőrzés, hogy a rendszer fő funkciói működnek-e.
+- Sanity teszt – kisebb módosítás után célzott ellenőrzés, hogy az adott javítás rendben van-e.
+- UI teszt – felhasználói felület elemeinek működése és megjelenése.
+- API teszt – backend szolgáltatások, végpontok, request/response ellenőrzése.
+- Performance teszt – sebesség, válaszidő, terhelhetőség vizsgálata.
+- Load teszt – normál vagy nagy terhelés alatti viselkedés.
+- Security teszt – jogosultságok, adatvédelem, sebezhetőségek vizsgálata.
+- Acceptance teszt (UAT) – annak ellenőrzése, hogy az üzleti igények teljesülnek-e.
