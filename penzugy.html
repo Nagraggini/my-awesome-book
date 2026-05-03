@@ -183,6 +183,8 @@
 <p>Napi használatra a legjobb, évente 3%-os kamatot kapsz a készpénzedért, amit naponta kapsz meg, viszont adóznod kell ebből 15% SZJA.</p>
 <p>Lehet tőzsdén is kereskedni rajta, portfóliót építeni és ETF-ket vásárolni. Viszont a hasznosból adóznod kell, hosszabb távú befektetéseknél érdemes Lightyear-en TBSZ számlát nyilni, mert ha 5 évig bent tartod a pénzedet a portfóliodban, akkor adómentesen hozzá tudsz jutni a hozamodhoz.
 Mivel nem magyar bank, ezért a TBSZ számlát neked kell bejelentened a NAV-nál és az éves adóbevallásodban feltűntetned.</p>
+<h1 id="lightyear-tbsz"><a class="header" href="#lightyear-tbsz">Lightyear TBSZ</a></h1>
+<p>5 év után adómentes és nincsen számlavezetési díj, havidíj stb.</p>
 <h1 id="tőzsde-kezdőknek"><a class="header" href="#tőzsde-kezdőknek">Tőzsde kezdőknek</a></h1>
 <p>Kedvezményes kupon kódok a Binance-hoz a leírásban és "
 Hogyan érdemes használni a Binance felületét" videósorozat <a href="https://www.youtube.com/watch?v=sOTid-90_qw&amp;list=PLMi-WhpWxGRAB1HHsUmHyJcLipieOUNcf">itt</a>.</p>
@@ -254,21 +256,37 @@ Trading 212 (Nincs havidíj, vagy inaktivitási díj. Overnight díj van.)</p>
 Van külön kriptó és árfolyam nyereség mezők.</p>
 <p><strong>Hogyan töltsd le az adózáshoz szükséges dokumentumokat?</strong></p>
 <p>Revolut
-Megtakarítások és alapok -&gt; Továbbiak -&gt; Kivonat -&gt; Külön töltsd le a HUF és a többi valutáról szólü kivonatot, az időszak legyen adóév.</p>
+Megtakarítások és alapok -&gt; Továbbiak -&gt; Kivonat -&gt; Egybe letudod tölteni az összes valutáról a kivonatot, egy hosszú pdf lesz.</p>
+<pre><code>Flexible Cash Funds Statement -&gt; Pénznemenként írd ki az összegeket:
+Példa:
+                            |  Adott pénznem    |   HUF 
+    Total Earned Interest   |   1      (USD)    |   400 
+    Total Earned Interest   |   1      (GBP)    |   400  
+    Total Earned Interest   |   1      (GBP)    |   400 
+</code></pre>
+<p>Érdemes ellenőrizni, hogy a szolgáltatód levont-e bármilyen forrásadót külföldön.
+Viszont a "Total Fees"-t ne vond le.</p>
 <p>Trading
-Három vonal -&gt; Okmányok -&gt; Számlakivonatok -&gt; Éves -&gt; Az "Éves beszámolót töltsd le.</p>
+Három vonal -&gt; Okmányok -&gt; Számlakivonatok -&gt; Éves -&gt; Az "Éves beszámolót töltsd le.
+Trading 212 Invest részen: "Lezárt eredmény", "Bonus", "Pénzvisszatérítés", "Készpénzkamat",  kell adóznod. Ha más sorban is látsz összegeket, akkor azok után is kell adóznod!</p>
 <p><strong>Adóbevallás</strong></p>
-<p><a href="https://eszja.nav.gov.hu/">Nav oldala</a></p>
+<p><a href="https://eszja.nav.gov.hu/">Nav oldala</a> -&gt; Bejelentkezés.</p>
 <p>Nyisd meg szerkesztésre az adóbevallásodat -&gt; Bal oldalt keress rá a "Külföldről származó"</p>
 <p><strong>Külföldi kamat / Revolut jutalom / Trading “pénztárolásért járó bevétel”</strong></p>
-<p>Sor száma: 57–58. sor (Nyomtatvány: „Kamatjövedelem külföldről”)
-Ide írod a Revolut savings, referral vagy bármilyen külföldi kamatjövedelmet.</p>
-<p>Minden pénznem összegét külön jegyezd fel és váltsd át forintra a mnb.hu-n. Átlag árral számolj.</p>
-<p>Kamat / Revolut jutalom/ Trading “pénztárolásért járó bevétel”: Sor 57–58 (külföldi kamat) → ide írod az átszámított forintösszeget (teljes bevétel, ne a 15%-os SZJA-t).
-Az SZJA 15%-a a forintra átszámított összeg után számolandó.</p>
-<p><strong>Trading, részvény vagy kripto eladásból származó nyereség</strong></p>
-<p>Akkor megy a 53. sorba (nettó profit).</p>
-<p>De ha csak tartod a pénzed és kapod a cash reward-ot, akkor nem ide, hanem kamat sorba.</p>
+<p>eSZJA -&gt; Bal oldalt keress rá a "külföldről" szóra. -&gt; Katt a "I. KÜLFÖLDRŐL SZÁRMAZÓ BELFÖLDÖN ADÓKÖTELES KÜLÖN ADÓZÓ JÖVEDELMEK"</p>
+<p>"172. sor -&gt; Trading Invest "Lezárt eredmény"
+"185. Egyéb külföldről származó forrásadós jövedelmek és ezek adója
+Revolut+Trading
+Jövedelem ezek ek az összegét írd be: Revolut Total Earned Interest minden pénznemét hufban amit a papíron látsz, ne te váltsd át. + Trading-en lévő Készpénzkamat összegét is add hozzá.
+Adó részre a 15 %-át írd be.</p>
+<p>eSZJA felületén keress rá bal oldalt a 19-re.
+"19. sor "Bevétel" részre írd be a Trading Bonus és Pénzvisszatérítés összegét.
+Költség: 0 Ft
+Utána katt "A magánszemély szociális hozzájárulási adója (293. sor)" -&gt;
+"286. sorba írd be a bruttó éves munkabéredet az adóbevallásod első sorában látod.
+"287. sorba írd be a Trading 212 Bonus+Pénzvisszatérítés összegét.
+"289. sor 0 és 0
+"293. sor IV. negyedévéhez írd be a Trading 212 Bonus+ Pénzvisszatérítés * 0,13 (13 %) Szocho</p>
 
                     </main>
 

@@ -188,6 +188,7 @@ Nagyon fontos, hogy meglegyenek a stabil alapok. Elsőnek érdemes megtanulni a 
 <li><a href="https://www.udemy.com/course/design-and-develop-a-killer-website-with-html5-and-css3/">Build Responsive Real-World Websites with HTML and CSS</a></li>
 <li><a href="https://www.udemy.com/course/the-complete-javascript-course/">Udemy - The Complete JavaScript Course 2025 From Zero to Expert! (2025)</a></li>
 <li><a href="https://www.meetup.com/">IT-s meetup</a> események, hogy tud nem vagy egyedül</li>
+<li><a href="https://rxresu.me/">Önéletrajzhoz</a></li>
 </ul>
 <h2 id="többi-hasznos-link-a-stabil-alapokhoz"><a class="header" href="#többi-hasznos-link-a-stabil-alapokhoz">Többi hasznos link a stabil alapokhoz</a></h2>
 <ul>
@@ -219,8 +220,13 @@ Nagyon fontos, hogy meglegyenek a stabil alapok. Elsőnek érdemes megtanulni a 
 </ul>
 <h2 id="css-források"><a class="header" href="#css-források">CSS Források</a></h2>
 <ul>
+<li><a href="http://www.flexboxdefense.com/">Flexbox Defense</a></li>
+<li><a href="https://flexboxfroggy.com/#hu">Flexbox Froggy</a></li>
+<li><a href="https://cssgridgarden.com/#hu">Grid Garden</a></li>
+<li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS Tricks</a></li>
+<li><a href="https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/">Josh Comeau - Flexbox</a></li>
+<li><a href="https://www.joshwcomeau.com/css/interactive-guide-to-grid/">Josh Comeau - Gridbox</a></li>
 <li><a href="https://cssbattle.dev/">CSS Battle</a></li>
-<li><a href="https://css-tricks.com/">CSS Tricks</a></li>
 </ul>
 <h2 id="projekt-vezetéshez"><a class="header" href="#projekt-vezetéshez">Projekt vezetéshez</a></h2>
 <ul>
@@ -1121,7 +1127,8 @@ HTML magyarázatok és interaktív példákat <a href="https://www.w3schools.com
 <p>https://www.w3schools.com/css/default.asp
 https://www.w3schools.com/htmlcss/default.asp
 <a href="https://youtu.be/erEgovG9WBs?si=vEFXO3P_WufyaR-C">100+ Web Development Things you Should Know</a>
-<a href="https://www.youtube.com/playlist?list=PL4-IK0AVhVjOJs_UjdQeyEZ_cmEV3uJvx">HTML &amp; CSS for Absolute Beginners</a></p>
+<a href="https://www.youtube.com/playlist?list=PL4-IK0AVhVjOJs_UjdQeyEZ_cmEV3uJvx">HTML &amp; CSS for Absolute Beginners</a>
+http://www.flexboxdefense.com/</p>
 <h1 id="alapok-1"><a class="header" href="#alapok-1">Alapok</a></h1>
 <p>Érdemes előre megtervezni a weboldal kinézetét. Például itt: https://draw.io/
 Elég egy sematikus ábra, hogy kb itt lesz ennyi gomb stb. Ezt fogja majd tudni.</p>
@@ -1155,7 +1162,37 @@ p {
 <pre><code class="language-css">    display: flex;
     flex-direction: column;
     align-items: center; /*Ezt együtt kell használni pl.: flex/grid-el*/
+
+    /*
+    justify-content: "Hova tegyem az elemeket a sorban?" Jobbra balra pl
+    align-items: "Hova tegyem az elemet a saját sora magasságán belül? Oszlopnál jó."
+    align-content: "Hova tegyem az egymás alatt lévő sorokat?"
+    */
 </code></pre>
+<p><strong>justify-content</strong></p>
+<p>flex-start: group items at the start of a container's main axis
+flex-end: group items at the end of the main axis
+center: group items in the center of the main axis
+space-between: evenly distribute items along the main axis such that the first item aligns at the start and the final item aligns at the end
+space-around: evenly distribute items along the main axis such that all items have equal space around them</p>
+<p><strong>align-items</strong></p>
+<p>flex-start: align items across the start of a container's cross axis
+flex-end: align items across the end of the cross axis
+center: align items across the center of the cross axis</p>
+<p><strong>Accordingly, flex-direction accepts the following values:</strong></p>
+<p>row: lay out the main axis from left to right
+row-reverse: lay out the main axis from right to left
+column: lay out the main axis from top to bottom
+column-reverse: lay out the main axis from bottom to top</p>
+<p><strong>order</strong></p>
+<p>The order property defines the order in which an item appears in the flex container and accepts both positive and negative integer values. All flex items begin with a default order of 0, so an item with an order greater than 0 will be repositioned relative to items still set to their default orders.</p>
+<p>#: position an item relative to the other items in the container</p>
+<p><strong>align-self</strong></p>
+<p>To vertically position individual towers, use align-self, which accepts the same values as align-items.</p>
+<p>flex-start: align item at the start of a container's cross axis
+flex-end: align item at the end of the cross axis
+center: align item at the center of the cross axis
+Reminder: align-self, like align-items, also accepts the values baseline and stretch, but these values cannot be used in Flexbox Defense.</p>
 <h1 id="futtatás"><a class="header" href="#futtatás">Futtatás</a></h1>
 <p>VC Code-ban töltsd le a Live Servert. Bal oldalt az Explorerben kattints jobb klikkel az adott html fájlodra -&gt; Open with Live Server. Rögtön elindul a böngésződben a http://127.0.0.1:5500/ -on a weboldalad.</p>
 <p>Ctrl+F5 csodákra képes, ha épp valami nem töltene be, pedig már lekódoltad.</p>
@@ -1432,7 +1469,8 @@ elkerülni rejtett bugokat
     console.log("hello " + n)
 </code></pre>
 <p>Console</p>
-<p>console.log("Hello, World!");
+<p>console.debug("Debugging!");
+console.log("Hello, World!");
 console.error("This is an error message.");
 console.warn("This is a warning message.");
 console.table([{name: "Amit", age: 30}, {name: "Jatin", age: 25}]);</p>
@@ -6343,6 +6381,58 @@ Verify -&gt; Ha a feltétel nem teljesül, a teszt tovább fut, de jelzi a hibá
 <p>A Selenium IDE saját nyelve/parancskészlete.
 Egyszerű parancsokat használ, pl.: open, click, type, verifyText
 Támogat kommenteket is (pl. // jellel).</p>
+<h1 id="qa-tesztautomatizálás"><a class="header" href="#qa-tesztautomatizálás">QA (tesztautomatizálás)</a></h1>
+<p><strong>Manuális vs automatizált tesztelés</strong></p>
+<p>Manuális tesztelés:</p>
+<ul>
+<li>UX/UI, kinézet, felhasználói élmény</li>
+<li>ad-hoc / exploratory tesztelés</li>
+<li>gyors validáció új feature-re</li>
+</ul>
+<p>Automatizált tesztelés:</p>
+<ul>
+<li>ismétlődő tesztek (regresszió)</li>
+<li>stabil funkciók ellenőrzése</li>
+<li>gyors visszajelzés CI-ben</li>
+<li>UI-t is lehet automatizálni</li>
+</ul>
+<p>Fontos<br />
+➡️ amit sokszor futtatsz → automatizáld</p>
+<p><strong>Framework felépítése</strong></p>
+<p>Test layer – maga a teszt (JUnit/TestNG).<br />
+Page Object Model (POM) – UI elemek és műveletek külön osztályokban.
+Ha változik a HTML, nem kell minden tesztet átírni, csak ezt az egy osztályt.<br />
+Utility réteg – pl. wait-ek, config, logger.<br />
+Ez az újrahasznosítható segédkód.
+Driver kezelés – WebDriver setup/teardown.<br />
+Böngésző indítása és leállítása.</p>
+<p>👉 Példa stack:</p>
+<p>Java + JUnit/TestNG<br />
+Selenium<br />
+Maven/Gradle</p>
+<p><strong>CI/CD</strong></p>
+<p>CI (Continuous Integration):<br />
+minden commit után build + teszt fut</p>
+<p>CD (Continuous Delivery/Deployment):<br />
+automatikus release pipeline</p>
+<p>👉 Kapcsolat:
+automatizált tesztek a pipeline részei
+ha teszt fail → build fail</p>
+<p><strong>Az automatizált tesztelésben gyakran ezek a teszttípusok jönnek elő:</strong></p>
+<ul>
+<li>Unit teszt – egy kis egységet vizsgál, például egy metódust vagy osztályt.</li>
+<li>Integration teszt – több komponens együttműködését ellenőrzi.</li>
+<li>End-to-End (E2E) teszt – teljes felhasználói folyamatot vizsgál elejétől végéig.</li>
+<li>Regression teszt – azt ellenőrzi, hogy egy módosítás nem rontott-e el korábban működő funkciókat.</li>
+<li>Smoke teszt – gyors alapellenőrzés, hogy a rendszer fő funkciói működnek-e.</li>
+<li>Sanity teszt – kisebb módosítás után célzott ellenőrzés, hogy az adott javítás rendben van-e.</li>
+<li>UI teszt – felhasználói felület elemeinek működése és megjelenése.</li>
+<li>API teszt – backend szolgáltatások, végpontok, request/response ellenőrzése.</li>
+<li>Performance teszt – sebesség, válaszidő, terhelhetőség vizsgálata.</li>
+<li>Load teszt – normál vagy nagy terhelés alatti viselkedés.</li>
+<li>Security teszt – jogosultságok, adatvédelem, sebezhetőségek vizsgálata.</li>
+<li>Acceptance teszt (UAT) – annak ellenőrzése, hogy az üzleti igények teljesülnek-e.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="java-unit-teszt"><a class="header" href="#java-unit-teszt">Java Unit Teszt</a></h1>
 <p>Ez az összefoglaló a Java beépített assert-jeit és a JUnit 5 tesztelési keretrendszer alapjait tartalmazza.</p>
 <hr />
@@ -6647,6 +6737,8 @@ Fontos kiemelni: már egy egyszerű portscan is bűncselekménynek számíthat, 
 <p>Napi használatra a legjobb, évente 3%-os kamatot kapsz a készpénzedért, amit naponta kapsz meg, viszont adóznod kell ebből 15% SZJA.</p>
 <p>Lehet tőzsdén is kereskedni rajta, portfóliót építeni és ETF-ket vásárolni. Viszont a hasznosból adóznod kell, hosszabb távú befektetéseknél érdemes Lightyear-en TBSZ számlát nyilni, mert ha 5 évig bent tartod a pénzedet a portfóliodban, akkor adómentesen hozzá tudsz jutni a hozamodhoz.
 Mivel nem magyar bank, ezért a TBSZ számlát neked kell bejelentened a NAV-nál és az éves adóbevallásodban feltűntetned.</p>
+<h1 id="lightyear-tbsz"><a class="header" href="#lightyear-tbsz">Lightyear TBSZ</a></h1>
+<p>5 év után adómentes és nincsen számlavezetési díj, havidíj stb.</p>
 <h1 id="tőzsde-kezdőknek"><a class="header" href="#tőzsde-kezdőknek">Tőzsde kezdőknek</a></h1>
 <p>Kedvezményes kupon kódok a Binance-hoz a leírásban és "
 Hogyan érdemes használni a Binance felületét" videósorozat <a href="https://www.youtube.com/watch?v=sOTid-90_qw&amp;list=PLMi-WhpWxGRAB1HHsUmHyJcLipieOUNcf">itt</a>.</p>
@@ -6718,21 +6810,37 @@ Trading 212 (Nincs havidíj, vagy inaktivitási díj. Overnight díj van.)</p>
 Van külön kriptó és árfolyam nyereség mezők.</p>
 <p><strong>Hogyan töltsd le az adózáshoz szükséges dokumentumokat?</strong></p>
 <p>Revolut
-Megtakarítások és alapok -&gt; Továbbiak -&gt; Kivonat -&gt; Külön töltsd le a HUF és a többi valutáról szólü kivonatot, az időszak legyen adóév.</p>
+Megtakarítások és alapok -&gt; Továbbiak -&gt; Kivonat -&gt; Egybe letudod tölteni az összes valutáról a kivonatot, egy hosszú pdf lesz.</p>
+<pre><code>Flexible Cash Funds Statement -&gt; Pénznemenként írd ki az összegeket:
+Példa:
+                            |  Adott pénznem    |   HUF 
+    Total Earned Interest   |   1      (USD)    |   400 
+    Total Earned Interest   |   1      (GBP)    |   400  
+    Total Earned Interest   |   1      (GBP)    |   400 
+</code></pre>
+<p>Érdemes ellenőrizni, hogy a szolgáltatód levont-e bármilyen forrásadót külföldön.
+Viszont a "Total Fees"-t ne vond le.</p>
 <p>Trading
-Három vonal -&gt; Okmányok -&gt; Számlakivonatok -&gt; Éves -&gt; Az "Éves beszámolót töltsd le.</p>
+Három vonal -&gt; Okmányok -&gt; Számlakivonatok -&gt; Éves -&gt; Az "Éves beszámolót töltsd le.
+Trading 212 Invest részen: "Lezárt eredmény", "Bonus", "Pénzvisszatérítés", "Készpénzkamat",  kell adóznod. Ha más sorban is látsz összegeket, akkor azok után is kell adóznod!</p>
 <p><strong>Adóbevallás</strong></p>
-<p><a href="https://eszja.nav.gov.hu/">Nav oldala</a></p>
+<p><a href="https://eszja.nav.gov.hu/">Nav oldala</a> -&gt; Bejelentkezés.</p>
 <p>Nyisd meg szerkesztésre az adóbevallásodat -&gt; Bal oldalt keress rá a "Külföldről származó"</p>
 <p><strong>Külföldi kamat / Revolut jutalom / Trading “pénztárolásért járó bevétel”</strong></p>
-<p>Sor száma: 57–58. sor (Nyomtatvány: „Kamatjövedelem külföldről”)
-Ide írod a Revolut savings, referral vagy bármilyen külföldi kamatjövedelmet.</p>
-<p>Minden pénznem összegét külön jegyezd fel és váltsd át forintra a mnb.hu-n. Átlag árral számolj.</p>
-<p>Kamat / Revolut jutalom/ Trading “pénztárolásért járó bevétel”: Sor 57–58 (külföldi kamat) → ide írod az átszámított forintösszeget (teljes bevétel, ne a 15%-os SZJA-t).
-Az SZJA 15%-a a forintra átszámított összeg után számolandó.</p>
-<p><strong>Trading, részvény vagy kripto eladásból származó nyereség</strong></p>
-<p>Akkor megy a 53. sorba (nettó profit).</p>
-<p>De ha csak tartod a pénzed és kapod a cash reward-ot, akkor nem ide, hanem kamat sorba.</p>
+<p>eSZJA -&gt; Bal oldalt keress rá a "külföldről" szóra. -&gt; Katt a "I. KÜLFÖLDRŐL SZÁRMAZÓ BELFÖLDÖN ADÓKÖTELES KÜLÖN ADÓZÓ JÖVEDELMEK"</p>
+<p>"172. sor -&gt; Trading Invest "Lezárt eredmény"
+"185. Egyéb külföldről származó forrásadós jövedelmek és ezek adója
+Revolut+Trading
+Jövedelem ezek ek az összegét írd be: Revolut Total Earned Interest minden pénznemét hufban amit a papíron látsz, ne te váltsd át. + Trading-en lévő Készpénzkamat összegét is add hozzá.
+Adó részre a 15 %-át írd be.</p>
+<p>eSZJA felületén keress rá bal oldalt a 19-re.
+"19. sor "Bevétel" részre írd be a Trading Bonus és Pénzvisszatérítés összegét.
+Költség: 0 Ft
+Utána katt "A magánszemély szociális hozzájárulási adója (293. sor)" -&gt;
+"286. sorba írd be a bruttó éves munkabéredet az adóbevallásod első sorában látod.
+"287. sorba írd be a Trading 212 Bonus+Pénzvisszatérítés összegét.
+"289. sor 0 és 0
+"293. sor IV. negyedévéhez írd be a Trading 212 Bonus+ Pénzvisszatérítés * 0,13 (13 %) Szocho</p>
 <div style="break-before: page; page-break-before: always;"></div><p>English</p>
 <p>Appok:
 Dualingo

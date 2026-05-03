@@ -220,6 +220,58 @@ Verify -&gt; Ha a feltétel nem teljesül, a teszt tovább fut, de jelzi a hibá
 <p>A Selenium IDE saját nyelve/parancskészlete.
 Egyszerű parancsokat használ, pl.: open, click, type, verifyText
 Támogat kommenteket is (pl. // jellel).</p>
+<h1 id="qa-tesztautomatizálás"><a class="header" href="#qa-tesztautomatizálás">QA (tesztautomatizálás)</a></h1>
+<p><strong>Manuális vs automatizált tesztelés</strong></p>
+<p>Manuális tesztelés:</p>
+<ul>
+<li>UX/UI, kinézet, felhasználói élmény</li>
+<li>ad-hoc / exploratory tesztelés</li>
+<li>gyors validáció új feature-re</li>
+</ul>
+<p>Automatizált tesztelés:</p>
+<ul>
+<li>ismétlődő tesztek (regresszió)</li>
+<li>stabil funkciók ellenőrzése</li>
+<li>gyors visszajelzés CI-ben</li>
+<li>UI-t is lehet automatizálni</li>
+</ul>
+<p>Fontos<br />
+➡️ amit sokszor futtatsz → automatizáld</p>
+<p><strong>Framework felépítése</strong></p>
+<p>Test layer – maga a teszt (JUnit/TestNG).<br />
+Page Object Model (POM) – UI elemek és műveletek külön osztályokban.
+Ha változik a HTML, nem kell minden tesztet átírni, csak ezt az egy osztályt.<br />
+Utility réteg – pl. wait-ek, config, logger.<br />
+Ez az újrahasznosítható segédkód.
+Driver kezelés – WebDriver setup/teardown.<br />
+Böngésző indítása és leállítása.</p>
+<p>👉 Példa stack:</p>
+<p>Java + JUnit/TestNG<br />
+Selenium<br />
+Maven/Gradle</p>
+<p><strong>CI/CD</strong></p>
+<p>CI (Continuous Integration):<br />
+minden commit után build + teszt fut</p>
+<p>CD (Continuous Delivery/Deployment):<br />
+automatikus release pipeline</p>
+<p>👉 Kapcsolat:
+automatizált tesztek a pipeline részei
+ha teszt fail → build fail</p>
+<p><strong>Az automatizált tesztelésben gyakran ezek a teszttípusok jönnek elő:</strong></p>
+<ul>
+<li>Unit teszt – egy kis egységet vizsgál, például egy metódust vagy osztályt.</li>
+<li>Integration teszt – több komponens együttműködését ellenőrzi.</li>
+<li>End-to-End (E2E) teszt – teljes felhasználói folyamatot vizsgál elejétől végéig.</li>
+<li>Regression teszt – azt ellenőrzi, hogy egy módosítás nem rontott-e el korábban működő funkciókat.</li>
+<li>Smoke teszt – gyors alapellenőrzés, hogy a rendszer fő funkciói működnek-e.</li>
+<li>Sanity teszt – kisebb módosítás után célzott ellenőrzés, hogy az adott javítás rendben van-e.</li>
+<li>UI teszt – felhasználói felület elemeinek működése és megjelenése.</li>
+<li>API teszt – backend szolgáltatások, végpontok, request/response ellenőrzése.</li>
+<li>Performance teszt – sebesség, válaszidő, terhelhetőség vizsgálata.</li>
+<li>Load teszt – normál vagy nagy terhelés alatti viselkedés.</li>
+<li>Security teszt – jogosultságok, adatvédelem, sebezhetőségek vizsgálata.</li>
+<li>Acceptance teszt (UAT) – annak ellenőrzése, hogy az üzleti igények teljesülnek-e.</li>
+</ul>
 
                     </main>
 
