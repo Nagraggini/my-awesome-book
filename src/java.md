@@ -138,6 +138,7 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
   - [Do-while és if elágazás](#do-while-és-if-elágazás)
 - [Java Dinamikus weboldal létrehozása](#java-dinamikus-weboldal-létrehozása)
 - [Gyakorlás gyakorlás gyakorlás](#gyakorlás-gyakorlás-gyakorlás)
+- [Egymásba ágyazott loopokból kilépés](#egymásba-ágyazott-loopokból-kilépés)
 - [Map](#map)
   - [Főbb különbségek összefoglalva](#főbb-különbségek-összefoglalva)
   - [1. HashMap](#1-hashmap)
@@ -2641,6 +2642,26 @@ Az én megoldásaimat [itt](https://github.com/Nagraggini/start-projects/tree/ma
 További feladatokat [itt](https://www.oktatas.hu/kozneveles/erettsegi/feladatsorok) találsz.
 
 [Interaktív tesztek a programozáshoz](https://infojegyzet.hu/vizsgafeladatok/szoftverfejleszto-interaktiv/teszt/?tesztkod=K31G-MZYR)
+
+https://leetcode.com/problemset/
+
+https://neetcode.io/
+
+# Egymásba ágyazott loopokból kilépés
+
+```java
+outerLoop:
+for (int i = 0; i < 10; i++) {
+
+    for (int j = 0; j < 10; j++) {
+
+        if (valami) {
+            // Az összes, az outerLoop címke alatt lévő loopból kilép.
+            break outerLoop;
+        }
+    }
+}
+```
 
 # Map
 
