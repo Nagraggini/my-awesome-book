@@ -403,6 +403,7 @@
 </li>
 <li><a href="#java-dinamikus-weboldal-l%C3%A9trehoz%C3%A1sa">Java Dinamikus weboldal létrehozása</a></li>
 <li><a href="#gyakorl%C3%A1s-gyakorl%C3%A1s-gyakorl%C3%A1s">Gyakorlás gyakorlás gyakorlás</a></li>
+<li><a href="#egym%C3%A1sba-%C3%A1gyazott-loopokb%C3%B3l-kil%C3%A9p%C3%A9s">Egymásba ágyazott loopokból kilépés</a></li>
 <li><a href="#map">Map</a>
 <ul>
 <li><a href="#f%C5%91bb-k%C3%BCl%C3%B6nbs%C3%A9gek-%C3%B6sszefoglalva">Főbb különbségek összefoglalva</a></li>
@@ -2396,6 +2397,21 @@ Tomcat v10.1 Server at localhost
 <p>Az én megoldásaimat <a href="https://github.com/Nagraggini/start-projects/tree/main/java-console-exams/src">itt</a> találod.</p>
 <p>További feladatokat <a href="https://www.oktatas.hu/kozneveles/erettsegi/feladatsorok">itt</a> találsz.</p>
 <p><a href="https://infojegyzet.hu/vizsgafeladatok/szoftverfejleszto-interaktiv/teszt/?tesztkod=K31G-MZYR">Interaktív tesztek a programozáshoz</a></p>
+<p>https://leetcode.com/problemset/</p>
+<p>https://neetcode.io/</p>
+<h1 id="egymásba-ágyazott-loopokból-kilépés"><a class="header" href="#egymásba-ágyazott-loopokból-kilépés">Egymásba ágyazott loopokból kilépés</a></h1>
+<pre><code class="language-java">outerLoop:
+for (int i = 0; i &lt; 10; i++) {
+
+    for (int j = 0; j &lt; 10; j++) {
+
+        if (valami) {
+            // Az összes, az outerLoop címke alatt lévő loopból kilép.
+            break outerLoop;
+        }
+    }
+}
+</code></pre>
 <h1 id="map"><a class="header" href="#map">Map</a></h1>
 <h2 id="főbb-különbségek-összefoglalva"><a class="header" href="#főbb-különbségek-összefoglalva">Főbb különbségek összefoglalva</a></h2>
 <pre><code class="language-bash">| Tulajdonság         | HashMap                             | LinkedHashMap                                  | TreeMap                                               |
