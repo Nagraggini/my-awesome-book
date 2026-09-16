@@ -82,10 +82,13 @@ Gyorsabb, stabilabb és könnyebb párhuzamosan futtatni a teszteket.
 # Telepítés
 
 [Visual Studio Code](https://code.visualstudio.com/)
+
 [Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)
 
 [Node.js](https://nodejs.org/en)
+
 [Git](https://git-scm.com/install/)
+
 [Verziókezelő program - Git Fork](https://git-fork.com/)
 
 Engedélyezni kell, hogy a rendszer ne tiltsa le a szkriptek futtatását ezzel:
