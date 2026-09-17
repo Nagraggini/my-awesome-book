@@ -14,7 +14,7 @@
 - [Teszt automatizálás](teszt-automatizalas.md)
 - [Java Unit Teszt](java-unit-test.md)
 - [REST Assured (REST API tesztelés)](rest-assured.md)
-- [Playwright](playwright-hasznalata.md)
+- [Playwright](playwright.md)
 - [Spring Boot](spring-boot-bevezetese.md)
 
 ## Speciális Ismeretek

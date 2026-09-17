@@ -6,6 +6,7 @@
 - [Telepítés](#telepítés)
   - [Projekt létrehozása + workflow nélkül](#projekt-létrehozása--workflow-nélkül)
     - [Workflow](#workflow)
+- [ESLint beállítása](#eslint-beállítása)
 - [Saját weboldal tesztelése](#saját-weboldal-tesztelése)
   - [playwright.config.js](#playwrightconfigjs)
   - [package.json](#packagejson)
@@ -15,6 +16,7 @@
 - [Futtatás](#futtatás)
 - [Jelszó beállítása környezeti változóként](#jelszó-beállítása-környezeti-változóként)
   - [Minta](#minta)
+- [Jelszó beállítása JSON-ként](#jelszó-beállítása-json-ként)
 - [Tracer View](#tracer-view)
   - [Fail esetén készít egy trace.zip-et](#fail-esetén-készít-egy-tracezip-et)
   - [Egy konkrét teszt esetén készít egy trace.zip-et](#egy-konkrét-teszt-esetén-készít-egy-tracezip-et)
@@ -23,10 +25,10 @@
 - [3 db egyszerűbb Login Test](#3-db-egyszerűbb-login-test)
 - [Lokátorok](#lokátorok)
 - [1. Felhasználó-központú lokátorok (Ajánlott kezdetnek!)](#1-felhasználó-központú-lokátorok-ajánlott-kezdetnek)
-  - [`getByText()`](#getbytext)
-  - [`getByRole()`](#getbyrole)
-  - [`getByLabel()`](#getbylabel)
-  - [`getByPlaceholder()`](#getbyplaceholder)
+    - [`getByText()`](#getbytext)
+    - [`getByRole()`](#getbyrole)
+    - [`getByLabel()`](#getbylabel)
+    - [`getByPlaceholder()`](#getbyplaceholder)
 - [2. Hagyományos lokátorok](#2-hagyományos-lokátorok)
   - [CSS Selector](#css-selector)
     - [XPath](#xpath)
@@ -47,7 +49,7 @@
 - [Billentyűzet események](#billentyűzet-események)
 - [Egér események](#egér-események)
 - [Assertions + soft (Ellenőrzések)](#assertions--soft-ellenőrzések)
-- [Lassított felvétel és videórögzítés](#lassított-felvétel-és-videórögzítés)
+- [Videó rögzítés (lassított felvétel) és képernyőkép](#videó-rögzítés-lassított-felvétel-és-képernyőkép)
   - [Konkrét tesztnél készít csak videót](#konkrét-tesztnél-készít-csak-videót)
 - [Step](#step)
 - [Hooks and Groups](#hooks-and-groups)
@@ -56,6 +58,7 @@
   - [Tagek](#tagek)
 - [POM (Új projekt)](#pom-új-projekt)
 - [Fixtures és oldalváltás](#fixtures-és-oldalváltás)
+  - [Egy konkrét tesztben így kell váltogatni a lapfülek között](#egy-konkrét-tesztben-így-kell-váltogatni-a-lapfülek-között)
 - [Canvas](#canvas)
 - [Page Chaining (Oldal láncolás)](#page-chaining-oldal-láncolás)
 - [Report feltöltésének automatizálása Azure DevOps-al](#report-feltöltésének-automatizálása-azure-devops-al)
@@ -77,7 +80,11 @@ Gyorsabb, stabilabb és könnyebb párhuzamosan futtatni a teszteket.
 
 [Playwright Beginner Tutorials](https://www.youtube.com/playlist?list=PLhW3qG5bs-L9sJKoT1LC5grGT77sfW0Z8)
 
+[Playwright TypeScript Tutorial for Beginners](https://www.youtube.com/playlist?list=PLhW3qG5bs-L_Zb8perf54eF_W1_W2-WZQ)
+
 [Playwright Javascript Tutorial](https://www.youtube.com/playlist?app=desktop&list=PLYDwWPRvXB89caN5PHWDLrXJuyugu5Mg_)
+
+
 
 # Telepítés
 
@@ -175,6 +182,60 @@ A workflow eredményét, hogy passed/failed megtudod jeleníteni a README-dben. 
 ```bash
 ![Workflow neve](https://github.com/FELHASZNALONEV/REPO_NEVE/actions/workflows/playwright.yml/badge.svg)
 ```
+# ESLint beállítása
+
+Terminálban futtasd ezt:
+`npm install -D eslint-plugin-playwright`
+`npm install -D typescript-eslint`
+
+Konfigurációs fájl létrehozása:eslint.config.js.
+
+Hozz létre egy eslint.config.js nevű fájlt a projekt gyökérmappájában, és illeszd bele ezt a kódot:
+
+```js
+import playwright from 'eslint-plugin-playwright';
+import tseslint from 'typescript-eslint';
+
+export default [
+  ...tseslint.configs.recommended,
+  {
+    files: ['tests/**/*.ts', 'tests/**/*.js'],
+    ...playwright.configs['flat/recommended'],
+    rules: {
+      'playwright/no-wait-for-timeout': 'warn',
+    },
+  },
+];
+```
+
+Bővítmény letöltése. Ctrl+Shift+X és keress rá az ESLint-re.
+[ESLint bővítmény letöltése](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+
+settings.json megnyitása:
+A szerkesztő beállításai.Nyomd meg a Ctrl + Shift + P gombkombinációt a parancssor megnyitásához. 
+Kezd el gépelni: Preferences: Open User Settings (JSON) (vagy ha csak a projektre szeretnéd alkalmazni, akkor Open Workspace Settings (JSON)).Nyomd meg az Enter-t
+
+Automatikus javítás beállítása:
+Fájlmentési szabályok.Lásd el a megnyílt settings.json fájlt az alábbi beállításokkal (vagy illeszd be őket a meglévő JSON objektumon belülre):
+
+```json
+{
+  // Mentéskor automatikusan lefutnak az ESLint auto-fix szabályai
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  // Jelzi az ESLint-nek, hogy a TypeScript és JavaScript fájlokat is ellenőrizze
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
+}
+```
+
+Futtatás: `npx eslint tests/`
 
 # Saját weboldal tesztelése
 
@@ -382,7 +443,16 @@ Előre létre kell hozni a fájlt:
 
 .env fájlbe írd be e felhasználónevet és jelszót.
 
-A gitignore-ba meg, hogy ".env" be kell írni, hogy ezt nem kell verziókezelés alávonni. A package.json mellé rakd.
+A gitignore-ba meg, hogy ".env" be kell írni, hogy ezt nem kell verziókezelés alávonni. GitHub esetén érdemes a GitHub-on secret-et létrehozni és nem feltölteni a .env fájlt.
+
+A .env fájlt a package.json mellé rakd.
+
+.env fájlt tartalma
+```.env
+BASE_URL=https://example.com/
+USERNAME=Admin
+PASSWORD=admin
+```
 
 Gitignore fájl tartalma:
 
@@ -400,22 +470,86 @@ node_modules/
 Terminálba:
 npm install dotenv --save-dev
 
+playwright.config.ts fájlba:
+```ts
+// Felülre.
+// Env fájl használatához kellenek.
+import dotenv from "dotenv";
+import path from "path";
+
+
+// .env fájl betöltése
+dotenv.config({ path: path.resolve(__dirname, ".env") });
+
+// A use részre másold be ezt:
+
+// Használhatod a BASE_URL-t közvetlenül a configban:
+        baseURL: process.env.BASE_URL,
+
+```
+
 ## Minta
 
 ```ts
-import { test, expect } from "@playwright/test";
-import * as dotenv from "dotenv";
-dotenv.config(); // Betölti a .env fájl tartalmát
+import { test, expect } from "../fixtures/BaseTest";
 
-test("Google.hu", async ({ browser }) => {
-  const context = await browser.newContext({
-    httpCredentials: {
-      username: process.env.SITE_USER || "", // A .env-ből olvassa
-      password: process.env.SITE_PASS || "", // A .env-ből olvassa
+test("Successful login test", async ({ page, loginPage, dashBoardPage }) => {
+
+    await loginPage.gotoLoginPage();
+    await loginPage.login(process.env.USERNAME!, process.env.PASSWORD!);
+    await expect(dashBoardPage.fullNameLabel).toBeVisible();
+    await dashBoardPage.logout();
+
+});
+```
+
+# Jelszó beállítása JSON-ként
+
+A gyökér könyvtárban hozz létre egy data mappát benne egy loginData.json fájllal.
+
+loginData.json fájl tartalma:
+```json
+{
+    "valid_user": {
+        "username": "standard_user",
+        "password": "secret_sauce"
     },
-  });
-  const page = await context.newPage();
-  await page.goto("google.hu");
+    "invalid_user": {
+        "username": "locked_out_user",
+        "password": "secret_sauce"
+    }
+}
+```
+
+A tesztekben így használt a felhasználónevet és a jelszót:
+
+```ts
+import { expect, test } from "@playwright/test";
+import { LoginPage } from "../pages/LoginPage";
+import loginData from "../data/loginData.json";
+
+test("valid login test", async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.gotoLoginPage();
+    await loginPage.login(
+        loginData.valid_user.username,
+        loginData.valid_user.password,
+    );
+
+    await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+});
+
+test("invalid login test", async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.gotoLoginPage();
+    await loginPage.login(
+        loginData.invalid_user.username,
+        loginData.invalid_user.password,
+    );
+
+    await expect(loginPage.errorMessage).toBeVisible();
 });
 ```
 
@@ -426,7 +560,7 @@ test("Google.hu", async ({ browser }) => {
 A `playwright.config.ts`-ben írd át a `trace: on-first-retry,` -t `trace: retain-on-failure,` -ra és így a test-results mappában lesznek trace.zip-ek.
 
 Az automatikusan megnyitott report alján is láthatod a trace.zip-edet, katt rá.
-A lap füleken meg nézheted az előtte és az utána képet és a forréskódot is láthatod.
+A lap füleken meg nézheted az előtte és az utána képet és a forráskódot is láthatod.
 
 Később így is megnyithatod a tracer view-t:
 `npx playwright show-trace ./test-results/my_first_test-My-First-Test-chromium/trace.zip`
@@ -1006,15 +1140,23 @@ test("Assertions Demo", async ({ page }) => {
 });
 ```
 
-# Lassított felvétel és videórögzítés
+
+
+# Videó rögzítés (lassított felvétel) és képernyőkép
+
+Csak akkor érdemes felvételt készíteni, ha elbukik a teszt. 
 
 playwright.config.ts-ben a use részbe:
 
 ```ts
-// Slow Motion and Video Recording
-    video: 'on', // Legtöbbször on-first-retry szoktak beállítani.
+    browserName: "chromium",
+    screenshot: "only-on-failure",
+    video: "retain-on-failure",
+    // Slow Motion and Video Recording
+    video: 'on-first-retry', 
+    
     launchOptions: {
-      slowMo: 1000 // millisecond
+      slowMo: 300 // millisecond
     },
 ```
 
@@ -1323,15 +1465,16 @@ test("test", async ({ page }) => {
 ```
 
 Teszt futtatása, írd be azt a terminálba:
-`npx playwright test --ui `
+`npx playwright test --ui`
+
 
 # Fixtures és oldalváltás
 
 ```ts
 // Playwright Fixture mintát követve mindent kitakarít a háttérben!
-// fixtures/baseTest.ts
+// fixtures/BaseTest.ts
 import { test as base, devices, BrowserContext, Page } from "@playwright/test";
-import { LoginPageASD as LoginPage } from "../pages/LoginPage";
+import { LoginPage as LoginPage } from "../pages/LoginPage";
 
 // 1. Lépés: Definiáljuk a fixture-ök típusait (milyen Page Objectjeink lesznek)
 type MyFixtures = {
@@ -1375,9 +1518,11 @@ export const test = base.extend<MyFixtures>({
     await newTab.close();
   },
 
+ /*
   loginPage2: async ({ page2 }, use) => {
     await use(new LoginPage(page2));
   },
+  */
 });
 
 // 3. Lépés: Újraexportáljuk az 'expect' funkciót is, a kényelmesebb importálásért
