@@ -25,10 +25,10 @@
 - [3 db egyszerűbb Login Test](#3-db-egyszerűbb-login-test)
 - [Lokátorok](#lokátorok)
 - [1. Felhasználó-központú lokátorok (Ajánlott kezdetnek!)](#1-felhasználó-központú-lokátorok-ajánlott-kezdetnek)
-    - [`getByText()`](#getbytext)
-    - [`getByRole()`](#getbyrole)
-    - [`getByLabel()`](#getbylabel)
-    - [`getByPlaceholder()`](#getbyplaceholder)
+  - [`getByText()`](#getbytext)
+  - [`getByRole()`](#getbyrole)
+  - [`getByLabel()`](#getbylabel)
+  - [`getByPlaceholder()`](#getbyplaceholder)
 - [2. Hagyományos lokátorok](#2-hagyományos-lokátorok)
   - [CSS Selector](#css-selector)
     - [XPath](#xpath)
@@ -62,6 +62,9 @@
 - [Canvas](#canvas)
 - [Page Chaining (Oldal láncolás)](#page-chaining-oldal-láncolás)
 - [Report feltöltésének automatizálása Azure DevOps-al](#report-feltöltésének-automatizálása-azure-devops-al)
+- [Best practices](#best-practices)
+- [Valós skálázható projekt (Real World Scalable Project)](#valós-skálázható-projekt-real-world-scalable-project)
+- [CSV fájl használata](#csv-fájl-használata)
 
 # Playwright
 
@@ -83,8 +86,6 @@ Gyorsabb, stabilabb és könnyebb párhuzamosan futtatni a teszteket.
 [Playwright TypeScript Tutorial for Beginners](https://www.youtube.com/playlist?list=PLhW3qG5bs-L_Zb8perf54eF_W1_W2-WZQ)
 
 [Playwright Javascript Tutorial](https://www.youtube.com/playlist?app=desktop&list=PLYDwWPRvXB89caN5PHWDLrXJuyugu5Mg_)
-
-
 
 # Telepítés
 
@@ -182,6 +183,7 @@ A workflow eredményét, hogy passed/failed megtudod jeleníteni a README-dben. 
 ```bash
 ![Workflow neve](https://github.com/FELHASZNALONEV/REPO_NEVE/actions/workflows/playwright.yml/badge.svg)
 ```
+
 # ESLint beállítása
 
 Terminálban futtasd ezt:
@@ -193,16 +195,16 @@ Konfigurációs fájl létrehozása:eslint.config.js.
 Hozz létre egy eslint.config.js nevű fájlt a projekt gyökérmappájában, és illeszd bele ezt a kódot:
 
 ```js
-import playwright from 'eslint-plugin-playwright';
-import tseslint from 'typescript-eslint';
+import playwright from "eslint-plugin-playwright";
+import tseslint from "typescript-eslint";
 
 export default [
   ...tseslint.configs.recommended,
   {
-    files: ['tests/**/*.ts', 'tests/**/*.js'],
-    ...playwright.configs['flat/recommended'],
+    files: ["tests/**/*.ts", "tests/**/*.js"],
+    ...playwright.configs["flat/recommended"],
     rules: {
-      'playwright/no-wait-for-timeout': 'warn',
+      "playwright/no-wait-for-timeout": "warn",
     },
   },
 ];
@@ -211,9 +213,8 @@ export default [
 Bővítmény letöltése. Ctrl+Shift+X és keress rá az ESLint-re.
 [ESLint bővítmény letöltése](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-
 settings.json megnyitása:
-A szerkesztő beállításai.Nyomd meg a Ctrl + Shift + P gombkombinációt a parancssor megnyitásához. 
+A szerkesztő beállításai.Nyomd meg a Ctrl + Shift + P gombkombinációt a parancssor megnyitásához.
 Kezd el gépelni: Preferences: Open User Settings (JSON) (vagy ha csak a projektre szeretnéd alkalmazni, akkor Open Workspace Settings (JSON)).Nyomd meg az Enter-t
 
 Automatikus javítás beállítása:
@@ -448,6 +449,7 @@ A gitignore-ba meg, hogy ".env" be kell írni, hogy ezt nem kell verziókezelés
 A .env fájlt a package.json mellé rakd.
 
 .env fájlt tartalma
+
 ```.env
 BASE_URL=https://example.com/
 USERNAME=Admin
@@ -471,6 +473,7 @@ Terminálba:
 npm install dotenv --save-dev
 
 playwright.config.ts fájlba:
+
 ```ts
 // Felülre.
 // Env fájl használatához kellenek.
@@ -494,12 +497,10 @@ dotenv.config({ path: path.resolve(__dirname, ".env") });
 import { test, expect } from "../fixtures/BaseTest";
 
 test("Successful login test", async ({ page, loginPage, dashBoardPage }) => {
-
-    await loginPage.gotoLoginPage();
-    await loginPage.login(process.env.USERNAME!, process.env.PASSWORD!);
-    await expect(dashBoardPage.fullNameLabel).toBeVisible();
-    await dashBoardPage.logout();
-
+  await loginPage.gotoLoginPage();
+  await loginPage.login(process.env.USERNAME!, process.env.PASSWORD!);
+  await expect(dashBoardPage.fullNameLabel).toBeVisible();
+  await dashBoardPage.logout();
 });
 ```
 
@@ -507,17 +508,18 @@ test("Successful login test", async ({ page, loginPage, dashBoardPage }) => {
 
 A gyökér könyvtárban hozz létre egy data mappát benne egy loginData.json fájllal.
 
-loginData.json fájl tartalma:
+data/loginData.json fájl tartalma:
+
 ```json
 {
-    "valid_user": {
-        "username": "standard_user",
-        "password": "secret_sauce"
-    },
-    "invalid_user": {
-        "username": "locked_out_user",
-        "password": "secret_sauce"
-    }
+  "valid_user": {
+    "username": "standard_user",
+    "password": "secret_sauce"
+  },
+  "invalid_user": {
+    "username": "locked_out_user",
+    "password": "secret_sauce"
+  }
 }
 ```
 
@@ -529,27 +531,27 @@ import { LoginPage } from "../pages/LoginPage";
 import loginData from "../data/loginData.json";
 
 test("valid login test", async ({ page }) => {
-    const loginPage = new LoginPage(page);
+  const loginPage = new LoginPage(page);
 
-    await loginPage.gotoLoginPage();
-    await loginPage.login(
-        loginData.valid_user.username,
-        loginData.valid_user.password,
-    );
+  await loginPage.gotoLoginPage();
+  await loginPage.login(
+    loginData.valid_user.username,
+    loginData.valid_user.password,
+  );
 
-    await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+  await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
 });
 
 test("invalid login test", async ({ page }) => {
-    const loginPage = new LoginPage(page);
+  const loginPage = new LoginPage(page);
 
-    await loginPage.gotoLoginPage();
-    await loginPage.login(
-        loginData.invalid_user.username,
-        loginData.invalid_user.password,
-    );
+  await loginPage.gotoLoginPage();
+  await loginPage.login(
+    loginData.invalid_user.username,
+    loginData.invalid_user.password,
+  );
 
-    await expect(loginPage.errorMessage).toBeVisible();
+  await expect(loginPage.errorMessage).toBeVisible();
 });
 ```
 
@@ -1140,11 +1142,9 @@ test("Assertions Demo", async ({ page }) => {
 });
 ```
 
-
-
 # Videó rögzítés (lassított felvétel) és képernyőkép
 
-Csak akkor érdemes felvételt készíteni, ha elbukik a teszt. 
+Csak akkor érdemes felvételt készíteni, ha elbukik a teszt.
 
 playwright.config.ts-ben a use részbe:
 
@@ -1153,8 +1153,8 @@ playwright.config.ts-ben a use részbe:
     screenshot: "only-on-failure",
     video: "retain-on-failure",
     // Slow Motion and Video Recording
-    video: 'on-first-retry', 
-    
+    video: 'on-first-retry',
+
     launchOptions: {
       slowMo: 300 // millisecond
     },
@@ -1467,7 +1467,6 @@ test("test", async ({ page }) => {
 Teszt futtatása, írd be azt a terminálba:
 `npx playwright test --ui`
 
-
 # Fixtures és oldalváltás
 
 ```ts
@@ -1518,7 +1517,7 @@ export const test = base.extend<MyFixtures>({
     await newTab.close();
   },
 
- /*
+  /*
   loginPage2: async ({ page2 }, use) => {
     await use(new LoginPage(page2));
   },
@@ -1582,3 +1581,132 @@ Statikus html oldalként fog megjelenni.
 https://ultimateqa.com/playwright-reporters-how-to-integrate-with-azure-devops-pipelines/
 
 https://bogdanbujdea.dev/publishing-playwright-report-as-an-artifact-in-azure-devops?source=more_series_bottom_blogs
+
+# Best practices
+
+- Adatalapú tesztelést (Data-driven test)
+- Negatív tesztelés és összetett forgatókönyvek (Multiple scenarios)
+- Újrafelhasználható POM
+- Tiszta asszerciók (Clean Assertions):
+
+  AAA (Arrange, Act, Assert) minta: Tagolja a teszteseteket három jól elkülöníthető részre. Az ellenőrzéseket mindig a teszt legvégén végezze el.
+
+# Valós skálázható projekt (Real World Scalable Project)
+
+Ha JSON fájlban 10 felhasználó van akkor 10-szer futnak e a tesztek.
+A tesztek futtatása egy logikai kapcsolóval (flag) szabályozható: a teszteset csak akkor indul el, ha a mező értéke 'yes'.
+
+Példa program:
+data\loginDataNew.josn
+
+```json
+[
+  {
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "expected": "success",
+    "run": "yes"
+  },
+  {
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "expected": "error",
+    "run": "no"
+  },
+  {
+    "username": "problem_user",
+    "password": "secret_sauce",
+    "expected": "success",
+    "run": "no"
+  }
+]
+```
+
+A POM fejezetben lévő LoginPage osztály használtam a lenti tesztnél.
+login.dynamicdata.spec.ts:
+
+```ts
+import { expect, test } from "@playwright/test";
+import { LoginPage } from "../pages/LoginPage.ts";
+import loginDataNew from "../data/loginDataNew.json";
+
+loginDataNew.forEach((data) => {
+  if (!data.run) return; // Ha false az értéke, akkor ne csináljon semmit.
+
+  // Backtick (Visszafelé dőlő ékezet)-t használj!
+  test(`Login Test - ${data.username}`, async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.gotoLoginPage();
+    await loginPage.login(data.username, data.password);
+
+    if (data.expected === "success") {
+      await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+    } else {
+      await expect(loginPage.errorMessage).toBeVisible();
+    }
+  });
+});
+```
+
+# CSV fájl használata
+
+A csv használatához kell egy külön csomag, írd be azt a termnálba a letöltéséhez:
+npm install csv-parse
+
+A POM fejezetben lévő LoginPage osztály használtam a lenti tesztnél.
+
+data/LoginData.csv:
+
+```csv
+username,password,expected,run
+standard_user,secret_sauce,success,true
+locked_out_user,secret_sauce,error,no
+problem_user,secret_sauce,success,true
+```
+
+utils/csvReader.ts:
+
+```ts
+import fs from "fs";
+import * as csvParseSync from "csv-parse/sync";
+
+export function readCSV(filePath: string) {
+  // Adj hozzá 'utf-8'-at, hogy biztosan szövegként olvassa be
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+
+  const records = csvParseSync.parse(fileContent, {
+    columns: true, // A fejlés a mezőneveket tartalmazza.
+    skip_empty_lines: true,
+  });
+  return records;
+}
+```
+
+login.csv.spec.ts
+
+```ts
+import { expect, test } from "@playwright/test";
+import { LoginPage } from "../pages/LoginPage";
+import { readCSV } from "../utils/csvReader";
+
+// Jobb klikk a fájlon és Copy Relatuve Path. /-re figyelj!
+const loginData = readCSV("data/LoginData.csv");
+
+// Soronként haladunk, az any-val elfogadunk minden típust.
+loginData.forEach((data: any) => {
+  if (data.run !== "true") return; // Ha nem true az értéke, akkor ne csináljon semmit.
+
+  // Backtick (Visszafelé dőlő ékezet)-t használj!
+  test(`Login Test - ${data.username}`, async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.gotoLoginPage();
+    await loginPage.login(data.username, data.password);
+
+    if (data.expected === "success") {
+      await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+    } else {
+      await expect(loginPage.errorMessage).toBeVisible();
+    }
+  });
+});
+```
