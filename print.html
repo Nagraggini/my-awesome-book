@@ -7799,6 +7799,7 @@ import io.restassured.response.Response;
 <li><a href="playwright.html#annotation--tags">Annotation &amp; Tags</a>
 <ul>
 <li><a href="playwright.html#annot%C3%A1ci%C3%B3k">Annotációk</a></li>
+<li><a href="playwright.html#saj%C3%A1t-annot%C3%A1ci%C3%B3k">Saját annotációk</a></li>
 <li><a href="playwright.html#tagek">Tagek</a></li>
 </ul>
 </li>
@@ -7812,8 +7813,14 @@ import io.restassured.response.Response;
 <li><a href="playwright.html#page-chaining-oldal-l%C3%A1ncol%C3%A1s">Page Chaining (Oldal láncolás)</a></li>
 <li><a href="playwright.html#report-felt%C3%B6lt%C3%A9s%C3%A9nek-automatiz%C3%A1l%C3%A1sa-azure-devops-al">Report feltöltésének automatizálása Azure DevOps-al</a></li>
 <li><a href="playwright.html#best-practices">Best practices</a></li>
-<li><a href="playwright.html#val%C3%B3s-sk%C3%A1l%C3%A1zhat%C3%B3-projekt-real-world-scalable-project">Valós skálázható projekt (Real World Scalable Project)</a></li>
+<li><a href="playwright.html#val%C3%B3s-sk%C3%A1l%C3%A1zhat%C3%B3-projekt-real-world-scalable-project">Valós skálázható projekt (Real World Scalable Project)</a>
+<ul>
+<li><a href="playwright.html#json-f%C3%A1jl-haszn%C3%A1lata">JSON fájl használata</a></li>
 <li><a href="playwright.html#csv-f%C3%A1jl-haszn%C3%A1lata">CSV fájl használata</a></li>
+<li><a href="playwright.html#xlsx-f%C3%A1jl-haszn%C3%A1lata">XLSX fájl használata</a></li>
+<li><a href="playwright.html#multi-funkcion%C3%A1lis-adatbeolvas%C3%A1s-json-csvexcel---ezt-haszn%C3%A1ld">Multi funkcionális adatbeolvasás (json, csv,excel) - Ezt használd!</a></li>
+</ul>
+</li>
 </ul>
 <h1 id="playwright"><a class="header" href="#playwright">Playwright</a></h1>
 <p><strong>Mi az a Playwright?</strong></p>
@@ -8082,6 +8089,8 @@ Utána másold ki és mentesd el egy fájlba.</p>
 <code>npx playwright codegen google.com</code></p>
 <p>Előre létre kell hozni a fájlt:
 <code>npx playwright codegen --target typescript -o .\test\new_test.ts</code></p>
+<p>A fentieket egy sorban is lehet használni pl.:
+<code>npx playwright test tests/my_first_test.spec.ts --headed --debug --project=chromium</code></p>
 <h1 id="jelszó-beállítása-környezeti-változóként"><a class="header" href="#jelszó-beállítása-környezeti-változóként">Jelszó beállítása környezeti változóként</a></h1>
 <p>.env fájlbe írd be e felhasználónevet és jelszót.</p>
 <p>A gitignore-ba meg, hogy ".env" be kell írni, hogy ezt nem kell verziókezelés alávonni. GitHub esetén érdemes a GitHub-on secret-et létrehozni és nem feltölteni a .env fájlt.</p>
@@ -8837,6 +8846,32 @@ test.only("focus this test", async ({ page }) =&gt; {
   // Ha jelen van a .only, a Playwright KIZÁRÓLAG ezt a tesztet futtatja le a fájlban.
 });
 </code></pre>
+<h2 id="saját-annotációk"><a class="header" href="#saját-annotációk">Saját annotációk</a></h2>
+<pre><code class="language-ts">import { test, expect, Locator } from "@playwright/test";
+
+test.describe("Successful login test for saucedemo.com", () =&gt; {
+    test("login test", async ({ page }) =&gt; {
+        test.info().annotations.push({
+            type: "test-case",
+            description: "TC-LOGIN-01",
+        });
+
+        await page.goto("https://www.saucedemo.com/");
+
+        const username: Locator = page.locator("#user-name");
+        const password: Locator = page.locator("#password");
+        const loginButton: Locator = page.locator("#login-button");
+
+        await username.fill("standard_user");
+        await password.fill("secret_sauce");
+        await loginButton.click();
+
+        await expect(page).toHaveURL(
+            "https://www.saucedemo.com/inventory.html",
+        );
+    });
+});
+</code></pre>
 <h2 id="tagek"><a class="header" href="#tagek">Tagek</a></h2>
 <pre><code class="language-ts">/*
 A teszteket olyan címkékkel címkézheted meg, mint például:
@@ -8947,6 +8982,7 @@ test("test", async ({ page }) =&gt; {
 <h1 id="fixtures-és-oldalváltás"><a class="header" href="#fixtures-és-oldalváltás">Fixtures és oldalváltás</a></h1>
 <pre><code class="language-ts">// Playwright Fixture mintát követve mindent kitakarít a háttérben!
 // fixtures/BaseTest.ts
+// Az "as" felülírást jelenti, az eredetit felülírjuk. 
 import { test as base, devices, BrowserContext, Page } from "@playwright/test";
 import { LoginPage as LoginPage } from "../pages/LoginPage";
 
@@ -9056,10 +9092,12 @@ https://ultimateqa.com/playwright-reporters-how-to-integrate-with-azure-devops-p
 </li>
 </ul>
 <h1 id="valós-skálázható-projekt-real-world-scalable-project"><a class="header" href="#valós-skálázható-projekt-real-world-scalable-project">Valós skálázható projekt (Real World Scalable Project)</a></h1>
+<p>A lényege, hogy a projekt valós problémát modellezzen, bővíthető legyen, és ne csak egy egyszerű demo legyen.</p>
+<h2 id="json-fájl-használata"><a class="header" href="#json-fájl-használata">JSON fájl használata</a></h2>
 <p>Ha JSON fájlban 10 felhasználó van akkor 10-szer futnak e a tesztek.
 A tesztek futtatása egy logikai kapcsolóval (flag) szabályozható: a teszteset csak akkor indul el, ha a mező értéke 'yes'.</p>
 <p>Példa program:
-data\loginDataNew.josn</p>
+data/loginDataNew.json</p>
 <pre><code class="language-json">[
   {
     "username": "standard_user",
@@ -9081,7 +9119,7 @@ data\loginDataNew.josn</p>
   }
 ]
 </code></pre>
-<p>A POM fejezetben lévő LoginPage osztály használtam a lenti tesztnél.
+<p>A POM fejezetben lévő LoginPage osztály használjuk a lenti tesztnél.
 login.dynamicdata.spec.ts:</p>
 <pre><code class="language-ts">import { expect, test } from "@playwright/test";
 import { LoginPage } from "../pages/LoginPage.ts";
@@ -9104,15 +9142,15 @@ loginDataNew.forEach((data) =&gt; {
   });
 });
 </code></pre>
-<h1 id="csv-fájl-használata"><a class="header" href="#csv-fájl-használata">CSV fájl használata</a></h1>
-<p>A csv használatához kell egy külön csomag, írd be azt a termnálba a letöltéséhez:
-npm install csv-parse</p>
-<p>A POM fejezetben lévő LoginPage osztály használtam a lenti tesztnél.</p>
+<h2 id="csv-fájl-használata"><a class="header" href="#csv-fájl-használata">CSV fájl használata</a></h2>
+<p>A csv használatához kell egy külön csomag, írd be azt a terminálba a letöltéséhez:
+<code>npm install csv-parse</code></p>
+<p>A POM fejezetben lévő LoginPage osztály használjuk a lenti tesztnél.</p>
 <p>data/LoginData.csv:</p>
 <pre><code class="language-csv">username,password,expected,run
-standard_user,secret_sauce,success,true
+standard_user,secret_sauce,success,yes
 locked_out_user,secret_sauce,error,no
-problem_user,secret_sauce,success,true
+problem_user,secret_sauce,success,yes
 </code></pre>
 <p>utils/csvReader.ts:</p>
 <pre><code class="language-ts">import fs from "fs";
@@ -9134,12 +9172,14 @@ export function readCSV(filePath: string) {
 import { LoginPage } from "../pages/LoginPage";
 import { readCSV } from "../utils/csvReader";
 
-// Jobb klikk a fájlon és Copy Relatuve Path. /-re figyelj!
+// Jobb klikk a fájlon és Copy Relative Path. /-re figyelj!
 const loginData = readCSV("data/LoginData.csv");
 
 // Soronként haladunk, az any-val elfogadunk minden típust.
 loginData.forEach((data: any) =&gt; {
-  if (data.run !== "true") return; // Ha nem true az értéke, akkor ne csináljon semmit.
+
+   // Ha nem true az értéke, akkor ne csináljon semmit.
+  if (data.run !== "true") return; 
 
   // Backtick (Visszafelé dőlő ékezet)-t használj!
   test(`Login Test - ${data.username}`, async ({ page }) =&gt; {
@@ -9153,6 +9193,156 @@ loginData.forEach((data: any) =&gt; {
       await expect(loginPage.errorMessage).toBeVisible();
     }
   });
+});
+</code></pre>
+<h2 id="xlsx-fájl-használata"><a class="header" href="#xlsx-fájl-használata">XLSX fájl használata</a></h2>
+<p>A csv használatához kell egy külön csomag, írd be azt a terminálba a letöltéséhez:
+<code>npm install xlsx</code>
+<code>npm install -D @types/xlsx</code></p>
+<p>A POM fejezetben lévő LoginPage osztály használjuk a lenti tesztnél.</p>
+<p>LoginData.xlsx</p>
+<pre><code class="language-xlsx">username|password|expected|run
+standard_user|secret_sauce|success|yes
+locked_out_user|secret_sauce|error|no
+problem_user|secret_sauce|success|yes
+</code></pre>
+<p>utils/excelReader.ts:</p>
+<pre><code class="language-ts">import * as XLSX from "xlsx";
+import path from "path";
+
+// Egyedi típus.
+export type LoginData = {
+    username: string;
+    password: string;
+    expected: string;
+    run: string;
+};
+
+export function readExcel(filePath: string, sheetName: string): LoginData[] {
+    const fullPath = path.resolve(filePath);
+    console.log("Full Path is ", fullPath);
+
+    const workbook = XLSX.readFile(fullPath);
+    const sheet = workbook.Sheets[sheetName];
+    const data = XLSX.utils.sheet_to_json(sheet);
+    return data;
+}
+</code></pre>
+<p>login.excel.spec.ts:</p>
+<pre><code class="language-ts">import { expect, test } from "@playwright/test";
+import { LoginPage } from "../../pages/LoginPage";
+import { readExcel } from "../../utils/excelReader";
+
+// Jobb klikk a fájlon és Copy Relative Path. /-re figyelj!
+//Típus biztonsággal, elkelhetjük a fordításkori futás esetén bekövetkező hibákat.
+const testData: LoginData[] = readExcel("./data/LoginData.xlsx", "Sheet1");
+
+test.describe("Login Tests", () =&gt; {
+    // Soronként haladunk, az any-val elfogadunk minden típust.
+    for (const data of testData) {
+        // Backtick (Visszafelé dőlő ékezet)-t használj!
+        test(`Login test for - ${data.username}`, async ({ page }) =&gt; {
+            // A skippelt tesztek láthatóak a reportban is, felül a lapfülek között.
+            test.skip(
+                // Ha nem yes az értéke, akkor ne csináljon semmit.
+                data.run !== "yes",
+                "Run flag is not yes.",
+            );
+
+            const loginPage = new LoginPage(page);
+
+            await test.step("Go to login page", async () =&gt; {
+                await loginPage.gotoLoginPage();
+            });
+
+            await test.step("Perform Login", async () =&gt; {
+                await loginPage.login(data.username, data.password);
+            });
+
+            await test.step("Validate Result", async () =&gt; {
+                if (data.expected === "success") {
+                    await expect(page).toHaveURL(
+                        "https://www.saucedemo.com/inventory.html",
+                    );
+                } else {
+                    await expect(loginPage.errorMessage).toBeVisible();
+                }
+            });
+        });
+    }
+});
+</code></pre>
+<h2 id="multi-funkcionális-adatbeolvasás-json-csvexcel---ezt-használd"><a class="header" href="#multi-funkcionális-adatbeolvasás-json-csvexcel---ezt-használd">Multi funkcionális adatbeolvasás (json, csv,excel) - Ezt használd!</a></h2>
+<p>Mindhárom típusú fájl be tudja olvasni.
+A fentebb található három fejezetben lévő kódot használjuk megint.</p>
+<p>utils/dataReader.ts:</p>
+<pre><code class="language-ts">import path from "path";
+import { readCSV } from "../utils/csvReader";
+import { readExcel } from "../utils/excelReader";
+import fs, { readFileSync } from "fs";
+
+// A ? azt jelenti, hogy nem kötelező megadni.
+export function readData(filePath: string, sheetName?: string) {
+    const ext = path.extname(filePath).toLowerCase();
+
+    switch (ext) {
+        case ".csv":
+            return readCSV(filePath);
+        case ".xlsx":
+            return readExcel(filePath, sheetName || "Sheet1");
+        case ".json":
+            const JSONData = fs.readFileSync(filePath, "utf-8");
+            return JSON.parse(JSONData);
+        default:
+            // Backtick (Visszafelé dőlő ékezet)-t használj!
+            throw new Error(`Unsupported file type - ${ext}`);
+    }
+}
+</code></pre>
+<p>login.unifiedReader.spec.ts:</p>
+<pre><code class="language-ts">import { expect, test } from "@playwright/test";
+import { LoginPage } from "../pages/LoginPage";
+import { readData } from "../utils/dataReader";
+
+// Jobb klikk a fájlon és Copy Relative Path. /-re figyelj!
+//Típus biztonsággal, elkelhetjük a fordításkori futás esetén bekövetkező hibákat.
+// const testData = readData('./data/loginDataNew.json');
+// const testData = readData('./data/LoginData.csv');
+const testData = readData("./data/LoginData.xlsx", "Sheet1");
+
+test.describe("Login Tests", () =&gt; {
+    // Soronként haladunk, az any-val elfogadunk minden típust.
+    for (const data of testData) {
+        // Backtick (Visszafelé dőlő ékezet)-t használj!
+        test(`Login test for - ${data.username}`, async ({ page }) =&gt; {
+            // A skippelt tesztek láthatóak a reportban is, felül a lapfülek között.
+            test.skip(
+                // Ha nem yes az értéke, akkor ne csináljon semmit.
+                data.run !== "yes",
+                "Run flag is not yes.",
+            );
+
+            const loginPage = new LoginPage(page);
+
+            await test.step("Go to login page", async () =&gt; {
+                await loginPage.gotoLoginPage();
+            });
+
+            await test.step("Perform Login", async () =&gt; {
+                await loginPage.login(data.username, data.password);
+            });
+
+            await test.step("Validate Result", async () =&gt; {
+                if (data.expected === "success") {
+                    await expect(page).toHaveURL(
+                        "https://www.saucedemo.com/inventory.html",
+                    );
+                } else {
+                    await expect(loginPage.errorMessage).toBeVisible();
+                }
+            });
+        });
+    }
 });
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="spring-boot"><a class="header" href="#spring-boot">Spring Boot</a></h1>
