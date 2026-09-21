@@ -1398,12 +1398,12 @@ npx playwright test--grep - invert “@smoke”
 A POM az automata tesztelésben a Page Object Model (Oldalobjektum-modell) rövidítése. Ez a legnépszerűbb és legelterjedtebb tervezési minta (design pattern) a UI-tesztelésben (Playwright, Selenium, Cypress).
 
 Lényege, hogy a weboldal egyes oldalait (vagy nagyobb komponenseit, pl. fejléc, menü) külön JavaScript/TypeScript osztályokként (Class) modellezzük le.
-
+      
 Előnyei:
-✅ Egységbe zárás – Elkülöníti a tesztlogikát a felhasználói felülettel (UI) való interakcióktól.
-✅ Újrafelhasználhatóság – Ugyanazon oldalobjektumok használata több tesztben is.
-✅ Skálázhatóság – A tesztkészlet egyszerű, problémamentes bővítése.
-✅ Karbantarthatóság – Ha változik a felhasználói felület, elég egyetlen fájlt frissíteni a tucatnyi helyett!
+✅ Egységbe zárás – Elkülöníti a tesztlogikát a felhasználói felülettel (UI) való interakcióktól.       
+✅ Újrafelhasználhatóság – Ugyanazon oldalobjektumok használata több tesztben is.     
+✅ Skálázhatóság – A tesztkészlet egyszerű, problémamentes bővítése.      
+✅ Karbantarthatóság – Ha változik a felhasználói felület, elég egyetlen fájlt frissíteni a tucatnyi helyett!     
 
 Hozzunk létre egy mappát az új projektünknek és nyissuk meg azt Visual Studio Code-ban.
 
