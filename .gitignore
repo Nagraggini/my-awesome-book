@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Local version of book ###
-/book/
+book/
