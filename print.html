@@ -6817,13 +6817,15 @@ Automatizált Teszt Keretrendszer (ATF)</p>
 <h1 id="weboldalak-amiket-lehet-tesztelni"><a class="header" href="#weboldalak-amiket-lehet-tesztelni">Weboldalak, amiket lehet tesztelni</a></h1>
 <p><a href="https://www.utest.com/resources">Utest.com</a><br />
 <a href="https://www.youtube.com/watch?v=hvSlWnLiK_U&amp;list=PLimzEeSv6f4Vk6cXGpoGU2ZhNcyI5rzTp">API tesztelés videókurzus</a><br />
-<a href="https://the-internet.herokuapp.com/">UI test playground (the internet)</a>
-<a href="http://www.uitestingplayground.com/">UI Test Automation Playground</a>
-<a href="https://automationexercise.com/">Automation Exercise (UI and Api test)</a>
-<a href="https://app.reqres.in/">Api test</a>
-<a href="https://demowebshop.tricentis.com/">Demo webshop</a>
-<a href="https://parabank.parasoft.com/">Bank fiók </a>
-<a href="https://opensource-demo.orangehrmlive.com/">HR-szoftver</a></p>
+<a href="https://the-internet.herokuapp.com/">UI test playground (the internet)</a><br />
+<a href="http://www.uitestingplayground.com/">UI Test Automation Playground</a><br />
+<a href="https://automationexercise.com/">Automation Exercise (UI and Api test)</a><br />
+<a href="https://app.reqres.in/">Api test</a><br />
+<a href="https://demowebshop.tricentis.com/">Demo webshop</a><br />
+<a href="https://parabank.parasoft.com/">Bank fiók </a><br />
+<a href="https://opensource-demo.orangehrmlive.com/">HR-szoftver</a><br />
+<a href="https://automationintesting.online/">Accommodation Booking</a><br />
+<a href="https://github.com/BMayhew/awesome-sites-to-test-on">awesome-sites-to-test-on</a></p>
 <h2 id="selenium"><a class="header" href="#selenium">Selenium</a></h2>
 <p>A Selenium-ot érdemes először kezdőként használni és után tovább menni a bonyolultabbak felé.</p>
 <h3 id="selenium-alapfogalmak"><a class="header" href="#selenium-alapfogalmak">Selenium alapfogalmak</a></h3>
@@ -6867,8 +6869,7 @@ Egyszerű parancsokat használ, pl.: open, click, type, verifyText
 Támogat kommenteket is (pl. // jellel).</p>
 <p>A Selenium Webdriver használatóról a gyakorlásaimat és jegyzeteimet <a href="https://github.com/Nagraggini/selenium-playground">itt</a> találod.</p>
 <p>További projektjeim:
-<a href="https://github.com/Nagraggini/sauce-demo">sauce-demo</a>
-<a href="https://github.com/Nagraggini/automation-exercise">automation-exercise</a></p>
+<a href="https://nagraggini.github.io/">https://nagraggini.github.io/</a></p>
 <h1 id="qa-tesztautomatizálás"><a class="header" href="#qa-tesztautomatizálás">QA (tesztautomatizálás)</a></h1>
 <p><strong>Manuális vs automatizált tesztelés</strong></p>
 <p>Manuális tesztelés:</p>
@@ -7743,6 +7744,7 @@ import io.restassured.response.Response;
 </ul>
 </li>
 <li><a href="playwright.html#inspector-haszn%C3%A1lata">Inspector használata</a></li>
+<li><a href="playwright.html#fix-v%C3%A1rakoz%C3%A1s">Fix várakozás</a></li>
 <li><a href="playwright.html#n%C3%A9vn%C3%A9lk%C3%BCli-f%C3%BCggv%C3%A9ny-lambda-kifejez%C3%A9ssel">Névnélküli függvény lambda kifejezéssel</a></li>
 <li><a href="playwright.html#3-db-egyszer%C5%B1bb-login-test">3 db egyszerűbb Login Test</a></li>
 <li><a href="playwright.html#lok%C3%A1torok">Lokátorok</a></li>
@@ -8277,6 +8279,10 @@ test("Selectors Demo", async ({ page }) =&gt; {
   await page.locator("text=LOGIN").click();
   await page.locator('input:has-text("Login")').click();
 });
+</code></pre>
+<h1 id="fix-várakozás"><a class="header" href="#fix-várakozás">Fix várakozás</a></h1>
+<p>Ezt nem ajánlatos használni, max teszteléshez.</p>
+<pre><code class="language-ts">await page.waitForTimeout(5000);
 </code></pre>
 <h1 id="névnélküli-függvény-lambda-kifejezéssel"><a class="header" href="#névnélküli-függvény-lambda-kifejezéssel">Névnélküli függvény lambda kifejezéssel</a></h1>
 <p>A lambda kifejezés (más néven nyíl függvény vagy arrow function) nem más, mint egy gyorsítósáv a függvények írásához.</p>

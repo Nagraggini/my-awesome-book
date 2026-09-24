@@ -214,6 +214,7 @@
 </ul>
 </li>
 <li><a href="#inspector-haszn%C3%A1lata">Inspector használata</a></li>
+<li><a href="#fix-v%C3%A1rakoz%C3%A1s">Fix várakozás</a></li>
 <li><a href="#n%C3%A9vn%C3%A9lk%C3%BCli-f%C3%BCggv%C3%A9ny-lambda-kifejez%C3%A9ssel">Névnélküli függvény lambda kifejezéssel</a></li>
 <li><a href="#3-db-egyszer%C5%B1bb-login-test">3 db egyszerűbb Login Test</a></li>
 <li><a href="#lok%C3%A1torok">Lokátorok</a></li>
@@ -748,6 +749,10 @@ test("Selectors Demo", async ({ page }) =&gt; {
   await page.locator("text=LOGIN").click();
   await page.locator('input:has-text("Login")').click();
 });
+</code></pre>
+<h1 id="fix-várakozás"><a class="header" href="#fix-várakozás">Fix várakozás</a></h1>
+<p>Ezt nem ajánlatos használni, max teszteléshez.</p>
+<pre><code class="language-ts">await page.waitForTimeout(5000);
 </code></pre>
 <h1 id="névnélküli-függvény-lambda-kifejezéssel"><a class="header" href="#névnélküli-függvény-lambda-kifejezéssel">Névnélküli függvény lambda kifejezéssel</a></h1>
 <p>A lambda kifejezés (más néven nyíl függvény vagy arrow function) nem más, mint egy gyorsítósáv a függvények írásához.</p>
