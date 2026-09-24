@@ -9,15 +9,18 @@ Automatizált Teszt Keretrendszer (ATF)
 
 # Weboldalak, amiket lehet tesztelni
 
-[Utest.com](https://www.utest.com/resources)            
-[API tesztelés videókurzus](https://www.youtube.com/watch?v=hvSlWnLiK_U&list=PLimzEeSv6f4Vk6cXGpoGU2ZhNcyI5rzTp)        
-[UI test playground (the internet)](https://the-internet.herokuapp.com/)
-[UI Test Automation Playground](http://www.uitestingplayground.com/)
-[Automation Exercise (UI and Api test)](https://automationexercise.com/)
-[Api test](https://app.reqres.in/)
-[Demo webshop](https://demowebshop.tricentis.com/)
-[Bank fiók ](https://parabank.parasoft.com/)
-[HR-szoftver](https://opensource-demo.orangehrmlive.com/)
+[Utest.com](https://www.utest.com/resources)                   
+[API tesztelés videókurzus](https://www.youtube.com/watch?v=hvSlWnLiK_U&list=PLimzEeSv6f4Vk6cXGpoGU2ZhNcyI5rzTp)              
+[UI test playground (the internet)](https://the-internet.herokuapp.com/)            
+[UI Test Automation Playground](http://www.uitestingplayground.com/)            
+[Automation Exercise (UI and Api test)](https://automationexercise.com/)            
+[Api test](https://app.reqres.in/)          
+[Demo webshop](https://demowebshop.tricentis.com/)          
+[Bank fiók ](https://parabank.parasoft.com/)            
+[HR-szoftver](https://opensource-demo.orangehrmlive.com/)               
+[Accommodation Booking](https://automationintesting.online/)                            
+[awesome-sites-to-test-on](https://github.com/BMayhew/awesome-sites-to-test-on)                              
+
 
 ## Selenium
 
@@ -68,8 +71,7 @@ Támogat kommenteket is (pl. // jellel).
 A Selenium Webdriver használatóról a gyakorlásaimat és jegyzeteimet [itt](https://github.com/Nagraggini/selenium-playground) találod.
 
 További projektjeim:
-[sauce-demo](https://github.com/Nagraggini/sauce-demo)
-[automation-exercise](https://github.com/Nagraggini/automation-exercise)
+[https://nagraggini.github.io/](https://nagraggini.github.io/)      
 
 # QA (tesztautomatizálás)
 

@@ -21,6 +21,7 @@
   - [Fail esetén készít egy trace.zip-et](#fail-esetén-készít-egy-tracezip-et)
   - [Egy konkrét teszt esetén készít egy trace.zip-et](#egy-konkrét-teszt-esetén-készít-egy-tracezip-et)
 - [Inspector használata](#inspector-használata)
+- [Fix várakozás](#fix-várakozás)
 - [Névnélküli függvény lambda kifejezéssel](#névnélküli-függvény-lambda-kifejezéssel)
 - [3 db egyszerűbb Login Test](#3-db-egyszerűbb-login-test)
 - [Lokátorok](#lokátorok)
@@ -681,6 +682,14 @@ test("Selectors Demo", async ({ page }) => {
   await page.locator("text=LOGIN").click();
   await page.locator('input:has-text("Login")').click();
 });
+```
+
+# Fix várakozás
+
+Ezt nem ajánlatos használni, max teszteléshez.
+
+```ts
+await page.waitForTimeout(5000);
 ```
 
 # Névnélküli függvény lambda kifejezéssel
