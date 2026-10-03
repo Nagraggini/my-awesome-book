@@ -8081,6 +8081,8 @@ exports.helloworld = function f2() {
 <code>npx playwright test --headed</code></p>
 <p>Ezzel megjelenik a Playwright Inspector ablak is:
 <code>npx playwright test --debug</code></p>
+<p>Megjelenik a trace ablak is a reportban, amivel könnyebb debuggolni:
+<code>npx playwright test --trace on</code></p>
 <p>Egy teszt futtatása (Nem kell végig írni a fájlt nevet elég a tabot és a jobbra nyilat nyomni.):
 <code>npx playwright test tests/my_first_test.spec.ts --headed</code></p>
 <p><code>npx playwright test tests/my_first_test.spec.ts</code></p>
@@ -8658,6 +8660,9 @@ test("Assertions Demo", async ({ page }) =&gt; {
   // text matches value or not
   await expect(page.locator("text=The Kitchen")).toHaveText("The Kitchen");
   await expect(page.locator("text=The Kitchen")).not.toHaveText("ABCD");
+
+  //contains text
+   await expect(page.locator("text=The Kitchen")).toContainText("C");
 
   // element attribute
   await expect(page.locator("text=The Kitchen")).toHaveAttribute(
