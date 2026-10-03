@@ -430,6 +430,9 @@ Ez a parancs pontosan 3 párhuzamos worker folyamatot (Node.js processzt) indít
 Ezzel megjelenik a Playwright Inspector ablak is:
 `npx playwright test --debug`
 
+Megjelenik a trace ablak is a reportban, amivel könnyebb debuggolni: 
+`npx playwright test --trace on`
+
 Egy teszt futtatása (Nem kell végig írni a fájlt nevet elég a tabot és a jobbra nyilat nyomni.):
 `npx playwright test tests/my_first_test.spec.ts --headed`
 
@@ -1131,6 +1134,9 @@ test("Assertions Demo", async ({ page }) => {
   // text matches value or not
   await expect(page.locator("text=The Kitchen")).toHaveText("The Kitchen");
   await expect(page.locator("text=The Kitchen")).not.toHaveText("ABCD");
+
+  //contains text
+   await expect(page.locator("text=The Kitchen")).toContainText("C");
 
   // element attribute
   await expect(page.locator("text=The Kitchen")).toHaveAttribute(
