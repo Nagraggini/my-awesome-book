@@ -32,20 +32,20 @@
     - [`getByPlaceholder()`](#getbyplaceholder)
 - [2. Hagyományos lokátorok](#2-hagyományos-lokátorok)
   - [CSS Selector](#css-selector)
-    - [XPath](#xpath)
+  - [XPath](#xpath)
     - [Abszolút XPath](#abszolút-xpath)
     - [Relatív XPath](#relatív-xpath)
     - [XPath Tengelyek (Axes)](#xpath-tengelyek-axes)
     - [Gyakorló oldal](#gyakorló-oldal)
-  - [3. A lokátorok szűkítése és láncolása (Chaining \& Filtering)](#3-a-lokátorok-szűkítése-és-láncolása-chaining--filtering)
-    - [Alapvető láncolás (Chaining)](#alapvető-láncolás-chaining)
-    - [Lista elemeinek kiválasztása index alapján](#lista-elemeinek-kiválasztása-index-alapján)
-      - [`.first()`](#first)
-      - [`.last()`](#last)
-      - [`.nth(index)`](#nthindex)
-    - [Haladó szűrés: `.filter()`](#haladó-szűrés-filter)
-      - [Szűrés szöveg alapján (`hasText`)](#szűrés-szöveg-alapján-hastext)
-      - [Szűrés belső elem alapján (`has`)](#szűrés-belső-elem-alapján-has)
+- [3. A lokátorok szűkítése és láncolása (Chaining \& Filtering)](#3-a-lokátorok-szűkítése-és-láncolása-chaining--filtering)
+  - [Alapvető láncolás (Chaining)](#alapvető-láncolás-chaining)
+  - [Lista elemeinek kiválasztása index alapján](#lista-elemeinek-kiválasztása-index-alapján)
+    - [`.first()`](#first)
+    - [`.last()`](#last)
+    - [`.nth(index)`](#nthindex)
+  - [Haladó szűrés: `.filter()`](#haladó-szűrés-filter)
+    - [Szűrés szöveg alapján (`hasText`)](#szűrés-szöveg-alapján-hastext)
+    - [Szűrés belső elem alapján (`has`)](#szűrés-belső-elem-alapján-has)
 - [4. Példa a gyakorlatban (Kódminta)](#4-példa-a-gyakorlatban-kódminta)
 - [Billentyűzet események](#billentyűzet-események)
 - [Egér események](#egér-események)
@@ -862,19 +862,19 @@ Szelekciós nyelvet alkalmazó lokátorok. A `page.locator('css-szelektor')` met
 
 Ugyanazt a nyelvet használja, mint a CSS az elemek formázására:
 
-- `#` $\rightarrow$ ID alapján
-- `.` $\rightarrow$ osztály (class) alapján
-- `[attribútum='érték']` $\rightarrow$ attribútum alapján
-- `tag.class` $\rightarrow$ tag + osztály kombinációja
-- `<szóköz>` $\rightarrow$ leszármazott (bármilyen mélységben)
-- `>` $\rightarrow$ közvetlen leszármazott (gyermek elem)
-- `*='<érték>'` $\rightarrow$ attribútumot tartalmazza (részleges egyezés)
-- `^=` $\rightarrow$ az attribútum értéke ezzel kezdődik
-- `$=` $\rightarrow$ az attribútum értéke ezzel végződik
+- `#` -> ID alapján
+- `.` -> osztály (class) alapján
+- `[attribútum='érték']` -> attribútum alapján
+- `tag.class` -> tag + osztály kombinációja
+- `<szóköz>` -> leszármazott (bármilyen mélységben)
+- `>` -> közvetlen leszármazott (gyermek elem)
+- `*='<érték>'` -> attribútumot tartalmazza (részleges egyezés)
+- `^=` -> az attribútum értéke ezzel kezdődik
+- `$=` -> az attribútum értéke ezzel végződik
 
 **Hátránya:** Nem tud a DOM struktúrában visszafelé (felfelé, a szülő irányába) l
 
-### XPath
+## XPath
 
 ### Abszolút XPath
 
@@ -928,47 +928,47 @@ A `page.locator('xpath=//...')` vagy egyszerűen `page.locator('//...')` kifejez
 
 https://testsmith-io.github.io/locator-game/
 
-## 3. A lokátorok szűkítése és láncolása (Chaining & Filtering)
+# 3. A lokátorok szűkítése és láncolása (Chaining & Filtering)
 
 Gyakran előfordul, hogy egy weboldal több azonos tulajdonságú elemet is tartalmaz (például egy lista elemei vagy egy táblázat sorai). Ilyenkor a lokátorokat tovább lehet szűkíteni a megfelelő metódusok egymás után fűzésével.
 
-### Alapvető láncolás (Chaining)
+## Alapvető láncolás (Chaining)
 
 A lokátorokat egyszerűen egymás után kötheted, így a Playwright a második elemet már csak az első elemen **belül** fogja keresni.
 
 - **Példa:** `await page.locator('#nav-bar').getByRole('button', { name: 'Kijelentkezés' }).click();`
 
-### Lista elemeinek kiválasztása index alapján
+## Lista elemeinek kiválasztása index alapján
 
-#### `.first()`
+### `.first()`
 
 Csak a találati lista legelső elemét választja ki.
 
 - **Példa:** `await page.locator('.product-item').first().click();`
 
-#### `.last()`
+### `.last()`
 
 Csak a találati lista legutolsó elemét választja ki.
 
 - **Példa:** `await page.locator('.product-item').last().click();`
 
-#### `.nth(index)`
+### `.nth(index)`
 
 Sorszám alapján választja ki az elemet. **Fontos:** A számozás 0-tól indul, így a `.nth(0)` az első elemet, a `.nth(1)` a másodikat jelenti.
 
 - **Példa:** `await page.locator('.product-item').nth(2).click();` _(A 3. termékre kattint)_
 
-### Haladó szűrés: `.filter()`
+## Haladó szűrés: `.filter()`
 
 A `.filter()` metódus segítségével egy meglévő lokátor-listát szűkíthetsz tovább a belső tulajdonságaik alapján.
 
-#### Szűrés szöveg alapján (`hasText`)
+### Szűrés szöveg alapján (`hasText`)
 
 Csak azokat az elemeket tartja meg, amelyek (vagy amelyek gyermekelemei) tartalmazzák a megadott szöveget.
 
 - **Példa:** `await page.locator('.row').filter({ hasText: 'Aktív' }).click();`
 
-#### Szűrés belső elem alapján (`has`)
+### Szűrés belső elem alapján (`has`)
 
 Csak azokat az elemeket tartja meg, amelyek belsejében megtalálható egy másik, megadott lokátor (pl. egy gomb, ikon vagy jelölőnégyzet).
 

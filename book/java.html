@@ -63,7 +63,7 @@
         </script>
 
         <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li class="affix"><a href="README.html">Bevezető</a></li><li><a href="webfejlesztes-alapok.html"><strong>1.</strong> Webfejlesztés alapok</a></li><li><a href="html.html"><strong>2.</strong> HTML alapok</a></li><li><a href="css.html"><strong>3.</strong> CSS alapok</a></li><li><a href="javascript.html"><strong>4.</strong> JavaScript ismeretek</a></li><li><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong>5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong>6.</strong> Frontend Fejlesztő Checklista</a></li><li><a href="java.html" class="active"><strong>7.</strong> Java nyelv</a></li><li><a href="teszt-automatizalas.html"><strong>8.</strong> Teszt automatizálás</a></li><li><a href="java-unit-test.html"><strong>9.</strong> Java Unit Teszt</a></li><li><a href="playwright-hasznalata.html"><strong>10.</strong> Playwright</a></li><li><a href="spring-boot-bevezetese.html"><strong>11.</strong> Spring Boot</a></li><li><a href="kiberbiztonsag.html"><strong>12.</strong> Kiberbiztonság</a></li><li><a href="penzugy.html"><strong>13.</strong> Pénzügyi ismeretek (A fejezetben lesz szó a Rest API-s tőzsdei kereskedésről)</a></li><li><a href="english-learning.html"><strong>14.</strong> Angol nyelvtanulás</a></li><li><a href="mappa-struktura-es-github.html"><strong>15.</strong> Mappa struktúra és GitHub</a></li><li><a href="webfejlesztes-attekintes.html"><strong>16.</strong> Webfejlesztés áttekintés</a></li><li><a href="motivacio.html"><strong>17.</strong> Motiváció</a></li><li><a href="projekt-otletek.html"><strong>18.</strong> Projekt ötletek</a></li></ul>
+            <ul class="chapter"><li class="affix"><a href="README.html">Bevezető</a></li><li><a href="webfejlesztes-alapok.html"><strong>1.</strong> Webfejlesztés alapok</a></li><li><a href="html.html"><strong>2.</strong> HTML alapok</a></li><li><a href="css.html"><strong>3.</strong> CSS alapok</a></li><li><a href="javascript.html"><strong>4.</strong> JavaScript ismeretek</a></li><li><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong>5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong>6.</strong> Frontend Fejlesztő Checklista</a></li><li><a href="java.html" class="active"><strong>7.</strong> Java nyelv</a></li><li><a href="teszt-automatizalas.html"><strong>8.</strong> Teszt automatizálás</a></li><li><a href="java-unit-test.html"><strong>9.</strong> Java Unit Teszt</a></li><li><a href="rest-assured.html"><strong>10.</strong> REST Assured (REST API tesztelés)</a></li><li><a href="playwright.html"><strong>11.</strong> Playwright</a></li><li><a href="spring-boot-bevezetese.html"><strong>12.</strong> Spring Boot</a></li><li><a href="kiberbiztonsag.html"><strong>13.</strong> Kiberbiztonság</a></li><li><a href="penzugy.html"><strong>14.</strong> Pénzügyi ismeretek (A fejezetben lesz szó a Rest API-s tőzsdei kereskedésről)</a></li><li><a href="english-learning.html"><strong>15.</strong> Angol nyelvtanulás</a></li><li><a href="mappa-struktura-es-github.html"><strong>16.</strong> Mappa struktúra és GitHub</a></li><li><a href="webfejlesztes-attekintes.html"><strong>17.</strong> Webfejlesztés áttekintés</a></li><li><a href="motivacio.html"><strong>18.</strong> Motiváció</a></li><li><a href="projekt-otletek.html"><strong>19.</strong> Projekt ötletek</a></li></ul>
         </div>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -316,6 +316,7 @@
 </li>
 <li><a href="java.html#java-dinamikus-weboldal-l%C3%A9trehoz%C3%A1sa">Java Dinamikus weboldal létrehozása</a></li>
 <li><a href="java.html#gyakorl%C3%A1s-gyakorl%C3%A1s-gyakorl%C3%A1s">Gyakorlás gyakorlás gyakorlás</a></li>
+<li><a href="java.html#egym%C3%A1sba-%C3%A1gyazott-loopokb%C3%B3l-kil%C3%A9p%C3%A9s">Egymásba ágyazott loopokból kilépés</a></li>
 <li><a href="java.html#map">Map</a>
 <ul>
 <li><a href="java.html#f%C5%91bb-k%C3%BCl%C3%B6nbs%C3%A9gek-%C3%B6sszefoglalva">Főbb különbségek összefoglalva</a></li>
@@ -2317,6 +2318,21 @@ Tomcat v10.1 Server at localhost
 <p>Az én megoldásaimat <a href="https://github.com/Nagraggini/start-projects/tree/main/java-console-exams/src">itt</a> találod.</p>
 <p>További feladatokat <a href="https://www.oktatas.hu/kozneveles/erettsegi/feladatsorok">itt</a> találsz.</p>
 <p><a href="https://infojegyzet.hu/vizsgafeladatok/szoftverfejleszto-interaktiv/teszt/?tesztkod=K31G-MZYR">Interaktív tesztek a programozáshoz</a></p>
+<p>https://leetcode.com/problemset/</p>
+<p>https://neetcode.io/</p>
+<a class="header" href="java.html#egymásba-ágyazott-loopokból-kilépés" id="egymásba-ágyazott-loopokból-kilépés"><h1>Egymásba ágyazott loopokból kilépés</h1></a>
+<pre><code class="language-java">outerLoop:
+for (int i = 0; i &lt; 10; i++) {
+
+    for (int j = 0; j &lt; 10; j++) {
+
+        if (valami) {
+            // Az összes, az outerLoop címke alatt lévő loopból kilép.
+            break outerLoop;
+        }
+    }
+}
+</code></pre>
 <a class="header" href="java.html#map" id="map"><h1>Map</h1></a>
 <a class="header" href="java.html#főbb-különbségek-összefoglalva" id="főbb-különbségek-összefoglalva"><h2>Főbb különbségek összefoglalva</h2></a>
 <pre><code class="language-bash">| Tulajdonság         | HashMap                             | LinkedHashMap                                  | TreeMap                                               |
@@ -2609,6 +2625,12 @@ Kell átadni paramétert.</p>
 
                 List&lt;Integer&gt; szamok = Arrays.asList(5, 10, 15, 20, 25, 10, 5);
 
+                // Növekvő sorrendbe rendezzük:
+                Collections.sort(szamok);
+
+                // Csökkenő sorrendbe rendezzük:
+                Collections.sort(szamok, Collections.reverseOrder());
+                
                 // Set használata (nagyon gyakori): duplikáció eltávolítása
                 Set&lt;Integer&gt; egyedi = new HashSet&lt;&gt;(szamok); // ismétlődések eltávolítása
                 System.out.println(egyedi);

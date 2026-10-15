@@ -63,7 +63,7 @@
         </script>
 
         <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li class="affix"><a href="README.html">Bevezető</a></li><li><a href="webfejlesztes-alapok.html"><strong>1.</strong> Webfejlesztés alapok</a></li><li><a href="html.html"><strong>2.</strong> HTML alapok</a></li><li><a href="css.html"><strong>3.</strong> CSS alapok</a></li><li><a href="javascript.html"><strong>4.</strong> JavaScript ismeretek</a></li><li><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong>5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong>6.</strong> Frontend Fejlesztő Checklista</a></li><li><a href="java.html"><strong>7.</strong> Java nyelv</a></li><li><a href="teszt-automatizalas.html"><strong>8.</strong> Teszt automatizálás</a></li><li><a href="java-unit-test.html"><strong>9.</strong> Java Unit Teszt</a></li><li><a href="playwright-hasznalata.html"><strong>10.</strong> Playwright</a></li><li><a href="spring-boot-bevezetese.html"><strong>11.</strong> Spring Boot</a></li><li><a href="kiberbiztonsag.html"><strong>12.</strong> Kiberbiztonság</a></li><li><a href="penzugy.html"><strong>13.</strong> Pénzügyi ismeretek (A fejezetben lesz szó a Rest API-s tőzsdei kereskedésről)</a></li><li><a href="english-learning.html"><strong>14.</strong> Angol nyelvtanulás</a></li><li><a href="mappa-struktura-es-github.html" class="active"><strong>15.</strong> Mappa struktúra és GitHub</a></li><li><a href="webfejlesztes-attekintes.html"><strong>16.</strong> Webfejlesztés áttekintés</a></li><li><a href="motivacio.html"><strong>17.</strong> Motiváció</a></li><li><a href="projekt-otletek.html"><strong>18.</strong> Projekt ötletek</a></li></ul>
+            <ul class="chapter"><li class="affix"><a href="README.html">Bevezető</a></li><li><a href="webfejlesztes-alapok.html"><strong>1.</strong> Webfejlesztés alapok</a></li><li><a href="html.html"><strong>2.</strong> HTML alapok</a></li><li><a href="css.html"><strong>3.</strong> CSS alapok</a></li><li><a href="javascript.html"><strong>4.</strong> JavaScript ismeretek</a></li><li><a href="uj-webes-projekt-letrehozasa-kozepszint.html"><strong>5.</strong> Automatizált webes projekt létrehozása - középhaladó szint</a></li><li><a href="frontend-fejleszto-felkeszules-ellenorzolista.html"><strong>6.</strong> Frontend Fejlesztő Checklista</a></li><li><a href="java.html"><strong>7.</strong> Java nyelv</a></li><li><a href="teszt-automatizalas.html"><strong>8.</strong> Teszt automatizálás</a></li><li><a href="java-unit-test.html"><strong>9.</strong> Java Unit Teszt</a></li><li><a href="rest-assured.html"><strong>10.</strong> REST Assured (REST API tesztelés)</a></li><li><a href="playwright.html"><strong>11.</strong> Playwright</a></li><li><a href="spring-boot-bevezetese.html"><strong>12.</strong> Spring Boot</a></li><li><a href="kiberbiztonsag.html"><strong>13.</strong> Kiberbiztonság</a></li><li><a href="penzugy.html"><strong>14.</strong> Pénzügyi ismeretek (A fejezetben lesz szó a Rest API-s tőzsdei kereskedésről)</a></li><li><a href="english-learning.html"><strong>15.</strong> Angol nyelvtanulás</a></li><li><a href="mappa-struktura-es-github.html" class="active"><strong>16.</strong> Mappa struktúra és GitHub</a></li><li><a href="webfejlesztes-attekintes.html"><strong>17.</strong> Webfejlesztés áttekintés</a></li><li><a href="motivacio.html"><strong>18.</strong> Motiváció</a></li><li><a href="projekt-otletek.html"><strong>19.</strong> Projekt ötletek</a></li></ul>
         </div>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -132,6 +132,31 @@
 <p>A Settingben állj át az új branchre és a Pages-en is.</p>
 <p>Pages -&gt; build and deployment -&gt; source -&gt; GitHub Actions -&gt; Static HTML
 A branch névre figyelj, hogy megfelelő legyen beállítva.</p>
+<a class="header" href="mappa-struktura-es-github.html#commit" id="commit"><h1>Commit</h1></a>
+<p>Verzió követés beállítása: `git init</p>
+<p>Új ág létrehozása: <code>git branch uj-branch-neve Ágak közti váltás:</code>git switch branch-neve</p>
+<p>Új branch létrehozása és azonnali átváltás: `git switch -c uj-branch-neve</p>
+<p>Új feladat megkezdésekor érdemes külön branchet létrehozni!</p>
+<p><strong>Commitolni, így kell terminálból:</strong>
+Kijelölés: <code>git add . Mentés:</code>git commit -m &quot;fix: &quot;
+Feltöltés: `git push</p>
+<p>Csekkolás: `git status</p>
+<p>Hogyan épül fel egy profi commit üzenet? (A szabály)
+A Conventional Commits szabvány szerint az üzenet így néz ki: &lt;típus&gt;: &lt;rövid leírás jelen időben&gt;</p>
+<p>A legfontosabb típusok (types), amiket egy tesztautomatizálónak ismernie kell:</p>
+<ul>
+<li>ci: Minden, ami a GitHub Actions-re, pipeline-okra, Dockerre vagy futtató környezetekre vonatkozik.</li>
+<li>feat: Új funkció (pl. új tesztosztály írása, új Page Object létrehozása).</li>
+<li>fix: Hibajavítás (pl. egy elbukó teszt javítása, rossz lokátor korrigálása, NullPointerException javítása).</li>
+<li>refactor: Kód szépítése, átírása anélkül, hogy a működés változna (pl. a Page Chaining bevezetése a meglévő tesztek alá).</li>
+<li>test: Tesztek hozzáadása vagy módosítása (ha nem az architektúra, hanem konkrétan a teszteset változik).</li>
+<li>chore: Apróbb karbantartások, amik nem módosítanak forráskódot (pl. .gitignore frissítése, verziószám emelése a pom.xml-ben).</li>
+</ul>
+<p>💡 Aranybölcsességek a commitokhoz:
+Írd jelen időben és felszólító módban (angolul): Ne azt írd, hogy fixed url bug, hanem hogy fix url bug. (Úgy gondolj rá,
+mintha a commit egy utasítás lenne a Git-nek: &quot;Ha ezt a commitot alkalmazod, az meg fogja javítani az URL bugot.&quot;)</p>
+<p>Kis kezdőbetű: A kettőspont utáni leírást kisbetűvel kezdjük, és a végére nem teszünk pontot.</p>
+<p>Fokozatosság: Ne egyszerre küldd be a CI-t, a refaktorálást és a javításokat! Érdemesebb 3-4 kisebb commitot csinálni egymás után, mert ha valami elromlik, sokkal könnyebb lesz visszagörgetni a kódot.</p>
 
                 </div>
 

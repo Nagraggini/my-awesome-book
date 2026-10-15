@@ -127,6 +127,7 @@
 </ul>
 </li>
 <li><a href="playwright.html#inspector-haszn%C3%A1lata">Inspector használata</a></li>
+<li><a href="playwright.html#fix-v%C3%A1rakoz%C3%A1s">Fix várakozás</a></li>
 <li><a href="playwright.html#n%C3%A9vn%C3%A9lk%C3%BCli-f%C3%BCggv%C3%A9ny-lambda-kifejez%C3%A9ssel">Névnélküli függvény lambda kifejezéssel</a></li>
 <li><a href="playwright.html#3-db-egyszer%C5%B1bb-login-test">3 db egyszerűbb Login Test</a></li>
 <li><a href="playwright.html#lok%C3%A1torok">Lokátorok</a></li>
@@ -140,13 +141,15 @@
 </li>
 <li><a href="playwright.html#2-hagyom%C3%A1nyos-lok%C3%A1torok">2. Hagyományos lokátorok</a>
 <ul>
-<li><a href="playwright.html#css-selector">CSS Selector</a>
+<li><a href="playwright.html#css-selector">CSS Selector</a></li>
+<li><a href="playwright.html#xpath">XPath</a>
 <ul>
-<li><a href="playwright.html#xpath">XPath</a></li>
 <li><a href="playwright.html#abszol%C3%BAt-xpath">Abszolút XPath</a></li>
 <li><a href="playwright.html#relat%C3%ADv-xpath">Relatív XPath</a></li>
 <li><a href="playwright.html#xpath-tengelyek-axes">XPath Tengelyek (Axes)</a></li>
 <li><a href="playwright.html#gyakorl%C3%B3-oldal">Gyakorló oldal</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="playwright.html#3-a-lok%C3%A1torok-sz%C5%B1k%C3%ADt%C3%A9se-%C3%A9s-l%C3%A1ncol%C3%A1sa-chaining--filtering">3. A lokátorok szűkítése és láncolása (Chaining &amp; Filtering)</a>
@@ -163,8 +166,6 @@
 <ul>
 <li><a href="playwright.html#sz%C5%B1r%C3%A9s-sz%C3%B6veg-alapj%C3%A1n-hastext">Szűrés szöveg alapján (<code>hasText</code>)</a></li>
 <li><a href="playwright.html#sz%C5%B1r%C3%A9s-bels%C5%91-elem-alapj%C3%A1n-has">Szűrés belső elem alapján (<code>has</code>)</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -463,6 +464,8 @@ exports.helloworld = function f2() {
 <code>npx playwright test --headed</code></p>
 <p>Ezzel megjelenik a Playwright Inspector ablak is:
 <code>npx playwright test --debug</code></p>
+<p>Megjelenik a trace ablak is a reportban, amivel könnyebb debuggolni:
+<code>npx playwright test --trace on</code></p>
 <p>Egy teszt futtatása (Nem kell végig írni a fájlt nevet elég a tabot és a jobbra nyilat nyomni.):
 <code>npx playwright test tests/my_first_test.spec.ts --headed</code></p>
 <p><code>npx playwright test tests/my_first_test.spec.ts</code></p>
@@ -662,6 +665,10 @@ test(&quot;Selectors Demo&quot;, async ({ page }) =&gt; {
   await page.locator('input:has-text(&quot;Login&quot;)').click();
 });
 </code></pre>
+<a class="header" href="playwright.html#fix-várakozás" id="fix-várakozás"><h1>Fix várakozás</h1></a>
+<p>Ezt nem ajánlatos használni, max teszteléshez.</p>
+<pre><code class="language-ts">await page.waitForTimeout(5000);
+</code></pre>
 <a class="header" href="playwright.html#névnélküli-függvény-lambda-kifejezéssel" id="névnélküli-függvény-lambda-kifejezéssel"><h1>Névnélküli függvény lambda kifejezéssel</h1></a>
 <p>A lambda kifejezés (más néven nyíl függvény vagy arrow function) nem más, mint egy gyorsítósáv a függvények írásához.</p>
 <p>Ahelyett, hogy hosszan gépelnél, egy () =&gt; szimbólummal azonnal létrehozhatsz egy függvényt.</p>
@@ -799,18 +806,18 @@ test.only(&quot;Demo Login Test 3&quot;, async ({ page }) =&gt; {
 </ul>
 <p>Ugyanazt a nyelvet használja, mint a CSS az elemek formázására:</p>
 <ul>
-<li><code>#</code> $\rightarrow$ ID alapján</li>
-<li><code>.</code> $\rightarrow$ osztály (class) alapján</li>
-<li><code>[attribútum='érték']</code> $\rightarrow$ attribútum alapján</li>
-<li><code>tag.class</code> $\rightarrow$ tag + osztály kombinációja</li>
-<li><code>&lt;szóköz&gt;</code> $\rightarrow$ leszármazott (bármilyen mélységben)</li>
-<li><code>&gt;</code> $\rightarrow$ közvetlen leszármazott (gyermek elem)</li>
-<li><code>*='&lt;érték&gt;'</code> $\rightarrow$ attribútumot tartalmazza (részleges egyezés)</li>
-<li><code>^=</code> $\rightarrow$ az attribútum értéke ezzel kezdődik</li>
-<li><code>$=</code> $\rightarrow$ az attribútum értéke ezzel végződik</li>
+<li><code>#</code> -&gt; ID alapján</li>
+<li><code>.</code> -&gt; osztály (class) alapján</li>
+<li><code>[attribútum='érték']</code> -&gt; attribútum alapján</li>
+<li><code>tag.class</code> -&gt; tag + osztály kombinációja</li>
+<li><code>&lt;szóköz&gt;</code> -&gt; leszármazott (bármilyen mélységben)</li>
+<li><code>&gt;</code> -&gt; közvetlen leszármazott (gyermek elem)</li>
+<li><code>*='&lt;érték&gt;'</code> -&gt; attribútumot tartalmazza (részleges egyezés)</li>
+<li><code>^=</code> -&gt; az attribútum értéke ezzel kezdődik</li>
+<li><code>$=</code> -&gt; az attribútum értéke ezzel végződik</li>
 </ul>
 <p><strong>Hátránya:</strong> Nem tud a DOM struktúrában visszafelé (felfelé, a szülő irányába) l</p>
-<a class="header" href="playwright.html#xpath" id="xpath"><h3>XPath</h3></a>
+<a class="header" href="playwright.html#xpath" id="xpath"><h2>XPath</h2></a>
 <a class="header" href="playwright.html#abszolút-xpath" id="abszolút-xpath"><h3>Abszolút XPath</h3></a>
 <p>Egyetlen / -el kezdődik.</p>
 <p><em>Működése:</em> A dokumentum legfelső gyökerétől (a gyökérelemtől) indul, és pontosan leköveti a teljes hierarchikus utat a célelemig.</p>
@@ -853,37 +860,37 @@ test.only(&quot;Demo Login Test 3&quot;, async ({ page }) =&gt; {
 <hr />
 <a class="header" href="playwright.html#gyakorló-oldal" id="gyakorló-oldal"><h3>Gyakorló oldal</h3></a>
 <p>https://testsmith-io.github.io/locator-game/</p>
-<a class="header" href="playwright.html#3-a-lokátorok-szűkítése-és-láncolása-chaining--filtering" id="3-a-lokátorok-szűkítése-és-láncolása-chaining--filtering"><h2>3. A lokátorok szűkítése és láncolása (Chaining &amp; Filtering)</h2></a>
+<a class="header" href="playwright.html#3-a-lokátorok-szűkítése-és-láncolása-chaining--filtering" id="3-a-lokátorok-szűkítése-és-láncolása-chaining--filtering"><h1>3. A lokátorok szűkítése és láncolása (Chaining &amp; Filtering)</h1></a>
 <p>Gyakran előfordul, hogy egy weboldal több azonos tulajdonságú elemet is tartalmaz (például egy lista elemei vagy egy táblázat sorai). Ilyenkor a lokátorokat tovább lehet szűkíteni a megfelelő metódusok egymás után fűzésével.</p>
-<a class="header" href="playwright.html#alapvető-láncolás-chaining" id="alapvető-láncolás-chaining"><h3>Alapvető láncolás (Chaining)</h3></a>
+<a class="header" href="playwright.html#alapvető-láncolás-chaining" id="alapvető-láncolás-chaining"><h2>Alapvető láncolás (Chaining)</h2></a>
 <p>A lokátorokat egyszerűen egymás után kötheted, így a Playwright a második elemet már csak az első elemen <strong>belül</strong> fogja keresni.</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('#nav-bar').getByRole('button', { name: 'Kijelentkezés' }).click();</code></li>
 </ul>
-<a class="header" href="playwright.html#lista-elemeinek-kiválasztása-index-alapján" id="lista-elemeinek-kiválasztása-index-alapján"><h3>Lista elemeinek kiválasztása index alapján</h3></a>
-<a class="header" href="playwright.html#first" id="first"><h4><code>.first()</code></h4></a>
+<a class="header" href="playwright.html#lista-elemeinek-kiválasztása-index-alapján" id="lista-elemeinek-kiválasztása-index-alapján"><h2>Lista elemeinek kiválasztása index alapján</h2></a>
+<a class="header" href="playwright.html#first" id="first"><h3><code>.first()</code></h3></a>
 <p>Csak a találati lista legelső elemét választja ki.</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('.product-item').first().click();</code></li>
 </ul>
-<a class="header" href="playwright.html#last" id="last"><h4><code>.last()</code></h4></a>
+<a class="header" href="playwright.html#last" id="last"><h3><code>.last()</code></h3></a>
 <p>Csak a találati lista legutolsó elemét választja ki.</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('.product-item').last().click();</code></li>
 </ul>
-<a class="header" href="playwright.html#nthindex" id="nthindex"><h4><code>.nth(index)</code></h4></a>
+<a class="header" href="playwright.html#nthindex" id="nthindex"><h3><code>.nth(index)</code></h3></a>
 <p>Sorszám alapján választja ki az elemet. <strong>Fontos:</strong> A számozás 0-tól indul, így a <code>.nth(0)</code> az első elemet, a <code>.nth(1)</code> a másodikat jelenti.</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('.product-item').nth(2).click();</code> <em>(A 3. termékre kattint)</em></li>
 </ul>
-<a class="header" href="playwright.html#haladó-szűrés-filter" id="haladó-szűrés-filter"><h3>Haladó szűrés: <code>.filter()</code></h3></a>
+<a class="header" href="playwright.html#haladó-szűrés-filter" id="haladó-szűrés-filter"><h2>Haladó szűrés: <code>.filter()</code></h2></a>
 <p>A <code>.filter()</code> metódus segítségével egy meglévő lokátor-listát szűkíthetsz tovább a belső tulajdonságaik alapján.</p>
-<a class="header" href="playwright.html#szűrés-szöveg-alapján-hastext" id="szűrés-szöveg-alapján-hastext"><h4>Szűrés szöveg alapján (<code>hasText</code>)</h4></a>
+<a class="header" href="playwright.html#szűrés-szöveg-alapján-hastext" id="szűrés-szöveg-alapján-hastext"><h3>Szűrés szöveg alapján (<code>hasText</code>)</h3></a>
 <p>Csak azokat az elemeket tartja meg, amelyek (vagy amelyek gyermekelemei) tartalmazzák a megadott szöveget.</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('.row').filter({ hasText: 'Aktív' }).click();</code></li>
 </ul>
-<a class="header" href="playwright.html#szűrés-belső-elem-alapján-has" id="szűrés-belső-elem-alapján-has"><h4>Szűrés belső elem alapján (<code>has</code>)</h4></a>
+<a class="header" href="playwright.html#szűrés-belső-elem-alapján-has" id="szűrés-belső-elem-alapján-has"><h3>Szűrés belső elem alapján (<code>has</code>)</h3></a>
 <p>Csak azokat az elemeket tartja meg, amelyek belsejében megtalálható egy másik, megadott lokátor (pl. egy gomb, ikon vagy jelölőnégyzet).</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('.card').filter({ has: page.getByRole('button', { name: 'Törlés' }) }).click();</code> <em>(Csak azt a kártyát választja ki, amin van Törlés gomb)</em></li>
@@ -1035,6 +1042,9 @@ test(&quot;Assertions Demo&quot;, async ({ page }) =&gt; {
   // text matches value or not
   await expect(page.locator(&quot;text=The Kitchen&quot;)).toHaveText(&quot;The Kitchen&quot;);
   await expect(page.locator(&quot;text=The Kitchen&quot;)).not.toHaveText(&quot;ABCD&quot;);
+
+  //contains text
+   await expect(page.locator(&quot;text=The Kitchen&quot;)).toContainText(&quot;C&quot;);
 
   // element attribute
   await expect(page.locator(&quot;text=The Kitchen&quot;)).toHaveAttribute(
