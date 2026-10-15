@@ -7758,13 +7758,15 @@ import io.restassured.response.Response;
 </li>
 <li><a href="playwright.html#2-hagyom%C3%A1nyos-lok%C3%A1torok">2. Hagyományos lokátorok</a>
 <ul>
-<li><a href="playwright.html#css-selector">CSS Selector</a>
+<li><a href="playwright.html#css-selector">CSS Selector</a></li>
+<li><a href="playwright.html#xpath">XPath</a>
 <ul>
-<li><a href="playwright.html#xpath">XPath</a></li>
 <li><a href="playwright.html#abszol%C3%BAt-xpath">Abszolút XPath</a></li>
 <li><a href="playwright.html#relat%C3%ADv-xpath">Relatív XPath</a></li>
 <li><a href="playwright.html#xpath-tengelyek-axes">XPath Tengelyek (Axes)</a></li>
 <li><a href="playwright.html#gyakorl%C3%B3-oldal">Gyakorló oldal</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="playwright.html#3-a-lok%C3%A1torok-sz%C5%B1k%C3%ADt%C3%A9se-%C3%A9s-l%C3%A1ncol%C3%A1sa-chaining--filtering">3. A lokátorok szűkítése és láncolása (Chaining &amp; Filtering)</a>
@@ -7781,8 +7783,6 @@ import io.restassured.response.Response;
 <ul>
 <li><a href="playwright.html#sz%C5%B1r%C3%A9s-sz%C3%B6veg-alapj%C3%A1n-hastext">Szűrés szöveg alapján (<code>hasText</code>)</a></li>
 <li><a href="playwright.html#sz%C5%B1r%C3%A9s-bels%C5%91-elem-alapj%C3%A1n-has">Szűrés belső elem alapján (<code>has</code>)</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -8423,18 +8423,18 @@ test.only("Demo Login Test 3", async ({ page }) =&gt; {
 </ul>
 <p>Ugyanazt a nyelvet használja, mint a CSS az elemek formázására:</p>
 <ul>
-<li><code>#</code> $\rightarrow$ ID alapján</li>
-<li><code>.</code> $\rightarrow$ osztály (class) alapján</li>
-<li><code>[attribútum='érték']</code> $\rightarrow$ attribútum alapján</li>
-<li><code>tag.class</code> $\rightarrow$ tag + osztály kombinációja</li>
-<li><code>&lt;szóköz&gt;</code> $\rightarrow$ leszármazott (bármilyen mélységben)</li>
-<li><code>&gt;</code> $\rightarrow$ közvetlen leszármazott (gyermek elem)</li>
-<li><code>*='&lt;érték&gt;'</code> $\rightarrow$ attribútumot tartalmazza (részleges egyezés)</li>
-<li><code>^=</code> $\rightarrow$ az attribútum értéke ezzel kezdődik</li>
-<li><code>$=</code> $\rightarrow$ az attribútum értéke ezzel végződik</li>
+<li><code>#</code> -&gt; ID alapján</li>
+<li><code>.</code> -&gt; osztály (class) alapján</li>
+<li><code>[attribútum='érték']</code> -&gt; attribútum alapján</li>
+<li><code>tag.class</code> -&gt; tag + osztály kombinációja</li>
+<li><code>&lt;szóköz&gt;</code> -&gt; leszármazott (bármilyen mélységben)</li>
+<li><code>&gt;</code> -&gt; közvetlen leszármazott (gyermek elem)</li>
+<li><code>*='&lt;érték&gt;'</code> -&gt; attribútumot tartalmazza (részleges egyezés)</li>
+<li><code>^=</code> -&gt; az attribútum értéke ezzel kezdődik</li>
+<li><code>$=</code> -&gt; az attribútum értéke ezzel végződik</li>
 </ul>
 <p><strong>Hátránya:</strong> Nem tud a DOM struktúrában visszafelé (felfelé, a szülő irányába) l</p>
-<h3 id="xpath"><a class="header" href="#xpath">XPath</a></h3>
+<h2 id="xpath"><a class="header" href="#xpath">XPath</a></h2>
 <h3 id="abszolút-xpath"><a class="header" href="#abszolút-xpath">Abszolút XPath</a></h3>
 <p>Egyetlen / -el kezdődik.</p>
 <p><em>Működése:</em> A dokumentum legfelső gyökerétől (a gyökérelemtől) indul, és pontosan leköveti a teljes hierarchikus utat a célelemig.</p>
@@ -8478,37 +8478,37 @@ test.only("Demo Login Test 3", async ({ page }) =&gt; {
 <hr />
 <h3 id="gyakorló-oldal"><a class="header" href="#gyakorló-oldal">Gyakorló oldal</a></h3>
 <p>https://testsmith-io.github.io/locator-game/</p>
-<h2 id="3-a-lokátorok-szűkítése-és-láncolása-chaining--filtering"><a class="header" href="#3-a-lokátorok-szűkítése-és-láncolása-chaining--filtering">3. A lokátorok szűkítése és láncolása (Chaining &amp; Filtering)</a></h2>
+<h1 id="3-a-lokátorok-szűkítése-és-láncolása-chaining--filtering"><a class="header" href="#3-a-lokátorok-szűkítése-és-láncolása-chaining--filtering">3. A lokátorok szűkítése és láncolása (Chaining &amp; Filtering)</a></h1>
 <p>Gyakran előfordul, hogy egy weboldal több azonos tulajdonságú elemet is tartalmaz (például egy lista elemei vagy egy táblázat sorai). Ilyenkor a lokátorokat tovább lehet szűkíteni a megfelelő metódusok egymás után fűzésével.</p>
-<h3 id="alapvető-láncolás-chaining"><a class="header" href="#alapvető-láncolás-chaining">Alapvető láncolás (Chaining)</a></h3>
+<h2 id="alapvető-láncolás-chaining"><a class="header" href="#alapvető-láncolás-chaining">Alapvető láncolás (Chaining)</a></h2>
 <p>A lokátorokat egyszerűen egymás után kötheted, így a Playwright a második elemet már csak az első elemen <strong>belül</strong> fogja keresni.</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('#nav-bar').getByRole('button', { name: 'Kijelentkezés' }).click();</code></li>
 </ul>
-<h3 id="lista-elemeinek-kiválasztása-index-alapján"><a class="header" href="#lista-elemeinek-kiválasztása-index-alapján">Lista elemeinek kiválasztása index alapján</a></h3>
-<h4 id="first"><a class="header" href="#first"><code>.first()</code></a></h4>
+<h2 id="lista-elemeinek-kiválasztása-index-alapján"><a class="header" href="#lista-elemeinek-kiválasztása-index-alapján">Lista elemeinek kiválasztása index alapján</a></h2>
+<h3 id="first"><a class="header" href="#first"><code>.first()</code></a></h3>
 <p>Csak a találati lista legelső elemét választja ki.</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('.product-item').first().click();</code></li>
 </ul>
-<h4 id="last"><a class="header" href="#last"><code>.last()</code></a></h4>
+<h3 id="last"><a class="header" href="#last"><code>.last()</code></a></h3>
 <p>Csak a találati lista legutolsó elemét választja ki.</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('.product-item').last().click();</code></li>
 </ul>
-<h4 id="nthindex"><a class="header" href="#nthindex"><code>.nth(index)</code></a></h4>
+<h3 id="nthindex"><a class="header" href="#nthindex"><code>.nth(index)</code></a></h3>
 <p>Sorszám alapján választja ki az elemet. <strong>Fontos:</strong> A számozás 0-tól indul, így a <code>.nth(0)</code> az első elemet, a <code>.nth(1)</code> a másodikat jelenti.</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('.product-item').nth(2).click();</code> <em>(A 3. termékre kattint)</em></li>
 </ul>
-<h3 id="haladó-szűrés-filter"><a class="header" href="#haladó-szűrés-filter">Haladó szűrés: <code>.filter()</code></a></h3>
+<h2 id="haladó-szűrés-filter"><a class="header" href="#haladó-szűrés-filter">Haladó szűrés: <code>.filter()</code></a></h2>
 <p>A <code>.filter()</code> metódus segítségével egy meglévő lokátor-listát szűkíthetsz tovább a belső tulajdonságaik alapján.</p>
-<h4 id="szűrés-szöveg-alapján-hastext"><a class="header" href="#szűrés-szöveg-alapján-hastext">Szűrés szöveg alapján (<code>hasText</code>)</a></h4>
+<h3 id="szűrés-szöveg-alapján-hastext"><a class="header" href="#szűrés-szöveg-alapján-hastext">Szűrés szöveg alapján (<code>hasText</code>)</a></h3>
 <p>Csak azokat az elemeket tartja meg, amelyek (vagy amelyek gyermekelemei) tartalmazzák a megadott szöveget.</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('.row').filter({ hasText: 'Aktív' }).click();</code></li>
 </ul>
-<h4 id="szűrés-belső-elem-alapján-has"><a class="header" href="#szűrés-belső-elem-alapján-has">Szűrés belső elem alapján (<code>has</code>)</a></h4>
+<h3 id="szűrés-belső-elem-alapján-has"><a class="header" href="#szűrés-belső-elem-alapján-has">Szűrés belső elem alapján (<code>has</code>)</a></h3>
 <p>Csak azokat az elemeket tartja meg, amelyek belsejében megtalálható egy másik, megadott lokátor (pl. egy gomb, ikon vagy jelölőnégyzet).</p>
 <ul>
 <li><strong>Példa:</strong> <code>await page.locator('.card').filter({ has: page.getByRole('button', { name: 'Törlés' }) }).click();</code> <em>(Csak azt a kártyát választja ki, amin van Törlés gomb)</em></li>
