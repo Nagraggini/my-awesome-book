@@ -116,6 +116,9 @@ Nem gond, ha elsőnek spagetti kódot csinálsz a lényeg, hogy kódolj és ne c
 * [Flexbox Defense](http://www.flexboxdefense.com/)  
   Flexbox tanulás tower defense játékkal.
 
+* [Flexbox Zombies](https://mastery.games/flexboxzombies/)  
+  Flexbox tanulás zombies játékkal.
+
 * [Grid Garden](https://cssgridgarden.com/#hu)  
   CSS Grid gyakorlás.
 
