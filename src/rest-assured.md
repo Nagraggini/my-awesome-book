@@ -669,6 +669,13 @@ Album album=given().when().get("/albums/25").then().log().ifValidationFails()
 assertEquals(3,album.getUserId());
 assertEquals(25,album.getId());
 assertEquals("vero maxime id possimus sunt neque et consequatur",album.getTitle());	
+
+// Ez kell, ha azt csekkoljuk, hogy a lista, vagy az objektum nem null:
+assertNotNull(album);
+assertNotNull(album.getId());
+
+//A isBlank() az üres és a kizárólag whitespace karakterekből álló szöveget is elutasítja.
+assertFalse(album.getTitle().isBlank());
 ```
 
 Keresés és az alapján történő törlés: 
