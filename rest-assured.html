@@ -782,6 +782,13 @@ A User.class a POJO osztályból jön.</p>
 assertEquals(3,album.getUserId());
 assertEquals(25,album.getId());
 assertEquals("vero maxime id possimus sunt neque et consequatur",album.getTitle());	
+
+// Ez kell, ha azt csekkoljuk, hogy a lista, vagy az objektum nem null:
+assertNotNull(album);
+assertNotNull(album.getId());
+
+//A isBlank() az üres és a kizárólag whitespace karakterekből álló szöveget is elutasítja.
+assertFalse(album.getTitle().isBlank());
 </code></pre>
 <p>Keresés és az alapján történő törlés:</p>
 <pre><code class="language-java">		String albumTitle = "quidem molestiae enim";
