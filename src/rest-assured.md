@@ -23,6 +23,8 @@
 - [Legfontosabb importok](#legfontosabb-importok)
 	- [Hamcrest Matcherek Rest Assured-ben](#hamcrest-matcherek-rest-assured-ben)
 	- [Leggyakrabban használtak](#leggyakrabban-használtak)
+- [Schema validáció hazsnálata](#schema-validáció-hazsnálata)
+	- [Schema json](#schema-json)
 
 
 # Rest Assured alapjai (REST API tesztelés)
@@ -170,6 +172,11 @@ public class BaseApiTest {
 				.given()
 					.accept(ContentType.JSON) // json formátumú választ várunk 
 					.contentType(ContentType.JSON); // json formátumban küldjük a kérést
+
+		/*
+		Ha egy teszt elbukik (pl. nem a várt státuszkódot kapja), ez a beállítás automatikusan kiírja a konzolra a KÉRÉST (Request) ÉS a VÁLASZT (Response) is a teljes részletességükben.
+		*/
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 	}
 }
 ```
@@ -532,7 +539,7 @@ A kérés előkészítése.
 	// A query paramétert nem kell beleírni az endpointba:
 	// GET /comments?postId=1
 	given()
-		.queryParam("postId", 1)
+		.queryParam("postId", 1) // Lehet akár kettőre is szűrni .queryParam("postId", 1, 2)
 		.queryParam("email", "test@test.com")
 	.when()
 		.get("/comments");
@@ -948,3 +955,77 @@ class DeletePhotoTest extends BaseApiTest {
 
 }
 ```
+# Schema validáció hazsnálata
+
+Ez egy nagyon hasznos kiegészítő, mert nemcsak azt tudod ellenőrizni, hogy milyen értékek érkeznek vissza, hanem azt is, hogy a JSON válasz szerkezete megfelel-e az előre meghatározott elvárásoknak.
+
+A JSON Schema segítségével viszont azt is ellenőrizheted, hogy:
+- Létezik-e az id mező?
+- Az id egész szám-e?
+- A title szöveges típusú-e?
+- Az completed mező megfelelő formátumú-e?
+- Minden kötelező mező szerepel-e a válaszban?
+
+A pom.xml-ben a dependecies részre ezt másold be:
+```bash
+     <!-- JSON Schema validation-->
+		<dependency>
+		    <groupId>io.rest-assured</groupId>
+		    <artifactId>json-schema-validator</artifactId>
+		    <version>5.5.0</version>
+		    <scope>test</scope>
+		</dependency>
+```
+
+## Schema json
+
+Példa:
+Ide hozd létre: src/test/resources/schemas/todos-schema.json
+
+Json tartalma:
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": [
+    "userId",
+    "id",
+    "title",
+    "completed"
+  ],
+  "properties": {
+    "userId": {
+      "type": "integer"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "completed": {
+      "type": "boolean"
+    }
+  }
+}
+```
+
+Így használd a tesztben:
+```java
+// Szükséges import
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
+@Test
+void getPhotoSchemaTest() {
+
+    given()
+    .when()
+        .get("/todos/1")
+    .then()
+        .statusCode(200)
+        .body(matchesJsonSchemaInClasspath("schemas/photo-schema.json"));
+}
+```
+
+A REST Assured megkeresi a schema fájlt a src/test/resources mappában, 
+és összehasonlítja vele az API válaszát.

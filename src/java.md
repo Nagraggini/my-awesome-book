@@ -229,7 +229,7 @@ Backend: Spring Boot (Java)
 
 A lenti kép magyarázata a Spring Boot kezdőknek szóló fájlban található. [Itt](https://github.com/Nagraggini/springboot-for-beginners/blob/main/HowToDoIt_Hungarian_version.md)
 
-![alt text](assets/SzoftverarchitekturaEsFogalmiOsszefoglalo.png)
+![alt text](assets/Java/SzoftverarchitekturaEsFogalmiOsszefoglalo.png)
 
 # Általános infók
 
@@ -593,7 +593,7 @@ Ha a byte előjeles (signed), akkor a tartománya –128…+127.
 
 A lentiképen látszik, hogy a felső fekete hátterű értékeket kell megszorozni az alattuk lévőkkel.
 
-![alt text](assets/Binary_Converter.png)
+![alt text](assets/Java/Binary_Converter.png)
 
 # Objektum orientált programozás (OOP)
 
@@ -1624,7 +1624,7 @@ FIFO – First In, First Out „Aki először jött, először megy.”
 LIFO – First In, Last Out „Aki először jött, utoljára megy.”  
 Mint a nyomtatópapíroknál, ha eggyesével rakod be a papírokat a tárolóba. Íhy működik a verem, vagyis stack.
 
-![alt text](/assets/Stacks_and_Queues.png)
+![alt text](/assets/Java/Stacks_and_Queues.png)
 
 Példa:
 
@@ -1661,7 +1661,7 @@ A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz
 Maga az Objektum a Heapben tárolódik, a stack-ban, csak hivatkozunk rá.  
 Minden, ami benne van egy osztályban az az objektum része, vagyis a Heap-ben tárolódik, az osztályváltozók (int, String) is.
 
-![alt text](assets/Stack_and_Heap.png)
+![alt text](assets/Java/Stack_and_Heap.png)
 
 Példa:
 
@@ -2256,7 +2256,7 @@ Mindenhonnan elérhető (bármely package-ből, bármely osztályból).
 **Default / package-private:**  
  Ha nincs kiírva. Csak az adott package-en belül elérhető, még subclass esetén sem. NEM protected.
 
-![alt text](assets/class_types.png)
+![alt text](assets/Java/class_types.png)
 
 ## Diagramok
 
@@ -3389,9 +3389,9 @@ A collect() segítségével összegyűjthetjük az adatokat.
 list.stream().filter(...).map(...).collect(...)
 ```
 
-![alt text](assets/Java8StreamsCheatSheet.png)
+![alt text](assets/Java/Java8StreamsCheatSheet.png)
 
-![alt text](assets/StreamPipeline.png)
+![alt text](assets/Java/StreamPipeline.png)
 
 ```java
 List<String> nevek =
