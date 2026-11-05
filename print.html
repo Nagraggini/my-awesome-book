@@ -3749,7 +3749,7 @@ Spring Boot Ismeretek II.</p>
 <p>Frontend: React (JavaScript)<br />
 Backend: Spring Boot (Java)</p>
 <p>A lenti kép magyarázata a Spring Boot kezdőknek szóló fájlban található. <a href="https://github.com/Nagraggini/springboot-for-beginners/blob/main/HowToDoIt_Hungarian_version.md">Itt</a></p>
-<p><img src="assets/SzoftverarchitekturaEsFogalmiOsszefoglalo.png" alt="alt text" /></p>
+<p><img src="assets/Java/SzoftverarchitekturaEsFogalmiOsszefoglalo.png" alt="alt text" /></p>
 <h1 id="Általános-infók"><a class="header" href="#Általános-infók">Általános infók</a></h1>
 <p>A Java egy általános célú, objektumorientált programozási nyelv.
 Több operációs rendszeren is futtatható (Windows, macOS, Linux stb.).</p>
@@ -4024,7 +4024,7 @@ var cars = new ArrayList&lt;String&gt;();
 <p>1 byte = 8 bit, tehát 0–255 közötti egész számot lehet vele ábrázolni előjel nélküli (unsigned) formában.</p>
 <p>Ha a byte előjeles (signed), akkor a tartománya –128…+127.</p>
 <p>A lentiképen látszik, hogy a felső fekete hátterű értékeket kell megszorozni az alattuk lévőkkel.</p>
-<p><img src="assets/Binary_Converter.png" alt="alt text" /></p>
+<p><img src="assets/Java/Binary_Converter.png" alt="alt text" /></p>
 <h1 id="objektum-orientált-programozás-oop"><a class="header" href="#objektum-orientált-programozás-oop">Objektum orientált programozás (OOP)</a></h1>
 <p>Távoli példa: Két nyelv. Az angol 8 betűvel, a magyar 5 betűvel fejezi ki ugyanazt.</p>
 <p>You <code>drink</code>. | Isz<code>ol</code>.</p>
@@ -4836,7 +4836,7 @@ System.out.println((int) -3.9);  // -3
 <p>FIFO – First In, First Out „Aki először jött, először megy.”</p>
 <p>LIFO – First In, Last Out „Aki először jött, utoljára megy.”<br />
 Mint a nyomtatópapíroknál, ha eggyesével rakod be a papírokat a tárolóba. Íhy működik a verem, vagyis stack.</p>
-<p><img src="/assets/Stacks_and_Queues.png" alt="alt text" /></p>
+<p><img src="/assets/Java/Stacks_and_Queues.png" alt="alt text" /></p>
 <p>Példa:</p>
 <pre><code class="language-java">    public class ElsoProject {
         public static void main(String[] args) {
@@ -4863,7 +4863,7 @@ LIFO (Last In, First Out) elven működik – az utolsó elem, amit betettünk, 
 A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat. Itt tárolódik a tényleges adat/objektum.</p>
 <p>Maga az Objektum a Heapben tárolódik, a stack-ban, csak hivatkozunk rá.<br />
 Minden, ami benne van egy osztályban az az objektum része, vagyis a Heap-ben tárolódik, az osztályváltozók (int, String) is.</p>
-<p><img src="assets/Stack_and_Heap.png" alt="alt text" /></p>
+<p><img src="assets/Java/Stack_and_Heap.png" alt="alt text" /></p>
 <p>Példa:</p>
 <pre><code class="language-java">    public static void main(String[] args) {
         Object o1 = new Object();
@@ -5336,7 +5336,7 @@ Csak az adott osztályon belül elérhető. Még a leszármazott osztály sem é
 Nem access modifier, hanem osztály/metódus jellemző. Nem lehet példányosítani, de kiterjeszteni lehet (extends).</p>
 <p><strong>Default / package-private:</strong><br />
 Ha nincs kiírva. Csak az adott package-en belül elérhető, még subclass esetén sem. NEM protected.</p>
-<p><img src="assets/class_types.png" alt="alt text" /></p>
+<p><img src="assets/Java/class_types.png" alt="alt text" /></p>
 <h2 id="diagramok"><a class="header" href="#diagramok">Diagramok</a></h2>
 <p>Létre lehet hozni UML, vagy osztály diagramot. Hasonlít egy adatbázis kapcsolati ábrára, de nem ugyanaz (viselkedést is mutat).</p>
 <p>Has it. Vagy Is it. Nem mindegyik, hogy mi-miből van leszármaztatva.</p>
@@ -6259,8 +6259,8 @@ numbers.stream().max(Integer::compare)
 <p>1 soros “cheat sheet”</p>
 <pre><code class="language-java">list.stream().filter(...).map(...).collect(...)
 </code></pre>
-<p><img src="assets/Java8StreamsCheatSheet.png" alt="alt text" /></p>
-<p><img src="assets/StreamPipeline.png" alt="alt text" /></p>
+<p><img src="assets/Java/Java8StreamsCheatSheet.png" alt="alt text" /></p>
+<p><img src="assets/Java/StreamPipeline.png" alt="alt text" /></p>
 <pre><code class="language-java">List&lt;String&gt; nevek =
         people.stream()
               .map(Person::getName)
@@ -7011,6 +7011,11 @@ assertEquals("Negatív szám nem megengedett!", exception.getMessage());
 <li><a href="rest-assured.html#leggyakrabban-haszn%C3%A1ltak">Leggyakrabban használtak</a></li>
 </ul>
 </li>
+<li><a href="rest-assured.html#schema-valid%C3%A1ci%C3%B3-hazsn%C3%A1lata">Schema validáció hazsnálata</a>
+<ul>
+<li><a href="rest-assured.html#schema-json">Schema json</a></li>
+</ul>
+</li>
 </ul>
 <h1 id="rest-assured-alapjai-rest-api-tesztelés"><a class="header" href="#rest-assured-alapjai-rest-api-tesztelés">Rest Assured alapjai (REST API tesztelés)</a></h1>
 <p><a href="https://www.youtube.com/watch?v=vgMyJhrMV0o&amp;list=PLhW3qG5bs-L8xPrBwDv66cTMlFNeUPdJx&amp;index=5">REST Assured Beginner Tutorial</a></p>
@@ -7141,6 +7146,11 @@ public class BaseApiTest {
 				.given()
 					.accept(ContentType.JSON) // json formátumú választ várunk 
 					.contentType(ContentType.JSON); // json formátumban küldjük a kérést
+
+		/*
+		Ha egy teszt elbukik (pl. nem a várt státuszkódot kapja), ez a beállítás automatikusan kiírja a konzolra a KÉRÉST (Request) ÉS a VÁLASZT (Response) is a teljes részletességükben.
+		*/
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 	}
 }
 </code></pre>
@@ -7461,7 +7471,7 @@ public class User {
 	// A query paramétert nem kell beleírni az endpointba:
 	// GET /comments?postId=1
 	given()
-		.queryParam("postId", 1)
+		.queryParam("postId", 1) // Lehet akár kettőre is szűrni .queryParam("postId", 1, 2)
 		.queryParam("email", "test@test.com")
 	.when()
 		.get("/comments");
@@ -7839,6 +7849,71 @@ class DeletePhotoTest extends BaseApiTest {
 
 }
 </code></pre>
+<h1 id="schema-validáció-hazsnálata"><a class="header" href="#schema-validáció-hazsnálata">Schema validáció hazsnálata</a></h1>
+<p>Ez egy nagyon hasznos kiegészítő, mert nemcsak azt tudod ellenőrizni, hogy milyen értékek érkeznek vissza, hanem azt is, hogy a JSON válasz szerkezete megfelel-e az előre meghatározott elvárásoknak.</p>
+<p>A JSON Schema segítségével viszont azt is ellenőrizheted, hogy:</p>
+<ul>
+<li>Létezik-e az id mező?</li>
+<li>Az id egész szám-e?</li>
+<li>A title szöveges típusú-e?</li>
+<li>Az completed mező megfelelő formátumú-e?</li>
+<li>Minden kötelező mező szerepel-e a válaszban?</li>
+</ul>
+<p>A pom.xml-ben a dependecies részre ezt másold be:</p>
+<pre><code class="language-bash">     &lt;!-- JSON Schema validation--&gt;
+		&lt;dependency&gt;
+		    &lt;groupId&gt;io.rest-assured&lt;/groupId&gt;
+		    &lt;artifactId&gt;json-schema-validator&lt;/artifactId&gt;
+		    &lt;version&gt;5.5.0&lt;/version&gt;
+		    &lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+</code></pre>
+<h2 id="schema-json"><a class="header" href="#schema-json">Schema json</a></h2>
+<p>Példa:
+Ide hozd létre: src/test/resources/schemas/todos-schema.json</p>
+<p>Json tartalma:</p>
+<pre><code class="language-json">{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": [
+    "userId",
+    "id",
+    "title",
+    "completed"
+  ],
+  "properties": {
+    "userId": {
+      "type": "integer"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "completed": {
+      "type": "boolean"
+    }
+  }
+}
+</code></pre>
+<p>Így használd a tesztben:</p>
+<pre><code class="language-java">// Szükséges import
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
+@Test
+void getPhotoSchemaTest() {
+
+    given()
+    .when()
+        .get("/todos/1")
+    .then()
+        .statusCode(200)
+        .body(matchesJsonSchemaInClasspath("schemas/photo-schema.json"));
+}
+</code></pre>
+<p>A REST Assured megkeresi a schema fájlt a src/test/resources mappában,
+és összehasonlítja vele az API válaszát.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tartalomjegyzék-5"><a class="header" href="#tartalomjegyzék-5">Tartalomjegyzék</a></h1>
 <ul>
 <li><a href="playwright.html#tartalomjegyz%C3%A9k">Tartalomjegyzék</a></li>

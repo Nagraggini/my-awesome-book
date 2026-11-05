@@ -511,7 +511,7 @@ Spring Boot Ismeretek II.</p>
 <p>Frontend: React (JavaScript)<br />
 Backend: Spring Boot (Java)</p>
 <p>A lenti kép magyarázata a Spring Boot kezdőknek szóló fájlban található. <a href="https://github.com/Nagraggini/springboot-for-beginners/blob/main/HowToDoIt_Hungarian_version.md">Itt</a></p>
-<p><img src="assets/SzoftverarchitekturaEsFogalmiOsszefoglalo.png" alt="alt text" /></p>
+<p><img src="assets/Java/SzoftverarchitekturaEsFogalmiOsszefoglalo.png" alt="alt text" /></p>
 <h1 id="Általános-infók"><a class="header" href="#Általános-infók">Általános infók</a></h1>
 <p>A Java egy általános célú, objektumorientált programozási nyelv.
 Több operációs rendszeren is futtatható (Windows, macOS, Linux stb.).</p>
@@ -786,7 +786,7 @@ var cars = new ArrayList&lt;String&gt;();
 <p>1 byte = 8 bit, tehát 0–255 közötti egész számot lehet vele ábrázolni előjel nélküli (unsigned) formában.</p>
 <p>Ha a byte előjeles (signed), akkor a tartománya –128…+127.</p>
 <p>A lentiképen látszik, hogy a felső fekete hátterű értékeket kell megszorozni az alattuk lévőkkel.</p>
-<p><img src="assets/Binary_Converter.png" alt="alt text" /></p>
+<p><img src="assets/Java/Binary_Converter.png" alt="alt text" /></p>
 <h1 id="objektum-orientált-programozás-oop"><a class="header" href="#objektum-orientált-programozás-oop">Objektum orientált programozás (OOP)</a></h1>
 <p>Távoli példa: Két nyelv. Az angol 8 betűvel, a magyar 5 betűvel fejezi ki ugyanazt.</p>
 <p>You <code>drink</code>. | Isz<code>ol</code>.</p>
@@ -1598,7 +1598,7 @@ System.out.println((int) -3.9);  // -3
 <p>FIFO – First In, First Out „Aki először jött, először megy.”</p>
 <p>LIFO – First In, Last Out „Aki először jött, utoljára megy.”<br />
 Mint a nyomtatópapíroknál, ha eggyesével rakod be a papírokat a tárolóba. Íhy működik a verem, vagyis stack.</p>
-<p><img src="/assets/Stacks_and_Queues.png" alt="alt text" /></p>
+<p><img src="/assets/Java/Stacks_and_Queues.png" alt="alt text" /></p>
 <p>Példa:</p>
 <pre><code class="language-java">    public class ElsoProject {
         public static void main(String[] args) {
@@ -1625,7 +1625,7 @@ LIFO (Last In, First Out) elven működik – az utolsó elem, amit betettünk, 
 A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat. Itt tárolódik a tényleges adat/objektum.</p>
 <p>Maga az Objektum a Heapben tárolódik, a stack-ban, csak hivatkozunk rá.<br />
 Minden, ami benne van egy osztályban az az objektum része, vagyis a Heap-ben tárolódik, az osztályváltozók (int, String) is.</p>
-<p><img src="assets/Stack_and_Heap.png" alt="alt text" /></p>
+<p><img src="assets/Java/Stack_and_Heap.png" alt="alt text" /></p>
 <p>Példa:</p>
 <pre><code class="language-java">    public static void main(String[] args) {
         Object o1 = new Object();
@@ -2098,7 +2098,7 @@ Csak az adott osztályon belül elérhető. Még a leszármazott osztály sem é
 Nem access modifier, hanem osztály/metódus jellemző. Nem lehet példányosítani, de kiterjeszteni lehet (extends).</p>
 <p><strong>Default / package-private:</strong><br />
 Ha nincs kiírva. Csak az adott package-en belül elérhető, még subclass esetén sem. NEM protected.</p>
-<p><img src="assets/class_types.png" alt="alt text" /></p>
+<p><img src="assets/Java/class_types.png" alt="alt text" /></p>
 <h2 id="diagramok"><a class="header" href="#diagramok">Diagramok</a></h2>
 <p>Létre lehet hozni UML, vagy osztály diagramot. Hasonlít egy adatbázis kapcsolati ábrára, de nem ugyanaz (viselkedést is mutat).</p>
 <p>Has it. Vagy Is it. Nem mindegyik, hogy mi-miből van leszármaztatva.</p>
@@ -3021,8 +3021,8 @@ numbers.stream().max(Integer::compare)
 <p>1 soros “cheat sheet”</p>
 <pre><code class="language-java">list.stream().filter(...).map(...).collect(...)
 </code></pre>
-<p><img src="assets/Java8StreamsCheatSheet.png" alt="alt text" /></p>
-<p><img src="assets/StreamPipeline.png" alt="alt text" /></p>
+<p><img src="assets/Java/Java8StreamsCheatSheet.png" alt="alt text" /></p>
+<p><img src="assets/Java/StreamPipeline.png" alt="alt text" /></p>
 <pre><code class="language-java">List&lt;String&gt; nevek =
         people.stream()
               .map(Person::getName)

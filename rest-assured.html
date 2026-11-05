@@ -213,6 +213,11 @@
 <li><a href="#leggyakrabban-haszn%C3%A1ltak">Leggyakrabban használtak</a></li>
 </ul>
 </li>
+<li><a href="#schema-valid%C3%A1ci%C3%B3-hazsn%C3%A1lata">Schema validáció hazsnálata</a>
+<ul>
+<li><a href="#schema-json">Schema json</a></li>
+</ul>
+</li>
 </ul>
 <h1 id="rest-assured-alapjai-rest-api-tesztelés"><a class="header" href="#rest-assured-alapjai-rest-api-tesztelés">Rest Assured alapjai (REST API tesztelés)</a></h1>
 <p><a href="https://www.youtube.com/watch?v=vgMyJhrMV0o&amp;list=PLhW3qG5bs-L8xPrBwDv66cTMlFNeUPdJx&amp;index=5">REST Assured Beginner Tutorial</a></p>
@@ -343,6 +348,11 @@ public class BaseApiTest {
 				.given()
 					.accept(ContentType.JSON) // json formátumú választ várunk 
 					.contentType(ContentType.JSON); // json formátumban küldjük a kérést
+
+		/*
+		Ha egy teszt elbukik (pl. nem a várt státuszkódot kapja), ez a beállítás automatikusan kiírja a konzolra a KÉRÉST (Request) ÉS a VÁLASZT (Response) is a teljes részletességükben.
+		*/
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 	}
 }
 </code></pre>
@@ -663,7 +673,7 @@ public class User {
 	// A query paramétert nem kell beleírni az endpointba:
 	// GET /comments?postId=1
 	given()
-		.queryParam("postId", 1)
+		.queryParam("postId", 1) // Lehet akár kettőre is szűrni .queryParam("postId", 1, 2)
 		.queryParam("email", "test@test.com")
 	.when()
 		.get("/comments");
@@ -1041,6 +1051,71 @@ class DeletePhotoTest extends BaseApiTest {
 
 }
 </code></pre>
+<h1 id="schema-validáció-hazsnálata"><a class="header" href="#schema-validáció-hazsnálata">Schema validáció hazsnálata</a></h1>
+<p>Ez egy nagyon hasznos kiegészítő, mert nemcsak azt tudod ellenőrizni, hogy milyen értékek érkeznek vissza, hanem azt is, hogy a JSON válasz szerkezete megfelel-e az előre meghatározott elvárásoknak.</p>
+<p>A JSON Schema segítségével viszont azt is ellenőrizheted, hogy:</p>
+<ul>
+<li>Létezik-e az id mező?</li>
+<li>Az id egész szám-e?</li>
+<li>A title szöveges típusú-e?</li>
+<li>Az completed mező megfelelő formátumú-e?</li>
+<li>Minden kötelező mező szerepel-e a válaszban?</li>
+</ul>
+<p>A pom.xml-ben a dependecies részre ezt másold be:</p>
+<pre><code class="language-bash">     &lt;!-- JSON Schema validation--&gt;
+		&lt;dependency&gt;
+		    &lt;groupId&gt;io.rest-assured&lt;/groupId&gt;
+		    &lt;artifactId&gt;json-schema-validator&lt;/artifactId&gt;
+		    &lt;version&gt;5.5.0&lt;/version&gt;
+		    &lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+</code></pre>
+<h2 id="schema-json"><a class="header" href="#schema-json">Schema json</a></h2>
+<p>Példa:
+Ide hozd létre: src/test/resources/schemas/todos-schema.json</p>
+<p>Json tartalma:</p>
+<pre><code class="language-json">{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": [
+    "userId",
+    "id",
+    "title",
+    "completed"
+  ],
+  "properties": {
+    "userId": {
+      "type": "integer"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "completed": {
+      "type": "boolean"
+    }
+  }
+}
+</code></pre>
+<p>Így használd a tesztben:</p>
+<pre><code class="language-java">// Szükséges import
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
+@Test
+void getPhotoSchemaTest() {
+
+    given()
+    .when()
+        .get("/todos/1")
+    .then()
+        .statusCode(200)
+        .body(matchesJsonSchemaInClasspath("schemas/photo-schema.json"));
+}
+</code></pre>
+<p>A REST Assured megkeresi a schema fájlt a src/test/resources mappában,
+és összehasonlítja vele az API válaszát.</p>
 
                     </main>
 
