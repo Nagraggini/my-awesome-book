@@ -84,10 +84,12 @@ A cél, hogy egy átlátható, gyakorlatorientált összefoglalót adjon a Java 
 - [Stack, Heap és Garbage Collector](#stack-heap-és-garbage-collector)
   - [Stack](#stack)
   - [Heap](#heap)
+- [Értéktípusok és referenciatípusok](#értéktípusok-és-referenciatípusok)
   - [Főbb nem-primitív típusok](#főbb-nem-primitív-típusok)
   - [Garbage Collector (Szemétgyűjtő)](#garbage-collector-szemétgyűjtő)
 - [Környezet változók és a manuális fordítás](#környezet-változók-és-a-manuális-fordítás)
 - [Véletlen mondat generátor készítés](#véletlen-mondat-generátor-készítés)
+- [Deklaráció](#deklaráció)
 - [Tömb vs. ArrayList](#tömb-vs-arraylist)
   - [Tömb (Array)](#tömb-array)
     - [Tömb értékadása](#tömb-értékadása)
@@ -1656,12 +1658,24 @@ LIFO (Last In, First Out) elven működik – az utolsó elem, amit betettünk, 
 ## Heap
 
 Kupac.
-A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat. Itt tárolódik a tényleges adat/objektum.
+
+A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat. Nagyobb, de lassabban elérhető, mint a stack. Itt tárolódik a tényleges adat/objektum.
 
 Maga az Objektum a Heapben tárolódik, a stack-ban, csak hivatkozunk rá.  
 Minden, ami benne van egy osztályban az az objektum része, vagyis a Heap-ben tárolódik, az osztályváltozók (int, String) is.
 
 ![alt text](assets/Java/Stack_and_Heap.png)
+
+# Értéktípusok és referenciatípusok
+
+| Szempont             | Értéktípus (Value Type)                                           | Referenciatípus (Reference Type)                      |
+| -------------------- | ----------------------------------------------------------------- | ----------------------------------------------------- |
+| Mit tárol a változó? | Közvetlenül az értéket                                            | Csak egy hivatkozást (címet) az objektumra            |
+| Hol található?       | Stack                                                             | A referencia a stackben, maga az objektum a heapben   |
+| Jellemző típusok     | Egyszerű (primitív) típusok                                       | Összetett típusok, objektumok                         |
+| Példák               | `byte`, `short`, `int`, `long`, `float`, `double`, `char`, `bool` | `string`, tömb (`Array`), osztály (`Class`), `Object` |
+
+**Fontos:** Egy osztály tagjai (pl. `int`, `string` típusú mezők) az objektum részei, ezért az objektummal együtt a heapben tárolódnak.
 
 Példa:
 
@@ -1800,6 +1814,27 @@ Futtasd:
         }
     }
 ```
+# Deklaráció
+
+A deklaráció a változó bevezetése a programba, a legelső használat előtt. Ilyenkor megadjuk a változó típusát és azonosítóját (nevét), és a program memóriaterületet foglal neki.
+
+Szintaxis: <típus> <azonosító>;
+
+```java
+String vezetekNev;
+int egeszSzam;
+```
+
+**Explicit és implicit deklaráció**
+
+Explicit: a típust mi adjuk meg.
+string szoveg = "példa";
+
+Implicit: a típust a fordító következteti ki az értékből (C#-ban és javaban a var kulcsszóval). Nem minden nyelv támogatja. A változó típusa ettől még fix marad, csak nem mi írjuk ki.
+
+var szoveg = "példa";
+
+Ha az érték is megadódik a deklarációnál (= "példa"), akkor deklarációról és definícióról (értékadásról) is beszélünk.
 
 # Tömb vs. ArrayList
 

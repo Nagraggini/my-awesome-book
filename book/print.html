@@ -226,6 +226,10 @@ Flexbox játékos gyakorlása.</p>
 Flexbox tanulás tower defense játékkal.</p>
 </li>
 <li>
+<p><a href="https://mastery.games/flexboxzombies/">Flexbox Zombies</a><br />
+Flexbox tanulás zombies játékkal.</p>
+</li>
+<li>
 <p><a href="https://cssgridgarden.com/#hu">Grid Garden</a><br />
 CSS Grid gyakorlás.</p>
 </li>
@@ -3436,12 +3440,17 @@ Soft-skillek → kommunikáció, dokumentáció írása, angol nyelvű rövid le
 <ul>
 <li><a href="print.html#stack">Stack</a></li>
 <li><a href="print.html#heap">Heap</a></li>
+</ul>
+</li>
+<li><a href="print.html#%C3%A9rt%C3%A9kt%C3%ADpusok-%C3%A9s-referenciat%C3%ADpusok">Értéktípusok és referenciatípusok</a>
+<ul>
 <li><a href="print.html#f%C5%91bb-nem-primit%C3%ADv-t%C3%ADpusok">Főbb nem-primitív típusok</a></li>
 <li><a href="print.html#garbage-collector-szem%C3%A9tgy%C5%B1jt%C5%91">Garbage Collector (Szemétgyűjtő)</a></li>
 </ul>
 </li>
 <li><a href="print.html#k%C3%B6rnyezet-v%C3%A1ltoz%C3%B3k-%C3%A9s-a-manu%C3%A1lis-ford%C3%ADt%C3%A1s">Környezet változók és a manuális fordítás</a></li>
 <li><a href="print.html#v%C3%A9letlen-mondat-gener%C3%A1tor-k%C3%A9sz%C3%ADt%C3%A9s">Véletlen mondat generátor készítés</a></li>
+<li><a href="print.html#deklar%C3%A1ci%C3%B3">Deklaráció</a></li>
 <li><a href="print.html#t%C3%B6mb-vs-arraylist">Tömb vs. ArrayList</a>
 <ul>
 <li><a href="print.html#t%C3%B6mb-array">Tömb (Array)</a>
@@ -3651,7 +3660,7 @@ Spring Boot Ismeretek II.</p>
 <p>Frontend: React (JavaScript)<br />
 Backend: Spring Boot (Java)</p>
 <p>A lenti kép magyarázata a Spring Boot kezdőknek szóló fájlban található. <a href="https://github.com/Nagraggini/springboot-for-beginners/blob/main/HowToDoIt_Hungarian_version.md">Itt</a></p>
-<p><img src="assets/SzoftverarchitekturaEsFogalmiOsszefoglalo.png" alt="alt text" /></p>
+<p><img src="assets/Java/SzoftverarchitekturaEsFogalmiOsszefoglalo.png" alt="alt text" /></p>
 <a class="header" href="print.html#Általános-infók" id="Általános-infók"><h1>Általános infók</h1></a>
 <p>A Java egy általános célú, objektumorientált programozási nyelv.
 Több operációs rendszeren is futtatható (Windows, macOS, Linux stb.).</p>
@@ -3934,7 +3943,7 @@ var cars = new ArrayList&lt;String&gt;();
 <p>1 byte = 8 bit, tehát 0–255 közötti egész számot lehet vele ábrázolni előjel nélküli (unsigned) formában.</p>
 <p>Ha a byte előjeles (signed), akkor a tartománya –128…+127.</p>
 <p>A lentiképen látszik, hogy a felső fekete hátterű értékeket kell megszorozni az alattuk lévőkkel.</p>
-<p><img src="assets/Binary_Converter.png" alt="alt text" /></p>
+<p><img src="assets/Java/Binary_Converter.png" alt="alt text" /></p>
 <a class="header" href="print.html#objektum-orientált-programozás-oop" id="objektum-orientált-programozás-oop"><h1>Objektum orientált programozás (OOP)</h1></a>
 <p>Távoli példa: Két nyelv. Az angol 8 betűvel, a magyar 5 betűvel fejezi ki ugyanazt.</p>
 <p>You <code>drink</code>. | Isz<code>ol</code>.</p>
@@ -4746,7 +4755,7 @@ System.out.println((int) -3.9);  // -3
 <p>FIFO – First In, First Out „Aki először jött, először megy.”</p>
 <p>LIFO – First In, Last Out „Aki először jött, utoljára megy.”<br />
 Mint a nyomtatópapíroknál, ha eggyesével rakod be a papírokat a tárolóba. Íhy működik a verem, vagyis stack.</p>
-<p><img src="/assets/Stacks_and_Queues.png" alt="alt text" /></p>
+<p><img src="/assets/Java/Stacks_and_Queues.png" alt="alt text" /></p>
 <p>Példa:</p>
 <pre><code class="language-java">    public class ElsoProject {
         public static void main(String[] args) {
@@ -4769,11 +4778,19 @@ Mint a nyomtatópapíroknál, ha eggyesével rakod be a papírokat a tárolóba.
 <p>A Stack egy memóriaterület, ahol a program lokális változóit (int, double, boolean, stb.) és függvényhívások adatait tárolják. Itt tárolódik maga a változó neve és a referencia (a címe a memóriában)<br />
 LIFO (Last In, First Out) elven működik – az utolsó elem, amit betettünk, az első, amit kiveszünk.</p>
 <a class="header" href="print.html#heap" id="heap"><h2>Heap</h2></a>
-<p>Kupac.
-A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat. Itt tárolódik a tényleges adat/objektum.</p>
+<p>Kupac.</p>
+<p>A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat. Nagyobb, de lassabban elérhető, mint a stack. Itt tárolódik a tényleges adat/objektum.</p>
 <p>Maga az Objektum a Heapben tárolódik, a stack-ban, csak hivatkozunk rá.<br />
 Minden, ami benne van egy osztályban az az objektum része, vagyis a Heap-ben tárolódik, az osztályváltozók (int, String) is.</p>
-<p><img src="assets/Stack_and_Heap.png" alt="alt text" /></p>
+<p><img src="assets/Java/Stack_and_Heap.png" alt="alt text" /></p>
+<a class="header" href="print.html#Értéktípusok-és-referenciatípusok" id="Értéktípusok-és-referenciatípusok"><h1>Értéktípusok és referenciatípusok</h1></a>
+<table><thead><tr><th> Szempont             </th><th> Értéktípus (Value Type)                                           </th><th> Referenciatípus (Reference Type)                      </th></tr></thead><tbody>
+<tr><td> Mit tárol a változó? </td><td> Közvetlenül az értéket                                            </td><td> Csak egy hivatkozást (címet) az objektumra            </td></tr>
+<tr><td> Hol található?       </td><td> Stack                                                             </td><td> A referencia a stackben, maga az objektum a heapben   </td></tr>
+<tr><td> Jellemző típusok     </td><td> Egyszerű (primitív) típusok                                       </td><td> Összetett típusok, objektumok                         </td></tr>
+<tr><td> Példák               </td><td> <code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code>, <code>char</code>, <code>bool</code> </td><td> <code>string</code>, tömb (<code>Array</code>), osztály (<code>Class</code>), <code>Object</code> </td></tr>
+</tbody></table>
+<p><strong>Fontos:</strong> Egy osztály tagjai (pl. <code>int</code>, <code>string</code> típusú mezők) az objektum részei, ezért az objektummal együtt a heapben tárolódnak.</p>
 <p>Példa:</p>
 <pre><code class="language-java">    public static void main(String[] args) {
         Object o1 = new Object();
@@ -4892,6 +4909,18 @@ java FajlNeve
         }
     }
 </code></pre>
+<a class="header" href="print.html#deklaráció" id="deklaráció"><h1>Deklaráció</h1></a>
+<p>A deklaráció a változó bevezetése a programba, a legelső használat előtt. Ilyenkor megadjuk a változó típusát és azonosítóját (nevét), és a program memóriaterületet foglal neki.</p>
+<p>Szintaxis: &lt;típus&gt; &lt;azonosító&gt;;</p>
+<pre><code class="language-java">String vezetekNev;
+int egeszSzam;
+</code></pre>
+<p><strong>Explicit és implicit deklaráció</strong></p>
+<p>Explicit: a típust mi adjuk meg.
+string szoveg = &quot;példa&quot;;</p>
+<p>Implicit: a típust a fordító következteti ki az értékből (C#-ban és javaban a var kulcsszóval). Nem minden nyelv támogatja. A változó típusa ettől még fix marad, csak nem mi írjuk ki.</p>
+<p>var szoveg = &quot;példa&quot;;</p>
+<p>Ha az érték is megadódik a deklarációnál (= &quot;példa&quot;), akkor deklarációról és definícióról (értékadásról) is beszélünk.</p>
 <a class="header" href="print.html#tömb-vs-arraylist" id="tömb-vs-arraylist"><h1>Tömb vs. ArrayList</h1></a>
 <a class="header" href="print.html#tömb-array" id="tömb-array"><h2>Tömb (Array)</h2></a>
 <p>A tömb statikus, ha törölsz belőle egy elemet, akkor sem megy össze és meg kell adni az elején, hogy mekkora lesz.</p>
@@ -5246,7 +5275,7 @@ Csak az adott osztályon belül elérhető. Még a leszármazott osztály sem é
 Nem access modifier, hanem osztály/metódus jellemző. Nem lehet példányosítani, de kiterjeszteni lehet (extends).</p>
 <p><strong>Default / package-private:</strong><br />
 Ha nincs kiírva. Csak az adott package-en belül elérhető, még subclass esetén sem. NEM protected.</p>
-<p><img src="assets/class_types.png" alt="alt text" /></p>
+<p><img src="assets/Java/class_types.png" alt="alt text" /></p>
 <a class="header" href="print.html#diagramok" id="diagramok"><h2>Diagramok</h2></a>
 <p>Létre lehet hozni UML, vagy osztály diagramot. Hasonlít egy adatbázis kapcsolati ábrára, de nem ugyanaz (viselkedést is mutat).</p>
 <p>Has it. Vagy Is it. Nem mindegyik, hogy mi-miből van leszármaztatva.</p>
@@ -6028,7 +6057,7 @@ forrás → köztes műveletek → terminális művelet</p>
 <p>A különbség, hogy Stream esetén a műveleteket egymás után láncoljuk, és a feldolgozás csak a terminális művelet meghívásakor indul el.</p>
 <a class="header" href="print.html#java-stream-api-gyorssegéd" id="java-stream-api-gyorssegéd"><h2>Java Stream API Gyorssegéd</h2></a>
 <a class="header" href="print.html#rövidebb-verzió" id="rövidebb-verzió"><h3>Rövidebb verzió</h3></a>
-<table><thead><tr><th align="left"> Szint           </th><th align="left"> Művelet               </th><th align="left"> Leírás                                                 </th></tr></thead><tbody>
+<table><thead><tr><th> Szint           </th><th> Művelet               </th><th> Leírás                                                 </th></tr></thead><tbody>
 <tr><td align="left"> <strong>1. FORRÁS</strong>   </td><td align="left"> <code>.stream()</code>           </td><td align="left"> Elindítja a folyamatot. (<strong>KÖTELEZŐ</strong>)                 </td></tr>
 <tr><td align="left"> <strong>2. KÖZTES</strong>   </td><td align="left"> <code>.filter(x -&gt; ...)</code>   </td><td align="left"> Szűrés (csak az marad, ami TRUE).                      </td></tr>
 <tr><td align="left"> (Bármennyi      </td><td align="left"> <code>.map(x -&gt; x.get...)</code> </td><td align="left"> Átalakítás (pl. objektumból csak egy String).          </td></tr>
@@ -6162,8 +6191,8 @@ numbers.stream().max(Integer::compare)
 <p>1 soros “cheat sheet”</p>
 <pre><code class="language-java">list.stream().filter(...).map(...).collect(...)
 </code></pre>
-<p><img src="assets/Java8StreamsCheatSheet.png" alt="alt text" /></p>
-<p><img src="assets/StreamPipeline.png" alt="alt text" /></p>
+<p><img src="assets/Java/Java8StreamsCheatSheet.png" alt="alt text" /></p>
+<p><img src="assets/Java/StreamPipeline.png" alt="alt text" /></p>
 <pre><code class="language-java">List&lt;String&gt; nevek =
         people.stream()
               .map(Person::getName)
@@ -6915,6 +6944,11 @@ assertEquals(&quot;Negatív szám nem megengedett!&quot;, exception.getMessage()
 <li><a href="print.html#leggyakrabban-haszn%C3%A1ltak">Leggyakrabban használtak</a></li>
 </ul>
 </li>
+<li><a href="print.html#schema-valid%C3%A1ci%C3%B3-hazsn%C3%A1lata">Schema validáció hazsnálata</a>
+<ul>
+<li><a href="print.html#schema-json">Schema json</a></li>
+</ul>
+</li>
 </ul>
 <a class="header" href="print.html#rest-assured-alapjai-rest-api-tesztelés" id="rest-assured-alapjai-rest-api-tesztelés"><h1>Rest Assured alapjai (REST API tesztelés)</h1></a>
 <p><a href="https://www.youtube.com/watch?v=vgMyJhrMV0o&amp;list=PLhW3qG5bs-L8xPrBwDv66cTMlFNeUPdJx&amp;index=5">REST Assured Beginner Tutorial</a></p>
@@ -7045,6 +7079,11 @@ public class BaseApiTest {
                 .given()
                     .accept(ContentType.JSON) // json formátumú választ várunk 
                     .contentType(ContentType.JSON); // json formátumban küldjük a kérést
+
+        /*
+        Ha egy teszt elbukik (pl. nem a várt státuszkódot kapja), ez a beállítás automatikusan kiírja a konzolra a KÉRÉST (Request) ÉS a VÁLASZT (Response) is a teljes részletességükben.
+        */
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
     }
 }
 </code></pre>
@@ -7364,7 +7403,7 @@ public class User {
     // A query paramétert nem kell beleírni az endpointba:
     // GET /comments?postId=1
     given()
-        .queryParam(&quot;postId&quot;, 1)
+        .queryParam(&quot;postId&quot;, 1) // Lehet akár kettőre is szűrni .queryParam(&quot;postId&quot;, 1, 2)
         .queryParam(&quot;email&quot;, &quot;test@test.com&quot;)
     .when()
         .get(&quot;/comments&quot;);
@@ -7479,6 +7518,13 @@ A User.class a POJO osztályból jön.</p>
 assertEquals(3,album.getUserId());
 assertEquals(25,album.getId());
 assertEquals(&quot;vero maxime id possimus sunt neque et consequatur&quot;,album.getTitle());	
+
+// Ez kell, ha azt csekkoljuk, hogy a lista, vagy az objektum nem null:
+assertNotNull(album);
+assertNotNull(album.getId());
+
+//A isBlank() az üres és a kizárólag whitespace karakterekből álló szöveget is elutasítja.
+assertFalse(album.getTitle().isBlank());
 </code></pre>
 <p>Keresés és az alapján történő törlés:</p>
 <pre><code class="language-java">        String albumTitle = &quot;quidem molestiae enim&quot;;
@@ -7603,6 +7649,196 @@ import io.restassured.response.Response;
             .body(&quot;size()&quot;, equalTo(10))			
             .body(&quot;userId&quot;, everyItem(equalTo(7)));
 </code></pre>
+<p>Példa kód a delete metódusra:</p>
+<pre><code class="language-java">package api.photos.deletePhoto;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import base.BaseApiTest;
+import io.restassured.response.Response;
+import photoPOJO.Photo;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+class DeletePhotoTest extends BaseApiTest {
+    
+  /**
+    * Task 309 – Delete an Existing Photo
+    
+    Endpoint:
+    
+    DELETE /photos/{id}
+    
+    Test data:
+    
+    id = 250
+    
+    Requirements:
+    
+    Send a DELETE request using the photo ID as a path parameter.
+    Verify that the status code is 200 or 204.
+    Verify that the response body is either:
+    an empty JSON object, or
+    completely empty.
+    Log the response only if validation fails.
+    */
+    @Test
+    @DisplayName(&quot;Task 309 – Delete an Existing Photo&quot;)
+    void deleteAnExistingPhotoTest() {
+        
+        int id=250;
+        
+        given()	
+            .pathParam(&quot;id&quot;,id)
+        .when()
+            .delete(&quot;/photos/{id}&quot;)
+        .then()
+            .log().ifValidationFails()
+            .statusCode(anyOf(is(200),is(204)))
+            .body(&quot;&quot;,anyOf(anEmptyMap(),nullValue(),empty()));
+    }
+    
+    /**
+     * Task 310 – Find and Delete a Photo by Title
+    
+    Search endpoint:
+    
+    GET /photos?title={title}
+    
+    Delete endpoint:
+    
+    DELETE /photos/{id}
+    
+    Test data:
+    
+    title = &quot;et inventore quae ut tempore eius voluptatum&quot;
+    
+    Requirements:
+    
+    Send a GET request using the title as a query parameter.
+    Verify that the GET response status code is 200.
+    Deserialize the response into a List&lt;Photo&gt;.
+    Verify that the list is not empty.
+    Verify that the returned photo title exactly matches the searched title.
+    Extract the ID of the first returned photo.
+    Send a DELETE request to /photos/{id} using the extracted ID.
+    Verify that the DELETE response status code is 200 or 204.
+    Verify that the DELETE response body is either an empty JSON object or empty.
+    Log responses only if validation fails.
+     */
+    @Test
+    @DisplayName(&quot;Task 310 – Find and Delete a Photo by Title&quot;)
+    void findAndDeleteAPhotoByTitleTest() {
+        
+        String title = &quot;et inventore quae ut tempore eius voluptatum&quot;;
+        
+        List &lt;Photo&gt; photoResponse=given()
+            .queryParam(&quot;title&quot;,title)
+        .when()
+            .get(&quot;/photos&quot;)
+        .then()
+            .log().ifValidationFails()
+            .statusCode(200)
+            .extract().jsonPath().getList(&quot;&quot;,Photo.class);
+        
+        assertNotNull(photoResponse);
+        assertFalse(photoResponse.isEmpty());
+        
+        for (Photo photo : photoResponse) {
+            assertEquals(title,photo.getTitle());
+        }
+        
+        int id=photoResponse.get(0).getId();
+        System.out.println(&quot;Photo ID to delete: &quot; + id);
+        
+        Response responseAfterDelete=given()
+            .pathParam(&quot;id&quot;,id)
+        .when()
+            .delete(&quot;/photos/{id}&quot;)
+        .then()
+            .log().ifValidationFails()		    
+            .statusCode(anyOf(is(200),is(204)))
+            .extract().response();
+        
+        String responseBody=responseAfterDelete.getBody().asString();
+        
+        assertTrue(responseBody.trim().isEmpty() || responseBody.trim().equals(&quot;{}&quot;));
+            
+    }
+
+}
+</code></pre>
+<a class="header" href="print.html#schema-validáció-hazsnálata" id="schema-validáció-hazsnálata"><h1>Schema validáció hazsnálata</h1></a>
+<p>Ez egy nagyon hasznos kiegészítő, mert nemcsak azt tudod ellenőrizni, hogy milyen értékek érkeznek vissza, hanem azt is, hogy a JSON válasz szerkezete megfelel-e az előre meghatározott elvárásoknak.</p>
+<p>A JSON Schema segítségével viszont azt is ellenőrizheted, hogy:</p>
+<ul>
+<li>Létezik-e az id mező?</li>
+<li>Az id egész szám-e?</li>
+<li>A title szöveges típusú-e?</li>
+<li>Az completed mező megfelelő formátumú-e?</li>
+<li>Minden kötelező mező szerepel-e a válaszban?</li>
+</ul>
+<p>A pom.xml-ben a dependecies részre ezt másold be:</p>
+<pre><code class="language-bash">     &lt;!-- JSON Schema validation--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.rest-assured&lt;/groupId&gt;
+            &lt;artifactId&gt;json-schema-validator&lt;/artifactId&gt;
+            &lt;version&gt;5.5.0&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<a class="header" href="print.html#schema-json" id="schema-json"><h2>Schema json</h2></a>
+<p>Példa:
+Ide hozd létre: src/test/resources/schemas/todos-schema.json</p>
+<p>Json tartalma:</p>
+<pre><code class="language-json">{
+  &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;userId&quot;,
+    &quot;id&quot;,
+    &quot;title&quot;,
+    &quot;completed&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;userId&quot;: {
+      &quot;type&quot;: &quot;integer&quot;
+    },
+    &quot;id&quot;: {
+      &quot;type&quot;: &quot;integer&quot;
+    },
+    &quot;title&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;completed&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;
+    }
+  }
+}
+</code></pre>
+<p>Így használd a tesztben:</p>
+<pre><code class="language-java">// Szükséges import
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
+@Test
+void getPhotoSchemaTest() {
+
+    given()
+    .when()
+        .get(&quot;/todos/1&quot;)
+    .then()
+        .statusCode(200)
+        .body(matchesJsonSchemaInClasspath(&quot;schemas/photo-schema.json&quot;));
+}
+</code></pre>
+<p>A REST Assured megkeresi a schema fájlt a src/test/resources mappában,
+és összehasonlítja vele az API válaszát.</p>
 <a class="header" href="print.html#tartalomjegyzék-5" id="tartalomjegyzék-5"><h1>Tartalomjegyzék</h1></a>
 <ul>
 <li><a href="print.html#tartalomjegyz%C3%A9k">Tartalomjegyzék</a></li>

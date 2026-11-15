@@ -126,6 +126,11 @@
 <li><a href="rest-assured.html#leggyakrabban-haszn%C3%A1ltak">Leggyakrabban használtak</a></li>
 </ul>
 </li>
+<li><a href="rest-assured.html#schema-valid%C3%A1ci%C3%B3-hazsn%C3%A1lata">Schema validáció hazsnálata</a>
+<ul>
+<li><a href="rest-assured.html#schema-json">Schema json</a></li>
+</ul>
+</li>
 </ul>
 <a class="header" href="rest-assured.html#rest-assured-alapjai-rest-api-tesztelés" id="rest-assured-alapjai-rest-api-tesztelés"><h1>Rest Assured alapjai (REST API tesztelés)</h1></a>
 <p><a href="https://www.youtube.com/watch?v=vgMyJhrMV0o&amp;list=PLhW3qG5bs-L8xPrBwDv66cTMlFNeUPdJx&amp;index=5">REST Assured Beginner Tutorial</a></p>
@@ -256,6 +261,11 @@ public class BaseApiTest {
                 .given()
                     .accept(ContentType.JSON) // json formátumú választ várunk 
                     .contentType(ContentType.JSON); // json formátumban küldjük a kérést
+
+        /*
+        Ha egy teszt elbukik (pl. nem a várt státuszkódot kapja), ez a beállítás automatikusan kiírja a konzolra a KÉRÉST (Request) ÉS a VÁLASZT (Response) is a teljes részletességükben.
+        */
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
     }
 }
 </code></pre>
@@ -575,7 +585,7 @@ public class User {
     // A query paramétert nem kell beleírni az endpointba:
     // GET /comments?postId=1
     given()
-        .queryParam(&quot;postId&quot;, 1)
+        .queryParam(&quot;postId&quot;, 1) // Lehet akár kettőre is szűrni .queryParam(&quot;postId&quot;, 1, 2)
         .queryParam(&quot;email&quot;, &quot;test@test.com&quot;)
     .when()
         .get(&quot;/comments&quot;);
@@ -690,6 +700,13 @@ A User.class a POJO osztályból jön.</p>
 assertEquals(3,album.getUserId());
 assertEquals(25,album.getId());
 assertEquals(&quot;vero maxime id possimus sunt neque et consequatur&quot;,album.getTitle());	
+
+// Ez kell, ha azt csekkoljuk, hogy a lista, vagy az objektum nem null:
+assertNotNull(album);
+assertNotNull(album.getId());
+
+//A isBlank() az üres és a kizárólag whitespace karakterekből álló szöveget is elutasítja.
+assertFalse(album.getTitle().isBlank());
 </code></pre>
 <p>Keresés és az alapján történő törlés:</p>
 <pre><code class="language-java">        String albumTitle = &quot;quidem molestiae enim&quot;;
@@ -814,6 +831,196 @@ import io.restassured.response.Response;
             .body(&quot;size()&quot;, equalTo(10))			
             .body(&quot;userId&quot;, everyItem(equalTo(7)));
 </code></pre>
+<p>Példa kód a delete metódusra:</p>
+<pre><code class="language-java">package api.photos.deletePhoto;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import base.BaseApiTest;
+import io.restassured.response.Response;
+import photoPOJO.Photo;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+class DeletePhotoTest extends BaseApiTest {
+    
+  /**
+    * Task 309 – Delete an Existing Photo
+    
+    Endpoint:
+    
+    DELETE /photos/{id}
+    
+    Test data:
+    
+    id = 250
+    
+    Requirements:
+    
+    Send a DELETE request using the photo ID as a path parameter.
+    Verify that the status code is 200 or 204.
+    Verify that the response body is either:
+    an empty JSON object, or
+    completely empty.
+    Log the response only if validation fails.
+    */
+    @Test
+    @DisplayName(&quot;Task 309 – Delete an Existing Photo&quot;)
+    void deleteAnExistingPhotoTest() {
+        
+        int id=250;
+        
+        given()	
+            .pathParam(&quot;id&quot;,id)
+        .when()
+            .delete(&quot;/photos/{id}&quot;)
+        .then()
+            .log().ifValidationFails()
+            .statusCode(anyOf(is(200),is(204)))
+            .body(&quot;&quot;,anyOf(anEmptyMap(),nullValue(),empty()));
+    }
+    
+    /**
+     * Task 310 – Find and Delete a Photo by Title
+    
+    Search endpoint:
+    
+    GET /photos?title={title}
+    
+    Delete endpoint:
+    
+    DELETE /photos/{id}
+    
+    Test data:
+    
+    title = &quot;et inventore quae ut tempore eius voluptatum&quot;
+    
+    Requirements:
+    
+    Send a GET request using the title as a query parameter.
+    Verify that the GET response status code is 200.
+    Deserialize the response into a List&lt;Photo&gt;.
+    Verify that the list is not empty.
+    Verify that the returned photo title exactly matches the searched title.
+    Extract the ID of the first returned photo.
+    Send a DELETE request to /photos/{id} using the extracted ID.
+    Verify that the DELETE response status code is 200 or 204.
+    Verify that the DELETE response body is either an empty JSON object or empty.
+    Log responses only if validation fails.
+     */
+    @Test
+    @DisplayName(&quot;Task 310 – Find and Delete a Photo by Title&quot;)
+    void findAndDeleteAPhotoByTitleTest() {
+        
+        String title = &quot;et inventore quae ut tempore eius voluptatum&quot;;
+        
+        List &lt;Photo&gt; photoResponse=given()
+            .queryParam(&quot;title&quot;,title)
+        .when()
+            .get(&quot;/photos&quot;)
+        .then()
+            .log().ifValidationFails()
+            .statusCode(200)
+            .extract().jsonPath().getList(&quot;&quot;,Photo.class);
+        
+        assertNotNull(photoResponse);
+        assertFalse(photoResponse.isEmpty());
+        
+        for (Photo photo : photoResponse) {
+            assertEquals(title,photo.getTitle());
+        }
+        
+        int id=photoResponse.get(0).getId();
+        System.out.println(&quot;Photo ID to delete: &quot; + id);
+        
+        Response responseAfterDelete=given()
+            .pathParam(&quot;id&quot;,id)
+        .when()
+            .delete(&quot;/photos/{id}&quot;)
+        .then()
+            .log().ifValidationFails()		    
+            .statusCode(anyOf(is(200),is(204)))
+            .extract().response();
+        
+        String responseBody=responseAfterDelete.getBody().asString();
+        
+        assertTrue(responseBody.trim().isEmpty() || responseBody.trim().equals(&quot;{}&quot;));
+            
+    }
+
+}
+</code></pre>
+<a class="header" href="rest-assured.html#schema-validáció-hazsnálata" id="schema-validáció-hazsnálata"><h1>Schema validáció hazsnálata</h1></a>
+<p>Ez egy nagyon hasznos kiegészítő, mert nemcsak azt tudod ellenőrizni, hogy milyen értékek érkeznek vissza, hanem azt is, hogy a JSON válasz szerkezete megfelel-e az előre meghatározott elvárásoknak.</p>
+<p>A JSON Schema segítségével viszont azt is ellenőrizheted, hogy:</p>
+<ul>
+<li>Létezik-e az id mező?</li>
+<li>Az id egész szám-e?</li>
+<li>A title szöveges típusú-e?</li>
+<li>Az completed mező megfelelő formátumú-e?</li>
+<li>Minden kötelező mező szerepel-e a válaszban?</li>
+</ul>
+<p>A pom.xml-ben a dependecies részre ezt másold be:</p>
+<pre><code class="language-bash">     &lt;!-- JSON Schema validation--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.rest-assured&lt;/groupId&gt;
+            &lt;artifactId&gt;json-schema-validator&lt;/artifactId&gt;
+            &lt;version&gt;5.5.0&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<a class="header" href="rest-assured.html#schema-json" id="schema-json"><h2>Schema json</h2></a>
+<p>Példa:
+Ide hozd létre: src/test/resources/schemas/todos-schema.json</p>
+<p>Json tartalma:</p>
+<pre><code class="language-json">{
+  &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [
+    &quot;userId&quot;,
+    &quot;id&quot;,
+    &quot;title&quot;,
+    &quot;completed&quot;
+  ],
+  &quot;properties&quot;: {
+    &quot;userId&quot;: {
+      &quot;type&quot;: &quot;integer&quot;
+    },
+    &quot;id&quot;: {
+      &quot;type&quot;: &quot;integer&quot;
+    },
+    &quot;title&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;completed&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;
+    }
+  }
+}
+</code></pre>
+<p>Így használd a tesztben:</p>
+<pre><code class="language-java">// Szükséges import
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
+@Test
+void getPhotoSchemaTest() {
+
+    given()
+    .when()
+        .get(&quot;/todos/1&quot;)
+    .then()
+        .statusCode(200)
+        .body(matchesJsonSchemaInClasspath(&quot;schemas/photo-schema.json&quot;));
+}
+</code></pre>
+<p>A REST Assured megkeresi a schema fájlt a src/test/resources mappában,
+és összehasonlítja vele az API válaszát.</p>
 
                 </div>
 
