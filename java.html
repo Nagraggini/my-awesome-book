@@ -296,12 +296,17 @@
 <ul>
 <li><a href="#stack">Stack</a></li>
 <li><a href="#heap">Heap</a></li>
+</ul>
+</li>
+<li><a href="#%C3%A9rt%C3%A9kt%C3%ADpusok-%C3%A9s-referenciat%C3%ADpusok">Értéktípusok és referenciatípusok</a>
+<ul>
 <li><a href="#f%C5%91bb-nem-primit%C3%ADv-t%C3%ADpusok">Főbb nem-primitív típusok</a></li>
 <li><a href="#garbage-collector-szem%C3%A9tgy%C5%B1jt%C5%91">Garbage Collector (Szemétgyűjtő)</a></li>
 </ul>
 </li>
 <li><a href="#k%C3%B6rnyezet-v%C3%A1ltoz%C3%B3k-%C3%A9s-a-manu%C3%A1lis-ford%C3%ADt%C3%A1s">Környezet változók és a manuális fordítás</a></li>
 <li><a href="#v%C3%A9letlen-mondat-gener%C3%A1tor-k%C3%A9sz%C3%ADt%C3%A9s">Véletlen mondat generátor készítés</a></li>
+<li><a href="#deklar%C3%A1ci%C3%B3">Deklaráció</a></li>
 <li><a href="#t%C3%B6mb-vs-arraylist">Tömb vs. ArrayList</a>
 <ul>
 <li><a href="#t%C3%B6mb-array">Tömb (Array)</a>
@@ -1621,11 +1626,20 @@ Mint a nyomtatópapíroknál, ha eggyesével rakod be a papírokat a tárolóba.
 <p>A Stack egy memóriaterület, ahol a program lokális változóit (int, double, boolean, stb.) és függvényhívások adatait tárolják. Itt tárolódik maga a változó neve és a referencia (a címe a memóriában)<br />
 LIFO (Last In, First Out) elven működik – az utolsó elem, amit betettünk, az első, amit kiveszünk.</p>
 <h2 id="heap"><a class="header" href="#heap">Heap</a></h2>
-<p>Kupac.
-A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat. Itt tárolódik a tényleges adat/objektum.</p>
+<p>Kupac.</p>
+<p>A Heap a dinamikusan foglalt memória helye, ahová a program futás közben hoz létre objektumokat. Nagyobb, de lassabban elérhető, mint a stack. Itt tárolódik a tényleges adat/objektum.</p>
 <p>Maga az Objektum a Heapben tárolódik, a stack-ban, csak hivatkozunk rá.<br />
 Minden, ami benne van egy osztályban az az objektum része, vagyis a Heap-ben tárolódik, az osztályváltozók (int, String) is.</p>
 <p><img src="assets/Java/Stack_and_Heap.png" alt="alt text" /></p>
+<h1 id="Értéktípusok-és-referenciatípusok"><a class="header" href="#Értéktípusok-és-referenciatípusok">Értéktípusok és referenciatípusok</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Szempont</th><th>Értéktípus (Value Type)</th><th>Referenciatípus (Reference Type)</th></tr></thead><tbody>
+<tr><td>Mit tárol a változó?</td><td>Közvetlenül az értéket</td><td>Csak egy hivatkozást (címet) az objektumra</td></tr>
+<tr><td>Hol található?</td><td>Stack</td><td>A referencia a stackben, maga az objektum a heapben</td></tr>
+<tr><td>Jellemző típusok</td><td>Egyszerű (primitív) típusok</td><td>Összetett típusok, objektumok</td></tr>
+<tr><td>Példák</td><td><code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code>, <code>char</code>, <code>bool</code></td><td><code>string</code>, tömb (<code>Array</code>), osztály (<code>Class</code>), <code>Object</code></td></tr>
+</tbody></table>
+</div>
+<p><strong>Fontos:</strong> Egy osztály tagjai (pl. <code>int</code>, <code>string</code> típusú mezők) az objektum részei, ezért az objektummal együtt a heapben tárolódnak.</p>
 <p>Példa:</p>
 <pre><code class="language-java">    public static void main(String[] args) {
         Object o1 = new Object();
@@ -1744,6 +1758,18 @@ java FajlNeve
         }
     }
 </code></pre>
+<h1 id="deklaráció"><a class="header" href="#deklaráció">Deklaráció</a></h1>
+<p>A deklaráció a változó bevezetése a programba, a legelső használat előtt. Ilyenkor megadjuk a változó típusát és azonosítóját (nevét), és a program memóriaterületet foglal neki.</p>
+<p>Szintaxis: &lt;típus&gt; &lt;azonosító&gt;;</p>
+<pre><code class="language-java">String vezetekNev;
+int egeszSzam;
+</code></pre>
+<p><strong>Explicit és implicit deklaráció</strong></p>
+<p>Explicit: a típust mi adjuk meg.
+string szoveg = "példa";</p>
+<p>Implicit: a típust a fordító következteti ki az értékből (C#-ban és javaban a var kulcsszóval). Nem minden nyelv támogatja. A változó típusa ettől még fix marad, csak nem mi írjuk ki.</p>
+<p>var szoveg = "példa";</p>
+<p>Ha az érték is megadódik a deklarációnál (= "példa"), akkor deklarációról és definícióról (értékadásról) is beszélünk.</p>
 <h1 id="tömb-vs-arraylist"><a class="header" href="#tömb-vs-arraylist">Tömb vs. ArrayList</a></h1>
 <h2 id="tömb-array"><a class="header" href="#tömb-array">Tömb (Array)</a></h2>
 <p>A tömb statikus, ha törölsz belőle egy elemet, akkor sem megy össze és meg kell adni az elején, hogy mekkora lesz.</p>
