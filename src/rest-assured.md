@@ -629,6 +629,12 @@ A User.class a POJO osztályból jön.
 
 Ha a teljes response body egyetlen objektumot tartalmaz, közvetlenül használható az `.extract().as(User.class)`. Ha az objektum egy beágyazott mezőben található, használható a `jsonPath().getObject()`.
 
+**"$" (A hivatalos gyökér):**
+Ez a szabványos JSONPath jelölés a root (gyökér) elemre. A $ mindig a teljes JSON választ jelöli, függetlenül attól, hogy az egy objektum ({...}) vagy egy tömb ([...]). Akkor használod, amikor a teljes válaszstruktúrára hivatkozol.
+
+**"" (Üres kifejezés):**
+Ez a REST Assured saját kényelmi kiegészítése. A REST Assured-ben sok metódus (pl. a body() vagy az extract().path()) alapértelmezésben a gyökértől indul. Ha üres stringet ("") adsz meg, azzal azt mondod a REST Assured-nek, hogy "ne keress semmilyen specifikus kulcsot vagy útvonalat, hanem kezeld a teljes választ gyökérként". Gyakran akkor jön jól, ha a válasz egy nyers tömb (pl. [...]), és azonnal az egész tömböt akarod vizsgálni.
+
 Példák:
 
 ```java
