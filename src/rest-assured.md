@@ -23,6 +23,7 @@
 - [Legfontosabb importok](#legfontosabb-importok)
 	- [Hamcrest Matcherek Rest Assured-ben](#hamcrest-matcherek-rest-assured-ben)
 	- [Leggyakrabban használtak](#leggyakrabban-használtak)
+- [Patch és AssertionError](#patch-és-assertionerror)
 - [Schema validáció hazsnálata](#schema-validáció-hazsnálata)
 	- [Schema json](#schema-json)
 
@@ -555,6 +556,15 @@ A kérés előkészítése.
 	.when()
 		.put("/comments/{id}");
 
+	Map<String, Boolean> requestBody = Map.of(
+        "completed", true
+    );
+
+	Response response = given()
+                .pathParam("id", 15)
+                .body(requestBody)
+            .when()
+                .patch("/todos/{id}");
 ```
 ---
 
@@ -961,6 +971,68 @@ class DeletePhotoTest extends BaseApiTest {
 
 }
 ```
+
+# Patch és AssertionError
+
+```java
+@Test
+	@DisplayName("Task 413 – Update the Title of an Existing Todo")
+	void updateTheTitleOfAnExistingTodoTest() {
+
+        int id = 20;
+        String title = "Learn advanced REST Assured techniques";
+
+        // 1. Create request body
+        Map<String, String> requestBody =
+                Map.of("title", title);
+
+        // 2. Retrieve original Todo
+        Todo todoOriginal = given()
+                .pathParam("id", id)
+            .when()
+                .get("/todos/{id}")
+            .then()
+                .log().ifValidationFails()
+                .statusCode(200)
+                .extract()
+                .as(Todo.class);
+
+        // 3. Send PATCH request
+        Response response = given()
+                .pathParam("id", id)
+                .body(requestBody)
+            .when()
+                .patch("/todos/{id}");
+
+        try {
+            // 4. Verify status code
+            assertEquals(200, response.statusCode());
+
+            // 5. Deserialize response
+            Todo todoResponse = response.as(Todo.class);
+
+            // 6. Verify response
+            assertAll(
+                () -> assertEquals(id, todoResponse.getId()),
+                () -> assertEquals(title, todoResponse.getTitle()),
+                () -> assertEquals(
+                        todoOriginal.getUserId(),
+                        todoResponse.getUserId()
+                ),
+                () -> assertEquals(
+                        todoOriginal.isCompleted(),
+                        todoResponse.isCompleted()
+                )
+            );
+
+        } catch (AssertionError e) {
+            // Log response only if validation fails
+            response.then().log().all();
+            throw e;
+        }
+    }
+```
+
 # Schema validáció hazsnálata
 
 Ez egy nagyon hasznos kiegészítő, mert nemcsak azt tudod ellenőrizni, hogy milyen értékek érkeznek vissza, hanem azt is, hogy a JSON válasz szerkezete megfelel-e az előre meghatározott elvárásoknak.
